@@ -13,6 +13,8 @@ import CoreLocation
 
 class Sun {
     
+    static let timeFormatter = NSDateFormatter()
+    
     // Number of minutes a full screen height is
     let screenMinutes: Float
     
@@ -31,18 +33,21 @@ class Sun {
     // Gradient that animates to show time of day
     var gradientLayer: CAGradientLayer
     
+    var nowTimeLabel: UILabel
+    
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
     var suntimes: [Suntime] = []
     
-    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer) {
+    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel) {
         self.screenMinutes = screenMinutes
         self.screenHeight = screenHeight
         self.sunHeight = sunHeight
         self.sunViewScale = Float(Float(sunHeight) / Float(screenHeight))
         self.sunView = sunView
         self.gradientLayer = gradientLayer
+        self.nowTimeLabel = nowTimeLabel
         
         calendar.timeZone = NSTimeZone.localTimeZone()
         
@@ -66,6 +71,7 @@ class Sun {
     
     func findNow(offset: Float) {
         now = NSDate().dateByAddingTimeInterval(Double(offset))
+        nowTimeLabel.text = Sun.timeFormatter.stringFromDate(now)
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMMM d HH:mm"

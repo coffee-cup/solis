@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        Sun.timeFormatter.dateFormat = "HH:mm"
+        
         let screenMinutes = Float(6 * 60)
         let screenHeight = Float(view.frame.height)
         let sunHeight = Float(sunView.frame.height)
@@ -45,7 +47,7 @@ class ViewController: UIViewController {
         let lon: CLLocationDegrees = -123.1153840
         myLoc = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
-        sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer)
+        sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
         
         update()
 
@@ -83,7 +85,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
-        sun.update(hourSlider.value, location: myLoc)
+        update(hourSlider.value)
     }
     
 }

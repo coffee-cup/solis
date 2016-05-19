@@ -18,11 +18,9 @@ class Sunline: UIView {
     var parentView: UIView!
     
     var topConstraint: NSLayoutConstraint!
-    let formatter = NSDateFormatter()
 
     override init (frame : CGRect) {
         super.init(frame : frame)
-        formatter.dateFormat = "H:mm"
     }
     
     convenience init () {
@@ -83,7 +81,7 @@ class Sunline: UIView {
     }
 
     func updateLine(time: NSDate, percent: Float) {
-        let text = formatter.stringFromDate(time)
+        let text = Sun.timeFormatter.stringFromDate(time)
         timeLabel.text = text
         
         topConstraint.constant = parentView.frame.height * CGFloat(percent)
