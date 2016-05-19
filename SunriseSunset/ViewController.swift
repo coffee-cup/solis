@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var hourSlider: UISlider!
     var gradientLayer = CAGradientLayer()
     
+    @IBOutlet weak var nowTimeLabel: UILabel!
+    @IBOutlet weak var nowLineView: UIView!
+    @IBOutlet weak var nowLabel: UILabel!
+    
     var myLoc: CLLocationCoordinate2D!
     
     var sun: Sun!
@@ -30,19 +34,25 @@ class ViewController: UIViewController {
         let screenMinutes = Float(6 * 60)
         let screenHeight = Float(view.frame.height)
         let sunHeight = Float(sunView.frame.height)
-        let sunViewScale = Float(Float(sunHeight) / Float(screenHeight))
         
         sunView.layer.addSublayer(gradientLayer)
+        
+        nowLabel.textColor = nameTextColour
+        nowTimeLabel.textColor = timeTextColour
+        nowLineView.backgroundColor = nowLineColour
         
         let lat: CLLocationDegrees = 49.2755480
         let lon: CLLocationDegrees = -123.1153840
         myLoc = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
-        sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunViewScale: sunViewScale, sunView: sunView, gradientLayer: gradientLayer)
+        sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer)
         
         update()
 
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
+//        NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+//        hourSlider.hidden = true
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -56,7 +66,7 @@ class ViewController: UIViewController {
         }
         
         hourSlider.value = offset
-        sun.update(offset, location: myLoc)
+        update(offset)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,8 +78,8 @@ class ViewController: UIViewController {
         return "\(d.hour):\(d.minute)"
     }
     
-    func update() {
-        sun.update(0, location: myLoc)
+    func update(offset: Float = 0) {
+        sun.update(offset, location: myLoc)
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {

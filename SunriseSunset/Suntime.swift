@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum SunTypes {
+enum SunType {
     case AstronomicalDusk
     case NauticalDusk
     case CivilDusk
@@ -71,10 +71,10 @@ enum SunTypes {
 
 class Suntime {
     
-    let dateComponents: NSDateComponents!
-    let date: NSDate!
+    var dateComponents: NSDateComponents!
+    var date: NSDate!
     var calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-    let type: SunTypes
+    let type: SunType
     var colour: CGColorRef {
         return type.colour
     }
@@ -82,13 +82,22 @@ class Suntime {
         return type.marker
     }
     
-    lazy var formatter = NSDateFormatter()
+    var sunline: Sunline
     
-    init(day: NSDate, dateComponents: NSDateComponents, type: SunTypes) {
+    let formatter = NSDateFormatter()
+    
+    init(type: SunType, view: UIView) {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
-        self.dateComponents = dateComponents
         self.type = type
+        formatter.dateFormat = "MMMM d HH:mm"
+        
+        sunline = Sunline()
+        sunline.createLine(view, type: type)
+    }
+    
+    func setValues(day: NSDate, dateComponents: NSDateComponents) {
+        self.dateComponents = dateComponents
         
         let dayComponents = calendar.components([.Day, .Month, .Year], fromDate: day)
         self.dateComponents.year = dayComponents.year
@@ -99,7 +108,6 @@ class Suntime {
     }
     
     func description() -> String {
-        formatter.dateFormat = "MMMM d HH:mm"
         let dateString = formatter.stringFromDate(date)
         return "\(type.description): \(dateString)"
     }

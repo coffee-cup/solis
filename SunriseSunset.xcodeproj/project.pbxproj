@@ -13,6 +13,7 @@
 		9C3314F41CE9712F004D012E /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Colours.swift */; };
 		9C3314F71CE976BE004D012E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDateExtensions.swift */; };
 		9C3314F91CE9A723004D012E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColorExtension.swift */; };
+		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
 		9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* ViewController.swift */; };
 		9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEC1CE844400080B5B1 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		9C3314F31CE9712F004D012E /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
 		9C3314F81CE9A723004D012E /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CB37BEA1CE844400080B5B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		9C485AB21CED807A0086B22E /* SunStuff */ = {
+			isa = PBXGroup;
+			children = (
+				9C3314F11CE95783004D012E /* Suntime.swift */,
+				9CBB09AD1CED6D1000F344C4 /* Sun.swift */,
+				9C485AB01CED7E130086B22E /* Sunline.swift */,
+			);
+			name = SunStuff;
+			sourceTree = "<group>";
+		};
 		9CB37BDC1CE844400080B5B1 = {
 			isa = PBXGroup;
 			children = (
@@ -163,9 +175,8 @@
 				9CB37BEF1CE844400080B5B1 /* Assets.xcassets */,
 				9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
-				9C3314F11CE95783004D012E /* Suntime.swift */,
+				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C3314F31CE9712F004D012E /* Colours.swift */,
-				9CBB09AD1CED6D1000F344C4 /* Sun.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -456,6 +467,7 @@
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9C3314F71CE976BE004D012E /* NSDateExtensions.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Colours.swift in Sources */,
+				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
 				9C3314F91CE9A723004D012E /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

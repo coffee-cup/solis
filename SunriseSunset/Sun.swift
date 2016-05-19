@@ -13,11 +13,22 @@ import CoreLocation
 
 class Sun {
     
+    // Number of minutes a full screen height is
     let screenMinutes: Float
+    
+    // Height of the screen
     var screenHeight: Float
+    
+    // Height of the view where the gradient lives
     var sunHeight: Float
+    
+    // Ratio between screen height and sun view
     var sunViewScale: Float
+    
+    // View where the gradient lives
     var sunView: UIView
+    
+    // Gradient that animates to show time of day
     var gradientLayer: CAGradientLayer
     
     var now: NSDate = NSDate()
@@ -25,15 +36,26 @@ class Sun {
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
     var suntimes: [Suntime] = []
     
-    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunViewScale: Float, sunView: UIView, gradientLayer: CAGradientLayer) {
+    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer) {
         self.screenMinutes = screenMinutes
         self.screenHeight = screenHeight
         self.sunHeight = sunHeight
-        self.sunViewScale = sunViewScale
+        self.sunViewScale = Float(Float(sunHeight) / Float(screenHeight))
         self.sunView = sunView
         self.gradientLayer = gradientLayer
         
         calendar.timeZone = NSTimeZone.localTimeZone()
+        
+        for _ in 1...3 {
+            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
+            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
+            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
+            suntimes.append(Suntime(type: .Sunrise, view: sunView))
+            suntimes.append(Suntime(type: .Sunset, view: sunView))
+            suntimes.append(Suntime(type: .CivilTwilight, view: sunView))
+            suntimes.append(Suntime(type: .NauticalTwilight, view: sunView))
+            suntimes.append(Suntime(type: .AstronmicalTwilight, view: sunView))
+        }
     }
     
     func update(offset: Float, location: CLLocationCoordinate2D) {
@@ -50,20 +72,21 @@ class Sun {
         print("\(formatter.stringFromDate(now))")
     }
     
-    func calculateAllTimes(date: NSDate) {
+    func calculateAllTimes(date: NSDate, set: Int) {
         let timeZone = NSTimeZone.localTimeZone()
         let ss = EDSunriseSet(timezone: timeZone, latitude: location.latitude, longitude: location.longitude)
         ss.calculateTwilight(date)
         ss.calculateSunriseSunset(date)
         
-        suntimes.append(Suntime(day: date, dateComponents: ss.localAstronomicalTwilightStart(), type: .AstronomicalDusk))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localNauticalCivilTwilightStart(), type: .NauticalDusk))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localCivilTwilightStart(), type: .CivilDusk))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localSunrise(), type: .Sunrise))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localSunset(), type: .Sunset))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localCivilTwilightEnd(), type: .CivilTwilight))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localNauticalCivilTwilightEnd(), type: .NauticalTwilight))
-        suntimes.append(Suntime(day: date, dateComponents: ss.localAstronomicalTwilightEnd(), type: .AstronmicalTwilight))
+        let off = set * 8
+        suntimes[0 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightStart())
+        suntimes[1 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightStart())
+        suntimes[2 + off].setValues(date, dateComponents: ss.localCivilTwilightStart())
+        suntimes[3 + off].setValues(date, dateComponents: ss.localSunrise())
+        suntimes[4 + off].setValues(date, dateComponents: ss.localSunset())
+        suntimes[5 + off].setValues(date, dateComponents: ss.localCivilTwilightEnd())
+        suntimes[6 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightEnd())
+        suntimes[7 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightEnd())
     }
     
     func calculateSunriseSunset(location: CLLocationCoordinate2D) {
@@ -73,10 +96,9 @@ class Sun {
         let yesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: today, options: [])!
         let tomorrow = calendar.dateByAddingUnit(.Day, value: 1, toDate: today, options: [])!
         
-        suntimes.removeAll()
-        calculateAllTimes(yesterday)
-        calculateAllTimes(today)
-        calculateAllTimes(tomorrow)
+        calculateAllTimes(yesterday, set: 0)
+        calculateAllTimes(today, set: 1)
+        calculateAllTimes(tomorrow, set: 2)
     }
     
     func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
@@ -115,6 +137,7 @@ class Sun {
                 colours.append(time.colour)
                 locations.append(per)
             }
+            time.sunline.updateLine(time.date, percent: per)
         }
         
         for time in pastTimes.reverse() {
@@ -123,6 +146,7 @@ class Sun {
                 colours.append(time.colour)
                 locations.append(per)
             }
+            time.sunline.updateLine(time.date, percent: per)
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)
