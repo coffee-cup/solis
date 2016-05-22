@@ -11,8 +11,8 @@
 		9611BAD3C7928B584AE42292 /* Pods_SunriseSunsetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E781139EF443B9345BBA97 /* Pods_SunriseSunsetTests.framework */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9C3314F41CE9712F004D012E /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Colours.swift */; };
-		9C3314F71CE976BE004D012E /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDateExtensions.swift */; };
-		9C3314F91CE9A723004D012E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColorExtension.swift */; };
+		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
+		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
 		9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* ViewController.swift */; };
@@ -22,6 +22,7 @@
 		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
+		9CE885961CEFEC260045BEFB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
 		BBF3A4DB1DBC590F5D18DAA1 /* Pods_SunriseSunsetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3189E0E4F45FF1E27907170F /* Pods_SunriseSunsetUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +52,8 @@
 		6F43EA11CC35450734F19303 /* Pods-SunriseSunset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.release.xcconfig"; sourceTree = "<group>"; };
 		9C3314F11CE95783004D012E /* Suntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suntime.swift; sourceTree = "<group>"; };
 		9C3314F31CE9712F004D012E /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
-		9C3314F61CE976BE004D012E /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
-		9C3314F81CE9A723004D012E /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetUITests.swift; sourceTree = "<group>"; };
 		9CB37C0A1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA99C3A67CB3B1E830EF48C7 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E306CB1F3E54D1B76CA78AE9 /* Pods-SunriseSunsetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetUITests/Pods-SunriseSunsetUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,8 +129,8 @@
 		9C3314F51CE976AF004D012E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9C3314F61CE976BE004D012E /* NSDateExtensions.swift */,
-				9C3314F81CE9A723004D012E /* UIColorExtension.swift */,
+				9C3314F61CE976BE004D012E /* NSDate.swift */,
+				9C3314F81CE9A723004D012E /* UIColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -177,6 +179,7 @@
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C3314F31CE9712F004D012E /* Colours.swift */,
+				9CE885951CEFEC260045BEFB /* Location.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -465,10 +468,11 @@
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
-				9C3314F71CE976BE004D012E /* NSDateExtensions.swift in Sources */,
+				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,
+				9C3314F71CE976BE004D012E /* NSDate.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Colours.swift in Sources */,
 				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
-				9C3314F91CE9A723004D012E /* UIColorExtension.swift in Sources */,
+				9C3314F91CE9A723004D012E /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

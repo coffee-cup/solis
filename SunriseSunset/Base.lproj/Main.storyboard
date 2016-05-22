@@ -84,6 +84,11 @@
                             <constraint firstItem="M0S-kq-de6" firstAttribute="top" secondItem="Ghu-1S-9Gf" secondAttribute="bottom" constant="2" id="vkg-3d-MsP"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="nOv-cc-9qv"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

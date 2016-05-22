@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'SunriseSunset' do
     pod 'EDSunriseSet', '~> 1.0'
+    pod 'SwiftLocation'
+    pod 'PermissionScope'
 end
 
 target 'SunriseSunsetTests' do
