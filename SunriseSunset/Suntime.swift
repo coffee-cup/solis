@@ -10,61 +10,61 @@ import Foundation
 import UIKit
 
 enum SunType {
-    case AstronomicalDusk
-    case NauticalDusk
-    case CivilDusk
+    case AstronomicalDawn
+    case NauticalDawn
+    case CivilDawn
     case Sunrise
     case Sunset
-    case CivilTwilight
-    case NauticalTwilight
-    case AstronmicalTwilight
+    case CivilDusk
+    case NauticalDusk
+    case AstronomicalDusk
     
     var description: String {
         switch self {
-        case .AstronomicalDusk: return "Astronomical Dusk";
-        case .NauticalDusk: return "Nautical Dusk";
-        case .CivilDusk: return "Civil Dusk";
+        case .AstronomicalDawn: return "Astronomical Dawn";
+        case .NauticalDawn: return "Nautical Dawn";
+        case .CivilDawn: return "Civil Dawn";
         case .Sunrise: return "Sunrise";
         case .Sunset: return "Sunset";
-        case .CivilTwilight: return "Civil Twilight";
-        case .NauticalTwilight: return "Nautical Twilight";
-        case .AstronmicalTwilight: return "Astronomical Twilight";
+        case .CivilDusk: return "Civil Dusk";
+        case .NauticalDusk: return "Nautical Dusk";
+        case .AstronomicalDusk: return "Astronomical Dusk";
         }
     }
     
     var marker: Bool {
         switch self {
-        case .AstronomicalDusk: return true;
-        case .NauticalDusk: return false;
-        case .CivilDusk: return false;
+        case .AstronomicalDawn: return true;
+        case .NauticalDawn: return false;
+        case .CivilDawn: return false;
         case .Sunrise: return true;
         case .Sunset: return true;
-        case .CivilTwilight: return false;
-        case .NauticalTwilight: return false;
-        case .AstronmicalTwilight: return true;
+        case .CivilDusk: return false;
+        case .NauticalDusk: return false;
+        case .AstronomicalDusk: return true;
         }
     }
     
     var colour: CGColorRef {
         switch self {
-        case .AstronomicalDusk: return darkColour.CGColor as CGColorRef
+        case .AstronomicalDawn: return darkColour.CGColor as CGColorRef
         case .Sunrise: return lightColour.CGColor as CGColorRef
         case .Sunset: return lightColour.CGColor as CGColorRef
-        case .AstronmicalTwilight: return darkColour.CGColor as CGColorRef
+        case .AstronomicalDusk: return darkColour.CGColor as CGColorRef
         default: return UIColor.greenColor().CGColor as CGColorRef
         }
     }
     
     var lineColour: UIColor {
         switch self {
-        case .AstronomicalDusk: return lightLineColour;
-        case .NauticalDusk: return lightLineColour;
-        case .CivilDusk: return lightLineColour;
+        case .AstronomicalDawn: return lightLineColour;
+        case .NauticalDawn: return lightLineColour;
+        case .CivilDawn: return lightLineColour;
         case .Sunrise: return lightLineColour;
         case .Sunset: return darkLineColour;
-        case .CivilTwilight: return darkLineColour;
-        case .NauticalTwilight: return darkLineColour;
-        case .AstronmicalTwilight: return darkLineColour;
+        case .CivilDusk: return darkLineColour;
+        case .NauticalDusk: return darkLineColour;
+        case .AstronomicalDusk: return darkLineColour;
         }
     }
 }

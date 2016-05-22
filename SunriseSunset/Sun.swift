@@ -52,14 +52,14 @@ class Sun {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         for _ in 1...3 {
-            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
-            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
-            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
+            suntimes.append(Suntime(type: .AstronomicalDawn, view: sunView))
+            suntimes.append(Suntime(type: .NauticalDawn, view: sunView))
+            suntimes.append(Suntime(type: .CivilDawn, view: sunView))
             suntimes.append(Suntime(type: .Sunrise, view: sunView))
             suntimes.append(Suntime(type: .Sunset, view: sunView))
-            suntimes.append(Suntime(type: .CivilTwilight, view: sunView))
-            suntimes.append(Suntime(type: .NauticalTwilight, view: sunView))
-            suntimes.append(Suntime(type: .AstronmicalTwilight, view: sunView))
+            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
+            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
+            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
         }
     }
     
@@ -124,9 +124,13 @@ class Sun {
         sunView.backgroundColor = UIColor.clearColor()
         gradientLayer.frame = sunView.bounds
         
+        let sorted = suntimes.sort() { st1, st2 in
+            return st1.date.isLessThanDate(st2.date)
+        }
+        
         var pastTimes: [Suntime] = []
         var futureTimes: [Suntime] = []
-        for time in suntimes {
+        for time in sorted {
             if time.date!.isLessThanDate(now) {
                 pastTimes.append(time)
             } else {
@@ -137,6 +141,7 @@ class Sun {
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
+        print("\n")
         for time in futureTimes.reverse() {
             let per = 0.5  - getGradientPercent(time, now: now)
             if time.marker {
@@ -144,8 +149,13 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
+            print(time.description())
         }
         
+        print("\n")
+        print(Sun.timeFormatter.stringFromDate(now))
+        
+        print("\n")
         for time in pastTimes.reverse() {
             let per = 0.5 + getGradientPercent(time, now: now)
             if time.marker {
@@ -153,6 +163,7 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
+            print(time.description())
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)

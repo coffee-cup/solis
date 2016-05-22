@@ -9,6 +9,7 @@
 import UIKit
 import EDSunriseSet
 import CoreLocation
+import PermissionScope
 
 class ViewController: UIViewController {
 
@@ -27,6 +28,8 @@ class ViewController: UIViewController {
     var offset: Float = 0
     var timer = NSTimer()
     
+    let pscope = PermissionScope()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -43,22 +46,42 @@ class ViewController: UIViewController {
         nowTimeLabel.textColor = timeTextColour
         nowLineView.backgroundColor = nowLineColour
         
-        let lat: CLLocationDegrees = 49.2755480
-        let lon: CLLocationDegrees = -123.1153840
-        myLoc = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
         
-        update()
-
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
+        setupPermissions()
+        
+        // Notifications
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
         
 //        NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
 //        hourSlider.hidden = true
+        
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func setupPermissions() {
+        pscope.addPermission(LocationWhileInUsePermission(),
+                             message: "We rarely check your location but need it to calculate the suns position.")
+        
+        // Show dialog with callbacks
+        pscope.show({ finished, results in
+            print("got results \(results)")
+            
+//            Location.startLocationWatching()
+            Location.checkLocation()
+            }, cancelled: { (results) -> Void in
+                print("thing was cancelled")
+        })
     }
     
     func timerAction() {
@@ -80,8 +103,14 @@ class ViewController: UIViewController {
         return "\(d.hour):\(d.minute)"
     }
     
+    func locationUpdate() {
+        update()
+    }
+    
     func update(offset: Float = 0) {
-        sun.update(offset, location: myLoc)
+        if let location = Location.getLocation() {
+            sun.update(offset, location: location)
+        }
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
