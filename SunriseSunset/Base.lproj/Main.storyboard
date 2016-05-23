@@ -36,14 +36,8 @@
                                     <constraint firstAttribute="height" constant="1" id="jpG-3z-iHW"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="86400" translatesAutoresizingMaskIntoConstraints="NO" id="Pje-tQ-Tgn">
-                                <rect key="frame" x="14" y="632" width="347" height="31"/>
-                                <connections>
-                                    <action selector="hourSliderDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="BoO-eu-XlY"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="past" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-kR-m70">
-                                <rect key="frame" x="171" y="601" width="34" height="21"/>
+                                <rect key="frame" x="171" y="636" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -64,21 +58,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4EN-Jx-X7G"/>
-                            <constraint firstItem="Pje-tQ-Tgn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="8VN-QR-aD3"/>
                             <constraint firstAttribute="trailing" secondItem="hJD-Os-DA5" secondAttribute="trailing" id="9TA-MB-xsB"/>
                             <constraint firstAttribute="trailing" secondItem="M0S-kq-de6" secondAttribute="trailing" id="9wP-X3-RDO"/>
                             <constraint firstItem="oYK-kR-m70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoW-9a-L6M"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="100" id="H0f-tv-aad"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Pje-tQ-Tgn" secondAttribute="bottom" constant="5" id="Rwq-H1-ONI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="centerY" secondItem="M0S-kq-de6" secondAttribute="centerY" id="VPU-Q9-1Qj"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wy5-g3-FNJ"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yh2-RO-0lq"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
-                            <constraint firstItem="Pje-tQ-Tgn" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="eR8-Xz-Xjz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ghu-1S-9Gf" secondAttribute="trailing" constant="20" id="iMs-Wh-oOF"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="idh-oU-Yto"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jjD-sQ-NIi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pje-tQ-Tgn" secondAttribute="trailing" id="lOL-5b-qk3"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nOv-cc-9qv"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="3" id="upv-aV-kzs"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="top" secondItem="Ghu-1S-9Gf" secondAttribute="bottom" constant="2" id="vkg-3d-MsP"/>
@@ -93,7 +84,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="hourSlider" destination="Pje-tQ-Tgn" id="OHw-z7-aai"/>
                         <outlet property="nowLabel" destination="Ghu-1S-9Gf" id="PFQ-yx-ogE"/>
                         <outlet property="nowLineView" destination="M0S-kq-de6" id="xpp-4N-UX8"/>
                         <outlet property="nowTimeLabel" destination="rrh-ze-8hI" id="cHu-ac-I26"/>

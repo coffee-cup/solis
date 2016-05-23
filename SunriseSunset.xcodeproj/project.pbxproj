@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		68916F95FEEF433A3C416B21 /* Pods_SunriseSunset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */; };
 		9611BAD3C7928B584AE42292 /* Pods_SunriseSunsetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E781139EF443B9345BBA97 /* Pods_SunriseSunsetTests.framework */; };
+		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9C3314F41CE9712F004D012E /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Colours.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
@@ -50,6 +51,7 @@
 		6B07E61652733E72AABE799A /* Pods-SunriseSunset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.debug.xcconfig"; sourceTree = "<group>"; };
 		6BB03123F6EDFAB71E56CFF4 /* Pods-SunriseSunsetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F43EA11CC35450734F19303 /* Pods-SunriseSunset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.release.xcconfig"; sourceTree = "<group>"; };
+		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
 		9C3314F11CE95783004D012E /* Suntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suntime.swift; sourceTree = "<group>"; };
 		9C3314F31CE9712F004D012E /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C3314F31CE9712F004D012E /* Colours.swift */,
 				9CE885951CEFEC260045BEFB /* Location.swift */,
+				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			files = (
 				9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
+				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,

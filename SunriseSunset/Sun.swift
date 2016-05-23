@@ -69,13 +69,18 @@ class Sun {
         calculateGradient()
     }
     
+    func pointsToMinutes(points: Float) -> Float {
+        let scale = points / screenHeight
+        return scale * screenMinutes
+    }
+    
     func findNow(offset: Float) {
         now = NSDate().dateByAddingTimeInterval(Double(offset))
         nowTimeLabel.text = Sun.timeFormatter.stringFromDate(now)
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMMM d HH:mm"
-        print("\(formatter.stringFromDate(now))")
+//        print("\(formatter.stringFromDate(now))")
     }
     
     func calculateAllTimes(date: NSDate, set: Int) {
@@ -141,7 +146,7 @@ class Sun {
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
-        print("\n")
+//        print("\n")
         for time in futureTimes.reverse() {
             let per = 0.5  - getGradientPercent(time, now: now)
             if time.marker {
@@ -149,13 +154,13 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
-            print(time.description())
+//            print(time.description())
         }
         
-        print("\n")
-        print(Sun.timeFormatter.stringFromDate(now))
+//        print("\n")
+//        print(Sun.timeFormatter.stringFromDate(now))
         
-        print("\n")
+//        print("\n")
         for time in pastTimes.reverse() {
             let per = 0.5 + getGradientPercent(time, now: now)
             if time.marker {
@@ -163,7 +168,7 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
-            print(time.description())
+//            print(time.description())
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)

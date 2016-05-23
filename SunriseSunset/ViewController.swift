@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     
     var sun: Sun!
     
+    var momentumScroll: MomentumScroll!
+    
     var offset: Float = 0
     var timer = NSTimer()
     
@@ -47,6 +49,10 @@ class ViewController: UIViewController {
         nowLineView.backgroundColor = nowLineColour
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
+        
+        sunView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture)))
+        
+        momentumScroll = MomentumScroll(sunView: sunView)
         
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
@@ -115,6 +121,24 @@ class ViewController: UIViewController {
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
         update(hourSlider.value)
+    }
+    
+    // Touch
+    
+    func panGesture(recognizer:UIPanGestureRecognizer) {
+        let translation = recognizer.translationInView(view)
+        let offsetMinutes = sun.pointsToMinutes(Float(translation.y))
+        let offsetSeconds = offsetMinutes * 60
+        
+        if (recognizer.state == .Began) {
+            
+        } else if (recognizer.state == .Changed) {
+            update(offsetSeconds + offset)
+        } else if (recognizer.state == .Ended) {
+            offset += offsetSeconds
+        }
+        
+//        print(offset)
     }
     
 }
