@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     var momentumScroll: MomentumScroll!
     
     var offset: Float = 0
+    var offsetTranslation: Float = 0
+    
     var timer = NSTimer()
     
     let pscope = PermissionScope()
@@ -49,6 +51,12 @@ class ViewController: UIViewController {
         nowLineView.backgroundColor = nowLineColour
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
+        
+        // Gestures
+        
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        sunView.addGestureRecognizer(doubleTapRecognizer)
         
         sunView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture)))
         
@@ -123,22 +131,56 @@ class ViewController: UIViewController {
         update(hourSlider.value)
     }
     
-    // Touch
+    // Touch and Dragging
     
-    func panGesture(recognizer:UIPanGestureRecognizer) {
-        let translation = recognizer.translationInView(view)
-        let offsetMinutes = sun.pointsToMinutes(Float(translation.y))
+    func normalizeOffsets(transformBy: Float, offsetBy: Float) -> (Float, Float) {
+        var newTransformBy = transformBy
+        var newOffsetBy = offsetBy
+        
+        let halfHeight = sun.screenHeight / 2
+        let halfSunHeight = sun.sunHeight / 2
+        let neg = transformBy < 0
+        if abs(transformBy) > halfSunHeight - halfHeight {
+            newTransformBy = halfSunHeight - halfHeight
+            newOffsetBy = sun.pointsToMinutes(transformBy)
+            
+            newTransformBy = neg ? newTransformBy * -1 : newTransformBy
+            newOffsetBy = neg ? newOffsetBy * -1 : newOffsetBy
+        }
+        return (newTransformBy, newOffsetBy)
+    }
+    
+    func panGesture(recognizer: UIPanGestureRecognizer) {
+        let translation = Float(recognizer.translationInView(view).y)
+        let offsetMinutes = sun.pointsToMinutes(translation)
         let offsetSeconds = offsetMinutes * 60
         
         if (recognizer.state == .Began) {
             
         } else if (recognizer.state == .Changed) {
-            update(offsetSeconds + offset)
+            
+            let transformBy = translation + offsetTranslation
+            let offsetBy = offsetSeconds + offset
+            
+            let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
+            
+            sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+            sun.findNow(newOffsetBy)
         } else if (recognizer.state == .Ended) {
             offset += offsetSeconds
+            offsetTranslation += translation
+            (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
         }
-        
-//        print(offset)
+    }
+    
+    func doubleTap(recognizer: UITapGestureRecognizer) {
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseInOut, animations: {
+            self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
+            }, completion: {finished in
+                self.offset = 0
+                self.offsetTranslation = 0
+                self.sun.findNow(self.offset)
+        })
     }
     
 }

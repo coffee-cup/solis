@@ -149,7 +149,7 @@ class Sun {
 //        print("\n")
         for time in futureTimes.reverse() {
             let per = 0.5  - getGradientPercent(time, now: now)
-            if time.marker {
+            if time.marker && per >= 0 && per <= 1 {
                 colours.append(time.colour)
                 locations.append(per)
             }
@@ -163,7 +163,7 @@ class Sun {
 //        print("\n")
         for time in pastTimes.reverse() {
             let per = 0.5 + getGradientPercent(time, now: now)
-            if time.marker {
+            if time.marker && per >= 0 && per <= 1  {
                 colours.append(time.colour)
                 locations.append(per)
             }
