@@ -7,6 +7,7 @@ target 'SunriseSunset' do
     pod 'EDSunriseSet', '~> 1.0'
     pod 'SwiftLocation'
     pod 'PermissionScope'
+    pod 'UIView-Easing'
 end
 
 target 'SunriseSunsetTests' do

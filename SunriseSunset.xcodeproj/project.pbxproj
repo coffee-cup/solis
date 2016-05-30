@@ -14,7 +14,9 @@
 		9C3314F41CE9712F004D012E /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Colours.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
 		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
+		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
+		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
 		9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* ViewController.swift */; };
 		9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEC1CE844400080B5B1 /* Main.storyboard */; };
@@ -56,7 +58,9 @@
 		9C3314F31CE9712F004D012E /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		9C37C0C11CF6C929002ED35A /* TouchDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchDownView.swift; sourceTree = "<group>"; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
+		9C9740091CFC10F9000A5AFD /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CB37BEA1CE844400080B5B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				9C3314F31CE9712F004D012E /* Colours.swift */,
 				9CE885951CEFEC260045BEFB /* Location.swift */,
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
+				9C37C0C11CF6C929002ED35A /* TouchDownView.swift */,
+				9C9740091CFC10F9000A5AFD /* Easing.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 			files = (
 				9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
+				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
@@ -476,6 +483,7 @@
 				9C3314F71CE976BE004D012E /* NSDate.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Colours.swift in Sources */,
 				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
+				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
 				9C3314F91CE9A723004D012E /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

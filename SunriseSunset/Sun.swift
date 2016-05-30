@@ -74,8 +74,9 @@ class Sun {
         return scale * screenMinutes
     }
     
+    // offset is in minutes
     func findNow(offset: Float) {
-        now = NSDate().dateByAddingTimeInterval(Double(offset))
+        now = NSDate().dateByAddingTimeInterval(Double(offset * 60))
         nowTimeLabel.text = Sun.timeFormatter.stringFromDate(now)
         
         let formatter = NSDateFormatter()
