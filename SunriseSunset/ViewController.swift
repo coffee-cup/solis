@@ -27,8 +27,8 @@ class ViewController: UIViewController, TouchDownProtocol {
     var sun: Sun!
     var touchDownView: TouchDownView!
     
-    var offset: Float = 0
-    var offsetTranslation: Float = 0
+    var offset: Double = 0
+    var offsetTranslation: Double = 0
     
     var timer = NSTimer()
     
@@ -37,10 +37,10 @@ class ViewController: UIViewController, TouchDownProtocol {
     var scrolling = false
     var animationStopped = false
     var scrollAnimationDuration: NSTimeInterval = 0
-    var stopAnimationDuration: Float = 0
-    var transformBeforeAnimation: Float = 0
-    var transformAfterAnimation: Float = 0
-    var transformWhenStopped: CGFloat = 0
+    var stopAnimationDuration: Double = 0
+    var transformBeforeAnimation: Double = 0
+    var transformAfterAnimation: Double = 0
+    var transformWhenStopped: Double = 0
     let SCROLL_DURATION: NSTimeInterval = 1
     
     let pscope = PermissionScope()
@@ -102,6 +102,7 @@ class ViewController: UIViewController, TouchDownProtocol {
     
     func startAnimationTimer() {
         animationTimer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: #selector(animationUpdate), userInfo: nil, repeats: true)
+        animationFireDate = NSDate()
     }
     
     func stopAnimationTimer() {
@@ -129,7 +130,7 @@ class ViewController: UIViewController, TouchDownProtocol {
             offset = 0
         }
         
-        hourSlider.value = offset
+        hourSlider.value = Float(offset)
         update(offset)
     }
 
@@ -146,24 +147,24 @@ class ViewController: UIViewController, TouchDownProtocol {
         update()
     }
     
-    func update(offset: Float = 0) {
+    func update(offset: Double = 0) {
         if let location = Location.getLocation() {
             sun.update(offset, location: location)
         }
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
-        update(hourSlider.value)
+        update(Double(hourSlider.value))
     }
     
     // Touch and Dragging
     
-    func normalizeOffsets(transformBy: Float, offsetBy: Float) -> (Float, Float) {
+    func normalizeOffsets(transformBy: Double, offsetBy: Double) -> (Double, Double) {
         var newTransformBy = transformBy
         var newOffsetBy = offsetBy
         
-        let halfHeight = sun.screenHeight / 2
-        let halfSunHeight = sun.sunHeight / 2
+        let halfHeight = Double(sun.screenHeight) / 2
+        let halfSunHeight = Double(sun.sunHeight) / 2
         let neg = transformBy < 0
         if abs(transformBy) > halfSunHeight - halfHeight {
             newTransformBy = halfSunHeight - halfHeight
@@ -175,55 +176,47 @@ class ViewController: UIViewController, TouchDownProtocol {
         return (newTransformBy, newOffsetBy)
     }
     
-    func setOffsetFromTranslation(translation: Float) {
+    func setOffsetFromTranslation(translation: Double) {
         offsetTranslation = translation
         offset = sun.pointsToMinutes(offsetTranslation)
         (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
     }
     
     func panGesture(recognizer: UIPanGestureRecognizer) {
-        let translation = Float(recognizer.translationInView(view).y)
+        let translation = Double(recognizer.translationInView(view).y)
         let offsetMinutes = sun.pointsToMinutes(translation)
         let offsetSeconds = offsetMinutes
         
         if (recognizer.state == .Began) {
-//            print("begain pan")
         } else if (recognizer.state == .Changed) {
-            
             let transformBy = translation + offsetTranslation
             let offsetBy = offsetSeconds + offset
-            
             let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
             
             sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-            print("pan offset: \(newOffsetBy)")
+            print("pan transform: \(newTransformBy)")
             sun.findNow(newOffsetBy)
         } else if (recognizer.state == .Ended) {
             offset += offsetSeconds
             offsetTranslation += translation
             (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
             
-            let velocity = recognizer.velocityInView(view).y
+            let velocity = Double(recognizer.velocityInView(view).y)
             if abs(velocity) > 5 {
-                animateScroll(Float(velocity))
+                animateScroll(velocity)
             }
         }
     }
     
-    func animateScroll(velocity: Float) {
+    func animateScroll(velocity: Double) {
         transformAfterAnimation = offsetTranslation + velocity
         (transformAfterAnimation, _) = normalizeOffsets(transformAfterAnimation, offsetBy: 0)
         
         startAnimationTimer()
-        transformBeforeAnimation = Float(sunView.transform.ty)
-        animationFireDate = NSDate()
+        transformBeforeAnimation = Double(sunView.transform.ty)
         
-        print("\nvelocity: \(velocity)")
-        print("initial transform \(transformBeforeAnimation)")
-        print("setting transform to \(transformAfterAnimation)")
-        
-        scrollAnimationDuration = 2
-        
+        // TODO: Make scroll duration dynamic
+        scrollAnimationDuration = SCROLL_DURATION
         scrolling = true
         
         UIView.animateWithDuration(scrollAnimationDuration, delay: 0, options: [.AllowUserInteraction, .BeginFromCurrentState], animations: {
@@ -234,76 +227,58 @@ class ViewController: UIViewController, TouchDownProtocol {
                 self.scrolling = false
                 self.sunView.removeEasingFunctionForKeyPath("transform")
                 
-//                let transformDifference = Float(self.transformAfterAnimation - self.transformBeforeAnimation)
-//                let timeScale = animationDuration / Float(self.scrollAnimationDuration)
-//                let animationDuration = Float(abs(self.animationFireDate.timeIntervalSinceNow))
+                let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
+                let animationDuration = abs(self.animationFireDate.timeIntervalSinceNow) + (1 / 60) // <- this magic number makes view not jump as much when scroll stopping
                 
-                print("time: \(self.animationFireDate.timeIntervalSinceNow)")
-                
-//                self.offsetTranslation = Easing.easeOutQuadFunc(animationDuration, startValue: Float(self.transformBeforeAnimation), changeInValue: transformDifference, duration: Float(self.scrollAnimationDuration))
-//                self.offsetTranslation = Float(self.transformBeforeAnimation) + (transformDifference * timeScale)
-                print("end ease: \(self.offsetTranslation)")
-                
-                if (self.animationStopped) {
-                    self.offsetTranslation = Float(self.transformWhenStopped)
-                } else {
-                    self.offsetTranslation = Float(self.transformAfterAnimation)
+                self.offsetTranslation = Easing.easeOutQuadFunc(animationDuration, startValue: self.transformBeforeAnimation, changeInValue: transformDifference, duration: self.scrollAnimationDuration)
+
+                if (!self.animationStopped) {
+                    self.offsetTranslation = self.transformAfterAnimation
                 }
                 
                 self.setOffsetFromTranslation(self.offsetTranslation)
-                
-                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
-                
-                print("offset: \(self.offset)")
                 self.sun.findNow(self.offset)
+                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
                 
                 self.animationStopped = false
         })
-        
-//        let animationPoints: ViewEasingFunctionPointerType = BounceEaseIn
-//        UIView.animateWithDuration(scrollAnimationDuration, animations: {
-//            self.sunView.setEasingFunction(, forKeyPath: "transform")
-//        })
     }
     
+    // TODO: Animate now label when this changes
     func doubleTap(recognizer: UITapGestureRecognizer) {
-        UIView.animateWithDuration(SCROLL_DURATION, delay: 0, options: .CurveEaseInOut, animations: {
+        transformBeforeAnimation = Double(sunView.transform.ty)
+        transformAfterAnimation = 0.0
+        scrollAnimationDuration = SCROLL_DURATION
+        startAnimationTimer()
+        UIView.animateWithDuration(scrollAnimationDuration, animations: {
+            self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
-            }, completion: {finished in
-                self.offset = 0
-                self.offsetTranslation = 0
+            }, completion: { finished in
+                self.stopAnimationTimer()
+                self.offset = 0.0
+                self.offsetTranslation = 0.0
                 self.sun.findNow(self.offset)
+                
+                self.sunView.removeEasingFunctionForKeyPath("transform")
         })
     }
-    
-    // TODO: Change ease function to return and use Doubles
     
     func stopScroll() {
         scrolling = false
         animationStopped = true
-        print("stop time: \(self.animationFireDate.timeIntervalSinceNow)")
-        stopAnimationDuration = Float(animationFireDate.timeIntervalSinceNow)
-        let transformDifference = Float(self.transformAfterAnimation - self.transformBeforeAnimation)
-        let ease = Easing.easeOutQuadFunc(Float(self.animationFireDate.timeIntervalSinceNow * -1), startValue: Float(self.transformBeforeAnimation), changeInValue: transformDifference, duration: Float(self.scrollAnimationDuration))
-        transformWhenStopped = CGFloat(ease)
-        print("stop ease: \(ease)")
-        
-        self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(ease))
         sunView.layer.removeAllAnimations()
     }
     
     func animationUpdate() {
-        let transformDifference = Float(self.transformAfterAnimation - self.transformBeforeAnimation)
-        let ease = Easing.easeOutQuadFunc(Float(animationFireDate.timeIntervalSinceNow * -1), startValue: Float(transformBeforeAnimation), changeInValue: transformDifference, duration: 2)
-//        transformWhenStopped = CGFloat(ease)
-        print("\nd: \(animationFireDate.timeIntervalSinceNow) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
+        let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
+        let ease = Easing.easeOutQuadFunc(animationFireDate.timeIntervalSinceNow * -1, startValue: transformBeforeAnimation, changeInValue: transformDifference, duration:scrollAnimationDuration)
+        print("d: \(animationFireDate.timeIntervalSinceNow) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
         sun.findNow(sun.pointsToMinutes(ease))
     }
     
     func touchDown(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if scrolling {
-            stopAnimationTimer()
             stopScroll()
         }
     }

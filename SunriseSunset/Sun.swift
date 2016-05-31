@@ -63,20 +63,20 @@ class Sun {
         }
     }
     
-    func update(offset: Float, location: CLLocationCoordinate2D) {
+    func update(offset: Double, location: CLLocationCoordinate2D) {
         findNow(offset)
         calculateSunriseSunset(location)
         calculateGradient()
     }
     
-    func pointsToMinutes(points: Float) -> Float {
-        let scale = points / screenHeight
-        return scale * screenMinutes
+    func pointsToMinutes(points: Double) -> Double {
+        let scale = points / Double(screenHeight)
+        return scale * Double(screenMinutes)
     }
     
     // offset is in minutes
-    func findNow(offset: Float) {
-        now = NSDate().dateByAddingTimeInterval(Double(offset * 60))
+    func findNow(offset: Double) {
+        now = NSDate().dateByAddingTimeInterval(offset * 60)
         nowTimeLabel.text = Sun.timeFormatter.stringFromDate(now)
         
         let formatter = NSDateFormatter()
