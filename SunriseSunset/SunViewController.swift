@@ -12,7 +12,7 @@ import CoreLocation
 import PermissionScope
 import UIView_Easing
 
-class ViewController: UIViewController, TouchDownProtocol {
+class SunViewController: UIViewController, TouchDownProtocol {
 
     @IBOutlet weak var sunView: UIView!
     @IBOutlet weak var hourSlider: UISlider!
@@ -21,6 +21,9 @@ class ViewController: UIViewController, TouchDownProtocol {
     @IBOutlet weak var nowTimeLabel: UILabel!
     @IBOutlet weak var nowLineView: UIView!
     @IBOutlet weak var nowLabel: UILabel!
+    
+    @IBOutlet weak var menuContainerView: UIView!
+    @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     
     var myLoc: CLLocationCoordinate2D!
     
@@ -45,6 +48,8 @@ class ViewController: UIViewController, TouchDownProtocol {
     
     let pscope = PermissionScope()
     
+    var menuViewController: MenuViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -66,6 +71,9 @@ class ViewController: UIViewController, TouchDownProtocol {
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
         
+        // Menu
+        menuHardIn()
+        
         // Gestures
         
         // Double tap
@@ -76,6 +84,11 @@ class ViewController: UIViewController, TouchDownProtocol {
         // Pan (scrolling)
         sunView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture)))
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
+        // Side Menu (edge swipe)
+        let menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+        menuRecognizer.edges = .Left
+        view.addGestureRecognizer(menuRecognizer)
         
         setupPermissions()
         
@@ -98,6 +111,12 @@ class ViewController: UIViewController, TouchDownProtocol {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "MenuSegue" {
+            menuViewController = segue.destinationViewController as! MenuViewController
+        }
     }
     
     func startAnimationTimer() {
@@ -194,7 +213,7 @@ class ViewController: UIViewController, TouchDownProtocol {
             let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
             
             sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-            print("pan transform: \(newTransformBy)")
+//            print("pan transform: \(newTransformBy)")
             sun.findNow(newOffsetBy)
         } else if (recognizer.state == .Ended) {
             offset += offsetSeconds
@@ -272,7 +291,7 @@ class ViewController: UIViewController, TouchDownProtocol {
     func animationUpdate() {
         let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
         let ease = Easing.easeOutQuadFunc(animationFireDate.timeIntervalSinceNow * -1, startValue: transformBeforeAnimation, changeInValue: transformDifference, duration:scrollAnimationDuration)
-        print("d: \(animationFireDate.timeIntervalSinceNow) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
+//        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
         sun.findNow(sun.pointsToMinutes(ease))
     }
@@ -281,6 +300,27 @@ class ViewController: UIViewController, TouchDownProtocol {
         if scrolling {
             stopScroll()
         }
+    }
+    
+    // Side Menu
+    
+    func menuHardIn() {
+        let menuWidth = menuContainerView.frame.width
+        menuLeadingConstraint.constant = -menuWidth
+    }
+    
+    func sideSwipe(recognizer: UIScreenEdgePanGestureRecognizer) {
+        let menuWidth = menuContainerView.frame.width
+        let fingerX = recognizer.locationInView(view).x
+        let adjustedX = fingerX > menuWidth ? menuWidth : fingerX
+        let menuTransform = -menuWidth + adjustedX
+        
+        print("\n")
+        print("x: \(fingerX)")
+        print("transform: \(menuTransform)")
+        menuLeadingConstraint.constant = menuTransform
+        
+        print(recognizer.state)
     }
     
 }

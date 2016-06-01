@@ -16,15 +16,17 @@
 		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
 		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
+		9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
-		9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* ViewController.swift */; };
+		9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* SunViewController.swift */; };
 		9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEC1CE844400080B5B1 /* Main.storyboard */; };
 		9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEF1CE844400080B5B1 /* Assets.xcassets */; };
 		9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */; };
 		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
+		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
 		9CE885961CEFEC260045BEFB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
 		BBF3A4DB1DBC590F5D18DAA1 /* Pods_SunriseSunsetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3189E0E4F45FF1E27907170F /* Pods_SunriseSunsetUITests.framework */; };
 /* End PBXBuildFile section */
@@ -60,10 +62,11 @@
 		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9C37C0C11CF6C929002ED35A /* TouchDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchDownView.swift; sourceTree = "<group>"; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
+		9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		9C9740091CFC10F9000A5AFD /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9CB37BEA1CE844400080B5B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9CB37BEA1CE844400080B5B1 /* SunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunViewController.swift; sourceTree = "<group>"; };
 		9CB37BED1CE844400080B5B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CB37BEF1CE844400080B5B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB37BF21CE844400080B5B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetUITests.swift; sourceTree = "<group>"; };
 		9CB37C0A1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA99C3A67CB3B1E830EF48C7 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,7 +182,7 @@
 			children = (
 				9C3314F51CE976AF004D012E /* Extensions */,
 				9CB37BE81CE844400080B5B1 /* AppDelegate.swift */,
-				9CB37BEA1CE844400080B5B1 /* ViewController.swift */,
+				9CB37BEA1CE844400080B5B1 /* SunViewController.swift */,
 				9CB37BEC1CE844400080B5B1 /* Main.storyboard */,
 				9CB37BEF1CE844400080B5B1 /* Assets.xcassets */,
 				9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */,
@@ -189,6 +193,8 @@
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
 				9C37C0C11CF6C929002ED35A /* TouchDownView.swift */,
 				9C9740091CFC10F9000A5AFD /* Easing.swift */,
+				9CC92F631CFEB1D500FA320D /* MenuViewController.swift */,
+				9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -473,13 +479,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CB37BEB1CE844400080B5B1 /* ViewController.swift in Sources */,
+				9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
+				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,
+				9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */,
 				9C3314F71CE976BE004D012E /* NSDate.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Colours.swift in Sources */,
 				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
