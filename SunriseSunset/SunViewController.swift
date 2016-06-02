@@ -22,9 +22,6 @@ class SunViewController: UIViewController, TouchDownProtocol {
     @IBOutlet weak var nowLineView: UIView!
     @IBOutlet weak var nowLabel: UILabel!
     
-    @IBOutlet weak var menuContainerView: UIView!
-    @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
-    
     var myLoc: CLLocationCoordinate2D!
     
     var sun: Sun!
@@ -44,7 +41,7 @@ class SunViewController: UIViewController, TouchDownProtocol {
     var transformBeforeAnimation: Double = 0
     var transformAfterAnimation: Double = 0
     var transformWhenStopped: Double = 0
-    let SCROLL_DURATION: NSTimeInterval = 1
+    let SCROLL_DURATION: NSTimeInterval = 1.2
     
     let pscope = PermissionScope()
     
@@ -71,9 +68,6 @@ class SunViewController: UIViewController, TouchDownProtocol {
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
         
-        // Menu
-        menuHardIn()
-        
         // Gestures
         
         // Double tap
@@ -86,19 +80,15 @@ class SunViewController: UIViewController, TouchDownProtocol {
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
         // Side Menu (edge swipe)
-        let menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        menuRecognizer.edges = .Left
-        view.addGestureRecognizer(menuRecognizer)
+//        let menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+//        menuRecognizer.edges = .Left
+//        view.addGestureRecognizer(menuRecognizer)
         
         setupPermissions()
         
         // Notifications
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
-        
-//        NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-//        hourSlider.hidden = true
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)   
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -111,12 +101,6 @@ class SunViewController: UIViewController, TouchDownProtocol {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MenuSegue" {
-            menuViewController = segue.destinationViewController as! MenuViewController
-        }
     }
     
     func startAnimationTimer() {
@@ -221,8 +205,8 @@ class SunViewController: UIViewController, TouchDownProtocol {
             (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
             
             let velocity = Double(recognizer.velocityInView(view).y)
-            if abs(velocity) > 5 {
-                animateScroll(velocity)
+            if abs(velocity) > 8 {
+                animateScroll(velocity * 0.55)
             }
         }
     }
@@ -300,27 +284,6 @@ class SunViewController: UIViewController, TouchDownProtocol {
         if scrolling {
             stopScroll()
         }
-    }
-    
-    // Side Menu
-    
-    func menuHardIn() {
-        let menuWidth = menuContainerView.frame.width
-        menuLeadingConstraint.constant = -menuWidth
-    }
-    
-    func sideSwipe(recognizer: UIScreenEdgePanGestureRecognizer) {
-        let menuWidth = menuContainerView.frame.width
-        let fingerX = recognizer.locationInView(view).x
-        let adjustedX = fingerX > menuWidth ? menuWidth : fingerX
-        let menuTransform = -menuWidth + adjustedX
-        
-        print("\n")
-        print("x: \(fingerX)")
-        print("transform: \(menuTransform)")
-        menuLeadingConstraint.constant = menuTransform
-        
-        print(recognizer.state)
     }
     
 }

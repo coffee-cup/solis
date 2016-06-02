@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wF3-0W-CIN">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,55 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="RyD-X5-QJE">
+            <objects>
+                <viewController id="wF3-0W-CIN" customClass="MainViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vvt-lW-BDZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="xEh-yn-cxY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uQM-Lg-6Gq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v8-n2-2RF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="sunSegue" id="Opu-hC-Go1"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAh-lL-ukP">
+                                <rect key="frame" x="0.0" y="0.0" width="251" height="667"/>
+                                <connections>
+                                    <segue destination="QzE-la-Gm6" kind="embed" identifier="menuSegue" id="ZMx-VL-qoz"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="0v8-n2-2RF" secondAttribute="bottom" id="5s8-88-hBs"/>
+                            <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="qAh-lL-ukP" secondAttribute="bottom" id="Cfv-pM-3QX"/>
+                            <constraint firstItem="0v8-n2-2RF" firstAttribute="top" secondItem="Vvt-lW-BDZ" secondAttribute="bottom" id="CnF-Ux-ahP"/>
+                            <constraint firstItem="qAh-lL-ukP" firstAttribute="width" secondItem="uQM-Lg-6Gq" secondAttribute="width" multiplier="0.67" id="QCp-rj-jCj"/>
+                            <constraint firstItem="qAh-lL-ukP" firstAttribute="top" secondItem="Vvt-lW-BDZ" secondAttribute="bottom" id="TLy-dA-8ez"/>
+                            <constraint firstItem="0v8-n2-2RF" firstAttribute="leading" secondItem="uQM-Lg-6Gq" secondAttribute="leading" id="ZQf-Pk-zV6"/>
+                            <constraint firstItem="qAh-lL-ukP" firstAttribute="leading" secondItem="uQM-Lg-6Gq" secondAttribute="leading" id="cx0-3T-Kbg"/>
+                            <constraint firstAttribute="trailing" secondItem="0v8-n2-2RF" secondAttribute="trailing" id="h5Z-TU-1X8"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="menuContainerView" destination="qAh-lL-ukP" id="tFd-4i-jWj"/>
+                        <outlet property="menuLeadingConstraint" destination="cx0-3T-Kbg" id="DZS-bh-vNO"/>
+                        <outlet property="sunContainerView" destination="0v8-n2-2RF" id="513-8U-RV9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fP7-2N-vnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215.5" y="253.5"/>
+        </scene>
         <!--Sun View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -54,12 +103,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qrH-BA-Mbu">
-                                <rect key="frame" x="0.0" y="0.0" width="251" height="667"/>
-                                <connections>
-                                    <segue destination="QzE-la-Gm6" kind="embed" identifier="MenuSegue" id="wS0-Wp-3pz"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -71,17 +114,13 @@
                             <constraint firstAttribute="trailing" secondItem="hJD-Os-DA5" secondAttribute="trailing" id="Mz9-UT-ZKM"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NMJ-2O-MYh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
-                            <constraint firstItem="qrH-BA-Mbu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TRD-hr-zG4"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="centerY" secondItem="M0S-kq-de6" secondAttribute="centerY" id="VPU-Q9-1Qj"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wy5-g3-FNJ"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qrH-BA-Mbu" secondAttribute="bottom" id="h6N-Td-aOe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ghu-1S-9Gf" secondAttribute="trailing" constant="20" id="iMs-Wh-oOF"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="idh-oU-Yto"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nOv-cc-9qv"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="7" id="oqW-1e-dSo"/>
-                            <constraint firstItem="qrH-BA-Mbu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sxj-Ft-qCl"/>
-                            <constraint firstItem="qrH-BA-Mbu" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.67" id="vhX-1K-ZyT"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="top" secondItem="Ghu-1S-9Gf" secondAttribute="bottom" constant="2" id="vkg-3d-MsP"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
                         </constraints>
@@ -94,8 +133,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="menuContainerView" destination="qrH-BA-Mbu" id="Y9B-RB-K7K"/>
-                        <outlet property="menuLeadingConstraint" destination="TRD-hr-zG4" id="hhl-2X-2eE"/>
                         <outlet property="nowLabel" destination="Ghu-1S-9Gf" id="PFQ-yx-ogE"/>
                         <outlet property="nowLineView" destination="M0S-kq-de6" id="xpp-4N-UX8"/>
                         <outlet property="nowTimeLabel" destination="rrh-ze-8hI" id="cHu-ac-I26"/>
@@ -158,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thv-KT-F0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737.5" y="253.5"/>
+            <point key="canvasLocation" x="-215.5" y="1058.5"/>
         </scene>
     </scenes>
     <resources>
