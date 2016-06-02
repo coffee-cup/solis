@@ -18,3 +18,5 @@ let nowLineColour = UIColor(hex: 0xF44336)
 
 let nameTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
 let timeTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+
+let menuBackgroundColour = UIColor(hex: 0xFFBE1C)

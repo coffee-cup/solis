@@ -12,7 +12,7 @@ import CoreLocation
 import PermissionScope
 import UIView_Easing
 
-class SunViewController: UIViewController, TouchDownProtocol {
+class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var sunView: UIView!
     @IBOutlet weak var hourSlider: UISlider!
@@ -35,7 +35,9 @@ class SunViewController: UIViewController, TouchDownProtocol {
     var animationTimer = NSTimer()
     var animationFireDate: NSDate!
     var scrolling = false
+    var panning = false
     var animationStopped = false
+    var allowedPan = true
     var scrollAnimationDuration: NSTimeInterval = 0
     var stopAnimationDuration: Double = 0
     var transformBeforeAnimation: Double = 0
@@ -76,13 +78,12 @@ class SunViewController: UIViewController, TouchDownProtocol {
         sunView.addGestureRecognizer(doubleTapRecognizer)
         
         // Pan (scrolling)
-        sunView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture)))
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGesture))
+        panRecognizer.delegate = self
+        sunView.addGestureRecognizer(panRecognizer)
         
-        // Side Menu (edge swipe)
-//        let menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-//        menuRecognizer.edges = .Left
-//        view.addGestureRecognizer(menuRecognizer)
+        // Update every minute
+        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
         setupPermissions()
         
@@ -191,23 +192,34 @@ class SunViewController: UIViewController, TouchDownProtocol {
         let offsetSeconds = offsetMinutes
         
         if (recognizer.state == .Began) {
-        } else if (recognizer.state == .Changed) {
-            let transformBy = translation + offsetTranslation
-            let offsetBy = offsetSeconds + offset
-            let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
-            
-            sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-//            print("pan transform: \(newTransformBy)")
-            sun.findNow(newOffsetBy)
-        } else if (recognizer.state == .Ended) {
-            offset += offsetSeconds
-            offsetTranslation += translation
-            (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
-            
-            let velocity = Double(recognizer.velocityInView(view).y)
-            if abs(velocity) > 8 {
-                animateScroll(velocity * 0.55)
+            if recognizer.locationInView(view).x < 40 {
+                allowedPan = false
+            } else {
+                panning = true
             }
+        } else if (recognizer.state == .Changed) {
+            if allowedPan {
+                let transformBy = translation + offsetTranslation
+                let offsetBy = offsetSeconds + offset
+                let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
+                
+                sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+                //            print("pan transform: \(newTransformBy)")
+                sun.findNow(newOffsetBy)
+            }
+        } else if (recognizer.state == .Ended) {
+            if allowedPan {
+                offset += offsetSeconds
+                offsetTranslation += translation
+                (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
+                
+                let velocity = Double(recognizer.velocityInView(view).y)
+                if abs(velocity) > 8 {
+                    animateScroll(velocity * 0.55)
+                }
+            }
+            panning = false
+            allowedPan = true
         }
     }
     
@@ -247,7 +259,6 @@ class SunViewController: UIViewController, TouchDownProtocol {
         })
     }
     
-    // TODO: Animate now label when this changes
     func doubleTap(recognizer: UITapGestureRecognizer) {
         transformBeforeAnimation = Double(sunView.transform.ty)
         transformAfterAnimation = 0.0
@@ -257,12 +268,11 @@ class SunViewController: UIViewController, TouchDownProtocol {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
             }, completion: { finished in
+                self.sunView.removeEasingFunctionForKeyPath("transform")
                 self.stopAnimationTimer()
                 self.offset = 0.0
                 self.offsetTranslation = 0.0
                 self.sun.findNow(self.offset)
-                
-                self.sunView.removeEasingFunctionForKeyPath("transform")
         })
     }
     
@@ -284,6 +294,10 @@ class SunViewController: UIViewController, TouchDownProtocol {
         if scrolling {
             stopScroll()
         }
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

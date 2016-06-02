@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var sunContainerView: UIView!
     @IBOutlet weak var menuContainerView: UIView!
@@ -18,18 +18,31 @@ class MainViewController: UIViewController {
     var menuViewController: MenuViewController!
     var sunViewController: SunViewController!
     
+    // recognizers
+    var menuRecognizer: UIScreenEdgePanGestureRecognizer!
+    var panRecognizer: UIPanGestureRecognizer!
+    
+    var menuWidth: CGFloat!
+    var anchorX: CGFloat = 0
+    
+    var menuOut = false
+    var holdingWhileOut = false
+    
+    // Constants
+    let MenuAnimaitonDuration: NSTimeInterval = 0.25
+    let ClosenessToEdge: CGFloat = 40
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuHardIn()
-        
-        let menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        menuRecognizer.edges = .Left
-        view.addGestureRecognizer(menuRecognizer)
+        addGestureRecognizers()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        menuWidth = menuContainerView.frame.width
+        menuHardIn()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,6 +51,16 @@ class MainViewController: UIViewController {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func addGestureRecognizers() {
+        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(menuPan))
+        view.addGestureRecognizer(panRecognizer)
+        
+        menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+        menuRecognizer.edges = .Left
+        menuRecognizer.delegate = self
+        view.addGestureRecognizer(menuRecognizer)
     }
     
     // Navigation
@@ -52,23 +75,93 @@ class MainViewController: UIViewController {
     
     // Side Menu
     
+    func animateMenu() {
+        UIView.animateWithDuration(MenuAnimaitonDuration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    // Adjusts the x position to be negative in terms of menuWidth
+    func adjustNegative(x: CGFloat) -> CGFloat {
+        return -menuWidth + x
+    }
+    
     func menuHardIn() {
-        let menuWidth = menuContainerView.frame.width
-        menuLeadingConstraint.constant = -menuWidth
+        menuLeadingConstraint.constant = adjustNegative(-1)
+        menuOut = false
+    }
+    
+    func menuSoftIn() {
+        menuHardIn()
+        animateMenu()
+    }
+    
+    func menuHardOut() {
+        menuLeadingConstraint.constant = adjustNegative(menuWidth)
+        menuOut = true
+    }
+    
+    func menuSoftOut() {
+        menuHardOut()
+        animateMenu()
+    }
+    
+    // Moves the menu in or out depending on its position now
+    func menuInOut() {
+        let position = menuLeadingConstraint.constant
+        
+        if menuWidth + position > menuWidth / 2 {
+            menuSoftOut()
+        } else {
+            menuSoftIn()
+        }
+    }
+    
+    func menuToFinger(x: CGFloat) {
+        let adjustedX = x > menuWidth ? menuWidth : x
+        let menuTransform = adjustNegative(adjustedX)
+        
+        menuLeadingConstraint.constant = menuTransform
     }
     
     func sideSwipe(recognizer: UIScreenEdgePanGestureRecognizer) {
-        let menuWidth = menuContainerView.frame.width
         let fingerX = recognizer.locationInView(view).x
-        let adjustedX = fingerX > menuWidth ? menuWidth : fingerX
-        let menuTransform = -menuWidth + adjustedX
-        
-        print("\n")
-        print("x: \(fingerX)")
-        print("transform: \(menuTransform)")
-        menuLeadingConstraint.constant = menuTransform
-        
-        print(recognizer.state)
+
+        if recognizer.state == .Began {
+        } else if recognizer.state == .Changed {
+            if !menuOut {
+                menuToFinger(fingerX)
+            }
+        } else if recognizer.state == .Ended {
+            menuInOut()
+        }
     }
     
+    func between(val: Double, low: Double, high: Double) -> Bool {
+        return val >= low && val <= high
+    }
+    
+    func menuPan(recognizer: UIPanGestureRecognizer) {
+        let fingerX = recognizer.locationInView(view).x
+    
+        if recognizer.state == .Began {
+            if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdge), high: Double(menuWidth + ClosenessToEdge))  {
+                holdingWhileOut = true
+                anchorX = menuWidth - fingerX
+            }
+        } else if recognizer.state == .Changed {
+            if holdingWhileOut {
+                menuToFinger(fingerX + anchorX)
+            }
+        } else if recognizer.state == .Ended {
+            if holdingWhileOut {
+                menuInOut()
+                holdingWhileOut = false
+            }
+        }
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }
