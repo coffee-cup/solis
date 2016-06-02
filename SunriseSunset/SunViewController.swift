@@ -285,6 +285,5 @@ class SunViewController: UIViewController, TouchDownProtocol {
             stopScroll()
         }
     }
-    
 }
 
