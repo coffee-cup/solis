@@ -14,6 +14,7 @@ import CoreLocation
 class Sun {
     
     static let timeFormatter = NSDateFormatter()
+    static var delta = false
     
     // Number of minutes a full screen height is
     let screenMinutes: Float
@@ -35,6 +36,7 @@ class Sun {
     
     var nowTimeLabel: UILabel
     
+    let defaults = NSUserDefaults.standardUserDefaults()
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
@@ -49,6 +51,8 @@ class Sun {
         self.gradientLayer = gradientLayer
         self.nowTimeLabel = nowTimeLabel
         
+        timeFormatUpdate()
+        
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         for _ in 1...3 {
@@ -60,6 +64,21 @@ class Sun {
             suntimes.append(Suntime(type: .CivilDusk, view: sunView))
             suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
             suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
+        }
+        
+        Bus.subscribeEvent(.TimeFormat, observer: self, selector: #selector(timeFormatUpdate))
+    }
+    
+    @objc func timeFormatUpdate() {
+        let timeFormat = defaults.stringForKey(MessageType.TimeFormat.description)
+        if timeFormat == "delta" {
+            Sun.delta = true
+        } else {
+            Sun.delta = false
+            Sun.timeFormatter.dateFormat = timeFormat
+        }
+        for time in suntimes {
+            time.sunline.updateTime()
         }
     }
     

@@ -11,10 +11,12 @@ import UIKit
 
 enum MessageType {
     case MenuIn
+    case TimeFormat
     
     var description: String {
         switch self {
         case .MenuIn: return "MenuIn";
+        case .TimeFormat: return "TimeFormat";
         }
     }
 }
@@ -22,6 +24,7 @@ enum MessageType {
 class Bus {
     
     static let ns = NSNotificationCenter.defaultCenter()
+    static let defaults = NSUserDefaults.standardUserDefaults()
     
     class func SendMessage(message: MessageType, data: [NSObject: AnyObject]?) {
         ns.postNotificationName(message.description, object: nil, userInfo: data)
@@ -31,8 +34,16 @@ class Bus {
         ns.addObserver(observer, selector: selector, name: message.description, object: nil)
     }
     
+    class func subscribeDefaultChange(message: MessageType, observer: NSObject, selector: Selector) {
+        defaults.addObserver(observer, forKeyPath: message.description, options: NSKeyValueObservingOptions.New, context: nil)
+    }
+    
     class func removeSubscriptions(observer: AnyObject) {
         ns.removeObserver(observer)
+    }
+    
+    class func removeDefaultSeubscriptions(observer: NSObject, message: MessageType) {
+        defaults.removeObserver(observer, forKeyPath: message.description)
     }
     
 }

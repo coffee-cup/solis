@@ -18,6 +18,8 @@ class Sunline: UIView {
     var parentView: UIView!
     
     var topConstraint: NSLayoutConstraint!
+    
+    var time: NSDate!
 
     override init (frame : CGRect) {
         super.init(frame : frame)
@@ -62,7 +64,7 @@ class Sunline: UIView {
         NSLayoutConstraint.activateConstraints(nameVerticalConstraints + nameHorizontalConstraints)
         
         let timeCenterConstraint = NSLayoutConstraint(item: timeLabel, attribute: .CenterY, relatedBy: .Equal, toItem: line, attribute: .CenterY, multiplier: 1, constant: 0)
-        let timeHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-20-|", options: [], metrics: nil, views: ["view": timeLabel])
+        let timeHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-10-|", options: [], metrics: nil, views: ["view": timeLabel])
         NSLayoutConstraint.activateConstraints(timeHorizontalConstraints + [timeCenterConstraint])
         
         self.backgroundColor = UIColor.redColor()
@@ -70,19 +72,46 @@ class Sunline: UIView {
         
         nameLabel.text = type.description.lowercaseString
         nameLabel.textColor = nameTextColour
-        nameLabel.font = nameLabel.font.fontWithSize(12)
+        nameLabel.font = fontTwilight
         
         timeLabel.textColor = timeTextColour
         timeLabel.text = "12:12"
-        timeLabel.font = timeLabel.font.fontWithSize(16)
+        timeLabel.font = fontDetail
         
         self.hidden = true
         self.alpha = 0
     }
+    
+    func getTimeText() -> String {
+        var text = ""
+        if Sun.delta {
+            let hours = time.getHoursToNow()
+            let minutes = time.getMinutesToNow() - (hours * 60)
+            if abs(hours) > 0 {
+                text += hours < 0 ? "- " : "+ "
+                text += "\(abs(hours))h"
+            }
+            if abs(hours) > 0 && abs(minutes) > 0 {
+                text += " "
+            }
+            if abs(minutes) > 0 {
+                text += "\(minutes)m"
+            }
+        } else {
+            text = Sun.timeFormatter.stringFromDate(time)
+            text = text.stringByReplacingOccurrencesOfString("AM", withString: "am")
+            text = text.stringByReplacingOccurrencesOfString("PM", withString: "pm")
+        }
+        return text
+    }
+    
+    func updateTime() {
+        timeLabel.text = getTimeText()
+    }
 
     func updateLine(time: NSDate, percent: Float) {
-        let text = Sun.timeFormatter.stringFromDate(time)
-        timeLabel.text = text
+        self.time = time
+        timeLabel.text = getTimeText()
         
         topConstraint.constant = parentView.frame.height * CGFloat(percent)
         UIView.animateWithDuration(0.1) {

@@ -53,8 +53,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Sun.timeFormatter.dateFormat = "HH:mm"
-        
         let screenMinutes = Float(6 * 60)
         let screenHeight = Float(view.frame.height)
         let sunHeight = Float(sunView.frame.height)
@@ -65,7 +63,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         sunView.layer.addSublayer(gradientLayer)
         
         nowLabel.textColor = nameTextColour
+        nowLabel.font = fontTwilight
         nowTimeLabel.textColor = timeTextColour
+        nowTimeLabel.font = fontDetail
         nowLineView.backgroundColor = nowLineColour
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
@@ -89,7 +89,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         // Notifications
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)   
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -98,6 +99,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        Bus.removeSubscriptions(self)
     }
     
     override func prefersStatusBarHidden() -> Bool {

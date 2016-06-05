@@ -1,0 +1,33 @@
+//
+//  Colours.swift
+//  SunriseSunset
+//
+//  Created by Jake Runzer on 2016-05-15.
+//  Copyright © 2016 Puddllee. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+let lightColour = UIColor(hex: 0x46EAE7)
+let darkColour = UIColor(hex: 0x52009F)
+
+let lightLineColour = UIColor(hex: 0x00D3D0)
+let darkLineColour = UIColor(hex: 0x6A00CD)
+let nowLineColour = UIColor(hex: 0xF44336)
+
+let nameTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+let timeTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+
+let menuBackgroundColour = UIColor(hex: 0x52009F)
+
+let buttonDisabled = UIColor(hex: 0x290050)
+let buttonEnabled = UIColor(hex: 0x00D3D0)
+let buttonHighlighted = UIColor(hex: 0x75FFFD)
+
+let fontLight = "Muli-Light"
+let fontRegular = "Muli"
+
+let fontTwilight = UIFont(name: fontLight, size: 12)
+let fontDetail = UIFont(name: fontLight, size: 16)
+let fontTitle = UIFont(name: fontLight, size: 20)

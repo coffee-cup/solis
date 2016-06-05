@@ -6,6 +6,24 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Muli-Light.ttf">
+            <string>Muli-Light</string>
+            <string>Muli-Light</string>
+            <string>Muli-Light</string>
+            <string>Muli-Light</string>
+            <string>Muli-Light</string>
+        </mutableArray>
+        <mutableArray key="Muli-Regular.ttf">
+            <string>Muli</string>
+            <string>Muli</string>
+            <string>Muli</string>
+            <string>Muli</string>
+            <string>Muli</string>
+            <string>Muli</string>
+            <string>Muli</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="RyD-X5-QJE">
@@ -86,14 +104,14 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="past" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-kR-m70">
-                                <rect key="frame" x="171" y="636" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="169" y="634" width="37" height="23"/>
+                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="future" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-fJ-dB7">
-                                <rect key="frame" x="165" y="10" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="162" y="10" width="51" height="23"/>
+                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -166,18 +184,168 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnn-21-qsx">
-                                        <rect key="frame" x="20" y="43" width="43" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.95686274770000002" green="0.26274511220000002" blue="0.21176470820000001" alpha="1" colorSpace="deviceRGB"/>
+                                        <rect key="frame" x="20" y="41" width="54" height="25"/>
+                                        <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seL-0V-NZ6">
+                                        <rect key="frame" x="0.0" y="184" width="251" height="300"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-1a-WQ3">
+                                                <rect key="frame" x="20" y="0.0" width="112" height="25"/>
+                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNJ-MP-2rP">
+                                                <rect key="frame" x="20" y="35" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Lje-vi-N5H"/>
+                                                    <constraint firstAttribute="width" constant="44" id="z0E-H1-EPT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <state key="normal" title="24 h">
+                                                    <color key="titleColor" red="0.16078431372549018" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WA-bw-8mR">
+                                                <rect key="frame" x="104" y="35" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="23Z-dD-gEr"/>
+                                                    <constraint firstAttribute="height" constant="44" id="znC-bk-HRg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <state key="normal" title="12 h">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-iH-Khz">
+                                                <rect key="frame" x="187" y="35" width="44" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="egg-mh-cmU"/>
+                                                    <constraint firstAttribute="width" constant="44" id="kBt-SC-oZx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <state key="normal" title="±">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O87-qP-nkR">
+                                                <rect key="frame" x="20" y="99" width="116" height="25"/>
+                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4e-Pz-5mW">
+                                                <rect key="frame" x="20" y="134" width="56" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="56" id="ABM-9b-7s9"/>
+                                                    <constraint firstAttribute="height" constant="48" id="JrR-T4-3EX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="-60" minY="40" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="sunrise" image="rise_off">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgW-KK-ATX">
+                                                <rect key="frame" x="20" y="202" width="56" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="K9F-Ip-JWZ"/>
+                                                    <constraint firstAttribute="width" constant="56" id="hz5-tb-W0p"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="-56" minY="40" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="sunset" image="set_off">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJe-5u-OWF">
+                                                <rect key="frame" x="136" y="139" width="69" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="6Rq-dD-x3x"/>
+                                                    <constraint firstAttribute="width" constant="56" id="FRh-1K-Rgl"/>
+                                                    <constraint firstAttribute="width" constant="69" id="KHa-0U-pSD"/>
+                                                    <constraint firstAttribute="height" constant="48" id="U3t-ik-o5q"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="-70" minY="30" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="-9" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="first light" image="first_off">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="6Rq-dD-x3x"/>
+                                                        <exclude reference="FRh-1K-Rgl"/>
+                                                    </mask>
+                                                </variation>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hc-wP-VK7">
+                                                <rect key="frame" x="136" y="207" width="69" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="69" id="106-wa-Yqx"/>
+                                                    <constraint firstAttribute="width" constant="56" id="76K-Fs-lgk"/>
+                                                    <constraint firstAttribute="height" constant="48" id="9sm-dS-52X"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="q3K-Cq-jUg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="-70" minY="30" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="-9" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="last light" image="last_off">
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="q3K-Cq-jUg"/>
+                                                        <exclude reference="76K-Fs-lgk"/>
+                                                    </mask>
+                                                </variation>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="2Uk-oQ-Bnu"/>
+                                            <constraint firstItem="KJe-5u-OWF" firstAttribute="leading" secondItem="T4e-Pz-5mW" secondAttribute="trailing" constant="60" id="3oH-A0-cWj"/>
+                                            <constraint firstItem="qSH-1a-WQ3" firstAttribute="top" secondItem="seL-0V-NZ6" secondAttribute="top" id="85g-f7-Fgi"/>
+                                            <constraint firstItem="0WA-bw-8mR" firstAttribute="leading" secondItem="LNJ-MP-2rP" secondAttribute="trailing" constant="20" id="ATn-ZV-jcA"/>
+                                            <constraint firstItem="O87-qP-nkR" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="BHP-6n-6gy"/>
+                                            <constraint firstItem="LNJ-MP-2rP" firstAttribute="top" secondItem="qSH-1a-WQ3" secondAttribute="bottom" constant="10" id="CML-KK-fIS"/>
+                                            <constraint firstItem="0WA-bw-8mR" firstAttribute="centerY" secondItem="LNJ-MP-2rP" secondAttribute="centerY" id="Jcn-YR-atK"/>
+                                            <constraint firstAttribute="trailing" secondItem="e1C-iH-Khz" secondAttribute="trailing" constant="20" id="Ner-xa-tqM"/>
+                                            <constraint firstItem="T4e-Pz-5mW" firstAttribute="top" secondItem="O87-qP-nkR" secondAttribute="bottom" constant="10" id="QO0-fq-YWY"/>
+                                            <constraint firstItem="HgW-KK-ATX" firstAttribute="top" secondItem="T4e-Pz-5mW" secondAttribute="bottom" constant="20" id="SfB-og-524"/>
+                                            <constraint firstItem="e1C-iH-Khz" firstAttribute="leading" secondItem="0WA-bw-8mR" secondAttribute="trailing" constant="20" id="UTk-yq-X3J"/>
+                                            <constraint firstItem="LNJ-MP-2rP" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="V6Y-Fj-gUC"/>
+                                            <constraint firstItem="e1C-iH-Khz" firstAttribute="centerY" secondItem="0WA-bw-8mR" secondAttribute="centerY" id="Xin-aR-Zz7"/>
+                                            <constraint firstItem="KJe-5u-OWF" firstAttribute="baseline" secondItem="T4e-Pz-5mW" secondAttribute="baseline" id="XkE-DE-Ozl"/>
+                                            <constraint firstItem="T4e-Pz-5mW" firstAttribute="leading" secondItem="O87-qP-nkR" secondAttribute="leading" id="fOf-Oy-mO8"/>
+                                            <constraint firstItem="O87-qP-nkR" firstAttribute="top" secondItem="0WA-bw-8mR" secondAttribute="bottom" constant="20" id="sGa-KJ-Sdw"/>
+                                            <constraint firstItem="0WA-bw-8mR" firstAttribute="centerX" secondItem="seL-0V-NZ6" secondAttribute="centerX" id="saK-Gh-iMf"/>
+                                            <constraint firstItem="0Hc-wP-VK7" firstAttribute="baseline" secondItem="HgW-KK-ATX" secondAttribute="baseline" id="v71-BS-1Ex"/>
+                                            <constraint firstItem="HgW-KK-ATX" firstAttribute="leading" secondItem="T4e-Pz-5mW" secondAttribute="leading" id="vRH-iR-Bs4"/>
+                                            <constraint firstItem="qSH-1a-WQ3" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="x6E-zm-gmm"/>
+                                            <constraint firstItem="0Hc-wP-VK7" firstAttribute="leading" secondItem="KJe-5u-OWF" secondAttribute="leading" id="xJP-xF-ZXC"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="ATn-ZV-jcA"/>
+                                                <exclude reference="UTk-yq-X3J"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.74509805439999999" blue="0.1098039225" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="seL-0V-NZ6" firstAttribute="centerY" secondItem="arM-lv-Uf5" secondAttribute="centerY" id="Hnm-RZ-q9d"/>
+                                    <constraint firstAttribute="trailing" secondItem="seL-0V-NZ6" secondAttribute="trailing" id="OYj-n0-ASX"/>
                                     <constraint firstItem="Hnn-21-qsx" firstAttribute="leading" secondItem="arM-lv-Uf5" secondAttribute="leading" constant="20" id="Pob-qQ-pHz"/>
                                     <constraint firstItem="xS8-6q-gFg" firstAttribute="top" secondItem="arM-lv-Uf5" secondAttribute="top" constant="40" id="XhS-Ku-436"/>
                                     <constraint firstItem="Hnn-21-qsx" firstAttribute="centerY" secondItem="xS8-6q-gFg" secondAttribute="centerY" id="Zue-Fx-drV"/>
                                     <constraint firstAttribute="trailing" secondItem="xS8-6q-gFg" secondAttribute="trailing" constant="35" id="bOu-aZ-h8n"/>
+                                    <constraint firstItem="seL-0V-NZ6" firstAttribute="leading" secondItem="arM-lv-Uf5" secondAttribute="leading" id="eul-fR-dEN"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -190,6 +358,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="button12h" destination="0WA-bw-8mR" id="j97-K4-Lru"/>
+                        <outlet property="button24h" destination="LNJ-MP-2rP" id="LM8-TL-7iY"/>
+                        <outlet property="buttonDelta" destination="e1C-iH-Khz" id="Tlg-z8-RGu"/>
+                        <outlet property="buttonFirstLight" destination="KJe-5u-OWF" id="5ke-3A-U9Z"/>
+                        <outlet property="buttonLastLight" destination="0Hc-wP-VK7" id="x9r-UD-NVf"/>
+                        <outlet property="buttonSunrise" destination="T4e-Pz-5mW" id="EIs-mB-92j"/>
+                        <outlet property="buttonSunset" destination="HgW-KK-ATX" id="nEo-q6-OAl"/>
                         <outlet property="menuView" destination="arM-lv-Uf5" id="usi-dC-4k1"/>
                     </connections>
                 </viewController>
@@ -200,5 +375,9 @@
     </scenes>
     <resources>
         <image name="Logo" width="87" height="29"/>
+        <image name="first_off" width="71" height="17"/>
+        <image name="last_off" width="71" height="17"/>
+        <image name="rise_off" width="56" height="27"/>
+        <image name="set_off" width="56" height="27"/>
     </resources>
 </document>

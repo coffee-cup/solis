@@ -30,7 +30,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Constants
     let MenuAnimaitonDuration: NSTimeInterval = 0.25
-    let ClosenessToEdge: CGFloat = 40
+    let ClosenessToEdgeIn: CGFloat = 40
+    let ClosenessToEdgeOut: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +146,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         let fingerX = recognizer.locationInView(view).x
     
         if recognizer.state == .Began {
-            if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdge), high: Double(menuWidth + ClosenessToEdge))  {
+            if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdgeIn), high: Double(menuWidth + ClosenessToEdgeOut))  {
                 holdingWhileOut = true
                 anchorX = menuWidth - fingerX
             }

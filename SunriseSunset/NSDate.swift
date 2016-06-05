@@ -63,4 +63,21 @@ extension NSDate {
         //Return Result
         return dateWithHoursAdded
     }
+    
+    func getDifferenceInMinutes(date: NSDate) -> Int {
+        let differenceSeconds = self.timeIntervalSinceDate(date)
+        return Int(floor(differenceSeconds / 60))
+    }
+    
+    func getDifferenceInHours(date: NSDate) -> Int {
+        return Int(floor(self.timeIntervalSinceDate(date) / 60 / 60))
+    }
+    
+    func getMinutesToNow() -> Int {
+        return getDifferenceInMinutes(NSDate())
+    }
+    
+    func getHoursToNow() -> Int {
+        return getDifferenceInHours(NSDate())
+    }
 }
