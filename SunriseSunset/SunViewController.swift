@@ -38,6 +38,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var panning = false
     var animationStopped = false
     var allowedPan = true
+    var offNow = false
     var isMenuOut = false
     var scrollAnimationDuration: NSTimeInterval = 0
     var stopAnimationDuration: Double = 0
@@ -164,11 +165,12 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func update(offset: Double = 0) {
-        if !scrolling && !panning {
+        if !scrolling && !panning && !offNow {
             if let location = Location.getLocation() {
                 sun.update(offset, location: location)
             }
         }
+        offNow = Int(floor(offset)) == 0
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
