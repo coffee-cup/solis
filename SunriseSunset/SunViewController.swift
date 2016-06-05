@@ -164,8 +164,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func update(offset: Double = 0) {
-        if let location = Location.getLocation() {
-            sun.update(offset, location: location)
+        if !scrolling && !panning {
+            if let location = Location.getLocation() {
+                sun.update(offset, location: location)
+            }
         }
     }
     
@@ -275,12 +277,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         transformAfterAnimation = 0.0
         scrollAnimationDuration = SCROLL_DURATION
         startAnimationTimer()
+        scrolling = true
         UIView.animateWithDuration(scrollAnimationDuration, animations: {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
             }, completion: { finished in
                 self.sunView.removeEasingFunctionForKeyPath("transform")
                 self.stopAnimationTimer()
+                self.scrolling = false
                 self.offset = 0.0
                 self.offsetTranslation = 0.0
                 self.sun.findNow(self.offset)

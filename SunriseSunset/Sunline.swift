@@ -82,9 +82,10 @@ class Sunline: UIView {
         self.alpha = 0
     }
     
-    func getTimeText(date: NSDate) -> String {
+    func getTimeText(offset: NSTimeInterval) -> String {
         var text = ""
         if Sun.delta {
+            let date = time.dateByAddingTimeInterval(offset)
             let hours = date.getHoursToNow()
             let minutes = abs(date.getMinutesToNow() - (hours * 60))
             let inPast = date.timeIntervalSinceNow < 0
@@ -102,7 +103,7 @@ class Sunline: UIView {
                 text = "--"
             }
         } else {
-            text = Sun.timeFormatter.stringFromDate(date)
+            text = Sun.timeFormatter.stringFromDate(time)
             text = text.stringByReplacingOccurrencesOfString("AM", withString: "am")
             text = text.stringByReplacingOccurrencesOfString("PM", withString: "pm")
         }
@@ -111,7 +112,7 @@ class Sunline: UIView {
     
     func updateTime(offset: NSTimeInterval = 0) {
         if time != nil {
-            timeLabel.text = getTimeText(time.dateByAddingTimeInterval(offset))
+            timeLabel.text = getTimeText(offset)
         }
     }
 
