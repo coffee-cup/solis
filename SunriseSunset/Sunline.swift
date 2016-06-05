@@ -82,36 +82,42 @@ class Sunline: UIView {
         self.alpha = 0
     }
     
-    func getTimeText() -> String {
+    func getTimeText(date: NSDate) -> String {
         var text = ""
         if Sun.delta {
-            let hours = time.getHoursToNow()
-            let minutes = time.getMinutesToNow() - (hours * 60)
-            if abs(hours) > 0 {
-                text += hours < 0 ? "- " : "+ "
-                text += "\(abs(hours))h"
+            let hours = date.getHoursToNow()
+            let minutes = abs(date.getMinutesToNow() - (hours * 60))
+            let inPast = date.timeIntervalSinceNow < 0
+            text += inPast ? "- " : "+ "
+            if hours != 0 {
+                text += "\(hours)h"
             }
-            if abs(hours) > 0 && abs(minutes) > 0 {
+            if hours != 0 && minutes != 0 {
                 text += " "
             }
-            if abs(minutes) > 0 {
+            if minutes != 0 {
                 text += "\(minutes)m"
             }
+            if hours == 0 && minutes == 0 {
+                text = "--"
+            }
         } else {
-            text = Sun.timeFormatter.stringFromDate(time)
+            text = Sun.timeFormatter.stringFromDate(date)
             text = text.stringByReplacingOccurrencesOfString("AM", withString: "am")
             text = text.stringByReplacingOccurrencesOfString("PM", withString: "pm")
         }
         return text
     }
     
-    func updateTime() {
-        timeLabel.text = getTimeText()
+    func updateTime(offset: NSTimeInterval = 0) {
+        if time != nil {
+            timeLabel.text = getTimeText(time.dateByAddingTimeInterval(offset))
+        }
     }
 
     func updateLine(time: NSDate, percent: Float) {
         self.time = time
-        timeLabel.text = getTimeText()
+        updateTime()
         
         topConstraint.constant = parentView.frame.height * CGFloat(percent)
         UIView.animateWithDuration(0.1) {

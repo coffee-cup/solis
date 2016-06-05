@@ -216,7 +216,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
                 
                 sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-                print(allowedPan)
                 sun.findNow(newOffsetBy)
             }
         } else if (recognizer.state == .Ended) {

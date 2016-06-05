@@ -36,6 +36,8 @@ class Sun {
     
     var nowTimeLabel: UILabel
     
+    var offset: NSTimeInterval = 0
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
@@ -77,9 +79,26 @@ class Sun {
             Sun.delta = false
             Sun.timeFormatter.dateFormat = timeFormat
         }
+        setSunlineTimes()
+        setNowTimeText()
+    }
+    
+    func setSunlineTimes() {
         for time in suntimes {
-            time.sunline.updateTime()
+            time.sunline.updateTime(-1 * offset)
         }
+    }
+    
+    func setNowTimeText() {
+        var timeFormat = Sun.timeFormatter.dateFormat
+        if Sun.delta {
+            timeFormat = TimeFormat.hour12.description
+        }
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = timeFormat
+        nowTimeLabel.text = formatter.stringFromDate(now)
+            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+            .stringByReplacingOccurrencesOfString("AM", withString: "am")
     }
     
     func update(offset: Double, location: CLLocationCoordinate2D) {
@@ -95,12 +114,12 @@ class Sun {
     
     // offset is in minutes
     func findNow(offset: Double) {
-        now = NSDate().dateByAddingTimeInterval(offset * 60)
-        nowTimeLabel.text = Sun.timeFormatter.stringFromDate(now)
-        
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMMM d HH:mm"
-//        print("\(formatter.stringFromDate(now))")
+        dispatch_async(dispatch_get_main_queue(),{
+            self.offset = offset * 60
+            self.now = NSDate().dateByAddingTimeInterval(offset * 60)
+            self.setNowTimeText()
+            self.setSunlineTimes()
+        })
     }
     
     func calculateAllTimes(date: NSDate, set: Int) {
