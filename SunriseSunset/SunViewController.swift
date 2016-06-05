@@ -38,6 +38,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var panning = false
     var animationStopped = false
     var allowedPan = true
+    var isMenuOut = false
     var scrollAnimationDuration: NSTimeInterval = 0
     var stopAnimationDuration: Double = 0
     var transformBeforeAnimation: Double = 0
@@ -90,7 +91,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         // Notifications
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
-        
+        Bus.subscribeEvent(.MenuOut, observer: self, selector: #selector(menuOut))
+        Bus.subscribeEvent(.MenuIn, observer: self, selector: #selector(menuIn))
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -104,6 +106,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func menuIn() {
+        isMenuOut = false
+    }
+    
+    func menuOut() {
+        isMenuOut = true
     }
     
     func startAnimationTimer() {
@@ -200,17 +210,17 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 panning = true
             }
         } else if (recognizer.state == .Changed) {
-            if allowedPan {
+            if allowedPan && !isMenuOut {
                 let transformBy = translation + offsetTranslation
                 let offsetBy = offsetSeconds + offset
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
                 
                 sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-                //            print("pan transform: \(newTransformBy)")
+                print(allowedPan)
                 sun.findNow(newOffsetBy)
             }
         } else if (recognizer.state == .Ended) {
-            if allowedPan {
+            if allowedPan && !isMenuOut {
                 offset += offsetSeconds
                 offsetTranslation += translation
                 (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)

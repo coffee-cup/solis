@@ -11,11 +11,13 @@ import UIKit
 
 enum MessageType {
     case MenuIn
+    case MenuOut
     case TimeFormat
     
     var description: String {
         switch self {
         case .MenuIn: return "MenuIn";
+        case .MenuOut: return "MenuOut";
         case .TimeFormat: return "TimeFormat";
         }
     }
@@ -26,7 +28,7 @@ class Bus {
     static let ns = NSNotificationCenter.defaultCenter()
     static let defaults = NSUserDefaults.standardUserDefaults()
     
-    class func SendMessage(message: MessageType, data: [NSObject: AnyObject]?) {
+    class func sendMessage(message: MessageType, data: [NSObject: AnyObject]?) {
         ns.postNotificationName(message.description, object: nil, userInfo: data)
     }
     

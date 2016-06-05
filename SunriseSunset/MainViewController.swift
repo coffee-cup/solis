@@ -90,6 +90,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     func menuHardIn() {
         menuLeadingConstraint.constant = adjustNegative(-1)
         menuOut = false
+        
+        Bus.sendMessage(.MenuIn, data: nil)
     }
     
     func menuSoftIn() {
@@ -100,6 +102,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     func menuHardOut() {
         menuLeadingConstraint.constant = adjustNegative(menuWidth)
         menuOut = true
+        
+        Bus.sendMessage(.MenuOut, data: nil)
     }
     
     func menuSoftOut() {

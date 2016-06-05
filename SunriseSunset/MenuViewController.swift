@@ -134,7 +134,7 @@ class MenuViewController: UIViewController {
                 timeFormat = TimeFormat.delta.description
             }
             defaults.setObject(timeFormat, forKey: MessageType.TimeFormat.description)
-            Bus.SendMessage(.TimeFormat, data: nil)
+            Bus.sendMessage(.TimeFormat, data: nil)
         }
     }
     
