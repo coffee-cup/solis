@@ -47,11 +47,14 @@ enum SunType {
     
     var colour: CGColorRef {
         switch self {
-        case .AstronomicalDawn: return darkColour.CGColor as CGColorRef
-        case .Sunrise: return lightColour.CGColor as CGColorRef
-        case .Sunset: return lightColour.CGColor as CGColorRef
-        case .AstronomicalDusk: return darkColour.CGColor as CGColorRef
-        default: return UIColor.greenColor().CGColor as CGColorRef
+        case .AstronomicalDawn: return astronomicalColour.CGColor as CGColorRef
+        case .NauticalDawn: return nauticalColour.CGColor as CGColorRef
+        case .CivilDawn: return civilColour.CGColor as CGColorRef
+        case .Sunrise: return risesetColour.CGColor as CGColorRef
+        case .CivilDusk: return civilColour.CGColor as CGColorRef
+        case .NauticalDusk: return nauticalColour.CGColor as CGColorRef
+        case .Sunset: return risesetColour.CGColor as CGColorRef
+        case .AstronomicalDusk: return astronomicalColour.CGColor as CGColorRef
         }
     }
     
@@ -79,10 +82,14 @@ class Suntime {
         return type.colour
     }
     var marker: Bool {
-        return type.marker
+        return isLast ? true : type.marker
     }
     
+    // Possibility for refactor, to only set marker if last time
+    var isLast: Bool = true
+    
     var sunline: Sunline
+    var neverHappens = false
     
     let formatter = NSDateFormatter()
     

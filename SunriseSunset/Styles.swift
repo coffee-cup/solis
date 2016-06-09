@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
-let lightColour = UIColor(hex: 0x46EAE7)
-let darkColour = UIColor(hex: 0x52009F)
+//let lightColour = UIColor(hex: 0x46EAE7)
+//let darkColour = UIColor(hex: 0x52009F)
+
+let risesetColour = UIColor(hex: 0x46EAE7)
+let civilColour = UIColor(hex: 0x4A9DCF)
+let nauticalColour = UIColor(hex: 0x4E50B8)
+let astronomicalColour = UIColor(hex: 0x52009F)
 
 let lightLineColour = UIColor(hex: 0x00D3D0)
 let darkLineColour = UIColor(hex: 0x6A00CD)

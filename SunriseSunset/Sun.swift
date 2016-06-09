@@ -58,14 +58,14 @@ class Sun {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         for _ in 1...3 {
-            suntimes.append(Suntime(type: .AstronomicalDawn, view: sunView))
-            suntimes.append(Suntime(type: .NauticalDawn, view: sunView))
-            suntimes.append(Suntime(type: .CivilDawn, view: sunView))
+            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
+            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
+            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
             suntimes.append(Suntime(type: .Sunrise, view: sunView))
             suntimes.append(Suntime(type: .Sunset, view: sunView))
-            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
-            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
-            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
+            suntimes.append(Suntime(type: .CivilDawn, view: sunView))
+            suntimes.append(Suntime(type: .NauticalDawn, view: sunView))
+            suntimes.append(Suntime(type: .AstronomicalDawn, view: sunView))
         }
         
         Bus.subscribeEvent(.TimeFormat, observer: self, selector: #selector(timeFormatUpdate))
@@ -122,6 +122,12 @@ class Sun {
         })
     }
     
+    // If there is no physical astronomical/nautical/civil twilight start or end (sun is never 18/16/12 degress below horizon)
+    // Then the difference between start and end is a full 24 hours (86400 seconds)
+    func neverHappens(date1: NSDate, date2: NSDate) -> Bool {
+        return abs(date1.timeIntervalSinceDate(date2)) == 86400
+    }
+    
     func calculateAllTimes(date: NSDate, set: Int) {
         let timeZone = NSTimeZone.localTimeZone()
         let ss = EDSunriseSet(timezone: timeZone, latitude: location.latitude, longitude: location.longitude)
@@ -129,14 +135,60 @@ class Sun {
         ss.calculateSunriseSunset(date)
         
         let off = set * 8
-        suntimes[0 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightStart())
-        suntimes[1 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightStart())
-        suntimes[2 + off].setValues(date, dateComponents: ss.localCivilTwilightStart())
-        suntimes[3 + off].setValues(date, dateComponents: ss.localSunrise())
-        suntimes[4 + off].setValues(date, dateComponents: ss.localSunset())
-        suntimes[5 + off].setValues(date, dateComponents: ss.localCivilTwilightEnd())
-        suntimes[6 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightEnd())
-        suntimes[7 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightEnd())
+        
+        // Astronomical
+        let astronomicalNever = neverHappens(ss.astronomicalTwilightEnd, date2: ss.astronomicalTwilightStart)
+        suntimes[0 + off].date = ss.astronomicalTwilightEnd
+        suntimes[0 + off].neverHappens = astronomicalNever
+        suntimes[7 + off].date = ss.astronomicalTwilightStart
+        suntimes[7 + off].neverHappens = astronomicalNever
+        
+        // Nautical
+        let nauticalNever = neverHappens(ss.nauticalTwilightStart, date2: ss.nauticalTwilightEnd)
+        suntimes[1 + off].date = ss.nauticalTwilightEnd
+        suntimes[1 + off].neverHappens = nauticalNever
+        suntimes[6 + off].date = ss.nauticalTwilightStart
+        suntimes[6 + off].neverHappens = nauticalNever
+        
+        // Civil
+        let civilNever = neverHappens(ss.civilTwilightStart, date2: ss.civilTwilightEnd)
+        suntimes[2 + off].date = ss.civilTwilightEnd
+        suntimes[2 + off].neverHappens = civilNever
+        suntimes[5 + off].date = ss.civilTwilightStart
+        suntimes[5 + off].neverHappens = civilNever
+        
+        // Rise/Set
+        let riseSetNever = neverHappens(ss.sunrise, date2: ss.sunset)
+        suntimes[3 + off].date = ss.sunrise
+        suntimes[3 + off].neverHappens = riseSetNever
+        suntimes[4 + off].date = ss.sunset
+        suntimes[4 + off].neverHappens = riseSetNever
+        
+//        suntimes[0 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightEnd())
+//        suntimes[1 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightEnd())
+//        suntimes[2 + off].setValues(date, dateComponents: ss.localCivilTwilightEnd())
+//        suntimes[3 + off].setValues(date, dateComponents: ss.localSunrise())
+//        suntimes[4 + off].setValues(date, dateComponents: ss.localSunset())
+//        suntimes[5 + off].setValues(date, dateComponents: ss.localCivilTwilightStart())
+//        suntimes[6 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightStart())
+//        suntimes[7 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightStart())
+        
+        if set == 9 {
+            print(date)
+            print("\nstart")
+//            print(ss.astronomicalTwilightStart)
+//            print(ss.localAstronomicalTwilightStart())
+            Sun.timeFormatter.dateFormat = "MMMM dd hh:mm a"
+            print(ss.nauticalTwilightStart)
+            print(ss.localNauticalCivilTwilightStart())
+            print(Sun.timeFormatter.stringFromDate(ss.nauticalTwilightStart))
+            
+            print("\nend")
+//            print(ss.astronomicalTwilightEnd)
+//            print(ss.localAstronomicalTwilightEnd())
+//            print(ss.localNauticalCivilTwilightEnd())
+//            print(ss.nauticalTwilightEnd)
+        }
     }
     
     func calculateSunriseSunset(location: CLLocationCoordinate2D) {
@@ -149,6 +201,11 @@ class Sun {
         calculateAllTimes(yesterday, set: 0)
         calculateAllTimes(today, set: 1)
         calculateAllTimes(tomorrow, set: 2)
+        
+        for time in suntimes {
+//            print(time.description())
+        }
+        print("\n")
     }
     
     func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
@@ -171,10 +228,13 @@ class Sun {
         let sorted = suntimes.sort() { st1, st2 in
             return st1.date.isLessThanDate(st2.date)
         }
+        let filtered = sorted.filter() { time in
+            return !time.neverHappens
+        }
         
         var pastTimes: [Suntime] = []
         var futureTimes: [Suntime] = []
-        for time in sorted {
+        for time in filtered {
             if time.date!.isLessThanDate(now) {
                 pastTimes.append(time)
             } else {
@@ -193,6 +253,7 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
+            
 //            print(time.description())
         }
         
