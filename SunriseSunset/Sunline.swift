@@ -114,26 +114,29 @@ class Sunline: UIView {
     }
     
     func updateTime(offset: NSTimeInterval = 0) {
-        if time != nil {
-            timeLabel.text = getTimeText(offset)
+        dispatch_async(dispatch_get_main_queue()) {
+            if self.time != nil {
+                self.timeLabel.text = self.getTimeText(offset)
+            }
         }
     }
 
     func updateLine(time: NSDate, percent: Float) {
-        self.time = time
-        updateTime()
-        
-        topConstraint.constant = parentView.frame.height * CGFloat(percent)
-        UIView.animateWithDuration(0.1) {
-            self.parentView.layoutIfNeeded()
-        }
-        
-        if self.hidden {
-            self.hidden = false
-            UIView.animateWithDuration(1, delay: 1, options: .CurveEaseInOut, animations: {
-                self.alpha = 1
-                }, completion: nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.time = time
+            self.updateTime()
+            
+            self.topConstraint.constant = self.parentView.frame.height * CGFloat(percent)
+            UIView.animateWithDuration(0.1) {
+                self.parentView.layoutIfNeeded()
+            }
+            
+            if self.hidden {
+                self.hidden = false
+                UIView.animateWithDuration(1, delay: 1, options: .CurveEaseInOut, animations: {
+                    self.alpha = 1
+                    }, completion: nil)
+            }
         }
     }
-    
 }

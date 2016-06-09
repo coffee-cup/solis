@@ -90,15 +90,17 @@ class Sun {
     }
     
     func setNowTimeText() {
-        var timeFormat = Sun.timeFormatter.dateFormat
-        if Sun.delta {
-            timeFormat = TimeFormat.hour12.description
+        dispatch_async(dispatch_get_main_queue()) {
+            var timeFormat = Sun.timeFormatter.dateFormat
+            if Sun.delta {
+                timeFormat = TimeFormat.hour12.description
+            }
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = timeFormat
+            self.nowTimeLabel.text = formatter.stringFromDate(self.now)
+                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+                .stringByReplacingOccurrencesOfString("AM", withString: "am")
         }
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = timeFormat
-        nowTimeLabel.text = formatter.stringFromDate(now)
-            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
-            .stringByReplacingOccurrencesOfString("AM", withString: "am")
     }
     
     func update(offset: Double, location: CLLocationCoordinate2D) {
@@ -114,12 +116,10 @@ class Sun {
     
     // offset is in minutes
     func findNow(offset: Double) {
-        dispatch_async(dispatch_get_main_queue(),{
-            self.offset = offset * 60
-            self.now = NSDate().dateByAddingTimeInterval(offset * 60)
-            self.setNowTimeText()
-            self.setSunlineTimes()
-        })
+        self.offset = offset * 60
+        self.now = NSDate().dateByAddingTimeInterval(offset * 60)
+        self.setNowTimeText()
+//        self.setSunlineTimes()
     }
     
     // If there is no physical astronomical/nautical/civil twilight start or end (sun is never 18/16/12 degress below horizon)
@@ -163,32 +163,6 @@ class Sun {
         suntimes[3 + off].neverHappens = riseSetNever
         suntimes[4 + off].date = ss.sunset
         suntimes[4 + off].neverHappens = riseSetNever
-        
-//        suntimes[0 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightEnd())
-//        suntimes[1 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightEnd())
-//        suntimes[2 + off].setValues(date, dateComponents: ss.localCivilTwilightEnd())
-//        suntimes[3 + off].setValues(date, dateComponents: ss.localSunrise())
-//        suntimes[4 + off].setValues(date, dateComponents: ss.localSunset())
-//        suntimes[5 + off].setValues(date, dateComponents: ss.localCivilTwilightStart())
-//        suntimes[6 + off].setValues(date, dateComponents: ss.localNauticalCivilTwilightStart())
-//        suntimes[7 + off].setValues(date, dateComponents: ss.localAstronomicalTwilightStart())
-        
-        if set == 9 {
-            print(date)
-            print("\nstart")
-//            print(ss.astronomicalTwilightStart)
-//            print(ss.localAstronomicalTwilightStart())
-            Sun.timeFormatter.dateFormat = "MMMM dd hh:mm a"
-            print(ss.nauticalTwilightStart)
-            print(ss.localNauticalCivilTwilightStart())
-            print(Sun.timeFormatter.stringFromDate(ss.nauticalTwilightStart))
-            
-            print("\nend")
-//            print(ss.astronomicalTwilightEnd)
-//            print(ss.localAstronomicalTwilightEnd())
-//            print(ss.localNauticalCivilTwilightEnd())
-//            print(ss.nauticalTwilightEnd)
-        }
     }
     
     func calculateSunriseSunset(location: CLLocationCoordinate2D) {
@@ -201,11 +175,6 @@ class Sun {
         calculateAllTimes(yesterday, set: 0)
         calculateAllTimes(today, set: 1)
         calculateAllTimes(tomorrow, set: 2)
-        
-        for time in suntimes {
-//            print(time.description())
-        }
-        print("\n")
     }
     
     func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
@@ -215,7 +184,6 @@ class Sun {
     
     func getGradientPercent(time: Suntime, now: NSDate) -> Float {
         let difference: Int = getDifferenceInMinutes(time.date, date2: now)
-        //        print("\(time.type.description) is \(Float(difference) / 60.0) hours away")
         let scaled: Float = Float(difference) / screenMinutes
         let percent: Float = (scaled * screenHeight) / sunHeight
         return percent
@@ -245,7 +213,6 @@ class Sun {
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
-//        print("\n")
         for time in futureTimes.reverse() {
             let per = 0.5  - getGradientPercent(time, now: now)
             if time.marker && per >= 0 && per <= 1 {
@@ -253,14 +220,8 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
-            
-//            print(time.description())
         }
         
-//        print("\n")
-//        print(Sun.timeFormatter.stringFromDate(now))
-        
-//        print("\n")
         for time in pastTimes.reverse() {
             let per = 0.5 + getGradientPercent(time, now: now)
             if time.marker && per >= 0 && per <= 1  {
@@ -268,47 +229,49 @@ class Sun {
                 locations.append(per)
             }
             time.sunline.updateLine(time.date, percent: per)
-//            print(time.description())
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)
     }
     
     func animateGradient(gradientLayer: CAGradientLayer, toColours: [CGColorRef], toLocations: [Float]) {
-        // Do not animate the first gradient
-        guard let _ = gradientLayer.colors else {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            // Do not animate the first gradient
+            guard let _ = gradientLayer.colors else {
+                gradientLayer.colors = toColours
+                gradientLayer.locations = toLocations
+                return
+            }
+            
+            let duration: CFTimeInterval = 0.2
+            
+            let fromColours = gradientLayer.colors!
+            let fromLocations = gradientLayer.locations!
+            
             gradientLayer.colors = toColours
             gradientLayer.locations = toLocations
-            return
+            
+            let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
+            let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
+            
+            colourAnimation.fromValue = fromColours
+            colourAnimation.toValue = toColours
+            colourAnimation.duration = duration
+            colourAnimation.removedOnCompletion = true
+            colourAnimation.fillMode = kCAFillModeForwards
+            colourAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            
+            locationAnimation.fromValue = fromLocations
+            locationAnimation.toValue = toLocations
+            locationAnimation.duration = duration
+            locationAnimation.removedOnCompletion = true
+            locationAnimation.fillMode = kCAFillModeForwards
+            locationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            
+            gradientLayer.addAnimation(colourAnimation, forKey: "animateGradientColour")
+            gradientLayer.addAnimation(locationAnimation, forKey: "animateGradientLocation")
         }
-        
-        let duration: CFTimeInterval = 0.2
-        
-        let fromColours = gradientLayer.colors!
-        let fromLocations = gradientLayer.locations!
-        
-        gradientLayer.colors = toColours
-        gradientLayer.locations = toLocations
-        
-        let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
-        let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
-        
-        colourAnimation.fromValue = fromColours
-        colourAnimation.toValue = toColours
-        colourAnimation.duration = duration
-        colourAnimation.removedOnCompletion = true
-        colourAnimation.fillMode = kCAFillModeForwards
-        colourAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        
-        locationAnimation.fromValue = fromLocations
-        locationAnimation.toValue = toLocations
-        locationAnimation.duration = duration
-        locationAnimation.removedOnCompletion = true
-        locationAnimation.fillMode = kCAFillModeForwards
-        locationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        
-        gradientLayer.addAnimation(colourAnimation, forKey: "animateGradientColour")
-        gradientLayer.addAnimation(locationAnimation, forKey: "animateGradientLocation")
     }
     
 }
