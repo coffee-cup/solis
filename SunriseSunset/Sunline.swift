@@ -85,7 +85,7 @@ class Sunline: UIView {
     func getTimeText(offset: NSTimeInterval) -> String {
         var text = ""
         
-        let timeOffset = time.dateByAddingTimeInterval(offset)
+        let timeOffset = time.dateByAddingTimeInterval(0) // may have to change
         let hours = timeOffset.getHoursToNow()
         let minutes = timeOffset.getMinutesToNow()
         let hourMinutes = abs(minutes - (hours * 60))
@@ -127,13 +127,13 @@ class Sunline: UIView {
             self.updateTime()
             
             self.topConstraint.constant = self.parentView.frame.height * CGFloat(percent)
-            UIView.animateWithDuration(0.1) {
+            UIView.animateWithDuration(0.5) {
                 self.parentView.layoutIfNeeded()
             }
             
             if self.hidden {
                 self.hidden = false
-                UIView.animateWithDuration(1, delay: 1, options: .CurveEaseInOut, animations: {
+                UIView.animateWithDuration(0.5, delay: 1, options: .CurveEaseInOut, animations: {
                     self.alpha = 1
                     }, completion: nil)
             }

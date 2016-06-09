@@ -89,17 +89,25 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         // Update every minute
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
-        setupPermissions()
-        
         // Notifications
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
         Bus.subscribeEvent(.MenuOut, observer: self, selector: #selector(menuOut))
         Bus.subscribeEvent(.MenuIn, observer: self, selector: #selector(menuIn))
+        Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        sunView.alpha = 0
+        update()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        setupPermissions()
     }
     
     deinit {
@@ -170,9 +178,16 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         if !scrolling && !panning && !offNow {
             if let location = Location.getLocation() {
                 sun.update(offset, location: location)
+                
+                // Fade in sun view if not already visible
+                if self.sunView.alpha == 0 {
+                    UIView.animateWithDuration(0.5) {
+                        self.sunView.alpha = 1
+                    }
+                }
             }
         }
-        offNow = Int(floor(offset)) == 0
+        offNow = Int(floor(offset)) != 0
     }
     
     @IBAction func hourSliderDidChange(sender: AnyObject) {
@@ -277,6 +292,19 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func doubleTap(recognizer: UITapGestureRecognizer) {
+        scrollReset()
+    }
+    
+    func reset() {
+        self.stopAnimationTimer()
+        self.scrolling = false
+        self.panning = false
+        self.allowedPan = true
+        self.offset = 0.0
+        self.offsetTranslation = 0.0
+    }
+    
+    func scrollReset() {
         transformBeforeAnimation = Double(sunView.transform.ty)
         transformAfterAnimation = 0.0
         scrollAnimationDuration = SCROLL_DURATION
@@ -287,11 +315,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
             }, completion: { finished in
                 self.sunView.removeEasingFunctionForKeyPath("transform")
-                self.stopAnimationTimer()
-                self.scrolling = false
-                self.offset = 0.0
-                self.offsetTranslation = 0.0
-                self.sun.findNow(self.offset)
+                self.reset()
+                self.update(self.offset)
         })
     }
     

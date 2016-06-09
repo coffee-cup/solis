@@ -50,7 +50,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="0v8-n2-2RF" secondAttribute="bottom" id="5s8-88-hBs"/>
                             <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="qAh-lL-ukP" secondAttribute="bottom" id="Cfv-pM-3QX"/>
@@ -300,8 +300,8 @@
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="q3K-Cq-jUg"/>
                                                         <exclude reference="76K-Fs-lgk"/>
+                                                        <exclude reference="q3K-Cq-jUg"/>
                                                     </mask>
                                                 </variation>
                                             </button>

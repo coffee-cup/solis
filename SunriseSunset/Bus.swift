@@ -13,12 +13,14 @@ enum MessageType {
     case MenuIn
     case MenuOut
     case TimeFormat
+    case Foregrounded
     
     var description: String {
         switch self {
         case .MenuIn: return "MenuIn";
         case .MenuOut: return "MenuOut";
         case .TimeFormat: return "TimeFormat";
+        case .Foregrounded: return UIApplicationWillEnterForegroundNotification
         }
     }
 }
@@ -34,6 +36,7 @@ class Bus {
     
     class func subscribeEvent(message: MessageType, observer: AnyObject, selector: Selector) {
         ns.addObserver(observer, selector: selector, name: message.description, object: nil)
+        
     }
     
     class func subscribeDefaultChange(message: MessageType, observer: NSObject, selector: Selector) {
