@@ -10,6 +10,8 @@
 		68916F95FEEF433A3C416B21 /* Pods_SunriseSunset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */; };
 		9611BAD3C7928B584AE42292 /* Pods_SunriseSunsetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E781139EF443B9345BBA97 /* Pods_SunriseSunsetTests.framework */; };
 		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
+		9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F41D0FCC470079F3A5 /* Notifications.swift */; };
+		9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9C3314F41CE9712F004D012E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
@@ -59,6 +61,9 @@
 		6BB03123F6EDFAB71E56CFF4 /* Pods-SunriseSunsetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F43EA11CC35450734F19303 /* Pods-SunriseSunset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.release.xcconfig"; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
+		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		9C20A3F71D0FD3D60079F3A5 /* NotificationGround.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NotificationGround.playground; sourceTree = "<group>"; };
+		9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLogic.swift; sourceTree = "<group>"; };
 		9C3314F11CE95783004D012E /* Suntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suntime.swift; sourceTree = "<group>"; };
 		9C3314F31CE9712F004D012E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
@@ -142,6 +147,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9C20A3F61D0FD3AE0079F3A5 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				9C20A3F71D0FD3D60079F3A5 /* NotificationGround.playground */,
+			);
+			name = Playground;
+			sourceTree = "<group>";
+		};
 		9C3314F51CE976AF004D012E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +170,7 @@
 				9C3314F11CE95783004D012E /* Suntime.swift */,
 				9CBB09AD1CED6D1000F344C4 /* Sun.swift */,
 				9C485AB01CED7E130086B22E /* Sunline.swift */,
+				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
 			);
 			name = SunStuff;
 			sourceTree = "<group>";
@@ -186,6 +200,7 @@
 		9CB37BE71CE844400080B5B1 /* SunriseSunset */ = {
 			isa = PBXGroup;
 			children = (
+				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9CDE815A1D03E7D50036FD34 /* Fonts */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
 				9CB37BE81CE844400080B5B1 /* AppDelegate.swift */,
@@ -203,6 +218,7 @@
 				9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */,
 				9CB37BEC1CE844400080B5B1 /* Main.storyboard */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
+				9C20A3F41D0FCC470079F3A5 /* Notifications.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -507,11 +523,13 @@
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,
+				9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */,
 				9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */,
 				9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */,
 				9C3314F71CE976BE004D012E /* NSDate.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Styles.swift in Sources */,
 				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
+				9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */,
 				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
 				9C3314F91CE9A723004D012E /* UIColor.swift in Sources */,
 			);

@@ -42,7 +42,9 @@ class Sun {
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    
     var suntimes: [Suntime] = []
+    var sunlines: [Sunline] = []
     
     init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel) {
         self.screenMinutes = screenMinutes
@@ -58,17 +60,26 @@ class Sun {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         for _ in 1...3 {
-            suntimes.append(Suntime(type: .AstronomicalDusk, view: sunView))
-            suntimes.append(Suntime(type: .NauticalDusk, view: sunView))
-            suntimes.append(Suntime(type: .CivilDusk, view: sunView))
-            suntimes.append(Suntime(type: .Sunrise, view: sunView))
-            suntimes.append(Suntime(type: .Sunset, view: sunView))
-            suntimes.append(Suntime(type: .CivilDawn, view: sunView))
-            suntimes.append(Suntime(type: .NauticalDawn, view: sunView))
-            suntimes.append(Suntime(type: .AstronomicalDawn, view: sunView))
+            createSuntime(.AstronomicalDusk, view: sunView)
+            createSuntime(.NauticalDusk, view: sunView)
+            createSuntime(.CivilDusk, view: sunView)
+            createSuntime(.Sunrise, view: sunView)
+            createSuntime(.Sunset, view: sunView)
+            createSuntime(.CivilDawn, view: sunView)
+            createSuntime(.NauticalDawn, view: sunView)
+            createSuntime(.AstronomicalDawn, view: sunView)
         }
         
         Bus.subscribeEvent(.TimeFormat, observer: self, selector: #selector(timeFormatUpdate))
+    }
+    
+    func createSuntime(type: SunType, view: UIView) {
+        let suntime = Suntime(type: type)
+        let sunline = Sunline()
+        sunline.createLine(view, type: type)
+        
+        suntimes.append(suntime)
+        sunlines.append(sunline)
     }
     
     @objc func timeFormatUpdate() {
@@ -84,8 +95,8 @@ class Sun {
     }
     
     func setSunlineTimes() {
-        for time in suntimes {
-            time.sunline.updateTime(-1 * offset)
+        for line in sunlines {
+            line.updateTime(-1 * offset)
         }
     }
     
@@ -122,49 +133,6 @@ class Sun {
 //        self.setSunlineTimes()
     }
     
-    // If there is no physical astronomical/nautical/civil twilight start or end (sun is never 18/16/12 degress below horizon)
-    // Then the difference between start and end is a full 24 hours (86400 seconds)
-    func neverHappens(date1: NSDate, date2: NSDate) -> Bool {
-        return abs(date1.timeIntervalSinceDate(date2)) == 86400
-    }
-    
-    func calculateAllTimes(date: NSDate, set: Int) {
-        let timeZone = NSTimeZone.localTimeZone()
-        let ss = EDSunriseSet(timezone: timeZone, latitude: location.latitude, longitude: location.longitude)
-        ss.calculateTwilight(date)
-        ss.calculateSunriseSunset(date)
-        
-        let off = set * 8
-        
-        // Astronomical
-        let astronomicalNever = neverHappens(ss.astronomicalTwilightEnd, date2: ss.astronomicalTwilightStart)
-        suntimes[0 + off].date = ss.astronomicalTwilightEnd
-        suntimes[0 + off].neverHappens = astronomicalNever
-        suntimes[7 + off].date = ss.astronomicalTwilightStart
-        suntimes[7 + off].neverHappens = astronomicalNever
-        
-        // Nautical
-        let nauticalNever = neverHappens(ss.nauticalTwilightStart, date2: ss.nauticalTwilightEnd)
-        suntimes[1 + off].date = ss.nauticalTwilightEnd
-        suntimes[1 + off].neverHappens = nauticalNever
-        suntimes[6 + off].date = ss.nauticalTwilightStart
-        suntimes[6 + off].neverHappens = nauticalNever
-        
-        // Civil
-        let civilNever = neverHappens(ss.civilTwilightStart, date2: ss.civilTwilightEnd)
-        suntimes[2 + off].date = ss.civilTwilightEnd
-        suntimes[2 + off].neverHappens = civilNever
-        suntimes[5 + off].date = ss.civilTwilightStart
-        suntimes[5 + off].neverHappens = civilNever
-        
-        // Rise/Set
-        let riseSetNever = neverHappens(ss.sunrise, date2: ss.sunset)
-        suntimes[3 + off].date = ss.sunrise
-        suntimes[3 + off].neverHappens = riseSetNever
-        suntimes[4 + off].date = ss.sunset
-        suntimes[4 + off].neverHappens = riseSetNever
-    }
-    
     func calculateSunriseSunset(location: CLLocationCoordinate2D) {
         self.location = location
         
@@ -172,9 +140,9 @@ class Sun {
         let yesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: today, options: [])!
         let tomorrow = calendar.dateByAddingUnit(.Day, value: 1, toDate: today, options: [])!
         
-        calculateAllTimes(yesterday, set: 0)
-        calculateAllTimes(today, set: 1)
-        calculateAllTimes(tomorrow, set: 2)
+        suntimes = SunLogic.calculateTimesForDate(yesterday, location: location)
+            + SunLogic.calculateTimesForDate(today, location: location)
+            + SunLogic.calculateTimesForDate(tomorrow, location: location)
     }
     
     func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
@@ -213,22 +181,22 @@ class Sun {
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
-        for time in futureTimes.reverse() {
+        for (index, time) in futureTimes.reverse().enumerate() {
             let per = 0.5  - getGradientPercent(time, now: now)
             if time.marker && per >= 0 && per <= 1 {
                 colours.append(time.colour)
                 locations.append(per)
             }
-            time.sunline.updateLine(time.date, percent: per)
+            sunlines[index].updateLine(time.date, percent: per)
         }
         
-        for time in pastTimes.reverse() {
+        for (index, time) in pastTimes.reverse().enumerate() {
             let per = 0.5 + getGradientPercent(time, now: now)
             if time.marker && per >= 0 && per <= 1  {
                 colours.append(time.colour)
                 locations.append(per)
             }
-            time.sunline.updateLine(time.date, percent: per)
+            sunlines[index].updateLine(time.date, percent: per)
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)

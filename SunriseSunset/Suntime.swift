@@ -88,19 +88,15 @@ class Suntime {
     // Possibility for refactor, to only set marker if last time
     var isLast: Bool = true
     
-    var sunline: Sunline
     var neverHappens = false
     
     let formatter = NSDateFormatter()
     
-    init(type: SunType, view: UIView) {
+    init(type: SunType) {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         self.type = type
         formatter.dateFormat = "MMMM d HH:mm"
-        
-        sunline = Sunline()
-        sunline.createLine(view, type: type)
     }
     
     func setValues(day: NSDate, dateComponents: NSDateComponents) {
