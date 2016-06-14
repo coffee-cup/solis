@@ -151,16 +151,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         })
     }
     
-    func timerAction() {
-        offset += 10 * 60
-        if offset > 24 * 60 * 60 {
-            offset = 0
-        }
-        
-        hourSlider.value = Float(offset)
-        update(offset)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

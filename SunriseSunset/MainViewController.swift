@@ -25,7 +25,15 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     var menuWidth: CGFloat!
     var anchorX: CGFloat = 0
     
-    var menuOut = false
+    var menuOut = false {
+        didSet {
+            if menuOut {
+                Bus.sendMessage(.MenuOut, data: nil)
+            } else {
+                Bus.sendMessage(.MenuIn, data: nil)
+            }
+        }
+    }
     var holdingWhileOut = false
     
     // Constants
@@ -76,11 +84,11 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Side Menu
     
-    func animateMenu() {
-        UIView.animateWithDuration(MenuAnimaitonDuration) {
-            self.view.layoutIfNeeded()
-        }
-    }
+//    func animateMenu() {
+//        UIView.animateWithDuration(MenuAnimaitonDuration) {
+//            self.view.layoutIfNeeded()
+//        }
+//    }
     
     // Adjusts the x position to be negative in terms of menuWidth
     func adjustNegative(x: CGFloat) -> CGFloat {
@@ -91,26 +99,32 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuLeadingConstraint.constant = adjustNegative(-1)
         menuContainerView.alpha = 0
         menuOut = false
-        
-        Bus.sendMessage(.MenuIn, data: nil)
     }
     
     func menuSoftIn() {
-        menuHardIn()
-        animateMenu()
+        menuLeadingConstraint.constant = adjustNegative(-1)
+        UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
+            self.view.layoutIfNeeded()
+            }, completion: { finished in
+                self.menuOut = false
+                self.menuContainerView.alpha = 0
+        })
     }
     
     func menuHardOut() {
         menuLeadingConstraint.constant = adjustNegative(menuWidth)
         menuContainerView.alpha = 1
         menuOut = true
-        
-        Bus.sendMessage(.MenuOut, data: nil)
     }
     
     func menuSoftOut() {
-        menuHardOut()
-        animateMenu()
+        menuContainerView.alpha = 1
+        menuLeadingConstraint.constant = adjustNegative(menuWidth)
+        UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
+            self.view.layoutIfNeeded()
+            }, completion: { finished in
+                self.menuOut = true
+        })
     }
     
     // Moves the menu in or out depending on its position now
@@ -135,6 +149,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         let fingerX = recognizer.locationInView(view).x
 
         if recognizer.state == .Began {
+            menuContainerView.alpha = 1
         } else if recognizer.state == .Changed {
             if !menuOut {
                 menuToFinger(fingerX)

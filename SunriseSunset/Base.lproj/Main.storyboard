@@ -177,14 +177,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="251" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xS8-6q-gFg">
-                                        <rect key="frame" x="133" y="40" width="83" height="27"/>
+                                        <rect key="frame" x="136" y="40" width="80" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="83" id="W0h-bv-3fg"/>
-                                            <constraint firstAttribute="height" constant="27" id="syA-yr-ZvN"/>
+                                            <constraint firstAttribute="width" constant="80" id="W0h-bv-3fg"/>
+                                            <constraint firstAttribute="height" constant="13" id="syA-yr-ZvN"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnn-21-qsx">
-                                        <rect key="frame" x="20" y="41" width="54" height="25"/>
+                                        <rect key="frame" x="20" y="34" width="54" height="25"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -374,7 +374,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="87" height="29"/>
+        <image name="Logo" width="146" height="28"/>
         <image name="first_off" width="71" height="17"/>
         <image name="last_off" width="71" height="17"/>
         <image name="rise_off" width="56" height="27"/>

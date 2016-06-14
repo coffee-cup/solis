@@ -310,6 +310,7 @@
 				TargetAttributes = {
 					9CB37BE41CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 4TPDCY22V9;
 					};
 					9CB37BF81CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -655,9 +656,10 @@
 			baseConfigurationReference = 6B07E61652733E72AABE799A /* Pods-SunriseSunset.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunset;
+				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.lux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -667,9 +669,10 @@
 			baseConfigurationReference = 6F43EA11CC35450734F19303 /* Pods-SunriseSunset.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunset;
+				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.lux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
