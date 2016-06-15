@@ -93,6 +93,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         panRecognizer.delegate = self
         sunView.addGestureRecognizer(panRecognizer)
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        sunView.addGestureRecognizer(tapRecognizer)
+        
         // Update every minute
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
@@ -329,6 +332,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
 //        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
         sun.findNow(sun.pointsToMinutes(ease))
+    }
+    
+    func tapGesture(recognizer: UITapGestureRecognizer) {
+        Bus.sendMessage(.SendMenuIn, data: nil)
     }
     
     func touchDown(touches: Set<UITouch>, withEvent event: UIEvent?) {

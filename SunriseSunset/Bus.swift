@@ -14,6 +14,7 @@ enum MessageType {
     case MenuOut
     case TimeFormat
     case Foregrounded
+    case SendMenuIn
     
     var description: String {
         switch self {
@@ -21,6 +22,7 @@ enum MessageType {
         case .MenuOut: return "MenuOut";
         case .TimeFormat: return "TimeFormat";
         case .Foregrounded: return UIApplicationWillEnterForegroundNotification
+        case .SendMenuIn: return "SendMenuIn"
         }
     }
 }

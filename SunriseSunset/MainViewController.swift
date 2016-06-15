@@ -43,8 +43,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addGestureRecognizers()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +50,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         menuWidth = menuContainerView.frame.width
         menuHardIn()
+        
+        addGestureRecognizers()
+        Bus.subscribeEvent(.SendMenuIn, observer: self, selector: #selector(sendMenuIn))
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -180,6 +181,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
                 menuInOut()
                 holdingWhileOut = false
             }
+        }
+    }
+    
+    func sendMenuIn() {
+        if menuOut {
+            menuSoftIn()
         }
     }
     
