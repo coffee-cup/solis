@@ -21,6 +21,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var nowTimeLabel: UILabel!
     @IBOutlet weak var nowLineView: UIView!
     @IBOutlet weak var nowLabel: UILabel!
+    @IBOutlet weak var futureLabel: UILabel!
+    @IBOutlet weak var pastLabel: UILabel!
     
     var myLoc: CLLocationCoordinate2D!
     
@@ -71,6 +73,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         nowTimeLabel.textColor = timeTextColour
         nowTimeLabel.font = fontDetail
         nowLineView.backgroundColor = nowLineColour
+        
+        nowLabel.addSimpleShadow()
+        nowTimeLabel.addSimpleShadow()
+        pastLabel.addSimpleShadow()
+        futureLabel.addSimpleShadow()
         
         sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
         

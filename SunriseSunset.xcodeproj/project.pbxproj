@@ -29,6 +29,7 @@
 		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
+		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
 		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
@@ -87,6 +88,7 @@
 		9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetUITests.swift; sourceTree = "<group>"; };
 		9CB37C0A1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				9C3314F61CE976BE004D012E /* NSDate.swift */,
 				9C3314F81CE9A723004D012E /* UIColor.swift */,
+				9CC427A41D11088100693E32 /* UILabel.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
+				9CC427A51D11088100693E32 /* UILabel.swift in Sources */,
 				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,

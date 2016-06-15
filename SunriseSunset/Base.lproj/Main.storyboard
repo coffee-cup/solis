@@ -151,9 +151,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="futureLabel" destination="6UY-fJ-dB7" id="Xlz-Wg-5K5"/>
                         <outlet property="nowLabel" destination="Ghu-1S-9Gf" id="PFQ-yx-ogE"/>
                         <outlet property="nowLineView" destination="M0S-kq-de6" id="xpp-4N-UX8"/>
                         <outlet property="nowTimeLabel" destination="rrh-ze-8hI" id="cHu-ac-I26"/>
+                        <outlet property="pastLabel" destination="oYK-kR-m70" id="U5N-Vn-EE4"/>
                         <outlet property="sunView" destination="hJD-Os-DA5" id="NkQ-0y-vgO"/>
                     </connections>
                 </viewController>
