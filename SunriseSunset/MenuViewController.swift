@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PermissionScope
 
 enum TimeFormat {
     case hour24
@@ -140,24 +141,35 @@ class MenuViewController: UIViewController {
     }
     
     func notificationButtonDidTouch(sender: UIButton) {
-        sender.selected = !sender.selected
+        getNotificationPermission(sender)
+    }
+    
+    func getNotificationPermission(sender: UIButton) {
+        let pscope = PermissionScope()
+        pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow.")
         
-        var noti = ""
-        switch sender {
-        case buttonSunrise:
-            noti = "Sunrise"
-        case buttonSunset:
-            noti = "Sunset"
-        case buttonFirstLight:
-            noti = "FirstLight"
-        case buttonLastLight:
-            noti = "LastLight"
-        default:
-            noti = ""
-        }
-        defaults.setBool(sender.selected, forKey: noti)
-        
-        Bus.sendMessage(.NotificationChange, data: nil)
+        pscope.show({ finished, results in
+            sender.selected = !sender.selected
+            
+            var noti = ""
+            switch sender {
+            case self.buttonSunrise:
+                noti = "Sunrise"
+            case self.buttonSunset:
+                noti = "Sunset"
+            case self.buttonFirstLight:
+                noti = "FirstLight"
+            case self.buttonLastLight:
+                noti = "LastLight"
+            default:
+                noti = ""
+            }
+            self.defaults.setBool(sender.selected, forKey: noti)
+            
+            Bus.sendMessage(.NotificationChange, data: nil)
+            }, cancelled: { (results) -> Void in
+                print("notification permissions were cancelled")
+        })
     }
 
     /*

@@ -61,4 +61,47 @@ class SunLogic {
 
         return suntimes
     }
+    
+    class func getFutureTimes(suntimes: [Suntime]) -> [Suntime] {
+        return suntimes.filter { time in
+            return time.date.timeIntervalSinceNow > 0
+        }
+    }
+    
+    class func getNextSunType(suntimes: [Suntime], type: SunType) -> Suntime? {
+        let futureTimes = getFutureTimes(suntimes)
+        let matches = futureTimes.filter { time in
+            return time.type == type && !time.neverHappens
+        }
+        let sorted = matches.sort()
+        return sorted.count > 0 ? sorted[0] : nil
+    }
+    
+    class func getSunrise(suntimes: [Suntime]) -> Suntime? {
+        return getNextSunType(suntimes, type: .Sunrise)
+    }
+    
+    class func getSunset(suntimes: [Suntime]) -> Suntime? {
+        return getNextSunType(suntimes, type: .Sunset)
+    }
+    
+    class func getFirstLight(suntimes: [Suntime]) -> Suntime? {
+        let types: [SunType] = [.AstronomicalDawn, .NauticalDawn, .CivilDawn]
+        for type in types {
+            if let time = getNextSunType(suntimes, type: type) {
+                return time
+            }
+        }
+        return nil
+    }
+    
+    class func getLastLight(suntimes: [Suntime]) -> Suntime? {
+        let types: [SunType] = [.AstronomicalDusk, .NauticalDusk, .CivilDusk]
+        for type in types {
+            if let time = getNextSunType(suntimes, type: type) {
+                return time
+            }
+        }
+        return nil
+    }
 }
