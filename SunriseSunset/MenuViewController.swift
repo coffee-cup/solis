@@ -104,18 +104,19 @@ class MenuViewController: UIViewController {
         
         buttonSunrise.setImage(UIImage(named: "rise_off"), forState: .Normal)
         buttonSunrise.setImage(UIImage(named: "rise_on"), forState: .Selected)
+        buttonSunrise.selected = defaults.boolForKey("Sunrise")
         
         buttonSunset.setImage(UIImage(named: "set_off"), forState: .Normal)
         buttonSunset.setImage(UIImage(named: "set_on"), forState: .Selected)
+        buttonSunset.selected = defaults.boolForKey("Sunset")
         
         buttonFirstLight.setImage(UIImage(named: "first_off"), forState: .Normal)
         buttonFirstLight.setImage(UIImage(named: "first_on"), forState: .Selected)
+        buttonFirstLight.selected = defaults.boolForKey("FirstLight")
         
         buttonLastLight.setImage(UIImage(named: "last_off"), forState: .Normal)
         buttonLastLight.setImage(UIImage(named: "last_on"), forState: .Selected)
-        
-        // Single button
-        
+        buttonLastLight.selected = defaults.boolForKey("LastLight")
     }
     
     func timeButtonDidTouch(sender: UIButton) {
@@ -140,6 +141,23 @@ class MenuViewController: UIViewController {
     
     func notificationButtonDidTouch(sender: UIButton) {
         sender.selected = !sender.selected
+        
+        var noti = ""
+        switch sender {
+        case buttonSunrise:
+            noti = "Sunrise"
+        case buttonSunset:
+            noti = "Sunset"
+        case buttonFirstLight:
+            noti = "FirstLight"
+        case buttonLastLight:
+            noti = "LastLight"
+        default:
+            noti = ""
+        }
+        defaults.setBool(sender.selected, forKey: noti)
+        
+        Bus.sendMessage(.NotificationChange, data: nil)
     }
 
     /*

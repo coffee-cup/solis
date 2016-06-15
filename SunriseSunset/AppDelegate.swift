@@ -12,12 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let notifications = Notifications()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        NSUserDefaults.standardUserDefaults().registerDefaults(["TimeFormat": "h:mm a"])
+        NSUserDefaults.standardUserDefaults().registerDefaults([
+            "TimeFormat": "h:mm a",
+            "FirstLight": false,
+            "LastLight": false,
+            "Sunset": false,
+            "Sunrise": false,
+            "NotificationPreTime": 60 * 60 * 5 // minutes
+        ])
         
         return true
     }
