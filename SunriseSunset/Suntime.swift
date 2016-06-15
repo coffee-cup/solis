@@ -72,7 +72,7 @@ enum SunType {
     }
 }
 
-class Suntime {
+class Suntime: Comparable {
     
     var dateComponents: NSDateComponents!
     var date: NSDate!
@@ -114,4 +114,12 @@ class Suntime {
         let dateString = formatter.stringFromDate(date)
         return "\(type.description): \(dateString)"
     }
+}
+
+func < (lhs: Suntime, rhs: Suntime) -> Bool {
+    return lhs.date.isLessThanDate(rhs.date)
+}
+
+func == (lhs: Suntime, rhs: Suntime) -> Bool {
+    return Int(lhs.date.timeIntervalSinceDate(rhs.date)) == 0
 }

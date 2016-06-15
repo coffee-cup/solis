@@ -11,6 +11,24 @@ import UIKit
 import EDSunriseSet
 import CoreLocation
 
+struct SunTimeLine: Comparable {
+    var suntime: Suntime
+    var sunline: Sunline
+    
+    init(suntime: Suntime, sunline: Sunline) {
+        self.suntime = suntime
+        self.sunline = sunline
+    }
+}
+
+func < (lhs: SunTimeLine, rhs: SunTimeLine) -> Bool {
+    return lhs.suntime < rhs.suntime
+}
+
+func == (lhs: SunTimeLine, rhs: SunTimeLine) -> Bool {
+    return lhs.suntime == rhs.suntime
+}
+
 class Sun {
     
     static let timeFormatter = NSDateFormatter()
@@ -43,8 +61,9 @@ class Sun {
     var location: CLLocationCoordinate2D!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
     
-    var suntimes: [Suntime] = []
-    var sunlines: [Sunline] = []
+//    var suntimes: [Suntime] = []
+//    var sunlines: [Sunline] = []
+    var sunTimeLines: [SunTimeLine] = []
     
     init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel) {
         self.screenMinutes = screenMinutes
@@ -78,8 +97,7 @@ class Sun {
         let sunline = Sunline()
         sunline.createLine(view, type: type)
         
-        suntimes.append(suntime)
-        sunlines.append(sunline)
+        sunTimeLines.append(SunTimeLine(suntime: suntime, sunline: sunline))
     }
     
     @objc func timeFormatUpdate() {
@@ -95,8 +113,8 @@ class Sun {
     }
     
     func setSunlineTimes() {
-        for line in sunlines {
-            line.updateTime(-1 * offset)
+        for stl in sunTimeLines {
+            stl.sunline.updateTime(-1 * offset)
         }
     }
     
@@ -140,9 +158,12 @@ class Sun {
         let yesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: today, options: [])!
         let tomorrow = calendar.dateByAddingUnit(.Day, value: 1, toDate: today, options: [])!
         
-        suntimes = SunLogic.calculateTimesForDate(yesterday, location: location)
+        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location)
             + SunLogic.calculateTimesForDate(today, location: location)
             + SunLogic.calculateTimesForDate(tomorrow, location: location)
+        for (index, time) in suntimes.enumerate() {
+            sunTimeLines[index].suntime = time
+        }
     }
     
     func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
@@ -160,43 +181,40 @@ class Sun {
     func calculateGradient() {
         sunView.backgroundColor = UIColor.clearColor()
         gradientLayer.frame = sunView.bounds
-        
-        let sorted = suntimes.sort() { st1, st2 in
-            return st1.date.isLessThanDate(st2.date)
-        }
-        let filtered = sorted.filter() { time in
-            return !time.neverHappens
+
+        let sortedFiltered = sunTimeLines.sort().filter { stl in
+            return !stl.suntime.neverHappens
         }
         
-        var pastTimes: [Suntime] = []
-        var futureTimes: [Suntime] = []
-        for time in filtered {
-            if time.date!.isLessThanDate(now) {
-                pastTimes.append(time)
+        var pastTimeLines: [SunTimeLine] = []
+        var futureTimeLines: [SunTimeLine] = []
+        for stl in sortedFiltered {
+            if stl.suntime.date.isLessThanDate(now) {
+                pastTimeLines.append(stl)
             } else {
-                futureTimes.append(time)
+                futureTimeLines.append(stl)
             }
         }
         
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
-        for (index, time) in futureTimes.reverse().enumerate() {
-            let per = 0.5  - getGradientPercent(time, now: now)
-            if time.marker && per >= 0 && per <= 1 {
-                colours.append(time.colour)
+        for stl in futureTimeLines.reverse() {
+            let per = 0.5  - getGradientPercent(stl.suntime, now: now)
+            if stl.suntime.marker && per >= 0 && per <= 1 {
+                colours.append(stl.suntime.colour)
                 locations.append(per)
             }
-            sunlines[index].updateLine(time.date, percent: per)
+            stl.sunline.updateLine(stl.suntime.date, percent: per)
         }
         
-        for (index, time) in pastTimes.reverse().enumerate() {
-            let per = 0.5 + getGradientPercent(time, now: now)
-            if time.marker && per >= 0 && per <= 1  {
-                colours.append(time.colour)
+        for stl in pastTimeLines.reverse() {
+            let per = 0.5 + getGradientPercent(stl.suntime, now: now)
+            if stl.suntime.marker && per >= 0 && per <= 1 {
+                colours.append(stl.suntime.colour)
                 locations.append(per)
             }
-            sunlines[index].updateLine(time.date, percent: per)
+            stl.sunline.updateLine(stl.suntime.date, percent: per)
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)
