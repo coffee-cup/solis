@@ -8,13 +8,21 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 class Notifications {
     
     lazy var defaults = NSUserDefaults.standardUserDefaults()
+    lazy var application = UIApplication.sharedApplication()
+    
+    let sunriseTypes: [SunType] = [.Sunrise]
+    let sunsetTypes: [SunType] = [.Sunset]
+    let lastLightTypes: [SunType] = [.AstronomicalDusk, .NauticalDusk, .CivilDusk]
+    let firstLightTypes: [SunType] = [.AstronomicalDawn, .NauticalDawn, .CivilDawn]
     
     init() {
         Bus.subscribeEvent(.NotificationChange, observer: self, selector: #selector(scheduleNotifications))
+        scheduleNotifications()
     }
     
     @objc func scheduleNotifications() {
@@ -35,32 +43,105 @@ class Notifications {
         
         print("\n")
         var notificationTimes: [Suntime] = []
+        
         if sunriseNoti {
-            print("sunrise")
             if let sunriseTime = SunLogic.getSunrise(suntimes) {
                 notificationTimes.append(sunriseTime)
-                print(sunriseTime.description())
             }
+        } else {
+            removeNotificationForTypes(sunriseTypes)
         }
+        
         if sunsetNoti {
-            print("sunset")
             if let sunsetTime = SunLogic.getSunset(suntimes) {
                 notificationTimes.append(sunsetTime)
-                print(sunsetTime.description())
             }
+        } else {
+            removeNotificationForTypes(sunsetTypes)
         }
+        
         if firstLightNoti {
-            print("first light")
             if let firstLightTime = SunLogic.getFirstLight(suntimes) {
                 notificationTimes.append(firstLightTime)
-                print(firstLightTime.description())
             }
+        } else {
+            removeNotificationForTypes(firstLightTypes)
         }
+        
         if lastLightNoti {
-            print("last light")
             if let lastLightTime = SunLogic.getLastLight(suntimes) {
                 notificationTimes.append(lastLightTime)
-                print(lastLightTime.description())
+            }
+        } else {
+            removeNotificationForTypes(lastLightTypes)
+        }
+        
+        for suntime in notificationTimes {
+            scheduleNotificationIfNotAlready(suntime)
+        }
+    }
+    
+    func scheduleNotificationIfNotAlready(suntime: Suntime) -> Bool {
+        if !notificationAlreadyScheduled(suntime) {
+            let notification = createNotification(suntime)
+            application.scheduleLocalNotification(notification)
+            print("scheduled notification for \(suntime.type.description)")
+        } else {
+            print("\(suntime.type.description) notification already scheduled")
+        }
+        
+        return true
+    }
+    
+    func createNotification(suntime: Suntime) -> UILocalNotification {
+        let notification = UILocalNotification()
+        notification.fireDate = suntime.date
+        notification.alertBody = suntime.type.message
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.userInfo = [
+            "date": suntime.date.description,
+            "type": suntime.type.description
+        ]
+        
+        return notification
+    }
+    
+    func notificationAlreadyScheduled(suntime: Suntime) -> Bool {
+        let notifications = application.scheduledLocalNotifications ?? []
+        let matches = notifications.filter { notification in
+            guard let userInfo = notification.userInfo else {
+                return false
+            }
+            
+            guard let date = userInfo["date"] as? String else {
+                return false
+            }
+            
+            guard let type = userInfo["type"] as? String else {
+                return false
+            }
+            
+            return date == suntime.date.description && type == suntime.type.description
+        }
+        return matches.count > 0
+    }
+    
+    func removeNotificationForTypes(types: [SunType]) {
+        for type in types {
+            let notifications = application.scheduledLocalNotifications ?? []
+            for notification in notifications {
+                guard let userInfo = notification.userInfo else {
+                    continue
+                }
+                
+                guard let notiType = userInfo["type"] as? String else {
+                    continue
+                }
+                
+                if notiType == type.description {
+                    application.cancelLocalNotification(notification)
+                    print("removed notification for \(notiType)")
+                }
             }
         }
     }
