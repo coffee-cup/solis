@@ -25,9 +25,9 @@ class Notifications {
         scheduleNotifications()
     }
     
-    @objc func scheduleNotifications() {
+    @objc func scheduleNotifications() -> Bool {
         guard let location = Location.getLocation() else {
-            return
+            return false
         }
         let today = NSDate()
         let tomorrow = today.addDays(1)
@@ -76,9 +76,11 @@ class Notifications {
             removeNotificationForTypes(lastLightTypes)
         }
         
+        var triggered = false
         for suntime in notificationTimes {
-            scheduleNotificationIfNotAlready(suntime)
+            triggered = scheduleNotificationIfNotAlready(suntime)
         }
+        return triggered
     }
     
     func scheduleNotificationIfNotAlready(suntime: Suntime) -> Bool {
@@ -86,11 +88,11 @@ class Notifications {
             let notification = createNotification(suntime)
             application.scheduleLocalNotification(notification)
             print("scheduled notification for \(suntime.type.description)")
+            return true
         } else {
             print("\(suntime.type.description) notification already scheduled")
+            return false
         }
-        
-        return true
     }
     
     func createNotification(suntime: Suntime) -> UILocalNotification {

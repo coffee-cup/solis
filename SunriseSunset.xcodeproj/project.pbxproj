@@ -330,6 +330,11 @@
 					9CB37BE41CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 4TPDCY22V9;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					9CB37BF81CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
