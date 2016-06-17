@@ -74,13 +74,13 @@ enum SunType {
     var message: String {
         var message = ""
         if self == .AstronomicalDawn || self == .NauticalDawn || self == .CivilDawn {
-            message = "The sun has gone to sleep for the night 🌚 Goodnight."
+            message = "The sun is awake now ☀️ Have a good day."
         } else if self == .Sunset {
             message = "The sun has set 🌇"
         } else if self == .Sunrise {
             message = "The sun has risen! 🌄"
         } else if self == .CivilDusk || self == .NauticalDusk || self == .AstronomicalDusk {
-            message = "The sun is awake now ☀️ Have a good day."
+            message = "The sun has gone to sleep for the night 🌚 Goodnight."
         }
         return message
     }
