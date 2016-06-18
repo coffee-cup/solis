@@ -29,29 +29,54 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var sun: Sun!
     var touchDownView: TouchDownView!
     
+    // The offset in minutes that we are from now
     var offset: Double = 0
+    
+    // The offset y transform that we are for rest position
     var offsetTranslation: Double = 0
     
     var timer = NSTimer()
     
+    // How long the sun view has been free scrolling
     var animationTimer = NSTimer()
+    
+    // The date the timer started running
     var animationFireDate: NSDate!
+    
+    // Whether or not we are scrolling free form
     var scrolling = false
+    
+    // Whether or not we are touch panning
     var panning = false
+    
+    // Whether or not a touch down event stopped the free scrolling
     var animationStopped = false
+    
+    // Whether or not the user is allowed to touch pan
     var allowedPan = true
+    
+    // Whether or not the sun view is off from rest position
     var offNow = false
+    
+    // Whether or not the menu is out of position right now
     var isMenuOut = false
+    
+    // The duration we will free form for
     var scrollAnimationDuration: NSTimeInterval = 0
+    
+    // The duration the animation went for before it was stopped
     var stopAnimationDuration: Double = 0
+    
+    // The y transform before the free form scrolling started
     var transformBeforeAnimation: Double = 0
+    
+    // The y transform after the free form scrolling ended
     var transformAfterAnimation: Double = 0
-    var transformWhenStopped: Double = 0
+
+    // TODO: Remove hardcoded free form scroll duration
     let SCROLL_DURATION: NSTimeInterval = 1.2
     
     let pscope = PermissionScope()
-    
-    var menuViewController: MenuViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
