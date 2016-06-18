@@ -115,15 +115,11 @@ class Notifications {
                 return false
             }
             
-            guard let date = userInfo["date"] as? String else {
-                return false
-            }
-            
             guard let type = userInfo["type"] as? String else {
                 return false
             }
             
-            return date == suntime.date.description && type == suntime.type.description
+            return type == suntime.type.description
         }
         return matches.count > 0
     }
