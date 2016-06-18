@@ -24,7 +24,7 @@ let nowLineColour = UIColor(hex: 0xF44336)
 let nameTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
 let timeTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
 
-let menuBackgroundColour = UIColor(hex: 0x52009F)
+let menuBackgroundColour = UIColor(hex: 0x4E50B8)
 
 let buttonDisabled = UIColor(hex: 0x290050)
 let buttonEnabled = UIColor(hex: 0x00D3D0)
