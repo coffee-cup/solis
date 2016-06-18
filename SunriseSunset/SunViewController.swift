@@ -243,6 +243,15 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         offNow = Int(floor(offset)) != 0
     }
     
+    func reset() {
+        self.stopAnimationTimer()
+        self.scrolling = false
+        self.panning = false
+        self.allowedPan = true
+        self.offset = 0.0
+        self.offsetTranslation = 0.0
+    }
+    
     // Menu
     
     func menuIn() {
@@ -285,6 +294,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // Touch and Dragging
     
+    // constrain offset minutes and offset tranform within proper view bounds
     func normalizeOffsets(transformBy: Double, offsetBy: Double) -> (Double, Double) {
         var newTransformBy = transformBy
         var newOffsetBy = offsetBy
@@ -302,6 +312,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         return (newTransformBy, newOffsetBy)
     }
     
+    // Convert tranform y translation to minute offset and normalize
     func setOffsetFromTranslation(translation: Double) {
         offsetTranslation = translation
         offset = sun.pointsToMinutes(offsetTranslation)
@@ -325,7 +336,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 let offsetBy = offsetSeconds + offset
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
                 
-                sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+//                dispatch_async(dispatch_get_main_queue()) {
+                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+//                }
                 sun.findNow(newOffsetBy)
             }
         } else if (recognizer.state == .Ended) {
@@ -359,38 +372,31 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.transformAfterAnimation))
             }, completion: {finished in
-                self.stopAnimationTimer()
-                self.scrolling = false
-                self.sunView.removeEasingFunctionForKeyPath("transform")
-                
-                let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
-                let animationDuration = abs(self.animationFireDate.timeIntervalSinceNow) + (1 / 60) // <- this magic number makes view not jump as much when scroll stopping
-                
-                self.offsetTranslation = Easing.easeOutQuadFunc(animationDuration, startValue: self.transformBeforeAnimation, changeInValue: transformDifference, duration: self.scrollAnimationDuration)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.stopAnimationTimer()
+                    self.scrolling = false
+                    self.sunView.removeEasingFunctionForKeyPath("transform")
+                    
+                    let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
+                    let animationDuration = abs(self.animationFireDate.timeIntervalSinceNow) + (1 / 60) // <- this magic number makes view not jump as much when scroll stopping
+                    
+                    self.offsetTranslation = Easing.easeOutQuadFunc(animationDuration, startValue: self.transformBeforeAnimation, changeInValue: transformDifference, duration: self.scrollAnimationDuration)
 
-                if (!self.animationStopped) {
-                    self.offsetTranslation = self.transformAfterAnimation
+                    if (!self.animationStopped) {
+                        self.offsetTranslation = self.transformAfterAnimation
+                    }
+                    
+                    self.setOffsetFromTranslation(self.offsetTranslation)
+                    self.sun.findNow(self.offset)
+                    self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
+                    
+                    self.animationStopped = false
                 }
-                
-                self.setOffsetFromTranslation(self.offsetTranslation)
-                self.sun.findNow(self.offset)
-                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
-                
-                self.animationStopped = false
         })
     }
     
     func doubleTap(recognizer: UITapGestureRecognizer) {
         scrollReset()
-    }
-    
-    func reset() {
-        self.stopAnimationTimer()
-        self.scrolling = false
-        self.panning = false
-        self.allowedPan = true
-        self.offset = 0.0
-        self.offsetTranslation = 0.0
     }
     
     func scrollReset() {
