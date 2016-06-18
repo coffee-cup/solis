@@ -40,13 +40,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v8-n2-2RF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="sunSegue" id="Opu-hC-Go1"/>
+                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="SunSegue" id="Opu-hC-Go1"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAh-lL-ukP">
                                 <rect key="frame" x="0.0" y="0.0" width="251" height="667"/>
                                 <connections>
-                                    <segue destination="QzE-la-Gm6" kind="embed" identifier="menuSegue" id="ZMx-VL-qoz"/>
+                                    <segue destination="QzE-la-Gm6" kind="embed" identifier="MenuSegue" id="ZMx-VL-qoz"/>
                                 </connections>
                             </containerView>
                         </subviews>

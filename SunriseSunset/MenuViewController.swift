@@ -54,7 +54,7 @@ class MenuViewController: UIViewController {
         menuView.layer.masksToBounds = false
         menuView.layer.shadowColor = UIColor.blackColor().CGColor
         menuView.layer.shadowOffset = CGSizeMake(2, 2)
-        menuView.layer.shadowOpacity = 0.6;
+        menuView.layer.shadowOpacity = 0.2;
         menuView.layer.shadowPath = shadowPath.CGPath
         
         menuView.backgroundColor = menuBackgroundColour

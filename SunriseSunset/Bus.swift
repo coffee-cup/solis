@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 enum MessageType {
-    case MenuIn
-    case MenuOut
+//    case MenuIn
+//    case MenuOut
     case TimeFormat
     case Foregrounded
     case SendMenuIn
@@ -19,8 +19,8 @@ enum MessageType {
     
     var description: String {
         switch self {
-        case .MenuIn: return "MenuIn";
-        case .MenuOut: return "MenuOut";
+//        case .MenuIn: return "MenuIn";
+//        case .MenuOut: return "MenuOut";
         case .TimeFormat: return "TimeFormat";
         case .Foregrounded: return UIApplicationWillEnterForegroundNotification
         case .SendMenuIn: return "SendMenuIn"

@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+protocol MenuProtocol {
+    func menuIsMoving(percent: Float)
+    func menuStartAnimatingIn()
+    func menuStartAnimatingOut()
+    func menuIsIn()
+    func menuIsOut()
+}
+
 class MainViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var sunContainerView: UIView!
@@ -25,12 +33,14 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     var menuWidth: CGFloat!
     var anchorX: CGFloat = 0
     
+    var delegate: MenuProtocol?
+    
     var menuOut = false {
         didSet {
             if menuOut {
-                Bus.sendMessage(.MenuOut, data: nil)
+//                Bus.sendMessage(.MenuOut, data: nil)
             } else {
-                Bus.sendMessage(.MenuIn, data: nil)
+//                Bus.sendMessage(.MenuIn, data: nil)
             }
         }
     }
@@ -80,6 +90,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
             menuViewController = segue.destinationViewController as! MenuViewController
         } else if segue.identifier == "SunSegue" {
             sunViewController = segue.destinationViewController as! SunViewController
+            delegate = sunViewController
         }
     }
     
@@ -100,15 +111,18 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuLeadingConstraint.constant = adjustNegative(-1)
         menuContainerView.alpha = 0
         menuOut = false
+        delegate?.menuIsIn()
     }
     
     func menuSoftIn() {
         menuLeadingConstraint.constant = adjustNegative(-1)
+        delegate?.menuStartAnimatingIn()
         UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
             self.view.layoutIfNeeded()
             }, completion: { finished in
                 self.menuOut = false
                 self.menuContainerView.alpha = 0
+                self.delegate?.menuIsIn()
         })
     }
     
@@ -116,15 +130,18 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuLeadingConstraint.constant = adjustNegative(menuWidth)
         menuContainerView.alpha = 1
         menuOut = true
+        delegate?.menuIsOut()
     }
     
     func menuSoftOut() {
         menuContainerView.alpha = 1
         menuLeadingConstraint.constant = adjustNegative(menuWidth)
+        delegate?.menuStartAnimatingOut()
         UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
             self.view.layoutIfNeeded()
             }, completion: { finished in
                 self.menuOut = true
+                self.delegate?.menuIsOut()
         })
     }
     
@@ -142,6 +159,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     func menuToFinger(x: CGFloat) {
         let adjustedX = x > menuWidth ? menuWidth : x
         let menuTransform = adjustNegative(adjustedX)
+        
+        delegate?.menuIsMoving(Float(adjustedX / menuWidth))
         
         menuLeadingConstraint.constant = menuTransform
     }
