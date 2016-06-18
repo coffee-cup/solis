@@ -150,6 +150,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
 //        Bus.subscribeEvent(.MenuOut, observer: self, selector: #selector(menuOut))
 //        Bus.subscribeEvent(.MenuIn, observer: self, selector: #selector(menuIn))
         Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
+        
+        setupPermissions()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -161,8 +163,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        setupPermissions()
     }
     
     deinit {

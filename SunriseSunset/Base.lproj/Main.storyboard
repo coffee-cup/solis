@@ -13,8 +13,11 @@
             <string>Muli-Light</string>
             <string>Muli-Light</string>
             <string>Muli-Light</string>
+            <string>Muli-Light</string>
+            <string>Muli-Light</string>
         </mutableArray>
         <mutableArray key="Muli-Regular.ttf">
+            <string>Muli</string>
             <string>Muli</string>
             <string>Muli</string>
             <string>Muli</string>
@@ -192,7 +195,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seL-0V-NZ6">
-                                        <rect key="frame" x="0.0" y="184" width="251" height="300"/>
+                                        <rect key="frame" x="0.0" y="159" width="251" height="350"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-1a-WQ3">
                                                 <rect key="frame" x="20" y="0.0" width="112" height="25"/>
@@ -222,6 +225,25 @@
                                                     <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YW2-PL-0G3">
+                                                <rect key="frame" x="20" y="305" width="79" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="LMT-bM-JBo"/>
+                                                    <constraint firstAttribute="height" constant="44" id="igo-to-QIz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
+                                                <state key="normal" title="Vancouver">
+                                                    <color key="titleColor" red="0.023529411760000001" green="0.83921568629999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="LMT-bM-JBo"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="locationButtonDidTouch:" destination="QzE-la-Gm6" eventType="touchUpInside" id="d6I-cm-Adb"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-iH-Khz">
                                                 <rect key="frame" x="187" y="35" width="44" height="44"/>
                                                 <constraints>
@@ -235,6 +257,12 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O87-qP-nkR">
                                                 <rect key="frame" x="20" y="99" width="116" height="25"/>
+                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJS-Qm-o6f">
+                                                <rect key="frame" x="20" y="280" width="76" height="25"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -307,12 +335,19 @@
                                                     </mask>
                                                 </variation>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="current location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1n-jH-0sn">
+                                                <rect key="frame" x="20" y="335" width="74" height="13"/>
+                                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="10"/>
+                                                <color key="textColor" red="0.27450980390000002" green="1" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="2Uk-oQ-Bnu"/>
+                                            <constraint firstAttribute="height" constant="350" id="2Uk-oQ-Bnu"/>
                                             <constraint firstItem="KJe-5u-OWF" firstAttribute="leading" secondItem="T4e-Pz-5mW" secondAttribute="trailing" constant="60" id="3oH-A0-cWj"/>
                                             <constraint firstItem="qSH-1a-WQ3" firstAttribute="top" secondItem="seL-0V-NZ6" secondAttribute="top" id="85g-f7-Fgi"/>
                                             <constraint firstItem="0WA-bw-8mR" firstAttribute="leading" secondItem="LNJ-MP-2rP" secondAttribute="trailing" constant="20" id="ATn-ZV-jcA"/>
+                                            <constraint firstItem="K1n-jH-0sn" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="AhQ-0x-bMl"/>
                                             <constraint firstItem="O87-qP-nkR" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="BHP-6n-6gy"/>
                                             <constraint firstItem="LNJ-MP-2rP" firstAttribute="top" secondItem="qSH-1a-WQ3" secondAttribute="bottom" constant="10" id="CML-KK-fIS"/>
                                             <constraint firstItem="0WA-bw-8mR" firstAttribute="centerY" secondItem="LNJ-MP-2rP" secondAttribute="centerY" id="Jcn-YR-atK"/>
@@ -321,15 +356,20 @@
                                             <constraint firstItem="HgW-KK-ATX" firstAttribute="top" secondItem="T4e-Pz-5mW" secondAttribute="bottom" constant="20" id="SfB-og-524"/>
                                             <constraint firstItem="e1C-iH-Khz" firstAttribute="leading" secondItem="0WA-bw-8mR" secondAttribute="trailing" constant="20" id="UTk-yq-X3J"/>
                                             <constraint firstItem="LNJ-MP-2rP" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="V6Y-Fj-gUC"/>
+                                            <constraint firstItem="TJS-Qm-o6f" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="WBU-P5-oY6"/>
                                             <constraint firstItem="e1C-iH-Khz" firstAttribute="centerY" secondItem="0WA-bw-8mR" secondAttribute="centerY" id="Xin-aR-Zz7"/>
                                             <constraint firstItem="KJe-5u-OWF" firstAttribute="baseline" secondItem="T4e-Pz-5mW" secondAttribute="baseline" id="XkE-DE-Ozl"/>
                                             <constraint firstItem="T4e-Pz-5mW" firstAttribute="leading" secondItem="O87-qP-nkR" secondAttribute="leading" id="fOf-Oy-mO8"/>
+                                            <constraint firstItem="K1n-jH-0sn" firstAttribute="top" secondItem="TJS-Qm-o6f" secondAttribute="bottom" constant="30" id="hBJ-si-5jL"/>
+                                            <constraint firstItem="YW2-PL-0G3" firstAttribute="top" secondItem="TJS-Qm-o6f" secondAttribute="bottom" id="jLp-qQ-bVe"/>
+                                            <constraint firstItem="TJS-Qm-o6f" firstAttribute="top" secondItem="HgW-KK-ATX" secondAttribute="bottom" constant="30" id="rVL-hp-irS"/>
                                             <constraint firstItem="O87-qP-nkR" firstAttribute="top" secondItem="0WA-bw-8mR" secondAttribute="bottom" constant="20" id="sGa-KJ-Sdw"/>
                                             <constraint firstItem="0WA-bw-8mR" firstAttribute="centerX" secondItem="seL-0V-NZ6" secondAttribute="centerX" id="saK-Gh-iMf"/>
                                             <constraint firstItem="0Hc-wP-VK7" firstAttribute="baseline" secondItem="HgW-KK-ATX" secondAttribute="baseline" id="v71-BS-1Ex"/>
                                             <constraint firstItem="HgW-KK-ATX" firstAttribute="leading" secondItem="T4e-Pz-5mW" secondAttribute="leading" id="vRH-iR-Bs4"/>
                                             <constraint firstItem="qSH-1a-WQ3" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="x6E-zm-gmm"/>
                                             <constraint firstItem="0Hc-wP-VK7" firstAttribute="leading" secondItem="KJe-5u-OWF" secondAttribute="leading" id="xJP-xF-ZXC"/>
+                                            <constraint firstItem="YW2-PL-0G3" firstAttribute="leading" secondItem="seL-0V-NZ6" secondAttribute="leading" constant="20" id="y3l-tj-cBi"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -365,14 +405,60 @@
                         <outlet property="buttonDelta" destination="e1C-iH-Khz" id="Tlg-z8-RGu"/>
                         <outlet property="buttonFirstLight" destination="KJe-5u-OWF" id="5ke-3A-U9Z"/>
                         <outlet property="buttonLastLight" destination="0Hc-wP-VK7" id="x9r-UD-NVf"/>
+                        <outlet property="buttonLocation" destination="YW2-PL-0G3" id="dUl-6O-0gW"/>
                         <outlet property="buttonSunrise" destination="T4e-Pz-5mW" id="EIs-mB-92j"/>
                         <outlet property="buttonSunset" destination="HgW-KK-ATX" id="nEo-q6-OAl"/>
+                        <outlet property="currentLocationLabel" destination="K1n-jH-0sn" id="QcS-YV-fB8"/>
                         <outlet property="menuView" destination="arM-lv-Uf5" id="usi-dC-4k1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thv-KT-F0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-215.5" y="1058.5"/>
+        </scene>
+        <!--Location Change View Controller-->
+        <scene sceneID="KZ8-px-PJK">
+            <objects>
+                <viewController storyboardIdentifier="LocationChange" id="6kM-Fs-cBd" customClass="LocationChangeViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="306-jv-b4i"/>
+                        <viewControllerLayoutGuide type="bottom" id="CQp-Ci-K1k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k5N-A1-vXp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NGK-NW-LUa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Change Location" id="FS1-9j-lMW">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="QEo-A8-pLy">
+                                            <connections>
+                                                <action selector="cancelButtonDidTouch:" destination="6kM-Fs-cBd" id="CXa-PX-sRt"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Set" id="aNa-lP-Kvf">
+                                            <connections>
+                                                <action selector="setButtonDidTouch:" destination="6kM-Fs-cBd" id="pfM-K4-Tib"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="buttonCancel" destination="QEo-A8-pLy" id="Ggp-og-Jcf"/>
+                        <outlet property="buttonSet" destination="aNa-lP-Kvf" id="L4p-h7-amf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nOR-o9-qXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="195.5" y="1058.5"/>
         </scene>
     </scenes>
     <resources>

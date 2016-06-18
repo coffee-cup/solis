@@ -8,22 +8,57 @@
 
 import UIKit
 
+enum DefaultKey {
+    case TimeFormat
+    case FirstLight
+    case LastLight
+    case Sunrise
+    case Sunset
+    case NotificationPreTime
+    case CurrentLocation
+    case LocationName
+    case LocationDateSet
+    case LocationLatitude
+    case LocationLongitude
+    
+    var description: String {
+        switch self {
+        case .TimeFormat: return "TimeFormat"
+        case .FirstLight: return "FirstLight"
+        case .LastLight: return "LastLight"
+        case .Sunrise: return "Sunrise"
+        case .Sunset: return "Sunset"
+        case .NotificationPreTime: return "NotificationPreTime"
+        case .CurrentLocation: return "CurrentLocation"
+        case .LocationName: return "LocationName"
+        case .LocationDateSet: return "LocationDateSet"
+        case .LocationLatitude: return "LocationLatitude"
+        case .LocationLongitude: return "LocationLongitude"
+        }
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let notifications = Notifications()
 
+    func defaultString(defaultKey: DefaultKey) -> String {
+        return defaultKey.description
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         NSUserDefaults.standardUserDefaults().registerDefaults([
-            "TimeFormat": "h:mm a",
-            "FirstLight": false,
-            "LastLight": false,
-            "Sunset": false,
-            "Sunrise": false,
-            "NotificationPreTime": 60 * 60 * 5 // minutes
+            defaultString(.TimeFormat): "h:mm a",
+            defaultString(.FirstLight): false,
+            defaultString(.LastLight): false,
+            defaultString(.Sunset): false,
+            defaultString(.Sunrise): false,
+            defaultString(.NotificationPreTime): 60 * 60 * 5, // minutes
+            defaultString(.CurrentLocation): true
         ])
         
         application.setMinimumBackgroundFetchInterval(60 * 60 * 12) // 12 hours

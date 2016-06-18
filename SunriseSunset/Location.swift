@@ -14,10 +14,6 @@ class Location {
     
     static let defaults = NSUserDefaults.standardUserDefaults()
     
-    static let locationLatitudeKey = "LocationLatitude"
-    static let locationLongitudeKey = "LocationLongitude"
-    static let locationDateSetKey = "LocationDateSet"
-    
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
     class func startLocationWatching() {
@@ -39,8 +35,8 @@ class Location {
     }
     
     class func getLocation() -> CLLocationCoordinate2D? {
-        let latitude = defaults.doubleForKey(locationLatitudeKey)
-        let longitude = defaults.doubleForKey(locationLongitudeKey)
+        let latitude = defaults.doubleForKey(DefaultKey.LocationLatitude.description)
+        let longitude = defaults.doubleForKey(DefaultKey.LocationLongitude.description)
         
         if latitude == 0 || longitude == 0 {
             return nil
@@ -51,12 +47,12 @@ class Location {
     
     // Returns if we need to update the location
     class func needCheck() -> Bool {
-        if defaults.doubleForKey(locationLongitudeKey) == 0 ||
-            defaults.doubleForKey(locationLongitudeKey) == 0 {
+        if defaults.doubleForKey(DefaultKey.LocationLatitude.description) == 0 ||
+            defaults.doubleForKey(DefaultKey.LocationLongitude.description) == 0 {
             return true
         }
         
-        guard let date = defaults.objectForKey(locationDateSetKey) else {
+        guard let date = defaults.objectForKey(DefaultKey.LocationDateSet.description) else {
             return false
         }
         
@@ -74,9 +70,9 @@ class Location {
     class func saveLocation(location: CLLocationCoordinate2D) {
         let now = NSDate()
         
-        defaults.setDouble(location.latitude, forKey: locationLatitudeKey)
-        defaults.setDouble(location.longitude, forKey: locationLongitudeKey)
-        defaults.setObject(now, forKey: locationDateSetKey)
+        defaults.setDouble(location.latitude, forKey: DefaultKey.LocationLatitude.description)
+        defaults.setDouble(location.longitude, forKey: DefaultKey.LocationLongitude.description)
+        defaults.setObject(now, forKey: DefaultKey.LocationDateSet.description)
         
         notifyLocation()
     }

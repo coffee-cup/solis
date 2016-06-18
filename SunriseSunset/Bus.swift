@@ -17,6 +17,7 @@ enum MessageType {
     case SendMenuIn
     case NotificationChange
     case LocationUpdate
+    case ShowStatusBar
     
     var description: String {
         switch self {
@@ -27,6 +28,7 @@ enum MessageType {
         case .SendMenuIn: return "SendMenuIn"
         case .NotificationChange: return "NotificationChange"
         case .LocationUpdate: return "LocationUpdate"
+        case .ShowStatusBar: return "ShowStatusBar"
         }
     }
 }

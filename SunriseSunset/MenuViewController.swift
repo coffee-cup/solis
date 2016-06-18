@@ -38,6 +38,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var buttonFirstLight: UIButton!
     @IBOutlet weak var buttonLastLight: UIButton!
     
+    @IBOutlet weak var buttonLocation: UIButton!
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    
     var timeButtons: [UIButton]!
     var notificationButtons: [UIButton]!
     var menuButtons: [UIButton] = []
@@ -63,6 +66,8 @@ class MenuViewController: UIViewController {
         notificationButtons = [buttonSunrise, buttonSunset, buttonFirstLight, buttonLastLight]
         menuButtons = timeButtons + notificationButtons
         
+        Bus.subscribeEvent(.LocationUpdate, observer: self, selector: #selector(locationUpdate))
+        
         setupButtons()
     }
     
@@ -73,6 +78,10 @@ class MenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        Bus.removeSubscriptions(self)
     }
     
     func setupButtons() {
@@ -171,7 +180,28 @@ class MenuViewController: UIViewController {
                 print("notification permissions were cancelled")
         })
     }
+    
+    // Location
+    
+    func locationUpdate() {
+        if let location = Location.getLocation() {
+            print(location)
+            let locationString = "\(Int(location.latitude)), \(Int(location.longitude))"
+            buttonLocation.setTitle(locationString, forState: .Normal)
+        }
+    }
 
+    @IBAction func locationButtonDidTouch(sender: AnyObject) {
+//        performSegueWithIdentifier("LocationChangeSegue", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let locationChangeViewController = storyboard.instantiateViewControllerWithIdentifier("LocationChange") as? LocationChangeViewController {
+            locationChangeViewController.modalPresentationStyle = .OverCurrentContext
+            presentViewController(locationChangeViewController, animated: true) {
+                Bus.sendMessage(.ShowStatusBar, data: nil)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
