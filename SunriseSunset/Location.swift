@@ -17,7 +17,6 @@ class Location {
     static let locationLatitudeKey = "LocationLatitude"
     static let locationLongitudeKey = "LocationLongitude"
     static let locationDateSetKey = "LocationDateSet"
-    static let locationEvent = "LocationEvent"
     
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
@@ -69,7 +68,7 @@ class Location {
     }
     
     class func notifyLocation() {
-        NSNotificationCenter.defaultCenter().postNotificationName(locationEvent, object: nil)
+        Bus.sendMessage(.LocationUpdate, data: nil)
     }
     
     class func saveLocation(location: CLLocationCoordinate2D) {

@@ -146,7 +146,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         // Notifications
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(locationUpdate), name: Location.locationEvent, object: nil)
+        Bus.subscribeEvent(.LocationUpdate, observer: self, selector: #selector(locationUpdate))
 //        Bus.subscribeEvent(.MenuOut, observer: self, selector: #selector(menuOut))
 //        Bus.subscribeEvent(.MenuIn, observer: self, selector: #selector(menuIn))
         Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
