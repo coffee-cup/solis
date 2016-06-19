@@ -21,6 +21,10 @@
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
 		9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */; };
+		9C76542E1D166C0800E0B4F9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
+		9C7654311D166C0800E0B4F9 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7654301D166C0800E0B4F9 /* TodayViewController.swift */; };
+		9C7654341D166C0800E0B4F9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7654321D166C0800E0B4F9 /* MainInterface.storyboard */; };
+		9C7654381D166C0800E0B4F9 /* Solis Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C76542C1D166C0800E0B4F9 /* Solis Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
 		9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* SunViewController.swift */; };
@@ -39,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9C7654361D166C0800E0B4F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C76542B1D166C0800E0B4F9;
+			remoteInfo = "Solis Widget";
+		};
 		9CB37BFA1CE844400080B5B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
@@ -55,6 +66,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9C76543C1D166C0800E0B4F9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9C7654381D166C0800E0B4F9 /* Solis Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1248F1ED9E523C1D50AB4AE0 /* Pods-SunriseSunsetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetUITests/Pods-SunriseSunsetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3189E0E4F45FF1E27907170F /* Pods_SunriseSunsetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunsetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,7 +90,6 @@
 		9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChangeViewController.swift; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
 		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		9C20A3F71D0FD3D60079F3A5 /* NotificationGround.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NotificationGround.playground; sourceTree = "<group>"; };
 		9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLogic.swift; sourceTree = "<group>"; };
 		9C3314F11CE95783004D012E /* Suntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suntime.swift; sourceTree = "<group>"; };
 		9C3314F31CE9712F004D012E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -75,6 +99,11 @@
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9C76542C1D166C0800E0B4F9 /* Solis Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Solis Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		9C7654301D166C0800E0B4F9 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		9C7654331D166C0800E0B4F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9C7654351D166C0800E0B4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9740091CFC10F9000A5AFD /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +130,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9C7654291D166C0800E0B4F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C76542E1D166C0800E0B4F9 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CB37BE21CE844400080B5B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +184,7 @@
 				DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */,
 				54E781139EF443B9345BBA97 /* Pods_SunriseSunsetTests.framework */,
 				3189E0E4F45FF1E27907170F /* Pods_SunriseSunsetUITests.framework */,
+				9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,7 +203,6 @@
 		9C20A3F61D0FD3AE0079F3A5 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
-				9C20A3F71D0FD3D60079F3A5 /* NotificationGround.playground */,
 			);
 			name = Playground;
 			sourceTree = "<group>";
@@ -191,12 +228,23 @@
 			name = SunStuff;
 			sourceTree = "<group>";
 		};
+		9C76542F1D166C0800E0B4F9 /* Solis Widget */ = {
+			isa = PBXGroup;
+			children = (
+				9C7654301D166C0800E0B4F9 /* TodayViewController.swift */,
+				9C7654321D166C0800E0B4F9 /* MainInterface.storyboard */,
+				9C7654351D166C0800E0B4F9 /* Info.plist */,
+			);
+			path = "Solis Widget";
+			sourceTree = "<group>";
+		};
 		9CB37BDC1CE844400080B5B1 = {
 			isa = PBXGroup;
 			children = (
 				9CB37BE71CE844400080B5B1 /* SunriseSunset */,
 				9CB37BFC1CE844400080B5B1 /* SunriseSunsetTests */,
 				9CB37C071CE844400080B5B1 /* SunriseSunsetUITests */,
+				9C76542F1D166C0800E0B4F9 /* Solis Widget */,
 				9CB37BE61CE844400080B5B1 /* Products */,
 				098B94D1FA5114888528E1BB /* Pods */,
 				69BBFC24078540B1D3E7C31D /* Frameworks */,
@@ -209,6 +257,7 @@
 				9CB37BE51CE844400080B5B1 /* SunriseSunset.app */,
 				9CB37BF91CE844400080B5B1 /* SunriseSunsetTests.xctest */,
 				9CB37C041CE844400080B5B1 /* SunriseSunsetUITests.xctest */,
+				9C76542C1D166C0800E0B4F9 /* Solis Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,6 +316,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9C76542B1D166C0800E0B4F9 /* Solis Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C76543B1D166C0800E0B4F9 /* Build configuration list for PBXNativeTarget "Solis Widget" */;
+			buildPhases = (
+				9C7654281D166C0800E0B4F9 /* Sources */,
+				9C7654291D166C0800E0B4F9 /* Frameworks */,
+				9C76542A1D166C0800E0B4F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Solis Widget";
+			productName = "Solis Widget";
+			productReference = 9C76542C1D166C0800E0B4F9 /* Solis Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		9CB37BE41CE844400080B5B1 /* SunriseSunset */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CB37C0D1CE844400080B5B1 /* Build configuration list for PBXNativeTarget "SunriseSunset" */;
@@ -277,10 +343,12 @@
 				9CB37BE31CE844400080B5B1 /* Resources */,
 				C2AAB571B192715F75A805DB /* 📦 Embed Pods Frameworks */,
 				FD3C100424DB22A120D4A716 /* 📦 Copy Pods Resources */,
+				9C76543C1D166C0800E0B4F9 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9C7654371D166C0800E0B4F9 /* PBXTargetDependency */,
 			);
 			name = SunriseSunset;
 			productName = SunriseSunset;
@@ -338,6 +406,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Puddllee;
 				TargetAttributes = {
+					9C76542B1D166C0800E0B4F9 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 4TPDCY22V9;
+					};
 					9CB37BE41CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 4TPDCY22V9;
@@ -373,11 +445,20 @@
 				9CB37BE41CE844400080B5B1 /* SunriseSunset */,
 				9CB37BF81CE844400080B5B1 /* SunriseSunsetTests */,
 				9CB37C031CE844400080B5B1 /* SunriseSunsetUITests */,
+				9C76542B1D166C0800E0B4F9 /* Solis Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9C76542A1D166C0800E0B4F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C7654341D166C0800E0B4F9 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CB37BE31CE844400080B5B1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +611,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9C7654281D166C0800E0B4F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C7654311D166C0800E0B4F9 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9CB37BE11CE844400080B5B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,6 +664,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9C7654371D166C0800E0B4F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C76542B1D166C0800E0B4F9 /* Solis Widget */;
+			targetProxy = 9C7654361D166C0800E0B4F9 /* PBXContainerItemProxy */;
+		};
 		9CB37BFB1CE844400080B5B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9CB37BE41CE844400080B5B1 /* SunriseSunset */;
@@ -588,6 +682,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9C7654321D166C0800E0B4F9 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C7654331D166C0800E0B4F9 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		9CB37BEC1CE844400080B5B1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -607,6 +709,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9C7654391D166C0800E0B4F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Solis Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.puddllee.lux.Solis-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9C76543A1D166C0800E0B4F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Solis Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.puddllee.lux.Solis-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		9CB37C0B1CE844400080B5B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -696,6 +822,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.lux;
@@ -709,6 +836,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.lux;
@@ -769,6 +897,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9C76543B1D166C0800E0B4F9 /* Build configuration list for PBXNativeTarget "Solis Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C7654391D166C0800E0B4F9 /* Debug */,
+				9C76543A1D166C0800E0B4F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9CB37BE01CE844400080B5B1 /* Build configuration list for PBXProject "SunriseSunset" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
