@@ -27,8 +27,6 @@
 		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
 		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
 		9C4774541D16762C00C38FFF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
-		9C4774571D16762C00C38FFF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4774561D16762C00C38FFF /* TodayViewController.swift */; };
-		9C47745A1D16762C00C38FFF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4774581D16762C00C38FFF /* MainInterface.storyboard */; };
 		9C47745E1D16762C00C38FFF /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4774531D16762C00C38FFF /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
@@ -113,9 +111,6 @@
 		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9C37C0C11CF6C929002ED35A /* TouchDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchDownView.swift; sourceTree = "<group>"; };
 		9C4774531D16762C00C38FFF /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C4774561D16762C00C38FFF /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9C4774591D16762C00C38FFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9C47745B1D16762C00C38FFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -145,12 +140,6 @@
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		9CF7E8E91D1675DB00A1A0FE /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9CF7E8EC1D1675DB00A1A0FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9CF7E8EE1D1675DB00A1A0FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CF7E8FC1D1675FD00A1A0FE /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9CF7E8FF1D1675FD00A1A0FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9CF7E9011D1675FD00A1A0FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA99C3A67CB3B1E830EF48C7 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B44860C50CD0682FA2A39EF9 /* Pods-SolisWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolisWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SolisWidget/Pods-SolisWidget.release.xcconfig"; sourceTree = "<group>"; };
 		DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,16 +239,6 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		9C4774551D16762C00C38FFF /* SolisWidget */ = {
-			isa = PBXGroup;
-			children = (
-				9C4774561D16762C00C38FFF /* TodayViewController.swift */,
-				9C4774581D16762C00C38FFF /* MainInterface.storyboard */,
-				9C47745B1D16762C00C38FFF /* Info.plist */,
-			);
-			path = SolisWidget;
-			sourceTree = "<group>";
-		};
 		9C485AB21CED807A0086B22E /* SunStuff */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,9 +268,6 @@
 				9CB37BFC1CE844400080B5B1 /* SunriseSunsetTests */,
 				9CB37C071CE844400080B5B1 /* SunriseSunsetUITests */,
 				9C8DFA581D1673DF00353D8C /* SolisWidget */,
-				9CF7E8E81D1675DB00A1A0FE /* Solis */,
-				9CF7E8FB1D1675FD00A1A0FE /* SolisWidget */,
-				9C4774551D16762C00C38FFF /* SolisWidget */,
 				9CB37BE61CE844400080B5B1 /* Products */,
 				098B94D1FA5114888528E1BB /* Pods */,
 				69BBFC24078540B1D3E7C31D /* Frameworks */,
@@ -361,26 +337,6 @@
 				9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */,
 			);
 			name = Fonts;
-			sourceTree = "<group>";
-		};
-		9CF7E8E81D1675DB00A1A0FE /* Solis */ = {
-			isa = PBXGroup;
-			children = (
-				9CF7E8E91D1675DB00A1A0FE /* TodayViewController.swift */,
-				9CF7E8EB1D1675DB00A1A0FE /* MainInterface.storyboard */,
-				9CF7E8EE1D1675DB00A1A0FE /* Info.plist */,
-			);
-			path = Solis;
-			sourceTree = "<group>";
-		};
-		9CF7E8FB1D1675FD00A1A0FE /* SolisWidget */ = {
-			isa = PBXGroup;
-			children = (
-				9CF7E8FC1D1675FD00A1A0FE /* TodayViewController.swift */,
-				9CF7E8FE1D1675FD00A1A0FE /* MainInterface.storyboard */,
-				9CF7E9011D1675FD00A1A0FE /* Info.plist */,
-			);
-			path = SolisWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -536,7 +492,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C47745A1D16762C00C38FFF /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,7 +696,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C4774571D16762C00C38FFF /* TodayViewController.swift in Sources */,
 				9C236CDB1D1679B600FB9985 /* UIColor.swift in Sources */,
 				9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */,
 				9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */,
@@ -820,14 +774,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9C4774581D16762C00C38FFF /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C4774591D16762C00C38FFF /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -850,22 +796,6 @@
 				9CB37BF21CE844400080B5B1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		9CF7E8EB1D1675DB00A1A0FE /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9CF7E8EC1D1675DB00A1A0FE /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		9CF7E8FE1D1675FD00A1A0FE /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9CF7E8FF1D1675FD00A1A0FE /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
