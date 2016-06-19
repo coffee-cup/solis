@@ -1,21 +1,24 @@
 PODS:
   - EDSunriseSet (1.0)
+  - GoogleMaps (1.13.2)
   - PermissionScope (1.0.2)
   - SwiftLocation (0.9.0)
   - UIView-Easing (0.0.1)
 
 DEPENDENCIES:
   - EDSunriseSet (~> 1.0)
+  - GoogleMaps
   - PermissionScope
   - SwiftLocation
   - UIView-Easing
 
 SPEC CHECKSUMS:
   EDSunriseSet: bdc4760f496c8e6f9b9a727ffa645b6048aa2a09
+  GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
   SwiftLocation: f18e71300a89f2a81001c9615b7694150e6b84de
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: 184d455203583f3f3c4f721b8d9c9a9f8db7a2f0
+PODFILE CHECKSUM: 101ef2d1132b8c605493c63c5238891be7bf377d
 
 COCOAPODS: 1.0.0

@@ -8,6 +8,7 @@ target 'SunriseSunset' do
     pod 'SwiftLocation'
     pod 'PermissionScope'
     pod 'UIView-Easing'
+    pod 'GoogleMaps'
 end
 
 target 'SunriseSunsetTests' do
