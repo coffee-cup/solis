@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="SolisWidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSM-sv-PON">
+                                <rect key="frame" x="48" y="12" width="272" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Light at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI6-3O-9H2">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:42 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PD-qf-acS">
+                                        <rect key="frame" x="0.0" y="32" width="99" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6PD-qf-acS" firstAttribute="top" secondItem="zI6-3O-9H2" secondAttribute="bottom" id="CpI-1o-dSw"/>
+                                    <constraint firstItem="zI6-3O-9H2" firstAttribute="leading" secondItem="wSM-sv-PON" secondAttribute="leading" id="GTs-eo-Wb7"/>
+                                    <constraint firstItem="6PD-qf-acS" firstAttribute="leading" secondItem="wSM-sv-PON" secondAttribute="leading" id="PbX-Yl-NVm"/>
+                                    <constraint firstAttribute="trailing" secondItem="zI6-3O-9H2" secondAttribute="trailing" id="Sgc-gw-AXY"/>
+                                    <constraint firstAttribute="height" constant="64" id="VlC-cV-dWj"/>
+                                    <constraint firstItem="zI6-3O-9H2" firstAttribute="top" secondItem="wSM-sv-PON" secondAttribute="top" id="n9f-kJ-4JE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wSM-sv-PON" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="48" id="Ug1-6q-eGT"/>
+                            <constraint firstAttribute="trailing" secondItem="wSM-sv-PON" secondAttribute="trailing" id="XzM-ck-esm"/>
+                            <constraint firstItem="wSM-sv-PON" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="ctX-jv-37n"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="88"/>
+                    <connections>
+                        <outlet property="eventLabel" destination="zI6-3O-9H2" id="Df0-CF-QQZ"/>
+                        <outlet property="timeLabel" destination="6PD-qf-acS" id="mt6-re-EFq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="285"/>
+        </scene>
+    </scenes>
+</document>

@@ -100,8 +100,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Sun.timeFormatter.timeZone = NSTimeZone.localTimeZone()
-        
         let screenMinutes = Float(6 * 60)
         let screenHeight = Float(view.frame.height)
         let sunHeight = Float(sunView.frame.height)

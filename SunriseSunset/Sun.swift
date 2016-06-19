@@ -31,9 +31,6 @@ func == (lhs: SunTimeLine, rhs: SunTimeLine) -> Bool {
 
 class Sun {
     
-    static let timeFormatter = NSDateFormatter()
-    static var delta = false
-    
     // Number of minutes a full screen height is
     let screenMinutes: Float
     
@@ -101,13 +98,6 @@ class Sun {
     }
     
     @objc func timeFormatUpdate() {
-        let timeFormat = defaults.stringForKey(MessageType.TimeFormat.description)
-        if timeFormat == "delta" {
-            Sun.delta = true
-        } else {
-            Sun.delta = false
-            Sun.timeFormatter.dateFormat = timeFormat
-        }
         setSunlineTimes()
         setNowTimeText()
     }
@@ -119,15 +109,15 @@ class Sun {
     }
     
     func setNowTimeText() {
-        var timeFormat = Sun.timeFormatter.dateFormat
-        if Sun.delta {
-            timeFormat = TimeFormat.hour12.description
+        if let formatter = TimeFormatters.currentFormatter {
+            nowTimeLabel.text = formatter.stringFromDate(now)
+                .stringByReplacingOccurrencesOfString("AM", withString: "am")
+                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+        } else {
+            nowTimeLabel.text = TimeFormatters.formatter12h.stringFromDate(now)
+                .stringByReplacingOccurrencesOfString("AM", withString: "am")
+                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
         }
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = timeFormat
-        self.nowTimeLabel.text = formatter.stringFromDate(self.now)
-            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
-            .stringByReplacingOccurrencesOfString("AM", withString: "am")
     }
     
     func update(offset: Double, location: CLLocationCoordinate2D) {

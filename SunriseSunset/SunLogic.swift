@@ -62,30 +62,37 @@ class SunLogic {
         return suntimes
     }
     
-    class func getFutureTimes(suntimes: [Suntime]) -> [Suntime] {
+    class func todayTomorrow(location: CLLocationCoordinate2D) -> [Suntime] {
+        let today = NSDate()
+        let tomorrow = today.addDays(1)
+        return SunLogic.calculateTimesForDate(today, location: location)
+            + SunLogic.calculateTimesForDate(tomorrow, location: location)
+    }
+    
+    class func futureTimes(suntimes: [Suntime]) -> [Suntime] {
         return suntimes.filter { time in
             return time.date.timeIntervalSinceNow > 0
         }
     }
     
     class func getNextSunType(suntimes: [Suntime], type: SunType) -> Suntime? {
-        let futureTimes = getFutureTimes(suntimes)
-        let matches = futureTimes.filter { time in
+        let times = futureTimes(suntimes)
+        let matches = times.filter { time in
             return time.type == type && !time.neverHappens
         }
         let sorted = matches.sort()
         return sorted.count > 0 ? sorted[0] : nil
     }
     
-    class func getSunrise(suntimes: [Suntime]) -> Suntime? {
+    class func sunrise(suntimes: [Suntime]) -> Suntime? {
         return getNextSunType(suntimes, type: .Sunrise)
     }
     
-    class func getSunset(suntimes: [Suntime]) -> Suntime? {
+    class func sunset(suntimes: [Suntime]) -> Suntime? {
         return getNextSunType(suntimes, type: .Sunset)
     }
     
-    class func getFirstLight(suntimes: [Suntime]) -> Suntime? {
+    class func firstLight(suntimes: [Suntime]) -> Suntime? {
         let types: [SunType] = [.AstronomicalDawn, .NauticalDawn, .CivilDawn]
         for type in types {
             if let time = getNextSunType(suntimes, type: type) {
@@ -95,12 +102,35 @@ class SunLogic {
         return nil
     }
     
-    class func getLastLight(suntimes: [Suntime]) -> Suntime? {
+    class func lastLight(suntimes: [Suntime]) -> Suntime? {
         let types: [SunType] = [.AstronomicalDusk, .NauticalDusk, .CivilDusk]
         for type in types {
             if let time = getNextSunType(suntimes, type: type) {
                 return time
             }
+        }
+        return nil
+    }
+    
+    class func nextEvent(suntimes: [Suntime]) -> Suntime? {
+        var possibleEvents: [Suntime] = []
+        
+        if let firstLight = firstLight(suntimes) {
+            possibleEvents.append(firstLight)
+        }
+        if let sunset = sunset(suntimes) {
+            possibleEvents.append(sunset)
+        }
+        if let sunrise = sunrise(suntimes) {
+            possibleEvents.append(sunrise)
+        }
+        if let lastLight = lastLight(suntimes) {
+            possibleEvents.append(lastLight)
+        }
+        
+        let sortedEvents = possibleEvents.sort()
+        if sortedEvents.count > 0 {
+            return sortedEvents[0]
         }
         return nil
     }

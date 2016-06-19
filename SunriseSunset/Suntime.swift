@@ -84,6 +84,20 @@ enum SunType {
         }
         return message
     }
+    
+    var event: String {
+        var message = ""
+        if self == .AstronomicalDawn || self == .NauticalDawn || self == .CivilDawn {
+            message = "First Light"
+        } else if self == .Sunrise {
+            message = "Sunrise"
+        } else if self == .Sunset {
+            message = "Sunset"
+        } else if self == .CivilDusk || self == .NauticalDusk || self == .AstronomicalDusk {
+            message = "Last Light"
+        }
+        return message
+    }
 }
 
 class Suntime: Comparable {

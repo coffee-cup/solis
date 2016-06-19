@@ -9,23 +9,9 @@
 import UIKit
 import PermissionScope
 
-enum TimeFormat {
-    case hour24
-    case hour12
-    case delta
-    
-    var description: String {
-        switch(self) {
-        case .hour24: return "HH:mm"
-        case .hour12: return "h:mm a"
-        case .delta: return "delta"
-        }
-    }
-}
-
 class MenuViewController: UIViewController {
 
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = Defaults.defaults
     @IBOutlet weak var menuView: UIView!
     var screenWidth: CGFloat!
     

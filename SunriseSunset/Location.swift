@@ -12,7 +12,7 @@ import SwiftLocation
 
 class Location {
     
-    static let defaults = NSUserDefaults.standardUserDefaults()
+    static let defaults = Defaults.defaults
     
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     

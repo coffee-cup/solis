@@ -12,7 +12,7 @@ import UIKit
 
 class Notifications {
     
-    lazy var defaults = NSUserDefaults.standardUserDefaults()
+    lazy var defaults = Defaults.defaults
     lazy var application = UIApplication.sharedApplication()
     
     let sunriseTypes: [SunType] = [.Sunrise]
@@ -29,10 +29,7 @@ class Notifications {
         guard let location = Location.getLocation() else {
             return false
         }
-        let today = NSDate()
-        let tomorrow = today.addDays(1)
-        let suntimes = SunLogic.calculateTimesForDate(today, location: location)
-            + SunLogic.calculateTimesForDate(tomorrow, location: location)
+        let suntimes = SunLogic.todayTomorrow(location)
         
         let timeBefore: NSTimeInterval = defaults.doubleForKey("NotificationPreTime")
         
@@ -45,7 +42,7 @@ class Notifications {
         var notificationTimes: [Suntime] = []
         
         if sunriseNoti {
-            if let sunriseTime = SunLogic.getSunrise(suntimes) {
+            if let sunriseTime = SunLogic.sunrise(suntimes) {
                 notificationTimes.append(sunriseTime)
             }
         } else {
@@ -53,7 +50,7 @@ class Notifications {
         }
         
         if sunsetNoti {
-            if let sunsetTime = SunLogic.getSunset(suntimes) {
+            if let sunsetTime = SunLogic.sunset(suntimes) {
                 notificationTimes.append(sunsetTime)
             }
         } else {
@@ -61,7 +58,7 @@ class Notifications {
         }
         
         if firstLightNoti {
-            if let firstLightTime = SunLogic.getFirstLight(suntimes) {
+            if let firstLightTime = SunLogic.firstLight(suntimes) {
                 notificationTimes.append(firstLightTime)
             }
         } else {
@@ -69,7 +66,7 @@ class Notifications {
         }
         
         if lastLightNoti {
-            if let lastLightTime = SunLogic.getLastLight(suntimes) {
+            if let lastLightTime = SunLogic.lastLight(suntimes) {
                 notificationTimes.append(lastLightTime)
             }
         } else {

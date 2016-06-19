@@ -89,33 +89,7 @@ class Sunline: UIView {
     }
     
     func getTimeText(offset: NSTimeInterval) -> String {
-        var text = ""
-        
-        let timeOffset = time.dateByAddingTimeInterval(0) // may have to change
-        let hours = timeOffset.getHoursToNow()
-        let minutes = timeOffset.getMinutesToNow()
-        let hourMinutes = abs(minutes - (hours * 60))
-        let inPast = timeOffset.timeIntervalSinceNow < 0
-        
-        if Sun.delta {
-            text += inPast ? "- " : "+ "
-            if hours != 0 {
-                text += "\(hours)h"
-            }
-            if hours != 0 && hourMinutes != 0 {
-                text += " "
-            }
-            if hourMinutes != 0 {
-                text += "\(hourMinutes)m"
-            }
-            if hours == 0 && hourMinutes == 0 {
-                text = "--"
-            }
-        } else {
-            text = Sun.timeFormatter.stringFromDate(time)
-            text = text.stringByReplacingOccurrencesOfString("AM", withString: "am")
-            text = text.stringByReplacingOccurrencesOfString("PM", withString: "pm")
-        }
+        var text = TimeFormatters.currentFormattedString(time)
         return text
     }
     

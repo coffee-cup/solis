@@ -8,36 +8,6 @@
 
 import UIKit
 
-enum DefaultKey {
-    case TimeFormat
-    case FirstLight
-    case LastLight
-    case Sunrise
-    case Sunset
-    case NotificationPreTime
-    case CurrentLocation
-    case LocationName
-    case LocationDateSet
-    case LocationLatitude
-    case LocationLongitude
-    
-    var description: String {
-        switch self {
-        case .TimeFormat: return "TimeFormat"
-        case .FirstLight: return "FirstLight"
-        case .LastLight: return "LastLight"
-        case .Sunrise: return "Sunrise"
-        case .Sunset: return "Sunset"
-        case .NotificationPreTime: return "NotificationPreTime"
-        case .CurrentLocation: return "CurrentLocation"
-        case .LocationName: return "LocationName"
-        case .LocationDateSet: return "LocationDateSet"
-        case .LocationLatitude: return "LocationLatitude"
-        case .LocationLongitude: return "LocationLongitude"
-        }
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -51,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        NSUserDefaults.standardUserDefaults().registerDefaults([
+        Defaults.defaults.registerDefaults([
             defaultString(.TimeFormat): "h:mm a",
             defaultString(.FirstLight): false,
             defaultString(.LastLight): false,
@@ -60,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.NotificationPreTime): 60 * 60 * 5, // minutes
             defaultString(.CurrentLocation): true
         ])
+        
+        let fuck = NSUserDefaults.init(suiteName: "group.SunriseSunset")
+        fuck?.setFloat(3, forKey: "fuck")
         
         application.setMinimumBackgroundFetchInterval(60 * 60 * 12) // 12 hours
         

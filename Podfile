@@ -11,6 +11,11 @@ target 'SunriseSunset' do
     pod 'GoogleMaps'
 end
 
+target 'SolisWidget' do
+    pod 'EDSunriseSet', '~> 1.0'
+    pod 'SwiftLocation'
+end
+
 target 'SunriseSunsetTests' do
 
 end
