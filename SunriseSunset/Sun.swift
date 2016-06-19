@@ -119,17 +119,15 @@ class Sun {
     }
     
     func setNowTimeText() {
-        dispatch_async(dispatch_get_main_queue()) {
-            var timeFormat = Sun.timeFormatter.dateFormat
-            if Sun.delta {
-                timeFormat = TimeFormat.hour12.description
-            }
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = timeFormat
-            self.nowTimeLabel.text = formatter.stringFromDate(self.now)
-                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
-                .stringByReplacingOccurrencesOfString("AM", withString: "am")
+        var timeFormat = Sun.timeFormatter.dateFormat
+        if Sun.delta {
+            timeFormat = TimeFormat.hour12.description
         }
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = timeFormat
+        self.nowTimeLabel.text = formatter.stringFromDate(self.now)
+            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+            .stringByReplacingOccurrencesOfString("AM", withString: "am")
     }
     
     func update(offset: Double, location: CLLocationCoordinate2D) {
@@ -221,7 +219,6 @@ class Sun {
     }
     
     func animateGradient(gradientLayer: CAGradientLayer, toColours: [CGColorRef], toLocations: [Float]) {
-        
         dispatch_async(dispatch_get_main_queue()) {
             // Do not animate the first gradient
             guard let _ = gradientLayer.colors else {
