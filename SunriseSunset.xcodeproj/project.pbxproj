@@ -21,6 +21,13 @@
 		9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
 		9C236CDF1D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
+		9C236CE11D16B08D00FB9985 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DFA591D1673DF00353D8C /* TodayViewController.swift */; };
+		9C236CE41D16B0B100FB9985 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5E1D1673DF00353D8C /* Info.plist */; };
+		9C236CE51D16B0B300FB9985 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5E1D1673DF00353D8C /* Info.plist */; };
+		9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
+		9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
+		9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
+		9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9C3314F41CE9712F004D012E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
@@ -492,6 +499,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C236CE51D16B0B300FB9985 /* Info.plist in Resources */,
+				9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */,
+				9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,11 +509,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */,
 				9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */,
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
+				9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */,
 				9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */,
+				9C236CE41D16B0B100FB9985 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +711,7 @@
 			files = (
 				9C236CDB1D1679B600FB9985 /* UIColor.swift in Sources */,
 				9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */,
+				9C236CE11D16B08D00FB9985 /* TodayViewController.swift in Sources */,
 				9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */,
 				9C236CD91D16798300FB9985 /* Defaults.swift in Sources */,
 				9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */,
