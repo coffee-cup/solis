@@ -10,6 +10,18 @@ import Foundation
 import CoreLocation
 import SwiftLocation
 
+struct Prediction {
+    let placeID: String?
+    let primary: String?
+    let seconday: String?
+    
+    init(primary: String, seconday: String, placeID: String) {
+        self.primary = primary
+        self.seconday = seconday
+        self.placeID = placeID
+    }
+}
+
 class Location {
     
     static let defaults = Defaults.defaults
@@ -89,7 +101,7 @@ class Location {
         notifyLocation()
     }
     
-    class func selectLocation(current: Bool, location: CLLocationCoordinate2D?, name: String?) {
+    class func selectLocation(current: Bool, location: CLLocationCoordinate2D?, name: String?, secondary: String?, placeID: String?) {
         if current {
             if let currentLocation = getCurrentLocation() {
                 if let locationName = getCurrentLocationName() {
@@ -99,8 +111,58 @@ class Location {
             checkLocation()
         } else {
             setLocation(false, location: location!, name: name!)
+//            addLocationToHistory(location!)
+            addLocationToHistory(name!, seconday: secondary!, placeID: placeID!)
         }
         Bus.sendMessage(.LocationUpdate, data: nil)
+    }
+    
+    class func getLocationHistory() -> [Prediction]? {
+        if let locationHistoryNames = defaults.objectForKey(DefaultKey.LocationHistoryNames.description) as? [String] {
+            if let locationHistoryPlaceIDs = defaults.objectForKey(DefaultKey.LocationHistoryPlaceIDs.description) as? [String] {
+                var locationPredictions: [Prediction] = []
+                for (index, locationName) in locationHistoryNames.enumerate() {
+                    let split = locationName.characters.split{$0 == "|"}.map(String.init)
+                    let primary = split[0]
+                    let secondary = split[1]
+                    let placeID = locationHistoryPlaceIDs[index]
+                    locationPredictions.append(Prediction(primary: primary, seconday: secondary, placeID: placeID))
+                }
+                return locationPredictions
+            }
+        }
+        return nil
+    }
+    
+    class func addLocationToHistory(primary: String, seconday: String, placeID: String) {
+        if var locationHistory = getLocationHistory() {
+            let index = locationHistory.indexOf { p in
+                return p.placeID == placeID
+            }
+            if let index = index {
+                locationHistory.removeAtIndex(index)
+            }
+            
+            let history = Prediction(primary: primary, seconday: seconday, placeID: placeID)
+            locationHistory.insert(history, atIndex: 0)
+            
+            var locationHistoryNames = locationHistory.map { p in
+                return "\(p.primary!)|\(p.seconday!)"
+            }
+            var locationHistoryPlaces = locationHistory.map { p in
+                return p.placeID!
+            }
+
+            if locationHistoryNames.count > 5 {
+                locationHistoryNames = Array(locationHistoryNames[0...4])
+                locationHistoryPlaces = Array(locationHistoryPlaces[0...4])
+            }
+            
+            defaults.setObject(locationHistoryNames, forKey: DefaultKey.LocationHistoryNames.description)
+            defaults.setObject(locationHistoryPlaces, forKey: DefaultKey.LocationHistoryPlaceIDs.description)
+            
+            print(locationHistoryNames)
+        }
     }
     
     // Returns if we need to update the location

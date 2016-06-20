@@ -23,6 +23,8 @@ enum DefaultKey {
     case CurrentLocationLongitude
     case LocationLatitude
     case LocationLongitude
+    case LocationHistoryNames
+    case LocationHistoryPlaceIDs
     
     var description: String {
         switch self {
@@ -40,6 +42,8 @@ enum DefaultKey {
         case .CurrentLocationLongitude: return "CurrentLocationLongitude"
         case .LocationLatitude: return "LocationLatitude"
         case .LocationLongitude: return "LocationLongitude"
+        case .LocationHistoryNames: return "LocationHistoryNames"
+        case .LocationHistoryPlaceIDs: return "LocationHistoryPlaceIDs"
         }
     }
 }

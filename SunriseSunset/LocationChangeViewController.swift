@@ -10,18 +10,6 @@ import Foundation
 import UIKit
 import GoogleMaps
 
-struct Prediction {
-    let placeID: String?
-    let primary: String?
-    let seconday: String?
-    
-    init(result: GMSAutocompletePrediction) {
-        placeID = result.placeID
-        primary = result.attributedPrimaryText.string
-        seconday = result.attributedSecondaryText?.string
-    }
-}
-
 class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchTextField: UISearchBar!
@@ -33,6 +21,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     lazy var filter = GMSAutocompleteFilter()
     
     var places: [Prediction] = []
+    var placeHistory: [Prediction] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +33,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         searchTableView.dataSource = self
         
         filter.type = .City
+        
+        if let locationHistory = Location.getLocationHistory() {
+            placeHistory = locationHistory
+        } else {
+            placeHistory = []
+        }
         
         Bus.subscribeEvent(.ShowStatusBar, observer: self, selector: #selector(showStatusBar))
     }
@@ -78,13 +73,21 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         view.layoutSubviews()
     }
     
+    func isSearching() -> Bool {
+        if let text = searchTextField.text {
+            return !text.isEmpty
+        }
+        return false
+    }
+    
     func goBack() {
+        searchTextField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
     func updateWithSearchResults(results: [GMSAutocompletePrediction]) {
         places = results.map { result in
-            return Prediction(result: result)
+            return Prediction(primary: result.attributedPrimaryText.string, seconday: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
         }
         searchTableView.reloadData()
     }
@@ -99,11 +102,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                 
                 self.updateWithSearchResults(results!)
             }
+        } else {
+            searchTableView.reloadData()
         }
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         goBack()
     }
     
@@ -123,25 +127,30 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         
         if indexPath.row == 0 {
             print("Selected current place")
-            Location.selectLocation(true, location: nil, name: nil)
+            Location.selectLocation(true, location: nil, name: nil, secondary: nil, placeID: nil)
         } else {
-            let place = places[indexPath.row - 1]
+            var place: Prediction!
+            if isSearching() {
+                place = places[indexPath.row - 1]
+            } else {
+                place = placeHistory[indexPath.row - 1]
+            }
             if let placeID = place.placeID {
-                placesClient.lookUpPlaceID(placeID) { place, error in
+                print("place id: \(placeID)")
+                placesClient.lookUpPlaceID(placeID) { googlePlace, error in
                     guard error == nil else {
                         print("PlaceID lookup error \(error)")
                         return
                     }
                     
-                    guard let coordinate = place?.coordinate else {
+                    guard let coordinate = googlePlace?.coordinate else {
                         return
                     }
                     
-                    guard let name = place?.name else {
+                    guard let name = googlePlace?.name else {
                         return
                     }
-                    
-                    Location.selectLocation(false, location: coordinate, name: name)
+                    Location.selectLocation(false, location: coordinate, name: place.primary, secondary: place.seconday, placeID: place.placeID)
                 }
             }
         }
@@ -156,7 +165,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count + 1
+        return isSearching() ? places.count + 1 : placeHistory.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -170,7 +179,13 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             }
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier("PlaceCell")!
-            let place = places[indexPath.row - 1]
+            
+            var place: Prediction!
+            if isSearching() {
+                place = places[indexPath.row - 1]
+            } else {
+                place = placeHistory[indexPath.row - 1]
+            }
             
             let cityLabel = cell.viewWithTag(1)! as! UILabel
             let stateCountryLabel = cell.viewWithTag(2)! as! UILabel
