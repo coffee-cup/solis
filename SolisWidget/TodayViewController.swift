@@ -46,7 +46,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func setWidgetTimes() {
-        if let location = Location.getLocation() {
+        if let location = Location.getCurrentLocation() {
             let suntimes = SunLogic.todayTomorrow(location)
             if let nextSuntime = SunLogic.nextEvent(suntimes) {
                 setView(nextSuntime)

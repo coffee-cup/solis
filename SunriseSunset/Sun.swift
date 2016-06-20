@@ -170,9 +170,7 @@ class Sun {
         sunView.backgroundColor = UIColor.clearColor()
         gradientLayer.frame = sunView.bounds
 
-        let sortedFiltered = sunTimeLines.sort().filter { stl in
-            return !stl.suntime.neverHappens
-        }
+        let sortedFiltered = sunTimeLines.sort()
         
         var pastTimeLines: [SunTimeLine] = []
         var futureTimeLines: [SunTimeLine] = []
@@ -189,20 +187,20 @@ class Sun {
         
         for stl in futureTimeLines.reverse() {
             let per = 0.5  - getGradientPercent(stl.suntime, now: now)
-            if stl.suntime.marker && per >= 0 && per <= 1 {
+            if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 colours.append(stl.suntime.colour)
                 locations.append(per)
             }
-            stl.sunline.updateLine(stl.suntime.date, percent: per)
+            stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
         
         for stl in pastTimeLines.reverse() {
             let per = 0.5 + getGradientPercent(stl.suntime, now: now)
-            if stl.suntime.marker && per >= 0 && per <= 1 {
+            if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 colours.append(stl.suntime.colour)
                 locations.append(per)
             }
-            stl.sunline.updateLine(stl.suntime.date, percent: per)
+            stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)

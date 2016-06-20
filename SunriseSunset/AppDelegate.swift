@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,8 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.CurrentLocation): true
         ])
         
-        let fuck = NSUserDefaults.init(suiteName: "group.SunriseSunset")
-        fuck?.setFloat(3, forKey: "fuck")
+        GMSServices.provideAPIKey("AIzaSyATdTWF9AwHXq3UnCrAfr6czN7f_E86658")
         
         application.setMinimumBackgroundFetchInterval(60 * 60 * 12) // 12 hours
         

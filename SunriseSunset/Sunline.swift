@@ -101,7 +101,7 @@ class Sunline: UIView {
         }
     }
 
-    func updateLine(time: NSDate, percent: Float) {
+    func updateLine(time: NSDate, percent: Float, happens: Bool) {
         dispatch_async(dispatch_get_main_queue()) {
             self.time = time
             self.updateTime()
@@ -111,10 +111,14 @@ class Sunline: UIView {
                 self.parentView.layoutIfNeeded()
             }
             
-            if self.hidden {
+            if happens {
                 self.hidden = false
                 UIView.animateWithDuration(0.5, delay: 1, options: .CurveEaseInOut, animations: {
                     self.alpha = 1
+                    }, completion: nil)
+            } else {
+                UIView.animateWithDuration(0.5, delay: 1, options: .CurveEaseInOut, animations: {
+                    self.alpha = 0
                     }, completion: nil)
             }
         }

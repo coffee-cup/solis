@@ -17,7 +17,10 @@ enum DefaultKey {
     case NotificationPreTime
     case CurrentLocation
     case LocationName
+    case CurrentLocationName
     case LocationDateSet
+    case CurrentLocationLatitude
+    case CurrentLocationLongitude
     case LocationLatitude
     case LocationLongitude
     
@@ -31,7 +34,10 @@ enum DefaultKey {
         case .NotificationPreTime: return "NotificationPreTime"
         case .CurrentLocation: return "CurrentLocation"
         case .LocationName: return "LocationName"
+        case .CurrentLocationName: return "CurrentLocationName"
         case .LocationDateSet: return "LocationDateSet"
+        case .CurrentLocationLatitude: return "CurrentLocationLatitude"
+        case .CurrentLocationLongitude: return "CurrentLocationLongitude"
         case .LocationLatitude: return "LocationLatitude"
         case .LocationLongitude: return "LocationLongitude"
         }

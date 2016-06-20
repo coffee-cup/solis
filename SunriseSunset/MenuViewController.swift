@@ -8,6 +8,7 @@
 
 import UIKit
 import PermissionScope
+import GoogleMaps
 
 class MenuViewController: UIViewController {
 
@@ -59,6 +60,8 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setLocationLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,6 +142,13 @@ class MenuViewController: UIViewController {
         getNotificationPermission(sender)
     }
     
+    func setLocationLabels() {
+        if let locationName = Location.getLocationName() {
+            buttonLocation.setTitle(locationName, forState: .Normal)
+            currentLocationLabel.hidden = !Location.isCurrentLocation()
+        }
+    }
+    
     func getNotificationPermission(sender: UIButton) {
         let pscope = PermissionScope()
         pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow.")
@@ -170,15 +180,10 @@ class MenuViewController: UIViewController {
     // Location
     
     func locationUpdate() {
-        if let location = Location.getLocation() {
-            print(location)
-            let locationString = "\(Int(location.latitude)), \(Int(location.longitude))"
-            buttonLocation.setTitle(locationString, forState: .Normal)
-        }
+        setLocationLabels()
     }
 
     @IBAction func locationButtonDidTouch(sender: AnyObject) {
-//        performSegueWithIdentifier("LocationChangeSegue", sender: self)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let locationChangeViewController = storyboard.instantiateViewControllerWithIdentifier("LocationChange") as? LocationChangeViewController {
             locationChangeViewController.modalPresentationStyle = .OverCurrentContext

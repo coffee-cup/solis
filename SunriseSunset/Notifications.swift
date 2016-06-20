@@ -26,7 +26,7 @@ class Notifications {
     }
     
     @objc func scheduleNotifications() -> Bool {
-        guard let location = Location.getLocation() else {
+        guard let location = Location.getCurrentLocation() else {
             return false
         }
         let suntimes = SunLogic.todayTomorrow(location)

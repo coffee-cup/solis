@@ -17,6 +17,7 @@ enum MessageType {
     case SendMenuIn
     case NotificationChange
     case LocationUpdate
+    case LocationChanged
     case ShowStatusBar
     
     var description: String {
@@ -28,6 +29,7 @@ enum MessageType {
         case .SendMenuIn: return "SendMenuIn"
         case .NotificationChange: return "NotificationChange"
         case .LocationUpdate: return "LocationUpdate"
+        case .LocationChanged: return "LocationChanged"
         case .ShowStatusBar: return "ShowStatusBar"
         }
     }
