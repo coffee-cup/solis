@@ -19,6 +19,8 @@ enum MessageType {
     case LocationUpdate
     case LocationChanged
     case ShowStatusBar
+    case FetchTimeZone
+    case GotTimeZone
     
     var description: String {
         switch self {
@@ -31,6 +33,8 @@ enum MessageType {
         case .LocationUpdate: return "LocationUpdate"
         case .LocationChanged: return "LocationChanged"
         case .ShowStatusBar: return "ShowStatusBar"
+        case .FetchTimeZone: return "FetchTimeZone"
+        case .GotTimeZone: return "GotTimeZone"
         }
     }
 }

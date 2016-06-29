@@ -89,7 +89,7 @@ class Sunline: UIView {
     }
     
     func getTimeText(offset: NSTimeInterval) -> String {
-        var text = TimeFormatters.currentFormattedString(time)
+        let text = TimeFormatters.currentFormattedString(time, timeZone: TimeZones.currentTimeZone)
         return text
     }
     

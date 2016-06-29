@@ -25,6 +25,8 @@ enum DefaultKey {
     case LocationLongitude
     case LocationHistoryNames
     case LocationHistoryPlaceIDs
+    case LocationTimeZoneAbbreviation
+    case LocationTimeZoneOffset
     
     var description: String {
         switch self {
@@ -44,6 +46,8 @@ enum DefaultKey {
         case .LocationLongitude: return "LocationLongitude"
         case .LocationHistoryNames: return "LocationHistoryNames"
         case .LocationHistoryPlaceIDs: return "LocationHistoryPlaceIDs"
+        case .LocationTimeZoneAbbreviation: return "LocationTimeZoneAbbreviation"
+        case .LocationTimeZoneOffset: return "LocationTimeZoneOffset"
         }
     }
 }
@@ -58,5 +62,9 @@ class Defaults {
     
     static var timeFormat: String {
         return defaults.stringForKey(DefaultKey.TimeFormat.description)!
+    }
+    
+    static var currentTimeZoneAbb: String? {
+        return defaults.stringForKey(DefaultKey.LocationTimeZoneAbbreviation.description)
     }
 }

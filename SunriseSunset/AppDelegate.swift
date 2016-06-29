@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let notifications = Notifications()
+    let timeZones = TimeZones()
 
     func defaultString(defaultKey: DefaultKey) -> String {
         return defaultKey.description

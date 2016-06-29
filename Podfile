@@ -9,6 +9,8 @@ target 'SunriseSunset' do
     pod 'PermissionScope'
     pod 'UIView-Easing'
     pod 'GoogleMaps'
+    pod 'SwiftyJSON'
+    pod 'Alamofire', '~> 3.4'
 end
 
 target 'SolisWidget' do

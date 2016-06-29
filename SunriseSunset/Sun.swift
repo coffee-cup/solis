@@ -109,12 +109,12 @@ class Sun {
     }
     
     func setNowTimeText() {
-        if let formatter = TimeFormatters.currentFormatter {
+        if let formatter = TimeFormatters.currentFormatter(TimeZones.currentTimeZone) {
             nowTimeLabel.text = formatter.stringFromDate(now)
                 .stringByReplacingOccurrencesOfString("AM", withString: "am")
                 .stringByReplacingOccurrencesOfString("PM", withString: "pm")
         } else {
-            nowTimeLabel.text = TimeFormatters.formatter12h.stringFromDate(now)
+            nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).stringFromDate(now)
                 .stringByReplacingOccurrencesOfString("AM", withString: "am")
                 .stringByReplacingOccurrencesOfString("PM", withString: "pm")
         }

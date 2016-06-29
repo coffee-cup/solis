@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		68916F95FEEF433A3C416B21 /* Pods_SunriseSunset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */; };
 		9611BAD3C7928B584AE42292 /* Pods_SunriseSunsetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E781139EF443B9345BBA97 /* Pods_SunriseSunsetTests.framework */; };
+		9C0474BE1D1BC2AB00F49F3E /* timezonesDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0474BD1D1BC2AB00F49F3E /* timezonesDB.json */; };
+		9C0474BF1D1BC2AB00F49F3E /* timezonesDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0474BD1D1BC2AB00F49F3E /* timezonesDB.json */; };
 		9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */; };
 		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
 		9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F41D0FCC470079F3A5 /* Notifications.swift */; };
@@ -51,6 +53,7 @@
 		9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9CB5F2501D16791F005F4E10 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
+		9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC052351D22465A00CBBECE /* TimeZones.swift */; };
 		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
 		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
@@ -106,6 +109,7 @@
 		6B07E61652733E72AABE799A /* Pods-SunriseSunset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.debug.xcconfig"; sourceTree = "<group>"; };
 		6BB03123F6EDFAB71E56CFF4 /* Pods-SunriseSunsetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F43EA11CC35450734F19303 /* Pods-SunriseSunset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.release.xcconfig"; sourceTree = "<group>"; };
+		9C0474BD1D1BC2AB00F49F3E /* timezonesDB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezonesDB.json; sourceTree = "<group>"; };
 		9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChangeViewController.swift; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
 		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9C4EFA001D1A6C13001CA591 /* Objective-CBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objective-CBridgingHeader.h"; sourceTree = "<group>"; };
 		9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9C8DFA591D1673DF00353D8C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		9C8DFA5C1D1673DF00353D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -142,6 +147,7 @@
 		9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SolisWidget.entitlements; sourceTree = "<group>"; };
 		9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SunriseSunset.entitlements; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
+		9CC052351D22465A00CBBECE /* TimeZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZones.swift; sourceTree = "<group>"; };
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
@@ -296,15 +302,19 @@
 			isa = PBXGroup;
 			children = (
 				9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */,
+				9C4EFA001D1A6C13001CA591 /* Objective-CBridgingHeader.h */,
+				9C0474BD1D1BC2AB00F49F3E /* timezonesDB.json */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
 				9CB37BE81CE844400080B5B1 /* AppDelegate.swift */,
 				9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */,
+				9C236CD71D16798300FB9985 /* Defaults.swift */,
 				9C9740091CFC10F9000A5AFD /* Easing.swift */,
 				9CE885951CEFEC260045BEFB /* Location.swift */,
-				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
 				9C20A3F41D0FCC470079F3A5 /* Notifications.swift */,
 				9C3314F31CE9712F004D012E /* Styles.swift */,
+				9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */,
+				9CC052351D22465A00CBBECE /* TimeZones.swift */,
 				9C37C0C11CF6C929002ED35A /* TouchDownView.swift */,
 				9CB37BEF1CE844400080B5B1 /* Assets.xcassets */,
 				9C3314F51CE976AF004D012E /* Extensions */,
@@ -313,8 +323,7 @@
 				9CB37BEC1CE844400080B5B1 /* Main.storyboard */,
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
-				9C236CD71D16798300FB9985 /* Defaults.swift */,
-				9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */,
+				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -499,6 +508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C0474BF1D1BC2AB00F49F3E /* timezonesDB.json in Resources */,
 				9C236CE51D16B0B300FB9985 /* Info.plist in Resources */,
 				9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */,
 				9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */,
@@ -517,6 +527,7 @@
 				9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */,
 				9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */,
 				9C236CE41D16B0B100FB9985 /* Info.plist in Resources */,
+				9C0474BE1D1BC2AB00F49F3E /* timezonesDB.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +754,7 @@
 				9C3314F41CE9712F004D012E /* Styles.swift in Sources */,
 				9C236CD81D16798300FB9985 /* Defaults.swift in Sources */,
 				9C485AB11CED7E130086B22E /* Sunline.swift in Sources */,
+				9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */,
 				9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */,
 				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
 				9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */,

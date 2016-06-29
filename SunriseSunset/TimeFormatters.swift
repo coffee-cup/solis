@@ -23,36 +23,36 @@ enum TimeFormat {
 }
 
 class TimeFormatters {
-    static func timeFormatter(format: String) -> NSDateFormatter {
+    static func timeFormatter(format: String, timeZone: NSTimeZone) -> NSDateFormatter {
         let timeFormatter = NSDateFormatter()
-        timeFormatter.timeZone = NSTimeZone.localTimeZone()
+        timeFormatter.timeZone = timeZone
         timeFormatter.dateFormat = format
         return timeFormatter
     }
     
-    static var formatter12h: NSDateFormatter {
-        return TimeFormatters.timeFormatter(TimeFormat.hour12.description)
+    // Create single instance of date formatter for each time zone
+    // When time zone changes, create new date formatter
+    static var formatter12hInstance = TimeFormatters.timeFormatter(TimeFormat.hour12.description, timeZone: NSTimeZone.localTimeZone())
+    class func formatter12h(timeZone: NSTimeZone) -> NSDateFormatter {
+        return formatter12hInstance.timeZone == timeZone ? formatter12hInstance : timeFormatter(TimeFormat.hour12.description, timeZone: timeZone)
     }
     
-    static var formatter24h: NSDateFormatter {
-        return TimeFormatters.timeFormatter(TimeFormat.hour24.description)
+    static var formatter24hInstance = TimeFormatters.timeFormatter(TimeFormat.hour24.description, timeZone: NSTimeZone.localTimeZone())
+    class func formatter24h(timeZone: NSTimeZone) -> NSDateFormatter {
+        return formatter24hInstance.timeZone == timeZone ? formatter12hInstance : timeFormatter(TimeFormat.hour24.description, timeZone: timeZone)
     }
     
-    static var formatterDelta: NSDateFormatter {
-        return TimeFormatters.timeFormatter(TimeFormat.delta.description)
-    }
-    
-    static var currentFormatter: NSDateFormatter? {
+    static func currentFormatter(timeZone: NSTimeZone) -> NSDateFormatter? {
         let timeFormat = Defaults.timeFormat
         if timeFormat == TimeFormat.hour12.description {
-            return formatter12h
+            return formatter12h(timeZone)
         } else if timeFormat == TimeFormat.hour24.description {
-            return formatter24h
+            return formatter24h(timeZone)
         }
         return nil
     }
     
-    static func currentFormattedString(time: NSDate) -> String {
+    static func currentFormattedString(time: NSDate, timeZone: NSTimeZone) -> String {
         var text = ""
         
         let timeOffset = time.dateByAddingTimeInterval(0) // may have to change
@@ -76,7 +76,7 @@ class TimeFormatters {
                 text = "--"
             }
         } else {
-            if let formatter = currentFormatter {
+            if let formatter = currentFormatter(timeZone) {
                 text = formatter.stringFromDate(time)
                 text = text.stringByReplacingOccurrencesOfString("AM", withString: "am")
                 text = text.stringByReplacingOccurrencesOfString("PM", withString: "pm")

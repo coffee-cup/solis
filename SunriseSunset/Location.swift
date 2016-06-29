@@ -93,11 +93,23 @@ class Location {
         })
     }
     
+//    class func findTimeZone(forLocation: CLLocationCoordinate2D) -> (NSTimeZone, String?) {
+//        let cl = CLLocation(latitude: forLocation.latitude, longitude: forLocation.longitude)
+//        let timeZone = APTimeZones.sharedInstance().timeZoneWithLocation(cl)
+//        let abbreviation = timeZone.abbreviation
+//        return (timeZone, abbreviation)
+//    }
+    
     class func setLocation(current: Bool, location: CLLocationCoordinate2D, name: String) {
         defaults.setObject(name, forKey: DefaultKey.LocationName.description)
         defaults.setDouble(location.latitude, forKey: DefaultKey.LocationLatitude.description)
         defaults.setDouble(location.longitude, forKey: DefaultKey.LocationLongitude.description)
         defaults.setBool(current, forKey: DefaultKey.CurrentLocation.description)
+        
+        if !current {
+            Bus.sendMessage(.FetchTimeZone, data: nil)
+        }
+    
         notifyLocation()
     }
     
@@ -160,8 +172,6 @@ class Location {
             
             defaults.setObject(locationHistoryNames, forKey: DefaultKey.LocationHistoryNames.description)
             defaults.setObject(locationHistoryPlaces, forKey: DefaultKey.LocationHistoryPlaceIDs.description)
-            
-            print(locationHistoryNames)
         }
     }
     
