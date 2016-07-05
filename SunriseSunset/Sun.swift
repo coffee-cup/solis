@@ -185,22 +185,43 @@ class Sun {
         var colours: [CGColorRef] = []
         var locations: [Float] = []
         
+        var lowestLocation: Float = -Float.infinity
+        var lowestColour: CGColorRef?
         for stl in futureTimeLines.reverse() {
             let per = 0.5  - getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 colours.append(stl.suntime.colour)
                 locations.append(per)
             }
+            if per < 0 && per > lowestLocation {
+                lowestLocation = per
+                lowestColour = stl.suntime.colour
+            }
             stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
+        if let lowestColour = lowestColour {
+            locations.insert(0, atIndex: 0)
+            colours.insert(lowestColour, atIndex: 0)
+        }
         
+        var highestLocation: Float = Float.infinity
+        var highestColour: CGColorRef?
         for stl in pastTimeLines.reverse() {
             let per = 0.5 + getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 colours.append(stl.suntime.colour)
                 locations.append(per)
             }
+            
+            if per > 1 && per < highestLocation {
+                highestLocation = per
+                highestColour = stl.suntime.colour
+            }
             stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
+        }
+        if let highestColour = highestColour {
+            locations.append(1)
+            colours.append(highestColour)
         }
         
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)
