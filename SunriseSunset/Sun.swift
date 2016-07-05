@@ -193,7 +193,7 @@ class Sun {
                 colours.append(stl.suntime.colour)
                 locations.append(per)
             }
-            if per < 0 && per > lowestLocation {
+            if per < 0 && per > lowestLocation && !stl.suntime.neverHappens {
                 lowestLocation = per
                 lowestColour = stl.suntime.colour
             }
@@ -213,7 +213,7 @@ class Sun {
                 locations.append(per)
             }
             
-            if per > 1 && per < highestLocation {
+            if per > 1 && per < highestLocation && !stl.suntime.neverHappens {
                 highestLocation = per
                 highestColour = stl.suntime.colour
             }

@@ -306,12 +306,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func normalizeOffsets(transformBy: Double, offsetBy: Double) -> (Double, Double) {
         var newTransformBy = transformBy
         var newOffsetBy = offsetBy
+        let ViewPadding: Double = 4
         
         let halfHeight = Double(sun.screenHeight) / 2
         let halfSunHeight = Double(sun.sunHeight) / 2
         let neg = transformBy < 0
-        if abs(transformBy) > halfSunHeight - halfHeight {
-            newTransformBy = halfSunHeight - halfHeight
+        if abs(transformBy) > halfSunHeight - halfHeight - ViewPadding {
+            newTransformBy = halfSunHeight - halfHeight - ViewPadding
             newOffsetBy = sun.pointsToMinutes(transformBy)
             
             newTransformBy = neg ? newTransformBy * -1 : newTransformBy
