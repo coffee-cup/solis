@@ -28,6 +28,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var buttonLocation: UIButton!
     @IBOutlet weak var currentLocationLabel: UILabel!
     
+    @IBOutlet weak var buttonAbout: UIButton!
+    
     var timeButtons: [UIButton]!
     var notificationButtons: [UIButton]!
     var menuButtons: [UIButton] = []
@@ -188,6 +190,16 @@ class MenuViewController: UIViewController {
         if let locationChangeViewController = storyboard.instantiateViewControllerWithIdentifier("LocationChange") as? LocationChangeViewController {
             locationChangeViewController.modalPresentationStyle = .OverCurrentContext
             presentViewController(locationChangeViewController, animated: true) {
+                Bus.sendMessage(.ShowStatusBar, data: nil)
+            }
+        }
+    }
+    
+    @IBAction func aboutButtonDidTouch(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let infoVMenuViewController = storyboard.instantiateViewControllerWithIdentifier("InfoMenu") as? InfoVMenuViewController {
+            infoVMenuViewController.modalPresentationStyle = .OverCurrentContext
+            presentViewController(infoVMenuViewController, animated: true) {
                 Bus.sendMessage(.ShowStatusBar, data: nil)
             }
         }
