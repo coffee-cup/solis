@@ -107,6 +107,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         touchDownView = view as! TouchDownView
         touchDownView.delegate = self
         
+        touchDownView.backgroundColor = nauticalColour
+        gradientLayer.backgroundColor = nauticalColour.CGColor
         sunView.layer.addSublayer(gradientLayer)
         
         nowLabel.textColor = nameTextColour
