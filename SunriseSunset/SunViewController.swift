@@ -149,8 +149,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         Bus.subscribeEvent(.LocationUpdate, observer: self, selector: #selector(locationUpdate))
         Bus.subscribeEvent(.LocationChanged, observer: self, selector: #selector(locationChanged))
         Bus.subscribeEvent(.GotTimeZone, observer: self, selector: #selector(timeZoneUpdate))
-//        Bus.subscribeEvent(.MenuOut, observer: self, selector: #selector(menuOut))
-//        Bus.subscribeEvent(.MenuIn, observer: self, selector: #selector(menuIn))
         Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
         
         setupPermissions()
