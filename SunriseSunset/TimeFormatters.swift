@@ -39,7 +39,7 @@ class TimeFormatters {
     
     static var formatter24hInstance = TimeFormatters.timeFormatter(TimeFormat.hour24.description, timeZone: NSTimeZone.localTimeZone())
     class func formatter24h(timeZone: NSTimeZone) -> NSDateFormatter {
-        return formatter24hInstance.timeZone == timeZone ? formatter12hInstance : timeFormatter(TimeFormat.hour24.description, timeZone: timeZone)
+        return formatter24hInstance.timeZone == timeZone ? formatter24hInstance : timeFormatter(TimeFormat.hour24.description, timeZone: timeZone)
     }
     
     static func currentFormatter(timeZone: NSTimeZone) -> NSDateFormatter? {
