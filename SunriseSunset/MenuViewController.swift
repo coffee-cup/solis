@@ -42,12 +42,12 @@ class MenuViewController: UIViewController {
         screenWidth = view.frame.width
         
         // Shadow
-        let shadowPath = UIBezierPath(rect: menuView.bounds)
-        menuView.layer.masksToBounds = false
-        menuView.layer.shadowColor = UIColor.blackColor().CGColor
-        menuView.layer.shadowOffset = CGSizeMake(2, 2)
-        menuView.layer.shadowOpacity = 0.2;
-        menuView.layer.shadowPath = shadowPath.CGPath
+//        let shadowPath = UIBezierPath(rect: menuView.bounds)
+//        menuView.layer.masksToBounds = false
+//        menuView.layer.shadowColor = UIColor.blackColor().CGColor
+//        menuView.layer.shadowOffset = CGSizeMake(2, 2)
+//        menuView.layer.shadowOpacity = 0.2;
+//        menuView.layer.shadowPath = shadowPath.CGPath
         
         menuView.backgroundColor = menuBackgroundColour
         
