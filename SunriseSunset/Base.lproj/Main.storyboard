@@ -96,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-Os-DA5">
-                                <rect key="frame" x="0.0" y="-2669" width="375" height="6004"/>
+                                <rect key="frame" x="0.0" y="-1" width="375" height="668"/>
                                 <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-1S-9Gf">
@@ -147,7 +147,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ghu-1S-9Gf" secondAttribute="trailing" constant="20" id="iMs-Wh-oOF"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="idh-oU-Yto"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nOv-cc-9qv"/>
-                            <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="9" id="oqW-1e-dSo"/>
+                            <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="oqW-1e-dSo"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="top" secondItem="Ghu-1S-9Gf" secondAttribute="bottom" constant="2" id="vkg-3d-MsP"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
                         </constraints>
@@ -166,6 +166,7 @@
                         <outlet property="nowTimeLabel" destination="rrh-ze-8hI" id="cHu-ac-I26"/>
                         <outlet property="pastLabel" destination="oYK-kR-m70" id="U5N-Vn-EE4"/>
                         <outlet property="sunView" destination="hJD-Os-DA5" id="NkQ-0y-vgO"/>
+                        <outlet property="sunViewHeightContraint" destination="oqW-1e-dSo" id="vbh-2E-wpI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

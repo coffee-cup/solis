@@ -26,6 +26,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
+    @IBOutlet weak var sunViewHeightContraint: NSLayoutConstraint!
+    
     // You guessed it: users current coordinates
     var myLoc: CLLocationCoordinate2D!
     
@@ -91,7 +93,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Whether or not the sun view is fading due to the menu animating
     let menuAnimation = false
     
-    // Are we currently animating the background in or out
+    // How large the sun view is compared to the normal view
+    let SunViewScreenMultiplier: CGFloat = 9
     
     // Modal we use to get location permissions
     let pscope = PermissionScope()
@@ -100,9 +103,17 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let screenMinutes = Float(6 * 60)
+        sunView.translatesAutoresizingMaskIntoConstraints = false
+        sunViewHeightContraint.constant = view.frame.height * SunViewScreenMultiplier
+        
+        let screenMinutes = Float(60 * 6) // 6 hours / screen height
         let screenHeight = Float(view.frame.height)
-        let sunHeight = Float(sunView.frame.height)
+        let sunHeight = Float(sunViewHeightContraint.constant)
+        
+        print("sun frame: \(sunView.frame.height)")
+        print("sun constraing: \(sunViewHeightContraint.constant)")
+        print("supposed: \(568 * SunViewScreenMultiplier)")
+            
         
         touchDownView = view as! TouchDownView
         touchDownView.delegate = self
@@ -306,7 +317,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func normalizeOffsets(transformBy: Double, offsetBy: Double) -> (Double, Double) {
         var newTransformBy = transformBy
         var newOffsetBy = offsetBy
-        let ViewPadding: Double = 4
+        let ViewPadding: Double = 0
         
         let halfHeight = Double(sun.screenHeight) / 2
         let halfSunHeight = Double(sun.sunHeight) / 2
