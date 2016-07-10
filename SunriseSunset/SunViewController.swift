@@ -110,11 +110,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let screenHeight = Float(view.frame.height)
         let sunHeight = Float(sunViewHeightContraint.constant)
         
-        print("sun frame: \(sunView.frame.height)")
-        print("sun constraing: \(sunViewHeightContraint.constant)")
-        print("supposed: \(568 * SunViewScreenMultiplier)")
-            
-        
         touchDownView = view as! TouchDownView
         touchDownView.delegate = self
         
@@ -163,6 +158,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
         
         setupPermissions()
+        
+        reset()
+        scrollReset()
     }
     
     override func viewWillAppear(animated: Bool) {
