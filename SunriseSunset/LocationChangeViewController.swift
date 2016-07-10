@@ -87,7 +87,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     func updateWithSearchResults(results: [GMSAutocompletePrediction]) {
         places = results.map { result in
-            print(result)
             return Prediction(primary: result.attributedPrimaryText.string, seconday: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
         }
         searchTableView.reloadData()
