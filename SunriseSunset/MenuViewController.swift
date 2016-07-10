@@ -197,10 +197,9 @@ class MenuViewController: UIViewController {
     
     @IBAction func aboutButtonDidTouch(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let infoVMenuViewController = storyboard.instantiateViewControllerWithIdentifier("InfoMenu") as? InfoVMenuViewController {
-            infoVMenuViewController.modalPresentationStyle = .OverCurrentContext
-            presentViewController(infoVMenuViewController, animated: true) {
-                Bus.sendMessage(.ShowStatusBar, data: nil)
+        if let infoMenuViewController = storyboard.instantiateViewControllerWithIdentifier("InfoMenu") as? InfoMenuViewController {
+            infoMenuViewController.modalPresentationStyle = .OverCurrentContext
+            presentViewController(infoMenuViewController, animated: true) {
             }
         }
     }

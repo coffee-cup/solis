@@ -29,6 +29,7 @@
 		9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
 		9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
 		9C27BE671D2CDBDE0093B2A6 /* InfoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27BE661D2CDBDE0093B2A6 /* InfoMenuViewController.swift */; };
+		9C27BE6B1D3212520093B2A6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27BE6A1D3212520093B2A6 /* UIButton.swift */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9C3314F41CE9712F004D012E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
@@ -119,6 +120,7 @@
 		9C236CD71D16798300FB9985 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatters.swift; sourceTree = "<group>"; };
 		9C27BE661D2CDBDE0093B2A6 /* InfoMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoMenuViewController.swift; sourceTree = "<group>"; };
+		9C27BE6A1D3212520093B2A6 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		9C3314F11CE95783004D012E /* Suntime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suntime.swift; sourceTree = "<group>"; };
 		9C3314F31CE9712F004D012E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				9C3314F61CE976BE004D012E /* NSDate.swift */,
 				9C3314F81CE9A723004D012E /* UIColor.swift */,
 				9CC427A41D11088100693E32 /* UILabel.swift */,
+				9C27BE6A1D3212520093B2A6 /* UIButton.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9CC427A51D11088100693E32 /* UILabel.swift in Sources */,
+				9C27BE6B1D3212520093B2A6 /* UIButton.swift in Sources */,
 				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
