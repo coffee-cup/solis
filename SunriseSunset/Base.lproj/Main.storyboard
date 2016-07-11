@@ -66,6 +66,23 @@
                                     <segue destination="QzE-la-Gm6" kind="embed" identifier="MenuSegue" id="ZMx-VL-qoz"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N13-bc-czv">
+                                <rect key="frame" x="30" y="593" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="4zc-os-ZtV"/>
+                                    <constraint firstAttribute="width" secondItem="N13-bc-czv" secondAttribute="height" multiplier="1:1" id="7iK-rA-SR7"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="menuButtonDidTouch:" destination="wF3-0W-CIN" eventType="touchUpInside" id="OWg-eq-IjV"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_button" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-kf-a5X" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
+                                <rect key="frame" x="37" y="600" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7gJ-kf-a5X" secondAttribute="height" multiplier="1:1" id="1KT-vm-NEJ"/>
+                                    <constraint firstAttribute="width" constant="30" id="c5c-zf-vGu"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -77,12 +94,18 @@
                             <constraint firstItem="0v8-n2-2RF" firstAttribute="leading" secondItem="uQM-Lg-6Gq" secondAttribute="leading" id="ZQf-Pk-zV6"/>
                             <constraint firstItem="qAh-lL-ukP" firstAttribute="leading" secondItem="uQM-Lg-6Gq" secondAttribute="leading" id="cx0-3T-Kbg"/>
                             <constraint firstAttribute="trailing" secondItem="0v8-n2-2RF" secondAttribute="trailing" id="h5Z-TU-1X8"/>
+                            <constraint firstItem="7gJ-kf-a5X" firstAttribute="centerX" secondItem="N13-bc-czv" secondAttribute="centerX" id="jhJ-r7-cEc"/>
+                            <constraint firstItem="7gJ-kf-a5X" firstAttribute="centerY" secondItem="N13-bc-czv" secondAttribute="centerY" id="o0l-Yu-ApP"/>
+                            <constraint firstItem="N13-bc-czv" firstAttribute="leading" secondItem="uQM-Lg-6Gq" secondAttribute="leading" constant="30" id="qMc-nh-thv"/>
+                            <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="N13-bc-czv" secondAttribute="bottom" constant="30" id="uAY-QZ-3jv"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="menuButton" destination="N13-bc-czv" id="e3M-ZQ-uHt"/>
                         <outlet property="menuContainerView" destination="qAh-lL-ukP" id="tFd-4i-jWj"/>
+                        <outlet property="menuImageView" destination="7gJ-kf-a5X" id="UNx-1p-DEi"/>
                         <outlet property="menuLeadingConstraint" destination="cx0-3T-Kbg" id="DZS-bh-vNO"/>
                         <outlet property="sunContainerView" destination="0v8-n2-2RF" id="513-8U-RV9"/>
                     </connections>
@@ -607,7 +630,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiU-9l-GVM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-fj-co0">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-fj-co0" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Day"/>
@@ -628,7 +651,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPX-hT-eBo">
                                 <rect key="frame" x="0.0" y="533" width="375" height="134"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-UR-NrF">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-UR-NrF" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Night"/>
@@ -659,34 +682,34 @@
                                     <constraint firstAttribute="bottom" secondItem="fwJ-H9-u6M" secondAttribute="bottom" constant="20" id="tOH-Mt-h50"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="133" width="375" height="133"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Civil"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIg-ya-GXC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIg-ya-GXC" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="266" width="375" height="133"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Nautical"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-Mg-z0w">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-Mg-z0w" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="399" width="375" height="134"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Astronomical"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-4w-WOZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-4w-WOZ" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="163" y="213" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="163" y="345" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="163" y="479" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -761,6 +784,7 @@
         <image name="info" width="20" height="20"/>
         <image name="last_off" width="71" height="17"/>
         <image name="location" width="75" height="75"/>
+        <image name="menu_button" width="30" height="30"/>
         <image name="rise_off" width="56" height="27"/>
         <image name="set_off" width="56" height="27"/>
         <image name="settings" width="20" height="20"/>

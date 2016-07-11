@@ -23,6 +23,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var menuImageView: SpringImageView!
+    
     var menuViewController: MenuViewController!
     var sunViewController: SunViewController!
     
@@ -59,6 +62,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         addGestureRecognizers()
         Bus.subscribeEvent(.SendMenuIn, observer: self, selector: #selector(sendMenuIn))
+        
+        menuImageView.duration = CGFloat(1)
+        menuImageView.curve = "easeInOut"
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -124,6 +130,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
                 self.menuContainerView.alpha = 0
                 self.delegate?.menuIsIn()
         })
+        sendMenuButtonOut()
     }
     
     func menuHardOut() {
@@ -191,6 +198,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
                 holdingWhileOut = true
                 anchorX = menuWidth - fingerX
             }
+            sendMenuButtonIn()
         } else if recognizer.state == .Changed {
             if holdingWhileOut {
                 menuToFinger(fingerX + anchorX)
@@ -211,5 +219,21 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    func sendMenuButtonOut() {
+        menuImageView.animation = "fadeIn"
+        menuImageView.animate()
+    }
+    
+    func sendMenuButtonIn() {
+        menuImageView.animation = "fadeOut"
+        menuImageView.animate()
+    }
+    
+    @IBAction func menuButtonDidTouch(sender: AnyObject) {
+        menuSoftOut()
+        
+        sendMenuButtonIn()
     }
 }
