@@ -15,21 +15,30 @@ class InfoMenuViewController: UIViewController {
     @IBOutlet weak var twilightView: UIView!
     @IBOutlet weak var nightView: UIView!
     
-    @IBOutlet weak var dayButton: UIButton!
-    @IBOutlet weak var civilButton: UIButton!
-    @IBOutlet weak var nauticalButton: UIButton!
-    @IBOutlet weak var astronomicalButton: UIButton!
-    @IBOutlet weak var nightButton: UIButton!
-    @IBOutlet weak var civilTwilightLabel: UILabel!
-    @IBOutlet weak var nauticalTwilightLabel: UILabel!
-    @IBOutlet weak var astronomicalTwilightLabel: UILabel!
+    @IBOutlet weak var dayButton: SpringButton!
+    @IBOutlet weak var civilButton: SpringButton!
+    @IBOutlet weak var nauticalButton: SpringButton!
+    @IBOutlet weak var astronomicalButton: SpringButton!
+    @IBOutlet weak var nightButton: SpringButton!
+    @IBOutlet weak var civilTwilightLabel: SpringLabel!
+    @IBOutlet weak var nauticalTwilightLabel: SpringLabel!
+    @IBOutlet weak var astronomicalTwilightLabel: SpringLabel!
     
     @IBOutlet weak var backButton: UIButton!
     
+    var infoButtons: [SpringButton] = []
+    var twilightLabels: [SpringLabel] = []
+    
     var twilightGradientLayer: CAGradientLayer!
+    
+    let ButtonAnimationDuration: CGFloat = 1
+    let ButtonAnimationDelay: CGFloat = 0.200
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        infoButtons = [dayButton, civilButton, nauticalButton, astronomicalButton, nightButton]
+        twilightLabels = [civilTwilightLabel, nauticalTwilightLabel, astronomicalTwilightLabel]
         
         // Colour Views
         dayView.backgroundColor = risesetColour
@@ -48,6 +57,10 @@ class InfoMenuViewController: UIViewController {
         astronomicalButton.addSimpleShadow()
         nightButton.addSimpleShadow()
         
+        for button in infoButtons {
+            button.addTarget(self, action: #selector(infoButtonPressed), forControlEvents: .TouchDown)
+        }
+        
         let highlightColour = UIColor.lightGrayColor()
         dayButton.setTitleColor(highlightColour, forState: .Highlighted)
         civilButton.setTitleColor(highlightColour, forState: .Highlighted)
@@ -63,6 +76,8 @@ class InfoMenuViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        animateButtonsIn()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -78,6 +93,55 @@ class InfoMenuViewController: UIViewController {
     }
     
     @IBAction func backButtonDidTouch(sender: AnyObject) {
+        goBack()
+    }
+    
+    func goBack() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func animateButtonsIn() {
+        for (index, button) in infoButtons.enumerate() {
+            button.animation = "fadeInRight"
+            button.duration = ButtonAnimationDuration
+            button.delay = CGFloat(index + 1) * ButtonAnimationDelay
+            button.curve = "easeInOut"
+            button.animate()
+        }
+        
+        for (index, label) in twilightLabels.enumerate() {
+            label.animation = "fadeInRight"
+            label.duration = ButtonAnimationDuration
+            label.delay = CGFloat(index + 2) * ButtonAnimationDelay + CGFloat(0.250)
+            label.curve = "easeInOut"
+            label.animate()
+        }
+    }
+    
+    func animateButtonsOut(completion: (()->())) {
+        for (index, button) in infoButtons.enumerate() {
+            button.animation = "fadeOut"
+            button.duration = 0.5
+            button.delay = CGFloat(index + 1) * ButtonAnimationDelay
+            
+            if index == infoButtons.count - 1 {
+                button.animateNext(completion)
+            } else {
+                button.animate()
+            }
+        }
+        
+        for (index, label) in twilightLabels.enumerate() {
+            label.animation = "fadeOut"
+            label.duration = 0.5
+            label.delay = CGFloat(index + 2) * ButtonAnimationDelay
+            label.animate()
+        }
+    }
+    
+    func infoButtonPressed(sender: AnyObject) {
+        animateButtonsOut() {
+            self.goBack()
+        }
     }
 }
