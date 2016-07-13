@@ -164,12 +164,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2Xy-0p-BC7"/>
+                            <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" placeholder="YES" id="2Xy-0p-BC7"/>
                             <constraint firstAttribute="trailing" secondItem="M0S-kq-de6" secondAttribute="trailing" id="9wP-X3-RDO"/>
-                            <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Asv-YP-ZWW"/>
+                            <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="Asv-YP-ZWW"/>
                             <constraint firstItem="oYK-kR-m70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoW-9a-L6M"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="100" id="H0f-tv-aad"/>
-                            <constraint firstAttribute="trailing" secondItem="hJD-Os-DA5" secondAttribute="trailing" id="Mz9-UT-ZKM"/>
+                            <constraint firstAttribute="trailing" secondItem="hJD-Os-DA5" secondAttribute="trailing" placeholder="YES" id="Mz9-UT-ZKM"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="NMJ-2O-MYh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="centerY" secondItem="M0S-kq-de6" secondAttribute="centerY" id="VPU-Q9-1Qj"/>
@@ -439,7 +439,7 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDg-oU-zCM">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDg-oU-zCM">
                                         <rect key="frame" x="181" y="597" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UgY-jz-MBR"/>

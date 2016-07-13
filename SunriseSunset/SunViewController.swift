@@ -106,7 +106,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let sunHeight = screenHeight * Float(SunViewScreenMultiplier)
         
         sunView.translatesAutoresizingMaskIntoConstraints = true
-        sunView.frame = CGRectMake(0, 0, sunView.frame.width, CGFloat(sunHeight))
+        sunView.frame = CGRectMake(0, 0, view.frame.width, CGFloat(sunHeight))
         sunView.center = view.center
         
         touchDownView = view as! TouchDownView
