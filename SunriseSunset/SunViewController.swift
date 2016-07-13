@@ -26,8 +26,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
-    @IBOutlet weak var sunViewHeightContraint: NSLayoutConstraint!
-    
     // You guessed it: users current coordinates
     var myLoc: CLLocationCoordinate2D!
     
@@ -103,12 +101,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        sunView.translatesAutoresizingMaskIntoConstraints = false
-        sunViewHeightContraint.constant = view.frame.height * SunViewScreenMultiplier
-        
         let screenMinutes = Float(60 * 6) // 6 hours / screen height
         let screenHeight = Float(view.frame.height)
-        let sunHeight = Float(sunViewHeightContraint.constant)
+        let sunHeight = screenHeight * Float(SunViewScreenMultiplier)
+        
+        sunView.translatesAutoresizingMaskIntoConstraints = true
+        sunView.frame = CGRectMake(0, 0, sunView.frame.width, CGFloat(sunHeight))
+        sunView.center = view.center
         
         touchDownView = view as! TouchDownView
         touchDownView.delegate = self
