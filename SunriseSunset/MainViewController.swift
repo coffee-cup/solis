@@ -177,6 +177,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if recognizer.state == .Began {
             menuContainerView.alpha = 1
+            if !menuOut {
+                sendMenuButtonIn()
+            }
         } else if recognizer.state == .Changed {
             if !menuOut {
                 menuToFinger(fingerX)
@@ -198,7 +201,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
                 holdingWhileOut = true
                 anchorX = menuWidth - fingerX
             }
-            sendMenuButtonIn()
         } else if recognizer.state == .Changed {
             if holdingWhileOut {
                 menuToFinger(fingerX + anchorX)
