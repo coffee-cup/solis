@@ -141,7 +141,17 @@ class InfoMenuViewController: UIViewController {
     
     func infoButtonPressed(sender: AnyObject) {
         animateButtonsOut() {
-            self.goBack()
+            self.performSegueWithIdentifier("InfoSegue", sender: sender)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let button = sender as? UIButton {
+            if let infoViewController = segue.destinationViewController as? InfoViewController {
+                if let title = button.currentTitle {
+                    infoViewController.setInfo(title)
+                }
+            }
         }
     }
 }
