@@ -411,7 +411,6 @@
 		9CB37BE71CE844400080B5B1 /* SunriseSunset */ = {
 			isa = PBXGroup;
 			children = (
-				9C58B36D1D3365C000EBAD1D /* Spring */,
 				9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */,
 				9C4EFA001D1A6C13001CA591 /* Objective-CBridgingHeader.h */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
@@ -432,6 +431,7 @@
 				9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */,
 				9CB37BEC1CE844400080B5B1 /* Main.storyboard */,
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
+				9C58B36D1D3365C000EBAD1D /* Spring */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 			);
