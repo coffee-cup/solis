@@ -9,6 +9,4 @@
 #ifndef Objective_CBridgingHeader_h
 #define Objective_CBridgingHeader_h
 
-#import "APTimeZones"
-
 #endif /* Objective_CBridgingHeader_h */
