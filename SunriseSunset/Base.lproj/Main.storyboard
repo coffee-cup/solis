@@ -659,7 +659,7 @@
                                         <state key="normal" title="Night"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwJ-H9-u6M">
-                                        <rect key="frame" x="20" y="70" width="44" height="44"/>
+                                        <rect key="frame" x="20" y="72" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="5iE-IQ-cET"/>
                                             <constraint firstAttribute="width" constant="44" id="wUE-1G-xcD"/>
@@ -669,7 +669,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ZU-Q0H">
-                                        <rect key="frame" x="31" y="74" width="23" height="36"/>
+                                        <rect key="frame" x="34" y="80" width="16" height="28"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
@@ -681,7 +681,7 @@
                                     <constraint firstItem="xCf-UR-NrF" firstAttribute="leading" secondItem="NPX-hT-eBo" secondAttribute="leading" id="Ja0-Qg-Qe1"/>
                                     <constraint firstItem="fdk-ZU-Q0H" firstAttribute="centerX" secondItem="fwJ-H9-u6M" secondAttribute="centerX" id="eSV-zI-RNj"/>
                                     <constraint firstItem="xCf-UR-NrF" firstAttribute="top" secondItem="NPX-hT-eBo" secondAttribute="top" id="iwA-X1-lO6"/>
-                                    <constraint firstAttribute="bottom" secondItem="fwJ-H9-u6M" secondAttribute="bottom" constant="20" id="tOH-Mt-h50"/>
+                                    <constraint firstAttribute="bottom" secondItem="fwJ-H9-u6M" secondAttribute="bottom" constant="18" id="tOH-Mt-h50"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
@@ -706,13 +706,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="163" y="345" width="49" height="18"/>
+                                <rect key="frame" x="163" y="346" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="163" y="479" width="49" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                                <rect key="frame" x="163" y="480" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -805,65 +805,75 @@
                                 <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-GB-Qxm">
-                                <rect key="frame" x="20" y="320" width="335" height="263"/>
-                                <mutableString key="text">Civil Twilight occurs when the sun is between 0 and 6 degrees below the horizon. In the morning it is called civil dawn and in the evening it is civil dusk.
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-GB-Qxm">
+                                <rect key="frame" x="20" y="315" width="335" height="282"/>
+                                <string key="text">Civil Twilight occurs when the sun is between 0 and 6 degrees below the horizon. In the morning it is called civil dawn and in the evening it is civil dusk.
 
-It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.</mutableString>
-                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.</string>
+                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDc-bo-SCW">
-                                <rect key="frame" x="20" y="603" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="c7c-xY-E6Q"/>
-                                    <constraint firstAttribute="height" constant="44" id="fRv-DH-I1C"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="backButtonDidTouch:" destination="a7w-Tz-0eV" eventType="touchUpInside" id="iZj-iy-EQ7"/>
-                                    <action selector="backButtonDidTouch:" destination="Su2-8l-PQx" eventType="touchUpInside" id="noY-NN-4ug"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_dark" translatesAutoresizingMaskIntoConstraints="NO" id="wfK-um-tra">
-                                <rect key="frame" x="34" y="611" width="16" height="28"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-pA-tbU">
-                                <rect key="frame" x="267" y="609" width="88" height="32"/>
-                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
-                                <state key="normal" title="Learn More">
-                                    <color key="titleColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAe-kE-EvA">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAe-kE-EvA">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Astronomical Twilight" id="k70-2J-0Vr"/>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgJ-kH-bCl">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDc-bo-SCW">
+                                        <rect key="frame" x="20" y="8" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="c7c-xY-E6Q"/>
+                                            <constraint firstAttribute="height" constant="44" id="fRv-DH-I1C"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="backButtonDidTouch:" destination="a7w-Tz-0eV" eventType="touchUpInside" id="iZj-iy-EQ7"/>
+                                            <action selector="backButtonDidTouch:" destination="Su2-8l-PQx" eventType="touchUpInside" id="noY-NN-4ug"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="wfK-um-tra">
+                                        <rect key="frame" x="34" y="16" width="16" height="28"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-pA-tbU">
+                                        <rect key="frame" x="267" y="14" width="88" height="32"/>
+                                        <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
+                                        <state key="normal" title="Learn More"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.31372549019607843" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="wfK-um-tra" firstAttribute="centerY" secondItem="mDc-bo-SCW" secondAttribute="centerY" id="4CC-XE-fuc"/>
+                                    <constraint firstItem="mDc-bo-SCW" firstAttribute="leading" secondItem="DgJ-kH-bCl" secondAttribute="leading" constant="20" id="777-pr-6wQ"/>
+                                    <constraint firstItem="HzJ-pA-tbU" firstAttribute="centerY" secondItem="DgJ-kH-bCl" secondAttribute="centerY" id="IRv-z3-zuc"/>
+                                    <constraint firstItem="mDc-bo-SCW" firstAttribute="centerY" secondItem="DgJ-kH-bCl" secondAttribute="centerY" id="ZnG-he-2id"/>
+                                    <constraint firstAttribute="trailing" secondItem="HzJ-pA-tbU" secondAttribute="trailing" constant="20" id="eKa-aC-UwN"/>
+                                    <constraint firstItem="wfK-um-tra" firstAttribute="centerX" secondItem="mDc-bo-SCW" secondAttribute="centerX" id="kZZ-f3-t27"/>
+                                    <constraint firstAttribute="height" constant="60" id="nrx-Cl-KrK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HzJ-pA-tbU" firstAttribute="centerY" secondItem="wfK-um-tra" secondAttribute="centerY" id="0tw-Yh-yQX"/>
                             <constraint firstItem="lwu-GB-Qxm" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" constant="20" id="171-8H-dqq"/>
+                            <constraint firstItem="jEB-1K-tYa" firstAttribute="top" secondItem="DgJ-kH-bCl" secondAttribute="bottom" id="1Tg-7e-axA"/>
                             <constraint firstItem="KY8-db-26V" firstAttribute="top" secondItem="JeB-0h-p8V" secondAttribute="bottom" constant="10" id="2JX-AY-y0U"/>
-                            <constraint firstItem="wfK-um-tra" firstAttribute="centerX" secondItem="mDc-bo-SCW" secondAttribute="centerX" id="2cE-eh-pE1"/>
-                            <constraint firstItem="wfK-um-tra" firstAttribute="centerY" secondItem="mDc-bo-SCW" secondAttribute="centerY" id="5nY-SM-1Km"/>
-                            <constraint firstItem="mDc-bo-SCW" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" constant="20" id="BIr-HM-h4f"/>
+                            <constraint firstAttribute="trailing" secondItem="DgJ-kH-bCl" secondAttribute="trailing" id="Bfw-cL-UlM"/>
                             <constraint firstAttribute="trailing" secondItem="KY8-db-26V" secondAttribute="trailing" constant="20" id="GQb-RX-ESd"/>
                             <constraint firstAttribute="trailing" secondItem="NAe-kE-EvA" secondAttribute="trailing" id="HbV-zN-EE9"/>
                             <constraint firstItem="JeB-0h-p8V" firstAttribute="top" secondItem="NAe-kE-EvA" secondAttribute="bottom" id="J7f-Y3-dle"/>
-                            <constraint firstItem="lwu-GB-Qxm" firstAttribute="top" secondItem="KY8-db-26V" secondAttribute="bottom" constant="10" id="K0p-hW-xHA"/>
+                            <constraint firstItem="lwu-GB-Qxm" firstAttribute="top" secondItem="KY8-db-26V" secondAttribute="bottom" constant="5" id="K0p-hW-xHA"/>
                             <constraint firstItem="NAe-kE-EvA" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" id="O9p-4g-J4A"/>
-                            <constraint firstAttribute="trailing" secondItem="HzJ-pA-tbU" secondAttribute="trailing" constant="20" id="OKR-XA-t41"/>
-                            <constraint firstItem="jEB-1K-tYa" firstAttribute="top" secondItem="mDc-bo-SCW" secondAttribute="bottom" constant="20" id="SFb-lG-HoZ"/>
+                            <constraint firstItem="DgJ-kH-bCl" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" id="PPL-1g-du0"/>
+                            <constraint firstItem="DgJ-kH-bCl" firstAttribute="top" secondItem="lwu-GB-Qxm" secondAttribute="bottom" constant="10" id="PYR-WZ-V6w"/>
                             <constraint firstAttribute="trailing" secondItem="JeB-0h-p8V" secondAttribute="trailing" id="Tkz-jR-sAz"/>
                             <constraint firstItem="NAe-kE-EvA" firstAttribute="top" secondItem="w9f-tB-VaS" secondAttribute="bottom" id="fd1-9P-ibF"/>
                             <constraint firstItem="JeB-0h-p8V" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" id="iJf-ZP-1XL"/>
                             <constraint firstItem="KY8-db-26V" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" constant="20" id="mQG-Jl-XqD"/>
                             <constraint firstAttribute="trailing" secondItem="lwu-GB-Qxm" secondAttribute="trailing" constant="20" id="rCk-QO-gpB"/>
                             <constraint firstItem="NAe-kE-EvA" firstAttribute="top" secondItem="PrM-9z-X82" secondAttribute="top" id="ugZ-k4-QMk"/>
-                            <constraint firstItem="mDc-bo-SCW" firstAttribute="top" secondItem="lwu-GB-Qxm" secondAttribute="bottom" constant="20" id="ysT-n3-DCt"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -875,9 +885,12 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="backButton" destination="mDc-bo-SCW" id="bj3-4w-FAK"/>
+                        <outlet property="bottomView" destination="DgJ-kH-bCl" id="dgK-kS-jfX"/>
+                        <outlet property="imageView" destination="JeB-0h-p8V" id="MBu-aJ-tot"/>
                         <outlet property="learnMoreButton" destination="HzJ-pA-tbU" id="D3p-cy-Gd0"/>
                         <outlet property="navigationBar" destination="NAe-kE-EvA" id="oRa-mq-GvL"/>
                         <outlet property="navigationBarItem" destination="k70-2J-0Vr" id="33I-ba-N1T"/>
+                        <outlet property="textView" destination="lwu-GB-Qxm" id="wI3-ac-QQA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpc-ro-rYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -887,8 +900,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
     </scenes>
     <resources>
         <image name="Logo" width="146" height="28"/>
-        <image name="back_dark" width="16" height="28"/>
-        <image name="back_light" width="23" height="36"/>
+        <image name="back_light" width="16" height="28"/>
         <image name="civil_twilight" width="375" height="220"/>
         <image name="first_off" width="71" height="17"/>
         <image name="info" width="20" height="20"/>

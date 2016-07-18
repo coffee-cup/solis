@@ -69,6 +69,9 @@
 		9C58B3A61D3365C000EBAD1D /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58B3891D3365C000EBAD1D /* TransitionManager.swift */; };
 		9C58B3A71D3365C000EBAD1D /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58B38A1D3365C000EBAD1D /* TransitionZoom.swift */; };
 		9C58B3A81D3365C000EBAD1D /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58B38B1D3365C000EBAD1D /* UnwindSegue.swift */; };
+		9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */; };
+		9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
+		9C6BCB231D3CA7080069BC16 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		9C857ADE1D23ABCA0016F9EC /* EDSunriseSet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C857ADD1D23ABCA0016F9EC /* EDSunriseSet.framework */; };
 		9C857AE01D23ABDC0016F9EC /* SwiftLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */; };
 		9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C88799F1D3752AF00B8D1B9 /* InfoViewController.swift */; };
@@ -191,6 +194,8 @@
 		9C58B3891D3365C000EBAD1D /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		9C58B38A1D3365C000EBAD1D /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		9C58B38B1D3365C000EBAD1D /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
+		9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoData.swift; sourceTree = "<group>"; };
+		9C6BCB211D3CA6F00069BC16 /* SunType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunType.swift; sourceTree = "<group>"; };
 		9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9C857ADD1D23ABCA0016F9EC /* EDSunriseSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EDSunriseSet.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SunriseSunset-esumxsdsrqiykhcezudskznhehjj/Build/Products/Debug-iphoneos/EDSunriseSet/EDSunriseSet.framework"; sourceTree = "<group>"; };
 		9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftLocation.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SunriseSunset-esumxsdsrqiykhcezudskznhehjj/Build/Products/Debug-iphoneos/SwiftLocation/SwiftLocation.framework"; sourceTree = "<group>"; };
@@ -332,6 +337,7 @@
 				9CBB09AD1CED6D1000F344C4 /* Sun.swift */,
 				9C485AB01CED7E130086B22E /* Sunline.swift */,
 				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
+				9C6BCB211D3CA6F00069BC16 /* SunType.swift */,
 			);
 			name = SunStuff;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				9C58B36D1D3365C000EBAD1D /* Spring */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
+				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -852,6 +859,7 @@
 				9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */,
 				9C236CDA1D1679A800FB9985 /* Styles.swift in Sources */,
 				9CB5F2501D16791F005F4E10 /* Location.swift in Sources */,
+				9C6BCB231D3CA7080069BC16 /* SunType.swift in Sources */,
 				9C236CDC1D1679C200FB9985 /* Bus.swift in Sources */,
 				9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */,
 			);
@@ -864,6 +872,7 @@
 				9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
+				9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */,
 				9C58B3991D3365C000EBAD1D /* KeyboardLayoutConstraint.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9C58B3931D3365C000EBAD1D /* DesignableTabBarController.swift in Sources */,
@@ -890,6 +899,7 @@
 				9C58B39E1D3365C000EBAD1D /* Spring.swift in Sources */,
 				9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */,
 				9C58B3A21D3365C000EBAD1D /* SpringLabel.swift in Sources */,
+				9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */,
 				9C58B3951D3365C000EBAD1D /* DesignableTextView.swift in Sources */,
 				9C58B38D1D3365C000EBAD1D /* AsyncImageView.swift in Sources */,
 				9CB5F24B1D167719005F4E10 /* TodayViewController.swift in Sources */,

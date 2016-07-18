@@ -15,22 +15,38 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var navigationBarItem: UINavigationItem!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var learnMoreButton: UIButton!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
     
-    var infoTitle: String?
+    var infoTitle: String = "This is the title"
+    var infoText: String = "This is the text"
+    var infoURLString: String = "https://blahblah.com"
+    var infoImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationBar.titleTextAttributes =
-            [NSFontAttributeName: UIFont(name: fontLight, size: 16)!]
-        learnMoreButton.addUnderline()
-        learnMoreButton.setTitleColor(astronomicalColour, forState: .Normal)
+            [NSFontAttributeName: UIFont(name: fontLight, size: 18)!]
+        navigationBar.tintColor = UIColor.whiteColor()
+        
+        learnMoreButton.addUnderline(UIColor.whiteColor())
+        learnMoreButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        bottomView.backgroundColor = nauticalColour
+        
+        textView.contentInset = UIEdgeInsetsZero
+        textView.textContainerInset = UIEdgeInsetsZero
+        textView.textContainer.lineFragmentPadding = 0
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationBarItem.title = infoTitle
+        textView.text = infoText
+        imageView.image = infoImage
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,8 +65,11 @@ class InfoViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func setInfo(title: String) {
-        self.infoTitle = title
+    func setInfo(info: InfoData) {
+        infoTitle = info.title
+        infoText = info.text
+        infoImage = info.image
+        infoURLString = info.learnMoreURL
     }
     
     @IBAction func backButtonDidTouch(sender: AnyObject) {
