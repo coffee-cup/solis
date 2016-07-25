@@ -33,6 +33,6 @@ let buttonHighlighted = UIColor(hex: 0x75FFFD)
 let fontLight = "Muli-Light"
 let fontRegular = "Muli"
 
-let fontTwilight = UIFont(name: fontLight, size: 12)
-let fontDetail = UIFont(name: fontLight, size: 16)
+let fontTwilight = UIFont(name: fontRegular, size: 12)
+let fontDetail = UIFont(name: fontRegular, size: 16)
 let fontTitle = UIFont(name: fontLight, size: 20)

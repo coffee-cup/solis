@@ -28,9 +28,9 @@
             <string>Muli-Light</string>
             <string>Muli-Light</string>
             <string>Muli-Light</string>
-            <string>Muli-Light</string>
         </mutableArray>
         <mutableArray key="Muli-Regular.ttf">
+            <string>Muli</string>
             <string>Muli</string>
             <string>Muli</string>
             <string>Muli</string>
@@ -810,7 +810,8 @@
                                 <string key="text">Civil Twilight occurs when the sun is between 0 and 6 degrees below the horizon. In the morning it is called civil dawn and in the evening it is civil dusk.
 
 It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.</string>
-                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAe-kE-EvA">
@@ -841,6 +842,9 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                                         <rect key="frame" x="267" y="14" width="88" height="32"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                         <state key="normal" title="Learn More"/>
+                                        <connections>
+                                            <action selector="learnMoreButtonDidTouch:" destination="Su2-8l-PQx" eventType="touchUpInside" id="UYb-s7-MhA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.30588235294117649" green="0.31372549019607843" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
@@ -890,6 +894,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                         <outlet property="learnMoreButton" destination="HzJ-pA-tbU" id="D3p-cy-Gd0"/>
                         <outlet property="navigationBar" destination="NAe-kE-EvA" id="oRa-mq-GvL"/>
                         <outlet property="navigationBarItem" destination="k70-2J-0Vr" id="33I-ba-N1T"/>
+                        <outlet property="photoDescriptionLabel" destination="KY8-db-26V" id="jAd-b9-Yxc"/>
                         <outlet property="textView" destination="lwu-GB-Qxm" id="wI3-ac-QQA"/>
                     </connections>
                 </viewController>

@@ -34,6 +34,8 @@ class InfoMenuViewController: UIViewController {
     let ButtonAnimationDuration: CGFloat = 1
     let ButtonAnimationDelay: CGFloat = 0.200
     
+    let ButtonFadeOutDuration: CGFloat = 0.200
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -121,7 +123,7 @@ class InfoMenuViewController: UIViewController {
     func animateButtonsOut(completion: (()->())) {
         for (index, button) in infoButtons.enumerate() {
             button.animation = "fadeOut"
-            button.duration = 0.5
+            button.duration = ButtonFadeOutDuration
             button.delay = CGFloat(index + 1) * ButtonAnimationDelay
             
             if index == infoButtons.count - 1 {
@@ -133,7 +135,7 @@ class InfoMenuViewController: UIViewController {
         
         for (index, label) in twilightLabels.enumerate() {
             label.animation = "fadeOut"
-            label.duration = 0.5
+            label.duration = ButtonFadeOutDuration
             label.delay = CGFloat(index + 2) * ButtonAnimationDelay
             label.animate()
         }

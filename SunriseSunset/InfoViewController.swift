@@ -18,9 +18,11 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var photoDescriptionLabel: UILabel!
     
     var infoTitle: String = "This is the title"
     var infoText: String = "This is the text"
+    var infoPhotoDescription: String = "Photo taken at night"
     var infoURLString: String = "https://blahblah.com"
     var infoImage: UIImage?
     
@@ -46,6 +48,7 @@ class InfoViewController: UIViewController {
         
         navigationBarItem.title = infoTitle
         textView.text = infoText
+        photoDescriptionLabel.text = infoPhotoDescription
         imageView.image = infoImage
     }
     
@@ -68,8 +71,13 @@ class InfoViewController: UIViewController {
     func setInfo(info: InfoData) {
         infoTitle = info.title
         infoText = info.text
+        infoPhotoDescription = info.photoDescription
         infoImage = info.image
         infoURLString = info.learnMoreURL
+    }
+    
+    @IBAction func learnMoreButtonDidTouch(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: infoURLString)!)
     }
     
     @IBAction func backButtonDidTouch(sender: AnyObject) {
