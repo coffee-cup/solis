@@ -132,27 +132,27 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             var sunplace: SunPlace!
             if isSearching() {
                 sunplace = places[indexPath.row - 1]
+                let placeID = sunplace.placeID
+                placesClient.lookUpPlaceID(placeID) { googlePlace, error in
+                    guard error == nil else {
+                        print("PlaceID lookup error \(error)")
+                        return
+                    }
+                    
+                    guard let coordinate = googlePlace?.coordinate else {
+                        return
+                    }
+                    
+                    guard let _ = googlePlace?.name else {
+                        return
+                    }
+                    
+                    sunplace.location = coordinate
+                    Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
+                }
             } else {
                 sunplace = placeHistory[indexPath.row - 1]
-            }
-            let placeID = sunplace.placeID
-            print("place id: \(placeID)")
-            placesClient.lookUpPlaceID(placeID) { googlePlace, error in
-                guard error == nil else {
-                    print("PlaceID lookup error \(error)")
-                    return
-                }
-                
-                guard let coordinate = googlePlace?.coordinate else {
-                    return
-                }
-                
-                guard let _ = googlePlace?.name else {
-                    return
-                }
-                
-                sunplace.location = coordinate
-                Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
+                Location.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
             }
         }
     }
@@ -186,7 +186,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                 sunplace = places[indexPath.row - 1]
             } else {
                 sunplace = placeHistory[indexPath.row - 1]
-                print(sunplace.timeZoneOffset)
             }
             
             let cityLabel = cell.viewWithTag(1)! as! UILabel

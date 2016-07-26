@@ -205,15 +205,14 @@ class Location {
             if let placemark = placemark {
                 if let city = placemark.locality {
                     name = city
+                    defaults.setDouble(location.latitude, forKey: DefaultKey.CurrentLocationLatitude.description)
+                    defaults.setDouble(location.longitude, forKey: DefaultKey.CurrentLocationLongitude.description)
+                    defaults.setObject(name, forKey: DefaultKey.CurrentLocationName.description)
+                    if isCurrentLocation() {
+                        setLocation(true, location: location, name: name)
+                        defaults.setObject(now, forKey: DefaultKey.LocationDateSet.description)
+                    }
                 }
-            }
-            
-            defaults.setDouble(location.latitude, forKey: DefaultKey.CurrentLocationLatitude.description)
-            defaults.setDouble(location.longitude, forKey: DefaultKey.CurrentLocationLongitude.description)
-            defaults.setObject(name, forKey: DefaultKey.CurrentLocationName.description)
-            if isCurrentLocation() {
-                setLocation(true, location: location, name: name)
-                defaults.setObject(now, forKey: DefaultKey.LocationDateSet.description)
             }
         }
     }
