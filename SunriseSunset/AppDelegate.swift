@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.Sunrise): false,
             defaultString(.NotificationPreTime): 60 * 60 * 5, // minutes
             defaultString(.CurrentLocation): true,
-            defaultString(.LocationHistoryNames): [],
-            defaultString(.LocationHistoryPlaceIDs): []
+            defaultString(.LocationHistoryPlaces): [],
         ])
         
         GMSServices.provideAPIKey("AIzaSyATdTWF9AwHXq3UnCrAfr6czN7f_E86658")

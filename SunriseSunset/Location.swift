@@ -10,18 +10,6 @@ import Foundation
 import CoreLocation
 import SwiftLocation
 
-struct Prediction {
-    let placeID: String?
-    let primary: String?
-    let seconday: String?
-    
-    init(primary: String, seconday: String, placeID: String) {
-        self.primary = primary
-        self.seconday = seconday
-        self.placeID = placeID
-    }
-}
-
 class Location {
     
     static let defaults = Defaults.defaults
@@ -68,6 +56,10 @@ class Location {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
+    class func getPlaceID() -> String? {
+        return defaults.stringForKey(DefaultKey.LocationPlaceID.description)
+    }
+    
     class func getLocationName() -> String? {
         return defaults.stringForKey(DefaultKey.LocationName.description)
     }
@@ -93,27 +85,21 @@ class Location {
         })
     }
     
-//    class func findTimeZone(forLocation: CLLocationCoordinate2D) -> (NSTimeZone, String?) {
-//        let cl = CLLocation(latitude: forLocation.latitude, longitude: forLocation.longitude)
-//        let timeZone = APTimeZones.sharedInstance().timeZoneWithLocation(cl)
-//        let abbreviation = timeZone.abbreviation
-//        return (timeZone, abbreviation)
-//    }
-    
-    class func setLocation(current: Bool, location: CLLocationCoordinate2D, name: String) {
+    class func setLocation(current: Bool, location: CLLocationCoordinate2D, name: String, sunplace: SunPlace? = nil) {
         defaults.setObject(name, forKey: DefaultKey.LocationName.description)
         defaults.setDouble(location.latitude, forKey: DefaultKey.LocationLatitude.description)
         defaults.setDouble(location.longitude, forKey: DefaultKey.LocationLongitude.description)
         defaults.setBool(current, forKey: DefaultKey.CurrentLocation.description)
         
         if !current {
+            defaults.setObject(sunplace?.placeID, forKey: DefaultKey.LocationPlaceID.description)
             Bus.sendMessage(.FetchTimeZone, data: nil)
         }
     
         notifyLocation()
     }
     
-    class func selectLocation(current: Bool, location: CLLocationCoordinate2D?, name: String?, secondary: String?, placeID: String?) {
+    class func selectLocation(current: Bool, location: CLLocationCoordinate2D?, name: String?, sunplace: SunPlace?) {
         if current {
             if let currentLocation = getCurrentLocation() {
                 if let locationName = getCurrentLocationName() {
@@ -122,56 +108,70 @@ class Location {
             }
             checkLocation()
         } else {
-            setLocation(false, location: location!, name: name!)
-//            addLocationToHistory(location!)
-            addLocationToHistory(name!, seconday: secondary!, placeID: placeID!)
+            if let sunplace = sunplace {
+                setLocation(false, location: location!, name: name!, sunplace: sunplace)
+                addLocationToHistory(sunplace)
+                if let timeZoneOffset = sunplace.timeZoneOffset {
+                    print("setting timezone offset from saved \(timeZoneOffset)")
+                    Defaults.defaults.setInteger(timeZoneOffset, forKey: DefaultKey.LocationTimeZoneOffset.description)
+                }
+            }
         }
         Bus.sendMessage(.LocationUpdate, data: nil)
     }
     
-    class func getLocationHistory() -> [Prediction]? {
-        if let locationHistoryNames = defaults.objectForKey(DefaultKey.LocationHistoryNames.description) as? [String] {
-            if let locationHistoryPlaceIDs = defaults.objectForKey(DefaultKey.LocationHistoryPlaceIDs.description) as? [String] {
-                var locationPredictions: [Prediction] = []
-                for (index, locationName) in locationHistoryNames.enumerate() {
-                    let split = locationName.characters.split{$0 == "|"}.map(String.init)
-                    let primary = split[0]
-                    let secondary = split[1]
-                    let placeID = locationHistoryPlaceIDs[index]
-                    locationPredictions.append(Prediction(primary: primary, seconday: secondary, placeID: placeID))
-                }
-                return locationPredictions
+    class func updateLocationHistoryWithTimeZone(location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int) {
+        if let locationHistory = getLocationHistory() {
+            let index = locationHistory.indexOf { place in
+                return place.placeID == placeID
             }
+            if let index = index {
+                if index >= 0 && index < locationHistory.count {
+                    let sunplace = locationHistory[index]
+                    sunplace.timeZoneOffset = timeZoneOffset
+                    print("saving timezoneoffset to history \(timeZoneOffset)")
+                    addLocationToHistory(sunplace)
+                }
+            }
+        }
+    }
+    
+    class func getLocationHistory() -> [SunPlace]? {
+        if let locationHistoryPlaces = defaults.objectForKey(DefaultKey.LocationHistoryPlaces.description) as? [String] {
+            var places: [SunPlace] = []
+            for placeString in locationHistoryPlaces {
+                if let sunplace = SunPlace.sunPlaceFromString(placeString) {
+                    places.append(sunplace)
+                }
+            }
+            return places
         }
         return nil
     }
     
-    class func addLocationToHistory(primary: String, seconday: String, placeID: String) {
-        if var locationHistory = getLocationHistory() {
-            let index = locationHistory.indexOf { p in
-                return p.placeID == placeID
+    class func saveLocationHistory(places: [SunPlace]) {
+        let placeStrings: [String] = places.map { place in
+            if let placeString = place.toString {
+                return placeString
             }
-            if let index = index {
+            return ""
+        }
+        defaults.setObject(placeStrings, forKey: DefaultKey.LocationHistoryPlaces.description)
+    }
+    
+    class func addLocationToHistory(sunplace: SunPlace) {
+        if var locationHistory: [SunPlace] = getLocationHistory() {
+            if let index = locationHistory.indexOf(sunplace) {
                 locationHistory.removeAtIndex(index)
             }
             
-            let history = Prediction(primary: primary, seconday: seconday, placeID: placeID)
-            locationHistory.insert(history, atIndex: 0)
+            locationHistory.insert(sunplace, atIndex: 0)
             
-            var locationHistoryNames = locationHistory.map { p in
-                return "\(p.primary!)|\(p.seconday!)"
-            }
-            var locationHistoryPlaces = locationHistory.map { p in
-                return p.placeID!
-            }
-
-            if locationHistoryNames.count > 5 {
-                locationHistoryNames = Array(locationHistoryNames[0...4])
-                locationHistoryPlaces = Array(locationHistoryPlaces[0...4])
+            if locationHistory.count > 5 {
+                locationHistory = Array(locationHistory[0...4])
             }
             
-            defaults.setObject(locationHistoryNames, forKey: DefaultKey.LocationHistoryNames.description)
-            defaults.setObject(locationHistoryPlaces, forKey: DefaultKey.LocationHistoryPlaceIDs.description)
+            saveLocationHistory(locationHistory)
         }
     }
     

@@ -38,30 +38,28 @@ class TimeZones {
                     return
                 }
                 
-                guard let abbreviation = abbreviation else {
-                    return
-                }
-                
 //                print("gmt offset: \(gmtOffset)")
 //                print("abb: \(abbreviation)")
-                self.saveTimeZone(gmtOffset, abbreviation: abbreviation)
+                self.saveTimeZone(gmtOffset)
+                
+                if !Location.isCurrentLocation() {
+                    if let placeID = Location.getPlaceID() {
+                        Location.updateLocationHistoryWithTimeZone(location, placeID: placeID, timeZoneOffset: gmtOffset)
+                    }
+                }
             }
         }
     }
     
-    func saveTimeZone(gmtOffset: Int, abbreviation: String) {
-        Defaults.defaults.setObject(abbreviation, forKey: DefaultKey.LocationTimeZoneAbbreviation.description)
+    func saveTimeZone(gmtOffset: Int) {
         Defaults.defaults.setInteger(gmtOffset, forKey: DefaultKey.LocationTimeZoneOffset.description)
         Bus.sendMessage(.GotTimeZone, data: nil )
     }
     
     class func getTimeZone() -> NSTimeZone? {
         let gmtOffset = Defaults.defaults.integerForKey(DefaultKey.LocationTimeZoneOffset.description)
-        if let abbreviation = Defaults.defaults.stringForKey(DefaultKey.LocationTimeZoneAbbreviation.description) {
-            let timeZone = NSTimeZone(forSecondsFromGMT: gmtOffset)
-            return timeZone
-        }
-        return nil
+        let timeZone = NSTimeZone(forSecondsFromGMT: gmtOffset)
+        return timeZone
     }
     
     func timeZoneForLocation(location: CLLocationCoordinate2D, completionHandler: (gmtOffset: Int?, abbreviation: String?) -> ()) {

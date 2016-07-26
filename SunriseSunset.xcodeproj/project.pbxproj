@@ -34,6 +34,8 @@
 		9C3314F41CE9712F004D012E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
 		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
+		9C36570E1D471688001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
+		9C36570F1D471C27001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
 		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
 		9C4774541D16762C00C38FFF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
 		9C47745E1D16762C00C38FFF /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4774531D16762C00C38FFF /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -158,6 +160,7 @@
 		9C3314F31CE9712F004D012E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		9C3314F61CE976BE004D012E /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		9C36570D1D471688001019BB /* SunPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPlace.swift; sourceTree = "<group>"; };
 		9C37C0C11CF6C929002ED35A /* TouchDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchDownView.swift; sourceTree = "<group>"; };
 		9C4774531D16762C00C38FFF /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 				9C485AB01CED7E130086B22E /* Sunline.swift */,
 				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
 				9C6BCB211D3CA6F00069BC16 /* SunType.swift */,
+				9C36570D1D471688001019BB /* SunPlace.swift */,
 			);
 			name = SunStuff;
 			sourceTree = "<group>";
@@ -859,6 +863,7 @@
 				9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */,
 				9C236CDA1D1679A800FB9985 /* Styles.swift in Sources */,
 				9CB5F2501D16791F005F4E10 /* Location.swift in Sources */,
+				9C36570F1D471C27001019BB /* SunPlace.swift in Sources */,
 				9C6BCB231D3CA7080069BC16 /* SunType.swift in Sources */,
 				9C236CDC1D1679C200FB9985 /* Bus.swift in Sources */,
 				9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */,
@@ -873,6 +878,7 @@
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
 				9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */,
+				9C36570E1D471688001019BB /* SunPlace.swift in Sources */,
 				9C58B3991D3365C000EBAD1D /* KeyboardLayoutConstraint.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9C58B3931D3365C000EBAD1D /* DesignableTabBarController.swift in Sources */,

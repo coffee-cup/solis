@@ -20,8 +20,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     lazy var placesClient = GMSPlacesClient()
     lazy var filter = GMSAutocompleteFilter()
     
-    var places: [Prediction] = []
-    var placeHistory: [Prediction] = []
+    var places: [SunPlace] = []
+    var placeHistory: [SunPlace] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     func updateWithSearchResults(results: [GMSAutocompletePrediction]) {
         places = results.map { result in
-            return Prediction(primary: result.attributedPrimaryText.string, seconday: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
+            return SunPlace(primary: result.attributedPrimaryText.string, secondary: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
         }
         searchTableView.reloadData()
     }
@@ -127,32 +127,32 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         
         if indexPath.row == 0 {
             print("Selected current place")
-            Location.selectLocation(true, location: nil, name: nil, secondary: nil, placeID: nil)
+            Location.selectLocation(true, location: nil, name: nil, sunplace: nil)
         } else {
-            var place: Prediction!
+            var sunplace: SunPlace!
             if isSearching() {
-                place = places[indexPath.row - 1]
+                sunplace = places[indexPath.row - 1]
             } else {
-                place = placeHistory[indexPath.row - 1]
+                sunplace = placeHistory[indexPath.row - 1]
             }
-            if let placeID = place.placeID {
-                print("place id: \(placeID)")
-                placesClient.lookUpPlaceID(placeID) { googlePlace, error in
-                    guard error == nil else {
-                        print("PlaceID lookup error \(error)")
-                        return
-                    }
-                    
-                    guard let coordinate = googlePlace?.coordinate else {
-                        return
-                    }
-                    
-                    guard let name = googlePlace?.name else {
-                        return
-                    }
-                    
-                    Location.selectLocation(false, location: coordinate, name: place.primary, secondary: place.seconday, placeID: place.placeID)
+            let placeID = sunplace.placeID
+            print("place id: \(placeID)")
+            placesClient.lookUpPlaceID(placeID) { googlePlace, error in
+                guard error == nil else {
+                    print("PlaceID lookup error \(error)")
+                    return
                 }
+                
+                guard let coordinate = googlePlace?.coordinate else {
+                    return
+                }
+                
+                guard let _ = googlePlace?.name else {
+                    return
+                }
+                
+                sunplace.location = coordinate
+                Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
             }
         }
     }
@@ -181,18 +181,19 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier("PlaceCell")!
             
-            var place: Prediction!
+            var sunplace: SunPlace!
             if isSearching() {
-                place = places[indexPath.row - 1]
+                sunplace = places[indexPath.row - 1]
             } else {
-                place = placeHistory[indexPath.row - 1]
+                sunplace = placeHistory[indexPath.row - 1]
+                print(sunplace.timeZoneOffset)
             }
             
             let cityLabel = cell.viewWithTag(1)! as! UILabel
             let stateCountryLabel = cell.viewWithTag(2)! as! UILabel
             
-            cityLabel.text = place.primary
-            stateCountryLabel.text = place.seconday
+            cityLabel.text = sunplace.primary
+            stateCountryLabel.text = sunplace.secondary
         }
         return cell
     }
