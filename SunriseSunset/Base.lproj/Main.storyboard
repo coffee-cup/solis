@@ -133,6 +133,24 @@
                                 <rect key="frame" x="0.0" y="-1" width="375" height="668"/>
                                 <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Z-bX-drh">
+                                <rect key="frame" x="285" y="593" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="FoW-pj-yKN"/>
+                                    <constraint firstAttribute="width" secondItem="e5Z-bX-drh" secondAttribute="height" multiplier="1:1" id="TWk-gf-QLe"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="centerButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Emx-Nu-pXb"/>
+                                    <action selector="menuButtonDidTouch:" destination="wF3-0W-CIN" eventType="touchUpInside" id="Drp-w6-Heh"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="center_button" translatesAutoresizingMaskIntoConstraints="NO" id="zib-cc-JK8" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
+                                <rect key="frame" x="292" y="600" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="771-bu-PbZ"/>
+                                    <constraint firstAttribute="width" secondItem="zib-cc-JK8" secondAttribute="height" multiplier="1:1" id="tPI-vg-yUE"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-1S-9Gf">
                                 <rect key="frame" x="315" y="316" width="24" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -168,15 +186,19 @@
                         <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" placeholder="YES" id="2Xy-0p-BC7"/>
+                            <constraint firstItem="zib-cc-JK8" firstAttribute="centerY" secondItem="e5Z-bX-drh" secondAttribute="centerY" id="3FP-75-P2k"/>
                             <constraint firstAttribute="trailing" secondItem="M0S-kq-de6" secondAttribute="trailing" id="9wP-X3-RDO"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="Asv-YP-ZWW"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="e5Z-bX-drh" secondAttribute="bottom" constant="30" id="Dcs-H6-fhC"/>
                             <constraint firstItem="oYK-kR-m70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoW-9a-L6M"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="100" id="H0f-tv-aad"/>
                             <constraint firstAttribute="trailing" secondItem="hJD-Os-DA5" secondAttribute="trailing" placeholder="YES" id="Mz9-UT-ZKM"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="NMJ-2O-MYh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
+                            <constraint firstItem="zib-cc-JK8" firstAttribute="centerX" secondItem="e5Z-bX-drh" secondAttribute="centerX" id="U5W-Ja-9nz"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="centerY" secondItem="M0S-kq-de6" secondAttribute="centerY" id="VPU-Q9-1Qj"/>
                             <constraint firstItem="M0S-kq-de6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wy5-g3-FNJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="Ya9-nE-dcH"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ghu-1S-9Gf" secondAttribute="trailing" constant="20" id="iMs-Wh-oOF"/>
                             <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="idh-oU-Yto"/>
@@ -194,6 +216,8 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="centerButton" destination="e5Z-bX-drh" id="XUN-1O-bq5"/>
+                        <outlet property="centerImageView" destination="zib-cc-JK8" id="6e1-F0-T7g"/>
                         <outlet property="futureLabel" destination="6UY-fJ-dB7" id="Xlz-Wg-5K5"/>
                         <outlet property="nowLabel" destination="Ghu-1S-9Gf" id="PFQ-yx-ogE"/>
                         <outlet property="nowLineView" destination="M0S-kq-de6" id="xpp-4N-UX8"/>
@@ -906,6 +930,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
     <resources>
         <image name="Logo" width="146" height="28"/>
         <image name="back_light" width="16" height="28"/>
+        <image name="center_button" width="30" height="30"/>
         <image name="civil_twilight" width="375" height="220"/>
         <image name="first_off" width="71" height="17"/>
         <image name="info" width="20" height="20"/>

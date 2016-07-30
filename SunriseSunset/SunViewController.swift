@@ -26,6 +26,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
+    @IBOutlet weak var centerImageView: SpringImageView!
+    @IBOutlet weak var centerButton: UIButton!
+    
     // You guessed it: users current coordinates
     var myLoc: CLLocationCoordinate2D!
     
@@ -126,6 +129,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         nowTimeLabel.addSimpleShadow()
         pastLabel.addSimpleShadow()
         futureLabel.addSimpleShadow()
+        
+        centerButton.enabled = false
+        centerImageView.duration = CGFloat(1)
+        centerImageView.curve = "easeInOut"
+        centerImageView.alpha = 0
         
         sun = Sun(screenMinutes: screenMinutes,
                   screenHeight: screenHeight,
@@ -263,6 +271,27 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             }
         }
         offNow = Int(floor(offset)) != 0
+        setCenterButton()
+    }
+    
+    // Update from transformation move
+    // Do not update maths of sunlines
+    func moveUpdate(offset: Double = 0) {
+        sun.findNow(offset)
+        offNow = Int(floor(offset)) != 0
+        setCenterButton()
+    }
+    
+    func setCenterButton() {
+        if offNow && !centerButton.enabled {
+            centerButton.enabled = true
+            centerImageView.animation = "fadeIn"
+            centerImageView.animate()
+        } else if !offNow && centerButton.enabled {
+            centerButton.enabled = false
+            centerImageView.animation = "fadeOut"
+            centerImageView.animate()
+        }
     }
     
     func reset() {
@@ -360,7 +389,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
                 
                 self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-                sun.findNow(newOffsetBy)
+                moveUpdate(newOffsetBy)
             }
         } else if (recognizer.state == .Ended) {
             if allowedPan && !isMenuOut {
@@ -417,7 +446,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         }
         
         self.setOffsetFromTranslation(self.offsetTranslation)
-        self.sun.findNow(self.offset)
+        moveUpdate(self.offset)
         self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
     }
     
@@ -448,7 +477,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let ease = Easing.easeOutQuadFunc(animationFireDate.timeIntervalSinceNow * -1, startValue: transformBeforeAnimation, changeInValue: transformDifference, duration:scrollAnimationDuration)
 //        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
-        sun.findNow(sun.pointsToMinutes(ease))
+        moveUpdate(sun.pointsToMinutes(ease))
     }
     
     func tapGesture(recognizer: UITapGestureRecognizer) {
@@ -463,6 +492,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    @IBAction func centerButtonDidTouch(sender: AnyObject) {
+        scrollReset()
     }
 }
 
