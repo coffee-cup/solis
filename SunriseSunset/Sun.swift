@@ -49,7 +49,14 @@ class Sun {
     // Gradient that animates to show time of day
     var gradientLayer: CAGradientLayer
     
+    // The label for displaying current time
     var nowTimeLabel: UILabel
+    
+    // The label for displaying "now" text
+    var nowLabel: UILabel
+    
+    // Formatter for now label text
+    let nowTextFormatter = NSDateFormatter()
     
     var offset: NSTimeInterval = 0
     
@@ -62,7 +69,7 @@ class Sun {
 //    var sunlines: [Sunline] = []
     var sunTimeLines: [SunTimeLine] = []
     
-    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel) {
+    init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel, nowLabel: UILabel) {
         self.screenMinutes = screenMinutes
         self.screenHeight = screenHeight
         self.sunHeight = sunHeight
@@ -70,6 +77,9 @@ class Sun {
         self.sunView = sunView
         self.gradientLayer = gradientLayer
         self.nowTimeLabel = nowTimeLabel
+        self.nowLabel = nowLabel
+        
+        nowTextFormatter.dateFormat = "MMMM dd"
         
         timeFormatUpdate()
         
@@ -117,6 +127,12 @@ class Sun {
             nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).stringFromDate(now)
                 .stringByReplacingOccurrencesOfString("AM", withString: "am")
                 .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+        }
+        
+        if offset == 0 {
+            nowLabel.text = "now"
+        } else {
+            nowLabel.text = nowTextFormatter.stringFromDate(now)
         }
     }
     

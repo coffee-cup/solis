@@ -127,7 +127,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         pastLabel.addSimpleShadow()
         futureLabel.addSimpleShadow()
         
-        sun = Sun(screenMinutes: screenMinutes, screenHeight: screenHeight, sunHeight: sunHeight, sunView: sunView, gradientLayer: gradientLayer, nowTimeLabel: nowTimeLabel)
+        sun = Sun(screenMinutes: screenMinutes,
+                  screenHeight: screenHeight,
+                  sunHeight: sunHeight,
+                  sunView: sunView,
+                  gradientLayer: gradientLayer,
+                  nowTimeLabel: nowTimeLabel,
+                  nowLabel: nowLabel)
         
         // Gestures
         
