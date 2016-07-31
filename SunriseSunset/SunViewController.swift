@@ -12,7 +12,7 @@ import CoreLocation
 import PermissionScope
 import UIView_Easing
 
-class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol {
+class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol {
 
     @IBOutlet weak var sunView: UIView!
     @IBOutlet weak var hourSlider: UISlider!
@@ -20,9 +20,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     var backgroundView: UIView!
     
+    @IBOutlet weak var nowView: UIView!
     @IBOutlet weak var nowTimeLabel: UILabel!
     @IBOutlet weak var nowLineView: UIView!
     @IBOutlet weak var nowLabel: UILabel!
+    @IBOutlet weak var nowLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
@@ -69,6 +71,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // Whether or not the menu is out of position right now
     var isMenuOut = false
+    
+    // Whether or not the now line is colliding with a sun line
+    var colliding = false
     
     // The duration we will free form for
     var scrollAnimationDuration: NSTimeInterval = 0
@@ -142,6 +147,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                   gradientLayer: gradientLayer,
                   nowTimeLabel: nowTimeLabel,
                   nowLabel: nowLabel)
+        sun.delegate = self
         
         // Gestures
         
@@ -495,7 +501,28 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     @IBAction func centerButtonDidTouch(sender: AnyObject) {
+        stopAnimationTimer()
         scrollReset()
+    }
+    
+    func collisionIsHappening() {
+        if !colliding {
+            nowLeftConstraint.constant = 240
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+                self.nowView.layoutIfNeeded()
+                }, completion: nil)
+        }
+        colliding = true
+    }
+    
+    func collisionNotHappening() {
+        if colliding {
+            nowLeftConstraint.constant = 100
+            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+                self.nowView.layoutIfNeeded()
+                }, completion: nil)
+        }
+        colliding = false
     }
 }
 

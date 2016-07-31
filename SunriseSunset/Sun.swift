@@ -29,6 +29,11 @@ func == (lhs: SunTimeLine, rhs: SunTimeLine) -> Bool {
     return lhs.suntime == rhs.suntime
 }
 
+protocol SunProtocol {
+    func collisionIsHappening()
+    func collisionNotHappening()
+}
+
 class Sun {
     
     // Number of minutes a full screen height is
@@ -64,6 +69,8 @@ class Sun {
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    
+    var delegate: SunProtocol?
     
 //    var suntimes: [Suntime] = []
 //    var sunlines: [Sunline] = []
@@ -113,9 +120,12 @@ class Sun {
     }
     
     func setSunlineTimes() {
+        var colliding = false
         for stl in sunTimeLines {
-            stl.sunline.updateTime(-1 * offset)
+            colliding = stl.sunline.updateTime(offset) || colliding
         }
+        print("colliding: \(colliding)")
+        colliding ? delegate?.collisionIsHappening() : delegate?.collisionNotHappening()
     }
     
     func setNowTimeText() {
@@ -137,9 +147,9 @@ class Sun {
     }
     
     func update(offset: Double, location: CLLocationCoordinate2D) {
-        findNow(offset)
         calculateSunriseSunset(location)
         calculateGradient()
+        findNow(offset)
     }
     
     func pointsToMinutes(points: Double) -> Double {
@@ -152,7 +162,7 @@ class Sun {
         self.offset = offset * 60
         self.now = NSDate().dateByAddingTimeInterval(offset * 60)
         self.setNowTimeText()
-//        self.setSunlineTimes()
+        self.setSunlineTimes()
     }
     
     func calculateSunriseSunset(location: CLLocationCoordinate2D) {
