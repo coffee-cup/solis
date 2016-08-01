@@ -93,6 +93,7 @@
 		9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC052351D22465A00CBBECE /* TimeZones.swift */; };
 		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
 		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
+		9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
 		9CE885961CEFEC260045BEFB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
@@ -226,6 +227,7 @@
 		9CC052351D22465A00CBBECE /* TimeZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZones.swift; sourceTree = "<group>"; };
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		9C13350D1D1529A1004B3F1B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CDA4B571D4F04C500639954 /* Walkthrough */,
 				9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */,
 				9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */,
 				9CC92F631CFEB1D500FA320D /* MenuViewController.swift */,
@@ -465,6 +468,14 @@
 				9CB37C0A1CE844400080B5B1 /* Info.plist */,
 			);
 			path = SunriseSunsetUITests;
+			sourceTree = "<group>";
+		};
+		9CDA4B571D4F04C500639954 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */,
+			);
+			name = Walkthrough;
 			sourceTree = "<group>";
 		};
 		9CDE815A1D03E7D50036FD34 /* Fonts */ = {
@@ -892,6 +903,7 @@
 				9C58B39A1D3365C000EBAD1D /* LoadingView.swift in Sources */,
 				9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
+				9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,
 				9C58B3A61D3365C000EBAD1D /* TransitionManager.swift in Sources */,
