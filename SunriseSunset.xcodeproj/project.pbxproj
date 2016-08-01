@@ -94,6 +94,10 @@
 		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
 		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
 		9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */; };
+		9CDA4B5B1D4F16FA00639954 /* WDarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */; };
+		9CDA4B5D1D4F170C00639954 /* WNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */; };
+		9CDA4B5F1D4F171700639954 /* WWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */; };
+		9CDA4B611D4F172200639954 /* WWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
 		9CE885961CEFEC260045BEFB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
@@ -228,6 +232,10 @@
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDarkViewController.swift; sourceTree = "<group>"; };
+		9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNotificationsViewController.swift; sourceTree = "<group>"; };
+		9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWidgetViewController.swift; sourceTree = "<group>"; };
+		9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWelcomeViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -474,6 +482,10 @@
 			isa = PBXGroup;
 			children = (
 				9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */,
+				9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */,
+				9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */,
+				9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */,
+				9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */,
 			);
 			name = Walkthrough;
 			sourceTree = "<group>";
@@ -888,11 +900,13 @@
 				9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
+				9CDA4B611D4F172200639954 /* WWelcomeViewController.swift in Sources */,
 				9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */,
 				9C36570E1D471688001019BB /* SunPlace.swift in Sources */,
 				9C58B3991D3365C000EBAD1D /* KeyboardLayoutConstraint.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9C58B3931D3365C000EBAD1D /* DesignableTabBarController.swift in Sources */,
+				9CDA4B5F1D4F171700639954 /* WWidgetViewController.swift in Sources */,
 				9C58B3941D3365C000EBAD1D /* DesignableTextField.swift in Sources */,
 				9C58B3A31D3365C000EBAD1D /* SpringTextField.swift in Sources */,
 				9CC427A51D11088100693E32 /* UILabel.swift in Sources */,
@@ -906,6 +920,7 @@
 				9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* Location.swift in Sources */,
+				9CDA4B5D1D4F170C00639954 /* WNotificationsViewController.swift in Sources */,
 				9C58B3A61D3365C000EBAD1D /* TransitionManager.swift in Sources */,
 				9C58B39F1D3365C000EBAD1D /* SpringAnimation.swift in Sources */,
 				9C58B39D1D3365C000EBAD1D /* SoundPlayer.swift in Sources */,
@@ -935,6 +950,7 @@
 				9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */,
 				9C58B3911D3365C000EBAD1D /* DesignableImageView.swift in Sources */,
 				9C58B39C1D3365C000EBAD1D /* Misc.swift in Sources */,
+				9CDA4B5B1D4F16FA00639954 /* WDarkViewController.swift in Sources */,
 				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
 				9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */,
 				9C3314F91CE9A723004D012E /* UIColor.swift in Sources */,

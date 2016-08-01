@@ -11,11 +11,16 @@ import UIKit
 
 class WalkthroughPageViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    lazy var orderedViewControllers: [UIViewController] = [self.viewControllerWithIdentifier("WDarkViewController"),
-                                                           self.viewControllerWithIdentifier("WNotificationsViewController")]
+    lazy var orderedViewControllers: [UIViewController] = [self.viewControllerWithIdentifier("WWelcomeViewController"),
+                                                           self.viewControllerWithIdentifier("WDarkViewController"),
+                                                           self.viewControllerWithIdentifier("WNotificationsViewController"),
+                                                           self.viewControllerWithIdentifier("WWidgetViewController")]
+    
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var skipButton: SpringButton!
+    @IBOutlet weak var takeOffButton: SpringButton!
     
     var pageViewController: UIPageViewController!
-    @IBOutlet weak var pageControl: UIPageControl!
     
     var currentIndex: Int?
     var pendingIndex: Int?
@@ -36,9 +41,14 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         
         view.addSubview(pageViewController.view)
         
+        view.bringSubviewToFront(takeOffButton)
+        view.bringSubviewToFront(skipButton)
         view.bringSubviewToFront(pageControl)
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
+        
+        takeOffButton.layer.cornerRadius = 2
+        takeOffButton.alpha = 0
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +62,20 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     func viewControllerWithIdentifier(identifier: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewControllerWithIdentifier(identifier)
+    }
+    
+    func goToMainView() {
+        skipButton.animation = "fadeOut"
+        skipButton.duration = 0.1
+        skipButton.animate()
+        
+        performSegueWithIdentifier("MainSegue", sender: nil)
+    }
+    
+    func fadeTakeOffButton(alphaValue: CGFloat) {
+        UIView.animateWithDuration(0.5) {
+            self.takeOffButton.alpha = alphaValue
+        }
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -96,7 +120,21 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
             currentIndex = pendingIndex
             if let index = currentIndex {
                 pageControl.currentPage = index
+                
+                if index + 1 == orderedViewControllers.count {
+                    fadeTakeOffButton(1)
+                } else {
+                    fadeTakeOffButton(0)
+                }
             }
         }
+    }
+    
+    @IBAction func skipButtonDidTouch(sender: AnyObject) {
+        goToMainView()
+    }
+    
+    @IBAction func takeOffButtonDidTouch(sender: AnyObject) {
+        goToMainView()
     }
 }
