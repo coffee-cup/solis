@@ -69,11 +69,13 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         skipButton.duration = 0.1
         skipButton.animate()
         
+        Defaults.showWalkthrough = false
+        
         performSegueWithIdentifier("MainSegue", sender: nil)
     }
     
     func fadeTakeOffButton(alphaValue: CGFloat) {
-        UIView.animateWithDuration(0.5) {
+        UIView.animateWithDuration(alphaValue == 0 ? 0 : 0.25) {
             self.takeOffButton.alpha = alphaValue
         }
     }
@@ -113,6 +115,7 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
         pendingIndex = orderedViewControllers.indexOf(pendingViewControllers.first!)
+        fadeTakeOffButton(0)
     }
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -120,12 +123,13 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
             currentIndex = pendingIndex
             if let index = currentIndex {
                 pageControl.currentPage = index
-                
-                if index + 1 == orderedViewControllers.count {
-                    fadeTakeOffButton(1)
-                } else {
-                    fadeTakeOffButton(0)
-                }
+            }
+        }
+        if let index = currentIndex {
+            if index + 1 == orderedViewControllers.count {
+                fadeTakeOffButton(1)
+            } else {
+                fadeTakeOffButton(0)
             }
         }
     }

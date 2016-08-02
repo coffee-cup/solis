@@ -124,7 +124,6 @@ class Sun {
         for stl in sunTimeLines {
             colliding = stl.sunline.updateTime(offset) || colliding
         }
-        print("colliding: \(colliding)")
         colliding ? delegate?.collisionIsHappening() : delegate?.collisionNotHappening()
     }
     

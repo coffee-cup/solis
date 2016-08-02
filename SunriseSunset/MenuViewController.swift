@@ -81,7 +81,7 @@ class MenuViewController: UIViewController {
         for button in menuButtons {
             button.setTitleColor(buttonDisabled, forState: .Normal)
             button.setTitleColor(buttonEnabled, forState: .Selected)
-            button.setTitleColor(buttonHighlighted, forState: .Highlighted)
+//            button.setTitleColor(buttonHighlighted, forState: .Highlighted)
         }
         
         // Time buttons

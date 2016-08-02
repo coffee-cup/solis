@@ -32,11 +32,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.NotificationPreTime): 60 * 60 * 5, // minutes
             defaultString(.CurrentLocation): true,
             defaultString(.LocationHistoryPlaces): [],
+            defaultString(.ShowWalkthrough): true
         ])
         
         GMSServices.provideAPIKey("AIzaSyATdTWF9AwHXq3UnCrAfr6czN7f_E86658")
         
         application.setMinimumBackgroundFetchInterval(60 * 60 * 12) // 12 hours
+        
+        // Set initial view controller
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let initViewControllerIdentifier = Defaults.showWalkthrough ? "WalkthroughViewController" : "MainViewController"
+        let initialViewController = storyboard.instantiateViewControllerWithIdentifier(initViewControllerIdentifier)
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
         
         return true
     }

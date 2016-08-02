@@ -55,7 +55,7 @@
         <!--Main View Controller-->
         <scene sceneID="RyD-X5-QJE">
             <objects>
-                <viewController id="wF3-0W-CIN" customClass="MainViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="wF3-0W-CIN" customClass="MainViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vvt-lW-BDZ"/>
                         <viewControllerLayoutGuide type="bottom" id="xEh-yn-cxY"/>
@@ -127,7 +127,7 @@
         <!--Walkthrough Page View Controller-->
         <scene sceneID="Hg2-7U-zwi">
             <objects>
-                <viewController id="4QA-JW-0cZ" customClass="WalkthroughPageViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkthroughViewController" id="4QA-JW-0cZ" customClass="WalkthroughPageViewController" customModule="SunriseSunset" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="24v-L4-gLx"/>
                         <viewControllerLayoutGuide type="bottom" id="FpF-tm-4dc"/>
@@ -154,13 +154,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GU-Xh-DvT" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="127" y="542" width="120" height="38"/>
+                                <rect key="frame" x="127" y="522" width="120" height="38"/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="5b3-SY-ZpO"/>
                                     <constraint firstAttribute="height" constant="38" id="PBk-tn-pdv"/>
                                 </constraints>
-                                <state key="normal" title="Take Off 🚀">
+                                <state key="normal" title="Blast Off 🚀">
                                     <color key="titleColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -171,7 +171,7 @@
                         <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XFw-11-KKz" firstAttribute="centerX" secondItem="zRb-FX-y8k" secondAttribute="centerX" id="7dv-0j-2l0"/>
-                            <constraint firstItem="XFw-11-KKz" firstAttribute="top" secondItem="2GU-Xh-DvT" secondAttribute="bottom" constant="20" id="9qI-YQ-V0J"/>
+                            <constraint firstItem="XFw-11-KKz" firstAttribute="top" secondItem="2GU-Xh-DvT" secondAttribute="bottom" constant="40" id="9qI-YQ-V0J"/>
                             <constraint firstItem="yCs-ae-AyZ" firstAttribute="top" secondItem="24v-L4-gLx" secondAttribute="bottom" id="eo3-fG-jdH"/>
                             <constraint firstItem="2GU-Xh-DvT" firstAttribute="centerX" secondItem="zRb-FX-y8k" secondAttribute="centerX" id="ep0-Tr-teM"/>
                             <constraint firstItem="yCs-ae-AyZ" firstAttribute="leading" secondItem="zRb-FX-y8k" secondAttribute="leading" constant="20" id="fxg-c3-E9V"/>
@@ -270,16 +270,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-oX-Uxq">
-                                <rect key="frame" x="133" y="318" width="108" height="31"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_dark_background" translatesAutoresizingMaskIntoConstraints="NO" id="4c8-l6-AYc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know when it gets dark in any city around the world 🌎" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-d0-mnP">
+                                <rect key="frame" x="83" y="130" width="210" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="AkO-uL-xlq"/>
+                                    <constraint firstAttribute="width" constant="210" id="UQG-ai-TYY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4c8-l6-AYc" firstAttribute="top" secondItem="RHc-fO-PJM" secondAttribute="top" id="7b3-It-dk7"/>
+                            <constraint firstAttribute="trailing" secondItem="4c8-l6-AYc" secondAttribute="trailing" id="E1T-wm-kMX"/>
+                            <constraint firstItem="pZh-d0-mnP" firstAttribute="top" secondItem="5cH-7Q-c1p" secondAttribute="bottom" constant="110" id="bQT-xB-jnS"/>
+                            <constraint firstItem="pZh-d0-mnP" firstAttribute="centerX" secondItem="RHc-fO-PJM" secondAttribute="centerX" id="guf-HO-Zqh"/>
+                            <constraint firstItem="rkk-rV-532" firstAttribute="top" secondItem="4c8-l6-AYc" secondAttribute="bottom" id="kOE-1o-wEX"/>
+                            <constraint firstItem="4c8-l6-AYc" firstAttribute="leading" secondItem="RHc-fO-PJM" secondAttribute="leading" id="uqa-V3-ak3"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="headingLabel" destination="pZh-d0-mnP" id="Qzz-e0-JN3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7e-Tn-YH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -297,16 +315,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHS-kk-L8f">
-                                <rect key="frame" x="121" y="318" width="132" height="31"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_notifications_background" translatesAutoresizingMaskIntoConstraints="NO" id="Ppw-j3-RFb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications for all the important sun events ☀️" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz9-w5-uyq">
+                                <rect key="frame" x="83" y="130" width="210" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="XNw-hb-zDd"/>
+                                    <constraint firstAttribute="height" constant="83" id="x2m-bB-cLu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.33629728619999999" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="3cg-RW-b2N" firstAttribute="top" secondItem="Ppw-j3-RFb" secondAttribute="bottom" id="8sf-2C-ygo"/>
+                            <constraint firstItem="pz9-w5-uyq" firstAttribute="centerX" secondItem="KZ0-Tg-SQH" secondAttribute="centerX" id="RfA-Rm-ebP"/>
+                            <constraint firstItem="pz9-w5-uyq" firstAttribute="top" secondItem="HSI-8f-0Gw" secondAttribute="bottom" constant="110" id="hsw-Wv-OS5"/>
+                            <constraint firstAttribute="trailing" secondItem="Ppw-j3-RFb" secondAttribute="trailing" id="iaM-bl-yzJ"/>
+                            <constraint firstItem="Ppw-j3-RFb" firstAttribute="top" secondItem="KZ0-Tg-SQH" secondAttribute="top" id="jUG-6b-mFg"/>
+                            <constraint firstItem="Ppw-j3-RFb" firstAttribute="leading" secondItem="KZ0-Tg-SQH" secondAttribute="leading" id="pwt-Xf-1ch"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="headingLabel" destination="pz9-w5-uyq" id="sRj-ba-hEo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yc-ph-ZHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -324,14 +360,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Widget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wl6-eK-Wab">
-                                <rect key="frame" x="133" y="318" width="108" height="31"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_widget_background" translatesAutoresizingMaskIntoConstraints="NO" id="7fQ-bc-OpU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Straight to the point today widget" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-CI-bkI">
+                                <rect key="frame" x="82" y="130" width="210" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="9JW-gB-wcJ"/>
+                                    <constraint firstAttribute="height" constant="60" id="dBw-iD-cqd"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Dkt-CI-bkI" firstAttribute="top" secondItem="kTd-50-60a" secondAttribute="bottom" constant="110" id="6oZ-5C-pXz"/>
+                            <constraint firstAttribute="trailing" secondItem="7fQ-bc-OpU" secondAttribute="trailing" id="8Re-io-XUv"/>
+                            <constraint firstItem="7fQ-bc-OpU" firstAttribute="leading" secondItem="f1u-7D-RZY" secondAttribute="leading" id="N60-4w-EeU"/>
+                            <constraint firstItem="lLh-jw-Vyf" firstAttribute="top" secondItem="7fQ-bc-OpU" secondAttribute="bottom" id="j4R-TB-QML"/>
+                            <constraint firstItem="Dkt-CI-bkI" firstAttribute="centerX" secondItem="f1u-7D-RZY" secondAttribute="centerX" id="mxv-KB-ii8"/>
+                            <constraint firstItem="7fQ-bc-OpU" firstAttribute="top" secondItem="f1u-7D-RZY" secondAttribute="top" id="zYf-5c-Oxm"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
@@ -1168,6 +1219,9 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
         <image name="rise_off" width="56" height="27"/>
         <image name="set_off" width="56" height="27"/>
         <image name="settings" width="20" height="20"/>
+        <image name="w_dark_background" width="375" height="667"/>
+        <image name="w_notifications_background" width="375" height="667"/>
+        <image name="w_widget_background" width="375" height="667"/>
         <image name="walkthrough_welcome_back" width="375" height="667"/>
     </resources>
 </document>
