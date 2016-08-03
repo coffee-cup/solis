@@ -424,7 +424,7 @@
                                     <constraint firstAttribute="width" secondItem="zib-cc-JK8" secondAttribute="height" multiplier="1:1" id="tPI-vg-yUE"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-LU-RLd">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-LU-RLd" customClass="TouchThroughView" customModule="SunriseSunset" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="309" width="375" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-1S-9Gf">
