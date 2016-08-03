@@ -444,6 +444,7 @@
 				9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */,
 				9C236CD71D16798300FB9985 /* Defaults.swift */,
 				9C9740091CFC10F9000A5AFD /* Easing.swift */,
+				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
 				9CE885951CEFEC260045BEFB /* Location.swift */,
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
 				9C20A3F41D0FCC470079F3A5 /* Notifications.swift */,
@@ -451,6 +452,7 @@
 				9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */,
 				9CC052351D22465A00CBBECE /* TimeZones.swift */,
 				9C37C0C11CF6C929002ED35A /* TouchDownView.swift */,
+				9CBAFF5E1D5198790009444E /* TouchThroughView.swift */,
 				9CB37BEF1CE844400080B5B1 /* Assets.xcassets */,
 				9C3314F51CE976AF004D012E /* Extensions */,
 				9CDE815A1D03E7D50036FD34 /* Fonts */,
@@ -460,8 +462,6 @@
 				9C58B36D1D3365C000EBAD1D /* Spring */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
-				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
-				9CBAFF5E1D5198790009444E /* TouchThroughView.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
