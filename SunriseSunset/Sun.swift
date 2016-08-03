@@ -86,7 +86,7 @@ class Sun {
         self.nowTimeLabel = nowTimeLabel
         self.nowLabel = nowLabel
         
-        nowTextFormatter.dateFormat = "MMMM dd"
+        nowTextFormatter.dateFormat = "MMMM d"
         
         timeFormatUpdate()
         
