@@ -129,6 +129,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         nowTimeLabel.textColor = timeTextColour
         nowTimeLabel.font = fontDetail
         nowLineView.backgroundColor = nowLineColour
+        nowLineView.userInteractionEnabled = false
         
         nowLabel.addSimpleShadow()
         nowTimeLabel.addSimpleShadow()
@@ -227,15 +228,18 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func setupPermissions() {
+        pscope.style()
         pscope.addPermission(LocationWhileInUsePermission(),
-                             message: "We rarely check your location but need it to calculate the suns position.")
+                             message: "We rarely check your location but need it to calculate the suns position")
         
         // Show dialog with callbacks
         pscope.show({ finished, results in
-            print("got results \(results)")
-            
-//            Location.startLocationWatching()
-            Location.checkLocation()
+            if results[0].status == .Authorized {
+                print("got results \(results)")
+                
+    //            Location.startLocationWatching()
+                Location.checkLocation()
+            }
             }, cancelled: { (results) -> Void in
                 print("thing was cancelled")
         })

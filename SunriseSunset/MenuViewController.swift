@@ -153,27 +153,31 @@ class MenuViewController: UIViewController {
     
     func getNotificationPermission(sender: UIButton) {
         let pscope = PermissionScope()
-        pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow.")
+        pscope.style()
+        pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow")
         
         pscope.show({ finished, results in
-            sender.selected = !sender.selected
             
-            var noti = ""
-            switch sender {
-            case self.buttonSunrise:
-                noti = "Sunrise"
-            case self.buttonSunset:
-                noti = "Sunset"
-            case self.buttonFirstLight:
-                noti = "FirstLight"
-            case self.buttonLastLight:
-                noti = "LastLight"
-            default:
-                noti = ""
+            if results[0].status == .Authorized {
+                sender.selected = !sender.selected
+                
+                var noti = ""
+                switch sender {
+                case self.buttonSunrise:
+                    noti = "Sunrise"
+                case self.buttonSunset:
+                    noti = "Sunset"
+                case self.buttonFirstLight:
+                    noti = "FirstLight"
+                case self.buttonLastLight:
+                    noti = "LastLight"
+                default:
+                    noti = ""
+                }
+                self.defaults.setBool(sender.selected, forKey: noti)
+                
+                Bus.sendMessage(.NotificationChange, data: nil)
             }
-            self.defaults.setBool(sender.selected, forKey: noti)
-            
-            Bus.sendMessage(.NotificationChange, data: nil)
             }, cancelled: { (results) -> Void in
                 print("notification permissions were cancelled")
         })

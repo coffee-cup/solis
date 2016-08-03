@@ -89,6 +89,8 @@
 		9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9CB5F2501D16791F005F4E10 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
+		9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5C1D5191D70009444E /* PermissionScope.swift */; };
+		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
 		9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC052351D22465A00CBBECE /* TimeZones.swift */; };
 		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
@@ -227,6 +229,8 @@
 		9CB37C0A1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SolisWidget.entitlements; sourceTree = "<group>"; };
 		9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SunriseSunset.entitlements; sourceTree = "<group>"; };
+		9CBAFF5C1D5191D70009444E /* PermissionScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionScope.swift; sourceTree = "<group>"; };
+		9CBAFF5E1D5198790009444E /* TouchThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchThroughView.swift; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		9CC052351D22465A00CBBECE /* TimeZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZones.swift; sourceTree = "<group>"; };
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 				9C3314F81CE9A723004D012E /* UIColor.swift */,
 				9CC427A41D11088100693E32 /* UILabel.swift */,
 				9C27BE6A1D3212520093B2A6 /* UIButton.swift */,
+				9CBAFF5C1D5191D70009444E /* PermissionScope.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
+				9CBAFF5E1D5198790009444E /* TouchThroughView.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -897,6 +903,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */,
 				9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */,
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
@@ -916,6 +923,7 @@
 				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
 				9C58B39A1D3365C000EBAD1D /* LoadingView.swift in Sources */,
 				9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */,
+				9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
 				9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
