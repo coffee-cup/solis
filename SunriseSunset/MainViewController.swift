@@ -197,7 +197,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         let fingerX = recognizer.locationInView(view).x
     
         if recognizer.state == .Began {
-            if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdgeIn), high: Double(menuWidth + ClosenessToEdgeOut))  {
+            if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdgeIn), high: Double(menuWidth + menuWidth))  {
                 holdingWhileOut = true
                 anchorX = menuWidth - fingerX
             }
