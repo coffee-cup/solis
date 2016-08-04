@@ -38,11 +38,11 @@ enum InfoData {
     
     var text: String {
         switch(self) {
-        case .Day: return "Day is defined as the time between sunrise and sunset. During the day everything is visible."
-        case .CivilTwilight: return "Civil twilight is defined as the period when the sun lies between 6 and 0 degrees below the horizon. Of the celestial bodies, only the brightest stars and planets remain visible during civil twilight. Illumination is bright enough to distinguish objects in the landscape."
-        case .NauticalTwilight: return "Nautical twilight is defined as the period when the sun lies between 12 and 6 degrees below the horizon. At this time, stars remain visible in the sky for navigational purposes and objects on the horizon are only just visible."
-        case .AstronomicalTwilight: return "Astronomical twilight is defined as the period when the sun lies between 18 and 12 degrees below the horizon. At this time, point light sources such as stars remain visible in the sky, but fainter objects such as nebulae and galaxies are not visible. The majority of observers would consider astronomical twilight to be effectively dark."
-        case .Night: return "Night is defined as the time between Astronomical dusk and Astronomical dawn. During this time the sun is at least 18 degrees below the horizon. The only light illuminating the sky at this time is from the moon and stars."
+        case .Day: return "Day is defined as the time between sunrise and sunset when the sun is not below the horizon. During the day everything is visible."
+        case .CivilTwilight: return "Civil twilight is defined as the period when the sun lies between 6 and 0 degrees below the horizon. Of the celestial bodies, only the brightest stars and planets remain visible during civil twilight. Illumination is bright enough to distinguish objects in the landscape.\r\n\r\nCivil dawn occurs in the morning and marks the start civil twilight. Civil dusk occurs at night and marks the end of civil twilight."
+        case .NauticalTwilight: return "Nautical twilight is defined as the period when the sun lies between 12 and 6 degrees below the horizon. At this time, stars remain visible in the sky for navigational purposes and objects on the horizon are only just visible.\r\n\r\nNautical dawn occurs in the morning and marks the start of nautical twilight. Nautical dusk occurs at night at marks the end of nautical twilight."
+        case .AstronomicalTwilight: return "Astronomical twilight is defined as the period when the sun lies between 18 and 12 degrees below the horizon. At this time, point light sources such as stars remain visible in the sky, but fainter objects such as nebulae and galaxies are not visible. The majority of observers would consider astronomical twilight to be effectively dark.\r\n\r\nAstronomical dawn occurs in the morning and marks the start of astronomical twilight. Astronomical dusk occurs at night and marks the end of astronomical twilight."
+        case .Night: return "Night is defined as the time between astronomical dusk and astronomical dawn. During this time the sun is at least 18 degrees below the horizon. The only light illuminating the sky at this time is from the moon and stars."
         }
     }
     

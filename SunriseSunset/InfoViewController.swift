@@ -28,6 +28,18 @@ class InfoViewController: UIViewController {
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     
+    let highlightColour = civilColour
+    let highlightWords = [
+        "day",
+        "civil",
+        "nautical",
+        "astronomical",
+        "night",
+        "twilight",
+        "dusk",
+        "dawn"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,13 +65,16 @@ class InfoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationBarItem.title = infoTitle
-        textView.text = infoText
+        textView.attributedText = highlightInfoText(infoText)
         photoDescriptionLabel.text = infoPhotoDescription
         imageView.image = infoImage
+        
+        textView.scrollRangeToVisible(NSMakeRange(0,0))
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        textView.scrollRangeToVisible(NSMakeRange(0,0))
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -68,6 +83,21 @@ class InfoViewController: UIViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
+    }
+    
+    func highlightInfoText(text: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: "\(text) ") // place space at the end of string so all words get highlighted
+        attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: fontRegular, size: 18)!, range: NSMakeRange(0, attributedString.length))
+        
+        // highlight both lowercase and capitalized words
+        for highlightWord in highlightWords {
+            attributedString.attributeRangeFor(highlightWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .All)
+            
+            let capitalizedWord = highlightWord.capitalizedString
+            attributedString.attributeRangeFor(capitalizedWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .All)
+        }
+        
+        return attributedString
     }
     
     func goBack() {

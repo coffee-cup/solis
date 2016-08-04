@@ -78,6 +78,7 @@
 		9C857AE01D23ABDC0016F9EC /* SwiftLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */; };
 		9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C88799F1D3752AF00B8D1B9 /* InfoViewController.swift */; };
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
+		9CB196371D53190E005CD74E /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */; };
 		9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BE81CE844400080B5B1 /* AppDelegate.swift */; };
 		9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* SunViewController.swift */; };
 		9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEC1CE844400080B5B1 /* Main.storyboard */; };
@@ -214,6 +215,7 @@
 		9C8DFA5C1D1673DF00353D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9C8DFA5E1D1673DF00353D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9740091CFC10F9000A5AFD /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
+		9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		9CB37BE51CE844400080B5B1 /* SunriseSunset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunriseSunset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37BE81CE844400080B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CB37BEA1CE844400080B5B1 /* SunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				9CC427A41D11088100693E32 /* UILabel.swift */,
 				9C27BE6A1D3212520093B2A6 /* UIButton.swift */,
 				9CBAFF5C1D5191D70009444E /* PermissionScope.swift */,
+				9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */,
 				9C58B38C1D3365C000EBAD1D /* AsyncButton.swift in Sources */,
 				9C58B39E1D3365C000EBAD1D /* Spring.swift in Sources */,
+				9CB196371D53190E005CD74E /* NSMutableAttributedString.swift in Sources */,
 				9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */,
 				9C58B3A21D3365C000EBAD1D /* SpringLabel.swift in Sources */,
 				9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */,
