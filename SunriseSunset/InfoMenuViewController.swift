@@ -36,6 +36,8 @@ class InfoMenuViewController: UIViewController {
     
     let ButtonFadeOutDuration: CGFloat = 0.200
     
+    var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +76,10 @@ class InfoMenuViewController: UIViewController {
         civilTwilightLabel.addSimpleShadow()
         nauticalTwilightLabel.addSimpleShadow()
         astronomicalTwilightLabel.addSimpleShadow()
+        
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+        screenEdgeRecognizer.edges = .Left
+        view.addGestureRecognizer(screenEdgeRecognizer)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -163,5 +169,9 @@ class InfoMenuViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func sideSwipe() {
+        goBack()
     }
 }

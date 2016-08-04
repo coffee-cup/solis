@@ -26,6 +26,8 @@ class InfoViewController: UIViewController {
     var infoURLString: String = "https://blahblah.com"
     var infoImage: UIImage?
     
+    var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +43,10 @@ class InfoViewController: UIViewController {
         textView.contentInset = UIEdgeInsetsZero
         textView.textContainerInset = UIEdgeInsetsZero
         textView.textContainer.lineFragmentPadding = 0
+
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+        screenEdgeRecognizer.edges = .Left
+        view.addGestureRecognizer(screenEdgeRecognizer)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,6 +87,10 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func backButtonDidTouch(sender: AnyObject) {
+        goBack()
+    }
+    
+    func sideSwipe() {
         goBack()
     }
 }
