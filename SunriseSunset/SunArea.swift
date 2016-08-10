@@ -87,8 +87,14 @@ class SunArea: UIView {
     }
     
     func fadeOutView() {
-        UIView.animateWithDuration(0.250) {
+        UIView.animateWithDuration(0.5) {
             self.alpha = 0
+        }
+    }
+    
+    func fadeInView() {
+        UIView.animateWithDuration(0.5) {
+            self.alpha = 1
         }
     }
     

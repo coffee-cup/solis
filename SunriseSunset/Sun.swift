@@ -83,6 +83,9 @@ class Sun {
     
     var offset: NSTimeInterval = 0
     
+    // Whether or not the sun areas or visible
+    var sunAreasVisible = true
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     var now: NSDate = NSDate()
     var location: CLLocationCoordinate2D!
@@ -194,6 +197,15 @@ class Sun {
         sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
         sunAreas.append(createBlueHourArea(.Today, inMorning: true))
         sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: true))
+    }
+    
+    func toggleSunAreas() {
+        sunAreasVisible = !sunAreasVisible
+        for sunArea in sunAreas {
+            sunAreasVisible ?
+                sunArea.fadeInView() :
+                sunArea.fadeOutView()
+        }
     }
     
     @objc func timeFormatUpdate() {

@@ -162,8 +162,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         panRecognizer.delegate = self
         sunView.addGestureRecognizer(panRecognizer)
         
+        // Send Menu in tap
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
         sunView.addGestureRecognizer(tapRecognizer)
+        
+        // Long press tap (toggle sun areas)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressGesture))
+        sunView.addGestureRecognizer(longPressRecognizer)
         
         // Update every minute
         timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
@@ -492,6 +497,12 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func tapGesture(recognizer: UITapGestureRecognizer) {
         Bus.sendMessage(.SendMenuIn, data: nil)
+    }
+    
+    func longPressGesture(recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .Began {
+            sun.toggleSunAreas()
+        }
     }
     
     func touchDown(touches: Set<UITouch>, withEvent event: UIEvent?) {
