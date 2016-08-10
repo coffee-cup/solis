@@ -103,6 +103,7 @@
 		9CDA4B611D4F172200639954 /* WWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
+		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
 		9CE885961CEFEC260045BEFB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* Location.swift */; };
 		AF03E0CD87CACCBB7270FD24 /* Pods_SolisWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EFD17315D5F7C44BC2E3E2B /* Pods_SolisWidget.framework */; };
 		BBF3A4DB1DBC590F5D18DAA1 /* Pods_SunriseSunsetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3189E0E4F45FF1E27907170F /* Pods_SunriseSunsetUITests.framework */; };
@@ -244,6 +245,7 @@
 		9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWelcomeViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
+		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		AA99C3A67CB3B1E830EF48C7 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DED2E6359782E6E93CF79070 /* Pods_SunriseSunset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,6 +363,7 @@
 				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
 				9C6BCB211D3CA6F00069BC16 /* SunType.swift */,
 				9C36570D1D471688001019BB /* SunPlace.swift */,
+				9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */,
 			);
 			name = SunStuff;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				9C58B39C1D3365C000EBAD1D /* Misc.swift in Sources */,
 				9CDA4B5B1D4F16FA00639954 /* WDarkViewController.swift in Sources */,
 				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
+				9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */,
 				9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */,
 				9C3314F91CE9A723004D012E /* UIColor.swift in Sources */,
 				9C58B3A01D3365C000EBAD1D /* SpringButton.swift in Sources */,

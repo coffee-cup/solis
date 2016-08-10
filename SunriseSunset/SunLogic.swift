@@ -20,7 +20,7 @@ class SunLogic {
         return abs(date1.timeIntervalSinceDate(date2)) == 86400
     }
     
-    class func calculateTimesForDate(date: NSDate, location: CLLocationCoordinate2D, timezone: NSTimeZone = NSTimeZone.localTimeZone()) -> [Suntime] {
+    class func calculateTimesForDate(date: NSDate, location: CLLocationCoordinate2D, timezone: NSTimeZone = NSTimeZone.localTimeZone(), day: SunDay) -> [Suntime] {
         
         let ss = EDSunriseSet(timezone: timezone, latitude: location.latitude, longitude: location.longitude)
         
@@ -28,7 +28,7 @@ class SunLogic {
         ss.calculateSunriseSunset(date)
         
         let suntimes: [Suntime] = suntypes.map { type in
-            return Suntime(type: type)
+            return Suntime(type: type, day: day)
         }
         
         // Astronomical
@@ -65,8 +65,8 @@ class SunLogic {
     class func todayTomorrow(location: CLLocationCoordinate2D) -> [Suntime] {
         let today = NSDate()
         let tomorrow = today.addDays(1)
-        return SunLogic.calculateTimesForDate(today, location: location)
-            + SunLogic.calculateTimesForDate(tomorrow, location: location)
+        return SunLogic.calculateTimesForDate(today, location: location, day: .Today)
+            + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .Tomorrow)
     }
     
     class func futureTimes(suntimes: [Suntime]) -> [Suntime] {

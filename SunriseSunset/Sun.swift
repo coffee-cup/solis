@@ -29,6 +29,24 @@ func == (lhs: SunTimeLine, rhs: SunTimeLine) -> Bool {
     return lhs.suntime == rhs.suntime
 }
 
+struct SunTimeMarker: Comparable {
+    var sunTimeLine: SunTimeLine
+    var percent: Float
+    
+    init(sunTimeLine: SunTimeLine, percent: Float) {
+        self.sunTimeLine = sunTimeLine
+        self.percent = percent
+    }
+}
+
+func < (lhs: SunTimeMarker, rhs: SunTimeMarker) -> Bool {
+    return lhs.sunTimeLine.suntime < rhs.sunTimeLine.suntime
+}
+
+func == (lhs: SunTimeMarker, rhs: SunTimeMarker) -> Bool {
+    return lhs.sunTimeLine.suntime == rhs.sunTimeLine.suntime
+}
+
 protocol SunProtocol {
     func collisionIsHappening()
     func collisionNotHappening()
@@ -75,6 +93,7 @@ class Sun {
 //    var suntimes: [Suntime] = []
 //    var sunlines: [Sunline] = []
     var sunTimeLines: [SunTimeLine] = []
+    var sunAreas: [SunArea] = []
     
     init(screenMinutes: Float, screenHeight: Float, sunHeight: Float, sunView: UIView, gradientLayer: CAGradientLayer, nowTimeLabel: UILabel, nowLabel: UILabel) {
         self.screenMinutes = screenMinutes
@@ -92,26 +111,89 @@ class Sun {
         
         calendar.timeZone = NSTimeZone.localTimeZone()
         
-        for _ in 1...3 {
-            createSuntime(.AstronomicalDusk, view: sunView)
-            createSuntime(.NauticalDusk, view: sunView)
-            createSuntime(.CivilDusk, view: sunView)
-            createSuntime(.Sunrise, view: sunView)
-            createSuntime(.Sunset, view: sunView)
-            createSuntime(.CivilDawn, view: sunView)
-            createSuntime(.NauticalDawn, view: sunView)
-            createSuntime(.AstronomicalDawn, view: sunView)
+        createSunAreas()
+        
+        for dayNumber in 1...3 {
+            createSuntime(.AstronomicalDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.NauticalDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.CivilDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.Sunrise, view: sunView, dayNumber: dayNumber)
+            createSuntime(.Sunset, view: sunView, dayNumber: dayNumber)
+            createSuntime(.CivilDawn, view: sunView, dayNumber: dayNumber)
+            createSuntime(.NauticalDawn, view: sunView, dayNumber: dayNumber)
+            createSuntime(.AstronomicalDawn, view: sunView, dayNumber: dayNumber)
         }
         
         Bus.subscribeEvent(.TimeFormat, observer: self, selector: #selector(timeFormatUpdate))
     }
     
-    func createSuntime(type: SunType, view: UIView) {
-        let suntime = Suntime(type: type)
+    func createSuntime(type: SunType, view: UIView, dayNumber: Int) {
+        var day: SunDay!
+        if dayNumber == 1 {
+            day = .Yesterday
+        } else if dayNumber == 2 {
+            day = .Today
+        } else if dayNumber == 3 {
+            day = .Tomorrow
+        }
+        
+        let suntime = Suntime(type: type, day: day)
         let sunline = Sunline()
         sunline.createLine(view, type: type)
         
         sunTimeLines.append(SunTimeLine(suntime: suntime, sunline: sunline))
+    }
+    
+    func createGoldenHourArea(day: SunDay, inMorning: Bool) -> SunArea {
+        let startDegrees: Float = -6
+        let endDegrees: Float = 4
+        
+        let goldenHourArea = SunArea(
+            startDegrees: startDegrees,
+            endDegrees: endDegrees,
+            name: "golden hour",
+            colour: goldenHourColour,
+            day: day,
+            inMorning: inMorning)
+        goldenHourArea.createArea(sunView)
+        return goldenHourArea
+    }
+    
+    func createBlueHourArea(day: SunDay, inMorning: Bool) -> SunArea {
+        let startDegrees: Float = 4
+        let endDegrees: Float = 6
+        
+        let blueHourArea = SunArea(
+            startDegrees: startDegrees,
+            endDegrees: endDegrees,
+            name: "blue hour",
+            colour: blueHourColour,
+            day: day,
+            inMorning: inMorning)
+        blueHourArea.createArea(sunView)
+        return blueHourArea
+    }
+    
+    func createSunAreas() {
+        // Evening Golden Hour
+        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.Today, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
+        
+        // Morning Golden Hour
+        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: true))
+        
+        // Evening Blue Hour
+        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
+        sunAreas.append(createBlueHourArea(.Today, inMorning: false))
+        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
+        
+        // Morning Blue Hour
+        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
+        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
+        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: true))
     }
     
     @objc func timeFormatUpdate() {
@@ -171,9 +253,9 @@ class Sun {
         let yesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: today, options: [])!
         let tomorrow = calendar.dateByAddingUnit(.Day, value: 1, toDate: today, options: [])!
         
-        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location)
-            + SunLogic.calculateTimesForDate(today, location: location)
-            + SunLogic.calculateTimesForDate(tomorrow, location: location)
+        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .Yesterday)
+            + SunLogic.calculateTimesForDate(today, location: location, day: .Today)
+            + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .Tomorrow)
         for (index, time) in suntimes.enumerate() {
             sunTimeLines[index].suntime = time
         }
@@ -207,49 +289,69 @@ class Sun {
             }
         }
         
+        var sunTimeMarkers: [SunTimeMarker] = []
         var colours: [CGColorRef] = []
-        var locations: [Float] = []
+//        var locations: [Float] = []
         
+        var lowestStl: SunTimeLine!
         var lowestLocation: Float = -Float.infinity
         var lowestColour: CGColorRef?
         for stl in futureTimeLines.reverse() {
             let per = 0.5  - getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
+                sunTimeMarkers.append(SunTimeMarker(sunTimeLine: stl, percent: per))
                 colours.append(stl.suntime.colour)
-                locations.append(per)
+//                locations.append(per)
             }
             if per < 0 && per > lowestLocation && !stl.suntime.neverHappens {
                 lowestLocation = per
                 lowestColour = stl.suntime.colour
+                lowestStl = stl
             }
             stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
         if let lowestColour = lowestColour {
-            locations.insert(0, atIndex: 0)
+            sunTimeMarkers.insert(SunTimeMarker(sunTimeLine: lowestStl, percent: 0), atIndex: 0)
+//            locations.insert(0, atIndex: 0)
             colours.insert(lowestColour, atIndex: 0)
         }
         
+        var highestStl: SunTimeLine!
         var highestLocation: Float = Float.infinity
         var highestColour: CGColorRef?
         for stl in pastTimeLines.reverse() {
             let per = 0.5 + getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
+                sunTimeMarkers.append(SunTimeMarker(sunTimeLine: stl, percent: per))
                 colours.append(stl.suntime.colour)
-                locations.append(per)
+//                locations.append(per)
             }
             
             if per > 1 && per < highestLocation && !stl.suntime.neverHappens {
                 highestLocation = per
                 highestColour = stl.suntime.colour
+                highestStl = stl
             }
             stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
         if let highestColour = highestColour {
-            locations.append(1)
+            sunTimeMarkers.append(SunTimeMarker(sunTimeLine: highestStl, percent: 1))
+//            locations.append(1)
             colours.append(highestColour)
         }
         
+        let locations: [Float] = sunTimeMarkers.map { sunTimeMarker in
+            return sunTimeMarker.percent
+        }
         animateGradient(gradientLayer, toColours: colours, toLocations: locations)
+        
+        calculateSunAreas(sunTimeMarkers)
+    }
+    
+    func calculateSunAreas(sunTimeMarkers: [SunTimeMarker]) {
+        for sunArea in sunAreas {
+            sunArea.updateArea(sunTimeMarkers)
+        }
     }
     
     func animateGradient(gradientLayer: CAGradientLayer, toColours: [CGColorRef], toLocations: [Float]) {

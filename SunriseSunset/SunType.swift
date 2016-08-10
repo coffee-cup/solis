@@ -98,4 +98,69 @@ enum SunType {
         }
         return message
     }
+    
+    var twilightDawn: Bool {
+        switch self {
+        case .AstronomicalDawn: return true;
+        case .NauticalDawn: return true;
+        case .CivilDawn: return true;
+        case .Sunrise: return false;
+        case .Sunset: return false;
+        case .CivilDusk: return false;
+        case .NauticalDusk: return false;
+        case .AstronomicalDusk: return false;
+        }
+    }
+    
+    var twilightDusk: Bool {
+        switch self {
+        case .AstronomicalDawn: return false;
+        case .NauticalDawn: return false;
+        case .CivilDawn: return false;
+        case .Sunrise: return false;
+        case .Sunset: return false;
+        case .CivilDusk: return true;
+        case .NauticalDusk: return true;
+        case .AstronomicalDusk: return true;
+        }
+    }
+    
+    var morning: Bool {
+        switch self {
+        case .AstronomicalDawn: return true;
+        case .NauticalDawn: return true;
+        case .CivilDawn: return true;
+        case .Sunrise: return true;
+        case .Sunset: return false;
+        case .CivilDusk: return false;
+        case .NauticalDusk: return false;
+        case .AstronomicalDusk: return false;
+        }
+    }
+    
+    var night: Bool {
+        switch self {
+        case .AstronomicalDawn: return false;
+        case .NauticalDawn: return false;
+        case .CivilDawn: return false;
+        case .Sunrise: return false;
+        case .Sunset: return true;
+        case .CivilDusk: return true;
+        case .NauticalDusk: return true;
+        case .AstronomicalDusk: return true;
+        }
+    }
+    
+    var degrees: Float {
+        switch self {
+        case .AstronomicalDawn: return 18;
+        case .NauticalDawn: return 12;
+        case .CivilDawn: return 6;
+        case .Sunrise: return 0;
+        case .Sunset: return 0;
+        case .CivilDusk: return 6;
+        case .NauticalDusk: return 12;
+        case .AstronomicalDusk: return 18;
+        }
+    }
 }

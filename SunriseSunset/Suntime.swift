@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum SunDay {
+    case Yesterday
+    case Today
+    case Tomorrow
+}
+
 class Suntime: Comparable {
     
     var dateComponents: NSDateComponents!
@@ -21,6 +27,7 @@ class Suntime: Comparable {
     var marker: Bool {
         return isLast ? true : type.marker
     }
+    var day: SunDay!
     
     // Possibility for refactor, to only set marker if last time
     var isLast: Bool = true
@@ -29,10 +36,11 @@ class Suntime: Comparable {
     
     let formatter = NSDateFormatter()
     
-    init(type: SunType) {
+    init(type: SunType, day: SunDay) {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         self.type = type
+        self.day = day
         formatter.dateFormat = "MMMM d HH:mm"
     }
     
