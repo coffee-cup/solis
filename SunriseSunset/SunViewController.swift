@@ -168,6 +168,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         // Long press tap (toggle sun areas)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressGesture))
+        longPressRecognizer.allowableMovement = 0.1
+        longPressRecognizer.minimumPressDuration = 0.5
         sunView.addGestureRecognizer(longPressRecognizer)
         
         // Update every minute
