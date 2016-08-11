@@ -108,6 +108,8 @@ class Sun {
         self.nowTimeLabel = nowTimeLabel
         self.nowLabel = nowLabel
         
+        gradientLayer.frame = sunView.bounds
+        
         nowTextFormatter.dateFormat = "MMMM d"
         
         timeFormatUpdate()
@@ -151,6 +153,28 @@ class Sun {
         let startDegrees: Float = -6
         let endDegrees: Float = 4
         
+        var colours = [
+            goldenHourColour.colorWithAlphaComponent(0).CGColor,
+            goldenHourColour.colorWithAlphaComponent(0.2).CGColor,
+            goldenHourColour.CGColor,
+            blueHourColour.colorWithAlphaComponent(0.2).CGColor
+        ]
+        if !inMorning {
+            colours = colours.reverse()
+        }
+        
+        let locations: [Float] = inMorning ? [
+            0,
+            0.4,
+            0.8,
+            1
+        ] : [
+            0,
+            0.2,
+            0.6,
+            1
+        ]
+        
         let goldenHourArea = SunArea(
             startDegrees: startDegrees,
             endDegrees: endDegrees,
@@ -158,6 +182,9 @@ class Sun {
             colour: goldenHourColour,
             day: day,
             inMorning: inMorning)
+        
+        goldenHourArea.colours = colours
+        goldenHourArea.locations = locations
         goldenHourArea.createArea(sunView)
         return goldenHourArea
     }
@@ -166,6 +193,28 @@ class Sun {
         let startDegrees: Float = 4
         let endDegrees: Float = 6
         
+        var colours = [
+            blueHourColour.colorWithAlphaComponent(0.2).CGColor,
+            blueHourColour.CGColor,
+            blueHourColour.colorWithAlphaComponent(0.1).CGColor,
+            blueHourColour.colorWithAlphaComponent(0).CGColor
+        ]
+        if !inMorning {
+           colours = colours.reverse()
+        }
+        
+        let locations: [Float] = inMorning ? [
+            0,
+            0.4,
+            0.8,
+            1
+        ] : [
+            0,
+            0.2,
+            0.6,
+            1
+        ]
+        
         let blueHourArea = SunArea(
             startDegrees: startDegrees,
             endDegrees: endDegrees,
@@ -173,29 +222,32 @@ class Sun {
             colour: blueHourColour,
             day: day,
             inMorning: inMorning)
+        
+        blueHourArea.colours = colours
+        blueHourArea.locations = locations
         blueHourArea.createArea(sunView)
         return blueHourArea
     }
     
     func createSunAreas() {
         // Evening Golden Hour
-        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
+//        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
         sunAreas.append(createGoldenHourArea(.Today, inMorning: false))
-        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
-        
+//        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
+
         // Morning Golden Hour
-        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
-        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
+//        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
+//        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
         sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: true))
-        
+
         // Evening Blue Hour
-        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
+//        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
         sunAreas.append(createBlueHourArea(.Today, inMorning: false))
-        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
-        
+//        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
+
         // Morning Blue Hour
-        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
-        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
+//        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
+//        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
         sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: true))
     }
     
@@ -287,7 +339,6 @@ class Sun {
     
     func calculateGradient() {
         sunView.backgroundColor = UIColor.clearColor()
-        gradientLayer.frame = sunView.bounds
 
         let sortedFiltered = sunTimeLines.sort()
         

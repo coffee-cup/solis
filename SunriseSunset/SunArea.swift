@@ -15,14 +15,19 @@ class SunArea: UIView {
     var nameLabel: UILabel!
     
     var topConstraint: NSLayoutConstraint!
-    var bottomConstraint: NSLayoutConstraint!
+    var heightConstraint: NSLayoutConstraint!
     
     var nameLeftConstraint: NSLayoutConstraint!
+    
+    var gradientLayer: CAGradientLayer!
     
     var startDegrees: Float!
     var endDegrees: Float!
     var name: String!
     var colour: UIColor!
+    
+    var colours: [CGColor]?
+    var locations: [Float]?
     
     var inMorning: Bool!
     var day: SunDay!
@@ -64,14 +69,40 @@ class SunArea: UIView {
             // Area View
             
             let viewHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: ["view": self])
-//            let viewVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: ["view": self])
             self.topConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 1, constant: 0)
-            self.bottomConstraint = NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 1, constant: 100)
+            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100)
             
-//            NSLayoutConstraint.activateConstraints(viewHorizontalConstraints + viewVerticalConstraints)
-            NSLayoutConstraint.activateConstraints(viewHorizontalConstraints + [self.topConstraint, self.bottomConstraint])
+            NSLayoutConstraint.activateConstraints(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
             
-            self.backgroundColor = self.colour
+//            self.backgroundColor = UIColor.purpleColor().colorWithAlphaComponent(0.3)
+            
+            self.gradientLayer = CAGradientLayer()
+            self.layer.addSublayer(self.gradientLayer)
+            self.gradientLayer.frame = self.frame
+            
+            if let locations = self.locations {
+                self.gradientLayer.locations = locations
+            } else {
+                self.gradientLayer.locations = [
+                    0,
+                    0.2,
+                    0.8,
+                    1
+                ]
+            }
+            
+            if let colours = self.colours {
+                self.gradientLayer.colors = colours
+            } else {
+                self.gradientLayer.colors = [
+                    self.colour.colorWithAlphaComponent(0.1).CGColor,
+                    self.colour.CGColor,
+                    self.colour.CGColor,
+                    self.colour.colorWithAlphaComponent(0.1).CGColor
+                ]
+            }
+            
+//            self.backgroundColor = self.colour
             
             // Name Label
             
@@ -111,8 +142,22 @@ class SunArea: UIView {
     }
     
     func updateAreaWithPercents(minPercent: Float, maxPercent: Float) {
-        topConstraint.constant = self.parentView.frame.height * CGFloat(minPercent)
-        bottomConstraint.constant = self.parentView.frame.height * CGFloat(maxPercent)
+        if "\(minPercent)" == "nan" || "\(maxPercent)" == "nan" {
+            return
+        }
+        
+        if minPercent < 0 || minPercent > 100 || maxPercent < 0 || maxPercent > 100 {
+            return
+        }
+        
+        let top = parentView.frame.height * CGFloat(minPercent)
+        let bottom = parentView.frame.height * CGFloat(maxPercent)
+        let height = bottom - top
+        
+        topConstraint.constant = top
+        heightConstraint.constant = height
+        
+        self.gradientLayer.frame = CGRectMake(0, 0, parentView.frame.width, height)
         UIView.animateWithDuration(0.5) {
             self.parentView.layoutIfNeeded()
         }
@@ -146,10 +191,6 @@ class SunArea: UIView {
             
             if let lowestMarker = lowestMarker {
                 if let highestMarker = highestMarker {
-                    print("area range \(self.startDegrees) - \(self.endDegrees)")
-                    print("\(lowestMarker.sunTimeLine.suntime.type.description):  \(lowestMarker.sunTimeLine.suntime.type.degrees)")
-                    print("\(highestMarker.sunTimeLine.suntime.type.description): \(highestMarker.sunTimeLine.suntime.type.degrees)")
-                    
                     var minMarker = lowestMarker
                     var maxMarker = highestMarker
                     
@@ -159,9 +200,6 @@ class SunArea: UIView {
                     
                     let startPercent = self.degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: self.startDegrees)
                     let endPercent = self.degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: self.endDegrees)
-                    
-                    print("start deg: \(self.startDegrees) - per: \(startPercent)")
-                    print("end deg: \(self.endDegrees) - per: \(endPercent)")
                     
                     self.updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
                 }
