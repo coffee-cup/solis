@@ -28,6 +28,7 @@ enum DefaultKey {
     case LocationHistoryPlaces
     case ShowWalkthrough
     case ShowTutorial
+    case ShowSunAreas
     
     var description: String {
         switch self {
@@ -50,6 +51,7 @@ enum DefaultKey {
         case .LocationHistoryPlaces: return "LocationHistoryPlaces"
         case .ShowWalkthrough: return "ShowWalkthrough"
         case .ShowTutorial: return "ShowTutorial"
+        case .ShowSunAreas: return "ShowSunAreas"
         }
     }
 }
@@ -72,6 +74,15 @@ class Defaults {
         }
         set {
             defaults.setBool(newValue, forKey: DefaultKey.ShowWalkthrough.description)
+        }
+    }
+    
+    static var showSunAreas: Bool {
+        get {
+            return defaults.boolForKey(DefaultKey.ShowSunAreas.description)
+        }
+        set {
+            defaults.setBool(newValue, forKey: DefaultKey.ShowSunAreas.description)
         }
     }
 }

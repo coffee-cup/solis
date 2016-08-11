@@ -117,6 +117,8 @@ class Sun {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         createSunAreas()
+        
+        sunAreasVisible = !Defaults.showSunAreas
         toggleSunAreas()
         
         for dayNumber in 1...3 {
@@ -232,28 +234,29 @@ class Sun {
     
     func createSunAreas() {
         // Evening Golden Hour
-//        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
         sunAreas.append(createGoldenHourArea(.Today, inMorning: false))
-//        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
 
         // Morning Golden Hour
-//        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
-//        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
         sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: true))
 
         // Evening Blue Hour
-//        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
+        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
         sunAreas.append(createBlueHourArea(.Today, inMorning: false))
-//        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
+        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
 
         // Morning Blue Hour
-//        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
-//        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
+        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
+        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
         sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: true))
     }
     
     func toggleSunAreas() {
         sunAreasVisible = !sunAreasVisible
+        Defaults.showSunAreas = sunAreasVisible
         for sunArea in sunAreas {
             sunAreasVisible ?
                 sunArea.fadeInView() :
