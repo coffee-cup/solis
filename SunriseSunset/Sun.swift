@@ -117,6 +117,7 @@ class Sun {
         calendar.timeZone = NSTimeZone.localTimeZone()
         
         createSunAreas()
+        toggleSunAreas()
         
         for dayNumber in 1...3 {
             createSuntime(.AstronomicalDusk, view: sunView, dayNumber: dayNumber)
