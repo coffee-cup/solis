@@ -156,6 +156,7 @@ class Sun {
         let startDegrees: Float = -6
         let endDegrees: Float = 4
         
+        // Carefully fuck with these numbers
         var colours = [
             goldenHourColour.colorWithAlphaComponent(0).CGColor,
             goldenHourColour.colorWithAlphaComponent(0.2).CGColor,
@@ -196,6 +197,7 @@ class Sun {
         let startDegrees: Float = 4
         let endDegrees: Float = 6
         
+        // Carefully fuck with these numbers
         var colours = [
             blueHourColour.colorWithAlphaComponent(0.2).CGColor,
             blueHourColour.CGColor,
