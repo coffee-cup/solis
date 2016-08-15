@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.CurrentLocation): true,
             defaultString(.LocationHistoryPlaces): [],
             defaultString(.ShowWalkthrough): true,
-            defaultString(.ShowSunAreas): false
+            defaultString(.ShowSunAreas): true
         ])
         
         GMSServices.provideAPIKey("AIzaSyATdTWF9AwHXq3UnCrAfr6czN7f_E86658")
