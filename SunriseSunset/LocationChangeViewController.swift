@@ -23,6 +23,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     var places: [SunPlace] = []
     var placeHistory: [SunPlace] = []
     
+    let defaults = Defaults.defaults
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -169,6 +171,50 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         return isSearching() ? places.count + 1 : placeHistory.count + 1
     }
     
+    func getNotificationPlaceID() -> String? {
+        if let sunPlaceString = defaults.objectForKey(DefaultKey.NotificationPlace.description) as? String {
+            if sunPlaceString != "" {
+                if let sunPlace = SunPlace.sunPlaceFromString(sunPlaceString) {
+                    return sunPlace.placeID
+                }
+            }
+        }
+        return nil
+    }
+    
+    func bellButtonDidTouch(bellButton: BellButton) {
+        if bellButton.useCurrentLocation {
+            print("current location")
+        } else {
+            if let sunPlace = bellButton.sunPlace {
+                print(sunPlace.location)
+            }
+        }
+    }
+    
+    func setBellButton(button: BellButton, sunPlace: SunPlace?) {
+        button.setImage(UIImage(named: "bell_grey"), forState: .Normal)
+        button.setImage(UIImage(named: "bell_red"), forState: .Selected)
+        button.sunPlace = sunPlace
+        
+        let placeId: String? = getNotificationPlaceID()
+        
+        if let sunPlace = sunPlace {
+            // custom notification
+            if placeId != nil && placeId! == sunPlace.placeID {
+                button.selected = true
+            }
+        } else {
+            // current location notification
+            if placeId == nil {
+                button.selected = true
+                print("enabled for current location")
+            }
+        }
+        
+        button.addTarget(self, action: #selector(bellButtonDidTouch), forControlEvents: .TouchUpInside)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
         if indexPath.row == 0 {
@@ -176,6 +222,9 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             
             if let locationName = Location.getCurrentLocationName() {
                 let locationLabel = cell.viewWithTag(3)! as! UILabel
+                let bellButton = cell.viewWithTag(4)! as! BellButton
+                
+                setBellButton(bellButton, sunPlace: nil)
                 locationLabel.text = locationName
             }
         } else {
@@ -190,7 +239,14 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             
             let cityLabel = cell.viewWithTag(1)! as! UILabel
             let stateCountryLabel = cell.viewWithTag(2)! as! UILabel
+            let bellButton = cell.viewWithTag(4)! as! BellButton
             
+            if !isSearching() {
+                setBellButton(bellButton, sunPlace: sunplace)
+                bellButton.hidden = false
+            } else {
+                bellButton.hidden = true
+            }
             cityLabel.text = sunplace.primary
             stateCountryLabel.text = sunplace.secondary
         }

@@ -822,25 +822,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vancouver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-KD-4qx">
-                                                    <rect key="frame" x="36" y="8" width="331" height="25"/>
+                                                    <rect key="frame" x="66" y="8" width="301" height="25"/>
                                                     <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BC, Canada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK6-wI-1yz">
-                                                    <rect key="frame" x="36" y="35" width="331" height="16"/>
+                                                    <rect key="frame" x="66" y="35" width="301" height="16"/>
                                                     <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZC-nY-eMM" customClass="BellButton" customModule="SunriseSunset" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="15" width="26" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="2LI-cy-vdO"/>
+                                                        <constraint firstAttribute="height" constant="30" id="GiR-EE-jdw"/>
+                                                    </constraints>
+                                                    <state key="normal" image="bell_grey"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="oK6-wI-1yz" secondAttribute="trailing" id="63m-EE-ZIv"/>
                                                 <constraint firstItem="oK6-wI-1yz" firstAttribute="leading" secondItem="QBB-KD-4qx" secondAttribute="leading" id="DIF-Rf-Eij"/>
                                                 <constraint firstItem="QBB-KD-4qx" firstAttribute="trailing" secondItem="fVa-HM-XXM" secondAttribute="trailingMargin" id="ElW-Y9-oYe"/>
                                                 <constraint firstItem="QBB-KD-4qx" firstAttribute="top" secondItem="fVa-HM-XXM" secondAttribute="topMargin" id="Gp5-Vy-Osc"/>
+                                                <constraint firstItem="tZC-nY-eMM" firstAttribute="centerY" secondItem="fVa-HM-XXM" secondAttribute="centerY" id="M17-g8-b8W"/>
+                                                <constraint firstItem="QBB-KD-4qx" firstAttribute="leading" secondItem="tZC-nY-eMM" secondAttribute="trailing" constant="20" id="SHm-Zr-hAb"/>
+                                                <constraint firstItem="tZC-nY-eMM" firstAttribute="leading" secondItem="fVa-HM-XXM" secondAttribute="leading" constant="20" id="Y6Q-au-8Zb"/>
                                                 <constraint firstItem="oK6-wI-1yz" firstAttribute="top" secondItem="QBB-KD-4qx" secondAttribute="bottom" constant="2" id="e0A-KH-AH4"/>
-                                                <constraint firstItem="QBB-KD-4qx" firstAttribute="leading" secondItem="fVa-HM-XXM" secondAttribute="leadingMargin" constant="28" id="uvH-c0-pAg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -852,13 +862,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-4z-85S">
-                                                    <rect key="frame" x="36" y="8" width="158" height="25"/>
+                                                    <rect key="frame" x="66" y="8" width="158" height="25"/>
                                                     <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BC, Canada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3p-DL-fa6">
-                                                    <rect key="frame" x="36" y="35" width="331" height="16"/>
+                                                    <rect key="frame" x="66" y="35" width="301" height="16"/>
                                                     <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -871,13 +881,23 @@
                                                         <constraint firstAttribute="width" secondItem="PR4-AZ-YiS" secondAttribute="height" multiplier="1:1" id="bJh-DF-6aV"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBJ-py-2Ej" customClass="BellButton" customModule="SunriseSunset" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="15" width="26" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="IMt-7I-y9i"/>
+                                                        <constraint firstAttribute="width" constant="26" id="MO7-KW-XMM"/>
+                                                    </constraints>
+                                                    <state key="normal" image="bell_red"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="oW2-4z-85S" firstAttribute="top" secondItem="AtK-ki-cgV" secondAttribute="topMargin" id="Ail-Os-pXT"/>
+                                                <constraint firstItem="pBJ-py-2Ej" firstAttribute="leading" secondItem="AtK-ki-cgV" secondAttribute="leading" constant="20" id="C8o-cv-WsP"/>
                                                 <constraint firstItem="oW2-4z-85S" firstAttribute="trailing" secondItem="AtK-ki-cgV" secondAttribute="trailingMargin" id="E1Y-Lu-hQm"/>
-                                                <constraint firstItem="oW2-4z-85S" firstAttribute="leading" secondItem="AtK-ki-cgV" secondAttribute="leadingMargin" constant="28" id="Gld-us-dgA"/>
                                                 <constraint firstItem="r3p-DL-fa6" firstAttribute="top" secondItem="oW2-4z-85S" secondAttribute="bottom" constant="2" id="M3T-GN-QZu"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="PR4-AZ-YiS" secondAttribute="trailing" constant="28" id="RzP-AM-nhO"/>
+                                                <constraint firstItem="oW2-4z-85S" firstAttribute="leading" secondItem="pBJ-py-2Ej" secondAttribute="trailing" constant="20" id="XNg-4y-Onc"/>
+                                                <constraint firstItem="pBJ-py-2Ej" firstAttribute="centerY" secondItem="AtK-ki-cgV" secondAttribute="centerY" id="a4Y-PW-gdw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="r3p-DL-fa6" secondAttribute="trailing" id="hI8-IZ-vBl"/>
                                                 <constraint firstItem="PR4-AZ-YiS" firstAttribute="centerY" secondItem="AtK-ki-cgV" secondAttribute="centerY" id="tVf-Ll-Wlq"/>
                                                 <constraint firstItem="r3p-DL-fa6" firstAttribute="leading" secondItem="oW2-4z-85S" secondAttribute="leading" id="xoX-mY-fgr"/>
@@ -1211,6 +1231,8 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
     <resources>
         <image name="Logo" width="146" height="28"/>
         <image name="back_light" width="16" height="28"/>
+        <image name="bell_grey" width="26" height="30"/>
+        <image name="bell_red" width="26" height="30"/>
         <image name="center_button" width="30" height="30"/>
         <image name="first_off" width="71" height="17"/>
         <image name="info" width="20" height="20"/>

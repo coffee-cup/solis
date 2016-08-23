@@ -38,7 +38,6 @@ class Notifications {
         let firstLightNoti = defaults.boolForKey("FirstLight")
         let lastLightNoti = defaults.boolForKey("LastLight")
         
-        print("\n")
         var notificationTimes: [Suntime] = []
         
         if sunriseNoti {

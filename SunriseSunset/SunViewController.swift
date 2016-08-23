@@ -105,6 +105,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Modal we use to get location permissions
     let pscope = PermissionScope()
     
+    var smoothyOffset: Double = 0
+    var smoothyForward = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -188,6 +191,36 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         reset()
         scrollReset()
+        
+//        NSTimer.scheduledTimerWithTimeInterval(1/60, target: self, selector: #selector(smoothy), userInfo: nil, repeats: true)
+    }
+    
+    func smoothy() {
+        print("fuck")
+        if smoothyOffset > 1500 {
+            smoothyForward = false
+        }
+        if smoothyOffset < -1000 {
+            smoothyForward = true
+        }
+        
+        let increase: Double = 20 // minutes
+        if smoothyForward {
+            smoothyOffset += increase
+        } else {
+            smoothyOffset -= increase
+        }
+        print("smoothy offset: \(smoothyOffset)")
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            let transform = self.sun.pointsToMinutes(self.smoothyOffset)
+            let (newTransformBy, newOffsetBy) = self.normalizeOffsets(transform, offsetBy: self.smoothyOffset)
+            
+            UIView.animateWithDuration(1/60) {
+                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+            }
+            self.moveUpdate(newOffsetBy)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -300,7 +333,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func setCenterButton() {
-        if offNow && !centerButton.enabled {
+        if false && !centerButton.enabled {
             centerButton.enabled = true
             centerImageView.animation = "fadeIn"
             centerImageView.animate()

@@ -29,6 +29,7 @@ enum DefaultKey {
     case ShowWalkthrough
     case ShowTutorial
     case ShowSunAreas
+    case NotificationPlace
     
     var description: String {
         switch self {
@@ -52,6 +53,7 @@ enum DefaultKey {
         case .ShowWalkthrough: return "ShowWalkthrough"
         case .ShowTutorial: return "ShowTutorial"
         case .ShowSunAreas: return "ShowSunAreas"
+        case .NotificationPlace: return "NotificationPlace"
         }
     }
 }
