@@ -148,9 +148,10 @@ class InfoMenuViewController: UIViewController {
     }
     
     func infoButtonPressed(sender: AnyObject) {
-        animateButtonsOut() {
-            self.performSegueWithIdentifier("InfoSegue", sender: sender)
-        }
+        self.performSegueWithIdentifier("InfoSegue", sender: sender)
+//        animateButtonsOut() {
+//            self.performSegueWithIdentifier("InfoSegue", sender: sender)
+//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
