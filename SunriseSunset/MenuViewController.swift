@@ -34,6 +34,11 @@ class MenuViewController: UIViewController {
     var notificationButtons: [UIButton]!
     var menuButtons: [UIButton] = []
     
+    lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    
+    var locationChangeViewController: LocationChangeViewController?
+    var infoMenuViewController: InfoMenuViewController?
+    
     let SoftAnimationDuration: NSTimeInterval = 1
     
     override func viewDidLoad() {
@@ -188,24 +193,35 @@ class MenuViewController: UIViewController {
     func locationUpdate() {
         setLocationLabels()
     }
+    
+    func viewControllerWithIdentifier(identifier: String) -> UIViewController {
+        return storyBoard.instantiateViewControllerWithIdentifier(identifier)
+    }
 
     @IBAction func locationButtonDidTouch(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let locationChangeViewController = storyboard.instantiateViewControllerWithIdentifier("LocationChange") as? LocationChangeViewController {
-            locationChangeViewController.modalPresentationStyle = .OverCurrentContext
-            presentViewController(locationChangeViewController, animated: true) {
-                Bus.sendMessage(.ShowStatusBar, data: nil)
-            }
-        }
+        performSegueWithIdentifier("LocationChangeSegue", sender: self)
+//        if locationChangeViewController == nil {
+//            locationChangeViewController = viewControllerWithIdentifier("LocationChange") as? LocationChangeViewController
+//        }
+//        
+//        if let locationChangeViewController = locationChangeViewController {
+//            locationChangeViewController.modalPresentationStyle = .OverCurrentContext
+//            locationChangeViewController.definesPresentationContext = false
+//            presentViewController(locationChangeViewController, animated: true, completion: nil)
+//        }
     }
     
     @IBAction func aboutButtonDidTouch(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let infoMenuViewController = storyboard.instantiateViewControllerWithIdentifier("InfoMenu") as? InfoMenuViewController {
-            infoMenuViewController.modalPresentationStyle = .OverCurrentContext
-            presentViewController(infoMenuViewController, animated: true) {
-            }
-        }
+        performSegueWithIdentifier("InfoMenuSegue", sender: self)
+//        if infoMenuViewController == nil {
+//            infoMenuViewController = viewControllerWithIdentifier("InfoMenu") as? InfoMenuViewController
+//        }
+//        
+//        if let infoMenuViewController = infoMenuViewController {
+//            infoMenuViewController.modalPresentationStyle = .OverCurrentContext
+//            infoMenuViewController.definesPresentationContext = false
+//            presentViewController(infoMenuViewController, animated: true, completion: nil)
+//        }
     }
     
     /*

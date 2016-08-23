@@ -788,6 +788,8 @@
                         <outlet property="buttonSunset" destination="HgW-KK-ATX" id="nEo-q6-OAl"/>
                         <outlet property="currentLocationLabel" destination="K1n-jH-0sn" id="QcS-YV-fB8"/>
                         <outlet property="menuView" destination="arM-lv-Uf5" id="usi-dC-4k1"/>
+                        <segue destination="6kM-Fs-cBd" kind="presentation" identifier="LocationChangeSegue" modalPresentationStyle="overCurrentContext" id="h7x-3Y-Xgg"/>
+                        <segue destination="a7w-Tz-0eV" kind="presentation" identifier="InfoMenuSegue" modalPresentationStyle="overCurrentContext" id="GzB-mQ-ctZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thv-KT-F0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
