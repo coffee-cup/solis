@@ -125,8 +125,10 @@ class Sunline: UIView {
     
     func animateForCollision() {
         if !colliding {
+            // Fixes sunline overlap on iphone5 screens and smaller
+            let namePaddingFraction: CGFloat = parentView.frame.width < 375 ? 3 : 1
             lineLeftConstraint.constant = LineHorizontalPadding
-            nameLeftConstraint.constant = LineHorizontalPadding + NameHorizontalPadding
+            nameLeftConstraint.constant = LineHorizontalPadding + (NameHorizontalPadding / namePaddingFraction)
             UIView.animateWithDuration(CollideAnimationDuration, delay: 0, options: .CurveEaseInOut, animations: {
                 self.layoutIfNeeded()
                 self.timeLabel.alpha = 0

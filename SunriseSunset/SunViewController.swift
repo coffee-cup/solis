@@ -191,36 +191,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         reset()
         scrollReset()
-        
-//        NSTimer.scheduledTimerWithTimeInterval(1/60, target: self, selector: #selector(smoothy), userInfo: nil, repeats: true)
-    }
-    
-    func smoothy() {
-        print("fuck")
-        if smoothyOffset > 1500 {
-            smoothyForward = false
-        }
-        if smoothyOffset < -1000 {
-            smoothyForward = true
-        }
-        
-        let increase: Double = 20 // minutes
-        if smoothyForward {
-            smoothyOffset += increase
-        } else {
-            smoothyOffset -= increase
-        }
-        print("smoothy offset: \(smoothyOffset)")
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            let transform = self.sun.pointsToMinutes(self.smoothyOffset)
-            let (newTransformBy, newOffsetBy) = self.normalizeOffsets(transform, offsetBy: self.smoothyOffset)
-            
-            UIView.animateWithDuration(1/60) {
-                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
-            }
-            self.moveUpdate(newOffsetBy)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -333,7 +303,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func setCenterButton() {
-        if false && !centerButton.enabled {
+        if offNow && !centerButton.enabled {
             centerButton.enabled = true
             centerImageView.animation = "fadeIn"
             centerImageView.animate()
@@ -427,7 +397,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let offsetSeconds = offsetMinutes
         
         if (recognizer.state == .Began) {
-            if recognizer.locationInView(view).x < 40 || scrolling {
+            if recognizer.locationInView(view).x < 40 || scrolling { // 40 so pan gestures don't interfer with pulling menu out
                 allowedPan = false
             } else {
                 panning = true
@@ -448,8 +418,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
                 
                 let velocity = Double(recognizer.velocityInView(view).y)
-                if abs(velocity) > 12 {
-                    animateScroll(velocity * 0.55)
+                if abs(velocity) > 12 { // 12 so scroll doesn't animate for soft pans
+                    animateScroll(velocity * 0.55) // 0.55 to weaken momentum scoll velocity
                 }
             }
             panning = false
@@ -557,7 +527,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func collisionIsHappening() {
         if !colliding {
-            nowLeftConstraint.constant = 240
+            // Fixes sunline overlap on iphone5 screens and smaller
+            nowLeftConstraint.constant = sunView.frame.width < 375 ? 210 : 240
             UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
                 self.nowView.layoutIfNeeded()
                 }, completion: nil)
