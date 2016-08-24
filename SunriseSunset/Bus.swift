@@ -21,6 +21,7 @@ enum MessageType {
     case ShowStatusBar
     case FetchTimeZone
     case GotTimeZone
+    case ChangeNotificationPlace
     
     var description: String {
         switch self {
@@ -35,6 +36,7 @@ enum MessageType {
         case .ShowStatusBar: return "ShowStatusBar"
         case .FetchTimeZone: return "FetchTimeZone"
         case .GotTimeZone: return "GotTimeZone"
+        case .ChangeNotificationPlace: return "ChangeNotificationPlace"
         }
     }
 }

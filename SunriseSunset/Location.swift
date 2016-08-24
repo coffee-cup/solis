@@ -56,6 +56,20 @@ class Location {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
+    class func getNotificationLocation() -> CLLocationCoordinate2D? {
+        if let sunPlaceString = defaults.objectForKey(DefaultKey.NotificationPlace.description) as? String {
+            let sunPlace = SunPlace.sunPlaceFromString(sunPlaceString)
+            if let sunPlace = sunPlace {
+                if let location = sunPlace.location {
+                    print("notification for \(sunPlace.primary)")
+                    return location
+                }
+            }
+        }
+        print("notification for current location")
+        return getCurrentLocation()
+    }
+    
     class func getPlaceID() -> String? {
         return defaults.stringForKey(DefaultKey.LocationPlaceID.description)
     }
@@ -150,7 +164,23 @@ class Location {
     }
     
     class func saveLocationHistory(places: [SunPlace]) {
+        var sunPlaceString = defaults.objectForKey(DefaultKey.NotificationPlace.description) as? String
+        sunPlaceString = sunPlaceString == nil ? "" : sunPlaceString
+        var notificationSunPlace: SunPlace? = nil
+        if let sunPlaceString = sunPlaceString {
+            notificationSunPlace = SunPlace.sunPlaceFromString(sunPlaceString)
+        }
+        
         let placeStrings: [String] = places.map { place in
+            if let notificationSunPlace = notificationSunPlace {
+                if notificationSunPlace.placeID == place.placeID {
+                    place.isNotification = true
+                } else {
+                    place.isNotification = false
+                }
+            } else {
+                place.isNotification = false
+            }
             if let placeString = place.toString {
                 return placeString
             }

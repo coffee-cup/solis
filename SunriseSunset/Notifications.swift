@@ -22,13 +22,15 @@ class Notifications {
     
     init() {
         Bus.subscribeEvent(.NotificationChange, observer: self, selector: #selector(scheduleNotifications))
+        Bus.subscribeEvent(.ChangeNotificationPlace, observer: self, selector: #selector(changeNotificationPlace))
         scheduleNotifications()
     }
     
     @objc func scheduleNotifications() -> Bool {
-        guard let location = Location.getCurrentLocation() else {
+        guard let location = Location.getNotificationLocation() else {
             return false
         }
+        
         let suntimes = SunLogic.todayTomorrow(location)
         
         let timeBefore: NSTimeInterval = defaults.doubleForKey("NotificationPreTime")
@@ -77,6 +79,12 @@ class Notifications {
             triggered = scheduleNotificationIfNotAlready(suntime)
         }
         return triggered
+    }
+    
+    @objc func changeNotificationPlace() {
+        let allTypes = firstLightTypes + sunriseTypes + sunsetTypes + lastLightTypes
+        removeNotificationForTypes(allTypes)
+        scheduleNotifications()
     }
     
     func scheduleNotificationIfNotAlready(suntime: Suntime) -> Bool {

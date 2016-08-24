@@ -19,6 +19,8 @@ class SunPlace: Equatable {
     var primary: String
     var secondary: String
     
+    var isNotification: Bool = false
+    
     class func sunPlaceFromString(string: String) -> SunPlace? {
         let split = string.characters.split{$0 == "|"}.map(String.init)
         
@@ -37,7 +39,9 @@ class SunPlace: Equatable {
         
         let timeZoneOffset = split.count >= 6 ? Int(split[5]) : nil
         
-        return SunPlace(primary: primary, secondary: secondary, location: location, placeID: placeID, timeZoneOffset: timeZoneOffset)
+        let isNotification = split.count >= 7 ? split[6] == "true" : false
+        
+        return SunPlace(primary: primary, secondary: secondary, location: location, placeID: placeID, timeZoneOffset: timeZoneOffset, isNotification: isNotification)
     }
     
     init(primary: String, secondary: String, placeID: String) {
@@ -46,12 +50,13 @@ class SunPlace: Equatable {
         self.placeID = placeID
     }
     
-    init(primary: String, secondary: String, location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int?) {
+    init(primary: String, secondary: String, location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int?, isNotification: Bool) {
         self.primary = primary
         self.secondary = secondary
         self.location = location
         self.placeID = placeID
         self.timeZoneOffset = timeZoneOffset
+        self.isNotification = isNotification
     }
     
     var toString: String? {
@@ -61,7 +66,7 @@ class SunPlace: Equatable {
         
         let tzOffset = timeZoneOffset == nil ? "" : "\(timeZoneOffset!)"
         
-        return "\(primary)|\(secondary)|\(location.latitude)|\(location.longitude)|\(placeID)|\(tzOffset)"
+        return "\(primary)|\(secondary)|\(location.latitude)|\(location.longitude)|\(placeID)|\(tzOffset)|\(isNotification)"
     }
 }
 

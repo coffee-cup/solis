@@ -25,6 +25,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     let defaults = Defaults.defaults
     
+    var notificationPlaceDirty = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,6 +85,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func goBack() {
+        Bus.sendMessage(.ChangeNotificationPlace, data: nil)
         searchTextField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -128,7 +131,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         goBack()
         
         if indexPath.row == 0 {
-            print("Selected current place")
             Location.selectLocation(true, location: nil, name: nil, sunplace: nil)
         } else {
             var sunplace: SunPlace!
@@ -150,6 +152,9 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                     }
                     
                     sunplace.location = coordinate
+                    
+                    print("\(sunplace.primary) - \(coordinate)")
+                    
                     Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
                 }
             } else {
@@ -182,14 +187,22 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         return nil
     }
     
+    func setNotificationSunPlace(sunPlace: SunPlace?) {
+        sunPlace?.isNotification = true
+        let sunPlaceString = sunPlace == nil ? "" : sunPlace?.toString
+        defaults.setObject(sunPlaceString, forKey: DefaultKey.NotificationPlace.description)
+    }
+    
     func bellButtonDidTouch(bellButton: BellButton) {
         if bellButton.useCurrentLocation {
-            print("current location")
+            setNotificationSunPlace(nil)
         } else {
             if let sunPlace = bellButton.sunPlace {
-                print(sunPlace.location)
+                setNotificationSunPlace(sunPlace)
             }
         }
+        notificationPlaceDirty = true
+        searchTableView.reloadData()
     }
     
     func setBellButton(button: BellButton, sunPlace: SunPlace?) {
@@ -199,6 +212,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         
         let placeId: String? = getNotificationPlaceID()
         
+        button.selected = false
         if let sunPlace = sunPlace {
             // custom notification
             if placeId != nil && placeId! == sunPlace.placeID {
@@ -208,7 +222,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             // current location notification
             if placeId == nil {
                 button.selected = true
-                print("enabled for current location")
             }
         }
         
