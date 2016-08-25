@@ -11,6 +11,8 @@ target 'SunriseSunset' do
     pod 'GoogleMaps'
     pod 'SwiftyJSON'
     pod 'Alamofire', '~> 3.4'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target 'SolisWidget' do

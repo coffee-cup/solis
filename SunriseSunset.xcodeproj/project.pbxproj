@@ -550,6 +550,7 @@
 				FD3C100424DB22A120D4A716 /* [CP] Copy Pods Resources */,
 				9C76543C1D166C0800E0B4F9 /* Embed App Extensions */,
 				9C6D79721D24F413001FF0A3 /* Remove Appex Frameworks */,
+				9C31D2251D6E99B4007E02EB /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -798,6 +799,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SolisWidget/Pods-SolisWidget-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9C31D2251D6E99B4007E02EB /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ab09dfba68ec87866fde734a063b9f3fffb4cf7c a72dcfda26c2ccb4c7acd51b168dfa34f20c111471ffbb2a626fe5e2594d2e26";
 		};
 		9C6B85871D24ED1D00CB8EC9 /* Delete Invalid Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1187,6 +1202,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
