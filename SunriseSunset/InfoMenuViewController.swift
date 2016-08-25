@@ -157,17 +157,21 @@ class InfoMenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let button = sender as? UIButton {
             if let infoViewController = segue.destinationViewController as? InfoViewController {
+                var infoData: InfoData!
                 if button == dayButton {
-                    infoViewController.setInfo(InfoData.Day)
+                    infoData = InfoData.Day
                 } else if button == civilButton {
-                    infoViewController.setInfo(InfoData.CivilTwilight)
+                    infoData = InfoData.CivilTwilight
                 } else if button == nauticalButton {
-                    infoViewController.setInfo(InfoData.NauticalTwilight)
+                    infoData = InfoData.NauticalTwilight
                 } else if button == astronomicalButton {
-                    infoViewController.setInfo(InfoData.AstronomicalTwilight)
+                    infoData = InfoData.AstronomicalTwilight
                 } else if button == nightButton {
-                    infoViewController.setInfo(InfoData.Night)
+                    infoData = InfoData.Night
                 }
+                infoViewController.setInfo(infoData)
+                
+                Analytics.openInfoPage(infoData.title)
             }
         }
     }

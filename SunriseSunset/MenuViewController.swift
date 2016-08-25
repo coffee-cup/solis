@@ -10,6 +10,9 @@ import UIKit
 import PermissionScope
 import GoogleMaps
 
+import Crashlytics
+
+
 class MenuViewController: UIViewController {
 
     let defaults = Defaults.defaults
@@ -182,6 +185,7 @@ class MenuViewController: UIViewController {
                 self.defaults.setBool(sender.selected, forKey: noti)
                 
                 Bus.sendMessage(.NotificationChange, data: nil)
+                Analytics.toggleNotificationForEvent(sender.selected, type: noti)
             }
             }, cancelled: { (results) -> Void in
                 print("notification permissions were cancelled")
@@ -200,28 +204,12 @@ class MenuViewController: UIViewController {
 
     @IBAction func locationButtonDidTouch(sender: AnyObject) {
         performSegueWithIdentifier("LocationChangeSegue", sender: self)
-//        if locationChangeViewController == nil {
-//            locationChangeViewController = viewControllerWithIdentifier("LocationChange") as? LocationChangeViewController
-//        }
-//        
-//        if let locationChangeViewController = locationChangeViewController {
-//            locationChangeViewController.modalPresentationStyle = .OverCurrentContext
-//            locationChangeViewController.definesPresentationContext = false
-//            presentViewController(locationChangeViewController, animated: true, completion: nil)
-//        }
+        Analytics.openLocationChange()
     }
     
     @IBAction func aboutButtonDidTouch(sender: AnyObject) {
         performSegueWithIdentifier("InfoMenuSegue", sender: self)
-//        if infoMenuViewController == nil {
-//            infoMenuViewController = viewControllerWithIdentifier("InfoMenu") as? InfoMenuViewController
-//        }
-//        
-//        if let infoMenuViewController = infoMenuViewController {
-//            infoMenuViewController.modalPresentationStyle = .OverCurrentContext
-//            infoMenuViewController.definesPresentationContext = false
-//            presentViewController(infoMenuViewController, animated: true, completion: nil)
-//        }
+        Analytics.openInfoMenu()
     }
     
     /*

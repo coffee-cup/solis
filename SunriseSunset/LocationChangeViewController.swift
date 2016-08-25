@@ -26,6 +26,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     let defaults = Defaults.defaults
     
     var notificationPlaceDirty = false
+    var newNotificationSunPlace: SunPlace?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,15 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func goBack() {
-        Bus.sendMessage(.ChangeNotificationPlace, data: nil)
+        if notificationPlaceDirty {
+            Bus.sendMessage(.ChangeNotificationPlace, data: nil)
+            
+            if let newNotificationSunPlace = newNotificationSunPlace {
+                Analytics.setNotificationPlace(false, sunPlace: newNotificationSunPlace)
+            } else {
+                Analytics.setNotificationPlace(true, sunPlace: nil)
+            }
+        }
         searchTextField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -132,6 +141,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         
         if indexPath.row == 0 {
             Location.selectLocation(true, location: nil, name: nil, sunplace: nil)
+            Analytics.selectLocation(true, sunPlace: nil)
         } else {
             var sunplace: SunPlace!
             if isSearching() {
@@ -156,10 +166,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                     print("\(sunplace.primary) - \(coordinate)")
                     
                     Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
+                    Analytics.selectLocation(false, sunPlace: sunplace)
                 }
             } else {
                 sunplace = placeHistory[indexPath.row - 1]
                 Location.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
+                Analytics.selectLocation(false, sunPlace: sunplace)
             }
         }
     }
@@ -191,6 +203,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         sunPlace?.isNotification = true
         let sunPlaceString = sunPlace == nil ? "" : sunPlace?.toString
         defaults.setObject(sunPlaceString, forKey: DefaultKey.NotificationPlace.description)
+        
+        newNotificationSunPlace = sunPlace
     }
     
     func bellButtonDidTouch(bellButton: BellButton) {

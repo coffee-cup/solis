@@ -113,6 +113,7 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func learnMoreButtonDidTouch(sender: AnyObject) {
+        Analytics.openLearnMore(infoTitle)
         UIApplication.sharedApplication().openURL(NSURL(string: infoURLString)!)
     }
     

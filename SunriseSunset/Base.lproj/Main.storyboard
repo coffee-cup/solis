@@ -703,7 +703,6 @@
                                                 </variation>
                                                 <connections>
                                                     <action selector="aboutButtonDidTouch:" destination="QzE-la-Gm6" eventType="touchUpInside" id="Kso-mj-Ri2"/>
-                                                    <action selector="locationButtonDidTouch:" destination="QzE-la-Gm6" eventType="touchUpInside" id="CIi-AI-j3H"/>
                                                 </connections>
                                             </button>
                                         </subviews>
