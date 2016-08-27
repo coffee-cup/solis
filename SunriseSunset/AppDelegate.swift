@@ -15,7 +15,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let notifications = Notifications()
+    var notifications: Notifications!
     let timeZones = TimeZones()
 
     func defaultString(defaultKey: DefaultKey) -> String {
@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
+        // This MUST come after Fabric has been initialized
+        notifications = Notifications()
+        
         return true
     }
 
@@ -82,6 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         let triggered = notifications.scheduleNotifications()
+        notifications.checkIfNotificationsTriggered()
+        
         if triggered {
             completionHandler(.NewData)
         } else {
