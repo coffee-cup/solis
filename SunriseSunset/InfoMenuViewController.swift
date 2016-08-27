@@ -44,15 +44,19 @@ class InfoMenuViewController: UIViewController {
         infoButtons = [dayButton, civilButton, nauticalButton, astronomicalButton, nightButton]
         twilightLabels = [civilTwilightLabel, nauticalTwilightLabel, astronomicalTwilightLabel]
         
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
+        screenEdgeRecognizer.edges = .Left
+        view.addGestureRecognizer(screenEdgeRecognizer)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("called in view did load")
+        
         // Colour Views
         dayView.backgroundColor = risesetColour
         nightView.backgroundColor = astronomicalColour
-        
-        twilightGradientLayer = CAGradientLayer()
-        twilightGradientLayer.frame = twilightView.bounds
-        twilightGradientLayer.colors = [risesetColour.CGColor, astronomicalColour.CGColor]
-        twilightGradientLayer.locations = [0.0, 1.0]
-        twilightView.layer.addSublayer(twilightGradientLayer)
         
         // Buttons
         dayButton.addSimpleShadow()
@@ -77,15 +81,15 @@ class InfoMenuViewController: UIViewController {
         nauticalTwilightLabel.addSimpleShadow()
         astronomicalTwilightLabel.addSimpleShadow()
         
-        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        screenEdgeRecognizer.edges = .Left
-        view.addGestureRecognizer(screenEdgeRecognizer)
+        animateButtonsIn()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        animateButtonsIn()
+    override func viewDidLayoutSubviews() {
+        twilightGradientLayer = CAGradientLayer()
+        twilightGradientLayer.frame = twilightView.bounds
+        twilightGradientLayer.colors = [risesetColour.CGColor, astronomicalColour.CGColor]
+        twilightGradientLayer.locations = [0.0, 1.0]
+        twilightView.layer.addSublayer(twilightGradientLayer)
     }
     
     override func viewDidAppear(animated: Bool) {
