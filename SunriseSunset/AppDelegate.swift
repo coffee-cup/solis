@@ -84,6 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        if notifications == nil {
+            notifications = Notifications()
+        }
+        
         let triggered = notifications.scheduleNotifications()
         notifications.checkIfNotificationsTriggered()
         
