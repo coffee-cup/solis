@@ -205,7 +205,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         Bus.removeSubscriptions(self)
     }
     
@@ -215,7 +215,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func setupBackgroundView() {
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.black()
+        backgroundView.backgroundColor = UIColor.black
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.isUserInteractionEnabled = false
         backgroundView.alpha = 0
@@ -454,7 +454,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func setTransformWhenStopped() {
         self.stopAnimationTimer()
         self.scrolling = false
-        self.sunView.removeEasingFunctionForKeyPath("transform")
+        self.sunView.removeEasingFunction(forKeyPath: "transform")
         
         let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
         let animationDuration = abs(self.animationFireDate.timeIntervalSinceNow) + (1 / 60) // <- this magic number makes view not jump as much when scroll stopping
@@ -480,7 +480,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransform(translationX: 0, y: 0)
             }, completion: { finished in
-                self.sunView.removeEasingFunctionForKeyPath("transform")
+                self.sunView.removeEasingFunction(forKeyPath: "transform")
                 self.reset()
                 self.update(self.offset)
         })

@@ -22,13 +22,13 @@
 
 import UIKit
 
-public class AsyncButton: UIButton {
+open class AsyncButton: UIButton {
 
-    private var imageURL = [UInt:URL]()
-    private var placeholderImage = [UInt:UIImage]()
+    fileprivate var imageURL = [UInt:URL]()
+    fileprivate var placeholderImage = [UInt:UIImage]()
 
 
-    public func setImageURL(_ url: URL?, placeholderImage placeholder:UIImage?, forState state:UIControlState) {
+    open func setImageURL(_ url: URL?, placeholderImage placeholder:UIImage?, forState state:UIControlState) {
 
         imageURL[state.rawValue] = url
         placeholderImage[state.rawValue] = placeholder

@@ -22,9 +22,9 @@
 
 import UIKit
 
-@IBDesignable public class DesignableTextField: SpringTextField {
+@IBDesignable open class DesignableTextField: SpringTextField {
     
-    @IBInspectable public var placeholderColor: UIColor = UIColor.clear() {
+    @IBInspectable open var placeholderColor: UIColor = UIColor.clear {
         didSet {
             attributedPlaceholder = AttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor])
             layoutSubviews()
@@ -32,7 +32,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var sidePadding: CGFloat = 0 {
+    @IBInspectable open var sidePadding: CGFloat = 0 {
         didSet {
             let padding = UIView(frame: CGRect(x: 0, y: 0, width: sidePadding, height: sidePadding))
             
@@ -44,7 +44,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var leftPadding: CGFloat = 0 {
+    @IBInspectable open var leftPadding: CGFloat = 0 {
         didSet {
             let padding = UIView(frame: CGRect(x: 0, y: 0, width: leftPadding, height: 0))
             
@@ -53,7 +53,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var rightPadding: CGFloat = 0 {
+    @IBInspectable open var rightPadding: CGFloat = 0 {
         didSet {
             let padding = UIView(frame: CGRect(x: 0, y: 0, width: rightPadding, height: 0))
             
@@ -62,25 +62,25 @@ import UIKit
         }
     }
     
-    @IBInspectable public var borderColor: UIColor = UIColor.clear() {
+    @IBInspectable open var borderColor: UIColor = UIColor.clear {
         didSet {
             layer.borderColor = borderColor.cgColor
         }
     }
     
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable open var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
     
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
     }
    
-    @IBInspectable public var lineHeight: CGFloat = 1.5 {
+    @IBInspectable open var lineHeight: CGFloat = 1.5 {
         didSet {
             let font = UIFont(name: self.font!.fontName, size: self.font!.pointSize)
             let text = self.text

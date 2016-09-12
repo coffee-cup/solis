@@ -28,7 +28,7 @@ struct SoundPlayer {
     static var filename : String?
     static var enabled : Bool = true
     
-    private struct Internal {
+    fileprivate struct Internal {
         static var cache = [URL:SystemSoundID]()
     }
     
@@ -38,7 +38,7 @@ struct SoundPlayer {
             return
         }
         
-        if let url = Bundle.main().urlForResource(soundFile, withExtension: nil) {
+        if let url = Bundle.main.urlForResource(soundFile, withExtension: nil) {
             
             var soundID : SystemSoundID = Internal.cache[url] ?? 0
             

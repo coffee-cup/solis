@@ -13,7 +13,7 @@ import UIKit
 class Notifications {
     
     lazy var defaults = Defaults.defaults
-    lazy var application = UIApplication.shared()
+    lazy var application = UIApplication.shared
     
     let sunriseTypes: [SunType] = [.sunrise]
     let sunsetTypes: [SunType] = [.sunset]

@@ -22,15 +22,15 @@
 
 import UIKit
 
-public class TransitionManager: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+open class TransitionManager: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     
     var isPresenting = true
     var duration = 0.3
     
-    public func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        let container = transitionContext.containerView()
-        let fromView = transitionContext.view(forKey: UITransitionContextFromViewKey)!
-        let toView = transitionContext.view(forKey: UITransitionContextToViewKey)!
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let container = transitionContext.containerView
+        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
+        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
         
         if isPresenting {
             toView.frame = container.bounds
@@ -70,16 +70,16 @@ public class TransitionManager: NSObject, UIViewControllerTransitioningDelegate,
         })
     }
     
-    public func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }
     
-    public func animationController(forPresentedController presented: UIViewController, presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forPresentedController presented: UIViewController, presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = true
         return self
     }
     
-    public func animationController(forDismissedController dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forDismissedController dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
     }

@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.2)
+  - Alamofire (4.0.0)
   - Crashlytics (3.8.0):
     - Fabric (~> 1.6.3)
   - EDSunriseSet (1.0)
@@ -10,48 +10,60 @@ PODS:
   - GoogleMaps/Maps (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
   - PermissionScope (1.0.2)
-  - SwiftLocation (1.0.4)
+  - SwiftLocation (1.0.6)
   - SwiftyJSON (2.3.2)
   - UIView-Easing (0.0.1)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `master`)
   - Crashlytics
   - EDSunriseSet (~> 1.0)
   - Fabric
   - GoogleMaps
   - PermissionScope (from `https://github.com/nickoneill/PermissionScope.git`, branch `swift3`)
-  - SwiftLocation
+  - SwiftLocation (from `https://github.com/malcommac/SwiftLocation.git`, commit `af2b78f3daf8e78c60537dd02103262676b53c3c`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
   - UIView-Easing
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: master
+    :git: https://github.com/Alamofire/Alamofire.git
   PermissionScope:
     :branch: swift3
     :git: https://github.com/nickoneill/PermissionScope.git
+  SwiftLocation:
+    :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
+    :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :branch: swift3
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: e50160acda93a4309dc862fcbec32602cf805528
+    :git: https://github.com/Alamofire/Alamofire.git
   PermissionScope:
     :commit: 6cc38490429f6a37bc6f2f62a12fdaf27b4e52cf
     :git: https://github.com/nickoneill/PermissionScope.git
+  SwiftLocation:
+    :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
+    :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :commit: 1a9755949a652967dc2986cd7f4653496e556715
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   Crashlytics: 8601d9c74a4c4d28f3e7f408bf4c0e490c70e8b4
   EDSunriseSet: bdc4760f496c8e6f9b9a727ffa645b6048aa2a09
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
-  SwiftLocation: '00682ad3598aa54936f34ec42ed53fceb37c22a4'
+  SwiftLocation: 4e68bfd474e3a38ef82bd1d90619bed013706d06
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: 3417aae136c38ac1d68898d2c8916bb30e8d9f83
+PODFILE CHECKSUM: f47b3faa36d161e2158bf322e2029db9d8626a83
 
 COCOAPODS: 1.1.0.rc.1

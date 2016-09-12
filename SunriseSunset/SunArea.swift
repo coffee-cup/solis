@@ -81,7 +81,7 @@ class SunArea: UIView {
             self.gradientLayer.frame = self.frame
             
             if let locations = self.locations {
-                self.gradientLayer.locations = locations
+                self.gradientLayer.locations = locations as [NSNumber]?
             } else {
                 self.gradientLayer.locations = [
                     0,
@@ -181,7 +181,7 @@ class SunArea: UIView {
             var highestMarker: SunTimeMarker?
             for marker in sortedMarkers {
                 let sunDegree = marker.sunTimeLine.suntime.type.degrees
-                if sunDegree <= self.startDegrees || (self.startDegrees < 0 && (lowestMarker == nil || sunDegree < lowestMarker?.sunTimeLine.suntime.type.degrees)) {
+                if sunDegree <= self.startDegrees || (self.startDegrees < 0 && (lowestMarker == nil || sunDegree < (lowestMarker?.sunTimeLine.suntime.type.degrees)!)) {
                     lowestMarker = marker
                 }
                 if highestMarker == nil && sunDegree >= self.endDegrees {

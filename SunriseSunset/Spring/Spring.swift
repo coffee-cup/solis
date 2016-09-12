@@ -52,11 +52,11 @@ import UIKit
     func animateToNext(_ completion: () -> ())
 }
 
-public class Spring : NSObject {
+open class Spring : NSObject {
 
-    private unowned var view : Springable
-    private var shouldAnimateAfterActive = false
-    private var shouldAnimateInLayoutSubviews = true
+    fileprivate unowned var view : Springable
+    fileprivate var shouldAnimateAfterActive = false
+    fileprivate var shouldAnimateInLayoutSubviews = true
 
     init(_ view: Springable) {
         self.view = view
@@ -65,7 +65,7 @@ public class Spring : NSObject {
     }
 
     func commonInit() {
-        NotificationCenter.default().addObserver(self, selector: #selector(Spring.didBecomeActiveNotification(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Spring.didBecomeActiveNotification(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     func didBecomeActiveNotification(_ notification: Notification) {
@@ -77,31 +77,31 @@ public class Spring : NSObject {
     }
 
     deinit {
-        NotificationCenter.default().removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     private var autostart: Bool { set { self.view.autostart = newValue } get { return self.view.autostart }}
-    private var autohide: Bool { set { self.view.autohide = newValue } get { return self.view.autohide }}
-    private var animation: String { set { self.view.animation = newValue } get { return self.view.animation }}
-    private var force: CGFloat { set { self.view.force = newValue } get { return self.view.force }}
-    private var delay: CGFloat { set { self.view.delay = newValue } get { return self.view.delay }}
-    private var duration: CGFloat { set { self.view.duration = newValue } get { return self.view.duration }}
-    private var damping: CGFloat { set { self.view.damping = newValue } get { return self.view.damping }}
-    private var velocity: CGFloat { set { self.view.velocity = newValue } get { return self.view.velocity }}
-    private var repeatCount: Float { set { self.view.repeatCount = newValue } get { return self.view.repeatCount }}
-    private var x: CGFloat { set { self.view.x = newValue } get { return self.view.x }}
-    private var y: CGFloat { set { self.view.y = newValue } get { return self.view.y }}
-    private var scaleX: CGFloat { set { self.view.scaleX = newValue } get { return self.view.scaleX }}
-    private var scaleY: CGFloat { set { self.view.scaleY = newValue } get { return self.view.scaleY }}
-    private var rotate: CGFloat { set { self.view.rotate = newValue } get { return self.view.rotate }}
-    private var opacity: CGFloat { set { self.view.opacity = newValue } get { return self.view.opacity }}
-    private var animateFrom: Bool { set { self.view.animateFrom = newValue } get { return self.view.animateFrom }}
-    private var curve: String { set { self.view.curve = newValue } get { return self.view.curve }}
+    fileprivate var autohide: Bool { set { self.view.autohide = newValue } get { return self.view.autohide }}
+    fileprivate var animation: String { set { self.view.animation = newValue } get { return self.view.animation }}
+    fileprivate var force: CGFloat { set { self.view.force = newValue } get { return self.view.force }}
+    fileprivate var delay: CGFloat { set { self.view.delay = newValue } get { return self.view.delay }}
+    fileprivate var duration: CGFloat { set { self.view.duration = newValue } get { return self.view.duration }}
+    fileprivate var damping: CGFloat { set { self.view.damping = newValue } get { return self.view.damping }}
+    fileprivate var velocity: CGFloat { set { self.view.velocity = newValue } get { return self.view.velocity }}
+    fileprivate var repeatCount: Float { set { self.view.repeatCount = newValue } get { return self.view.repeatCount }}
+    fileprivate var x: CGFloat { set { self.view.x = newValue } get { return self.view.x }}
+    fileprivate var y: CGFloat { set { self.view.y = newValue } get { return self.view.y }}
+    fileprivate var scaleX: CGFloat { set { self.view.scaleX = newValue } get { return self.view.scaleX }}
+    fileprivate var scaleY: CGFloat { set { self.view.scaleY = newValue } get { return self.view.scaleY }}
+    fileprivate var rotate: CGFloat { set { self.view.rotate = newValue } get { return self.view.rotate }}
+    fileprivate var opacity: CGFloat { set { self.view.opacity = newValue } get { return self.view.opacity }}
+    fileprivate var animateFrom: Bool { set { self.view.animateFrom = newValue } get { return self.view.animateFrom }}
+    fileprivate var curve: String { set { self.view.curve = newValue } get { return self.view.curve }}
 
     // UIView
-    private var layer : CALayer { return view.layer }
-    private var transform : CGAffineTransform { get { return view.transform } set { view.transform = newValue }}
-    private var alpha: CGFloat { get { return view.alpha } set { view.alpha = newValue } }
+    fileprivate var layer : CALayer { return view.layer }
+    fileprivate var transform : CGAffineTransform { get { return view.transform } set { view.transform = newValue }}
+    fileprivate var alpha: CGFloat { get { return view.alpha } set { view.alpha = newValue } }
 
     public enum AnimationPreset: String {
         case SlideLeft = "slideLeft"
@@ -420,7 +420,7 @@ public class Spring : NSObject {
         setView {}
     }
 
-    public func animateNext(_ completion: () -> ()) {
+    public func animateNext(_ completion: @escaping () -> ()) {
         animateFrom = true
         animatePreset()
         setView {
@@ -434,7 +434,7 @@ public class Spring : NSObject {
         setView {}
     }
 
-    public func animateToNext(_ completion: () -> ()) {
+    public func animateToNext(_ completion: @escaping () -> ()) {
         animateFrom = false
         animatePreset()
         setView {
@@ -452,7 +452,7 @@ public class Spring : NSObject {
         if shouldAnimateInLayoutSubviews {
             shouldAnimateInLayoutSubviews = false
             if autostart {
-                if UIApplication.shared().applicationState != .active {
+                if UIApplication.shared.applicationState != .active {
                     shouldAnimateAfterActive = true
                     return
                 }
@@ -462,7 +462,7 @@ public class Spring : NSObject {
         }
     }
 
-    func setView(_ completion: () -> ()) {
+    func setView(_ completion: @escaping () -> ()) {
         if animateFrom {
             let translate = CGAffineTransform(translationX: self.x, y: self.y)
             let scale = CGAffineTransform(scaleX: self.scaleX, y: self.scaleY)

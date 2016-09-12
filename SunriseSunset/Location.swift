@@ -86,16 +86,16 @@ class Location {
         return defaults.bool(forKey: DefaultKey.currentLocation.description)
     }
     
-    class func lookupLocation(_ coordinate: CLLocationCoordinate2D, completion: (_ placemark: CLPlacemark?) -> ()) {
+    class func lookupLocation(_ coordinate: CLLocationCoordinate2D, completion: @escaping (_ placemark: CLPlacemark?) -> ()) {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let err = error{
                 print("Error Reverse Geocoding Location: \(err.localizedDescription)")
-                completion(placemark: nil)
+                completion(nil)
                 return
             }
-            completion(placemark: placemarks![0])
+            completion(placemarks![0])
         })
     }
     
@@ -216,7 +216,7 @@ class Location {
             return false
         }
         
-        guard let differenceSeconds = date.timeIntervalSinceNow else {
+        guard let differenceSeconds = (date as AnyObject).timeIntervalSinceNow else {
             return false
         }
         

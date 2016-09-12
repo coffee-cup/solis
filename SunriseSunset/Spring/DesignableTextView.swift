@@ -22,27 +22,27 @@
 
 import UIKit
 
-@IBDesignable public class DesignableTextView: SpringTextView {
+@IBDesignable open class DesignableTextView: SpringTextView {
     
-    @IBInspectable public var borderColor: UIColor = UIColor.clear() {
+    @IBInspectable open var borderColor: UIColor = UIColor.clear {
         didSet {
             layer.borderColor = borderColor.cgColor
         }
     }
     
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable open var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
     
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
         }
     }
 
-    @IBInspectable public var lineHeight: CGFloat = 1.5 {
+    @IBInspectable open var lineHeight: CGFloat = 1.5 {
         didSet {
             let font = UIFont(name: self.font!.fontName, size: self.font!.pointSize)
             let text = self.text

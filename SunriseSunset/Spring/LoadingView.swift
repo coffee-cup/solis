@@ -22,11 +22,11 @@
 
 import UIKit
 
-public class LoadingView: UIView {
+open class LoadingView: UIView {
 
-    @IBOutlet public weak var indicatorView: SpringView!
+    @IBOutlet open weak var indicatorView: SpringView!
 
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         let animation = CABasicAnimation()
         animation.keyPath = "transform.rotation.z"
         animation.fromValue = degreesToRadians(0)
@@ -37,7 +37,7 @@ public class LoadingView: UIView {
     }
 
     class func designCodeLoadingView() -> UIView {
-        return Bundle(for: self).loadNibNamed("LoadingView", owner: self, options: nil)[0] as! UIView
+        return Bundle(for: self).loadNibNamed("LoadingView", owner: self, options: nil)![0] as! UIView
     }
 }
 

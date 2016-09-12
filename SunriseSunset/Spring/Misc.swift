@@ -103,62 +103,62 @@ public func randomStringWithLength (_ len : Int) -> NSString {
 }
 
 public func timeAgoSinceDate(_ date:Date, numericDates:Bool) -> String {
-    let calendar = Calendar.current()
+    let calendar = Calendar.current
     let unitFlags: Calendar.Unit = [Calendar.Unit.minute, Calendar.Unit.hour, Calendar.Unit.day, Calendar.Unit.weekOfYear, Calendar.Unit.month, Calendar.Unit.year, Calendar.Unit.second]
     let now = Date()
     let earliest = (now as NSDate).earlierDate(date)
     let latest = (earliest == now) ? date : now
     let components: DateComponents = calendar.components(unitFlags, from: earliest, to: latest, options: [])
     
-    if (components.year >= 2) {
+    if (components.year! >= 2) {
         return "\(components.year)y"
-    } else if (components.year >= 1){
+    } else if (components.year! >= 1){
         if (numericDates){
             return "1y"
         } else {
             return "1y"
         }
-    } else if (components.month >= 2) {
+    } else if (components.month! >= 2) {
         return "\(components.month! * 4)w"
-    } else if (components.month >= 1){
+    } else if (components.month! >= 1){
         if (numericDates){
             return "4w"
         } else {
             return "4w"
         }
-    } else if (components.weekOfYear >= 2) {
+    } else if (components.weekOfYear! >= 2) {
         return "\(components.weekOfYear)w"
-    } else if (components.weekOfYear >= 1){
+    } else if (components.weekOfYear! >= 1){
         if (numericDates){
             return "1w"
         } else {
             return "1w"
         }
-    } else if (components.day >= 2) {
+    } else if (components.day! >= 2) {
         return "\(components.day)d"
-    } else if (components.day >= 1){
+    } else if (components.day! >= 1){
         if (numericDates){
             return "1d"
         } else {
             return "1d"
         }
-    } else if (components.hour >= 2) {
+    } else if (components.hour! >= 2) {
         return "\(components.hour)h"
-    } else if (components.hour >= 1){
+    } else if (components.hour! >= 1){
         if (numericDates){
             return "1h"
         } else {
             return "1h"
         }
-    } else if (components.minute >= 2) {
+    } else if (components.minute! >= 2) {
         return "\(components.minute)m"
-    } else if (components.minute >= 1){
+    } else if (components.minute! >= 1){
         if (numericDates){
             return "1m"
         } else {
             return "1m"
         }
-    } else if (components.second >= 3) {
+    } else if (components.second! >= 3) {
         return "\(components.second)s"
     } else {
         return "now"

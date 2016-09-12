@@ -62,12 +62,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         Bus.removeSubscriptions(self)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
 //        return hideStatusBar
         return false
     }
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+    override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
         return UIStatusBarAnimation.fade
     }
     

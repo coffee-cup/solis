@@ -69,7 +69,7 @@ class InfoMenuViewController: UIViewController {
             button.addTarget(self, action: #selector(infoButtonPressed), for: .touchDown)
         }
         
-        let highlightColour = UIColor.lightGray()
+        let highlightColour = UIColor.lightGray
         dayButton.setTitleColor(highlightColour, for: .highlighted)
         civilButton.setTitleColor(highlightColour, for: .highlighted)
         nauticalButton.setTitleColor(highlightColour, for: .highlighted)
@@ -96,11 +96,11 @@ class InfoMenuViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return false
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
     
@@ -160,7 +160,7 @@ class InfoMenuViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let button = sender as? UIButton {
-            if let infoViewController = segue.destinationViewController as? InfoViewController {
+            if let infoViewController = segue.destination as? InfoViewController {
                 var infoData: InfoData!
                 if button == dayButton {
                     infoData = InfoData.day

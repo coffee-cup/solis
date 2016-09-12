@@ -86,10 +86,10 @@ class Sun {
     // Whether or not the sun areas or visible
     var sunAreasVisible = true
     
-    let defaults = UserDefaults.standard()
+    let defaults = UserDefaults.standard
     var now: Date = Date()
     var location: CLLocationCoordinate2D!
-    let calendar = Calendar(calendarIdentifier: Calendar.Identifier.gregorian)!
+    let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
     
     var delegate: SunProtocol?
     
@@ -344,7 +344,7 @@ class Sun {
     }
     
     func calculateGradient() {
-        sunView.backgroundColor = UIColor.clear()
+        sunView.backgroundColor = UIColor.clear
 
         let sortedFiltered = sunTimeLines.sorted()
         
@@ -428,7 +428,7 @@ class Sun {
             // Do not animate the first gradient
             guard let _ = gradientLayer.colors else {
                 gradientLayer.colors = toColours
-                gradientLayer.locations = toLocations
+                gradientLayer.locations = toLocations as [NSNumber]?
                 return
             }
             
@@ -438,7 +438,7 @@ class Sun {
             let fromLocations = gradientLayer.locations!
             
             gradientLayer.colors = toColours
-            gradientLayer.locations = toLocations
+            gradientLayer.locations = toLocations as [NSNumber]?
             
             let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
             let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")

@@ -11,7 +11,7 @@ import UIKit
 
 extension UILabel {
     func addSimpleShadow() {
-        self.layer.shadowColor = UIColor.black().cgColor
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 2, height: 1)
         self.layer.shadowOpacity = 0.5
     }

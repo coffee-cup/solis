@@ -22,11 +22,11 @@
 
 import UIKit
 
-public class AsyncImageView: UIImageView {
+open class AsyncImageView: UIImageView {
 
-    public var placeholderImage : UIImage?
+    open var placeholderImage : UIImage?
 
-    public var url : URL? {
+    open var url : URL? {
         didSet {
             self.image = placeholderImage
             if let urlString = url?.absoluteString {
@@ -43,7 +43,7 @@ public class AsyncImageView: UIImageView {
         }
     }
 
-    public func setURL(_ url: URL?, placeholderImage: UIImage?) {
+    open func setURL(_ url: URL?, placeholderImage: UIImage?) {
         self.placeholderImage = placeholderImage
         self.url = url
     }

@@ -58,11 +58,11 @@ class TimeZones {
     
     class func getTimeZone() -> TimeZone? {
         let gmtOffset = Defaults.defaults.integer(forKey: DefaultKey.locationTimeZoneOffset.description)
-        let timeZone = TimeZone(forSecondsFromGMT: gmtOffset)
+        let timeZone = TimeZone(secondsFromGMT: gmtOffset)
         return timeZone
     }
     
-    func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: (gmtOffset: Int?, abbreviation: String?) -> ()) {
+    func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: @escaping (_ gmtOffset: Int?, _ abbreviation: String?) -> ()) {
         Alamofire.request(.GET, Endpoint, parameters: [
             "key": ApiKey,
             "by": "position",

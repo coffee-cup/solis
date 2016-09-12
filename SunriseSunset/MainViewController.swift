@@ -8,6 +8,26 @@
 
 import Foundation
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 protocol MenuProtocol {
     func menuIsMoving(_ percent: Float)
@@ -75,7 +95,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidAppear(animated)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
@@ -93,9 +113,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MenuSegue" {
-            menuViewController = segue.destinationViewController as! MenuViewController
+            menuViewController = segue.destination as! MenuViewController
         } else if segue.identifier == "SunSegue" {
-            sunViewController = segue.destinationViewController as! SunViewController
+            sunViewController = segue.destination as! SunViewController
             delegate = sunViewController
         }
     }

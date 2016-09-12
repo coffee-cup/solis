@@ -24,18 +24,18 @@ import UIKit
 import Foundation
 
 
-public class ImageLoader {
+open class ImageLoader {
     
     var cache = Cache()
     
-    public class var sharedLoader : ImageLoader {
+    open class var sharedLoader : ImageLoader {
     struct Static {
         static let instance : ImageLoader = ImageLoader()
         }
         return Static.instance
     }
     
-    public func imageForUrl(_ urlString: String, completionHandler:(image: UIImage?, url: String) -> ()) {
+    open func imageForUrl(_ urlString: String, completionHandler:@escaping (_ image: UIImage?, _ url: String) -> ()) {
         DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosBackground).async(execute: {()in
             let data: Data? = self.cache.object(forKey: urlString) as? Data
             

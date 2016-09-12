@@ -22,50 +22,50 @@
 
 import UIKit
 
-public class SpringTextField: UITextField, Springable {
-    @IBInspectable public var autostart: Bool = false
-    @IBInspectable public var autohide: Bool = false
-    @IBInspectable public var animation: String = ""
-    @IBInspectable public var force: CGFloat = 1
-    @IBInspectable public var delay: CGFloat = 0
-    @IBInspectable public var duration: CGFloat = 0.7
-    @IBInspectable public var damping: CGFloat = 0.7
-    @IBInspectable public var velocity: CGFloat = 0.7
-    @IBInspectable public var repeatCount: Float = 1
-    @IBInspectable public var x: CGFloat = 0
-    @IBInspectable public var y: CGFloat = 0
-    @IBInspectable public var scaleX: CGFloat = 1
-    @IBInspectable public var scaleY: CGFloat = 1
-    @IBInspectable public var rotate: CGFloat = 0
-    @IBInspectable public var curve: String = ""
-    public var opacity: CGFloat = 1
-    public var animateFrom: Bool = false
+open class SpringTextField: UITextField, Springable {
+    @IBInspectable open var autostart: Bool = false
+    @IBInspectable open var autohide: Bool = false
+    @IBInspectable open var animation: String = ""
+    @IBInspectable open var force: CGFloat = 1
+    @IBInspectable open var delay: CGFloat = 0
+    @IBInspectable open var duration: CGFloat = 0.7
+    @IBInspectable open var damping: CGFloat = 0.7
+    @IBInspectable open var velocity: CGFloat = 0.7
+    @IBInspectable open var repeatCount: Float = 1
+    @IBInspectable open var x: CGFloat = 0
+    @IBInspectable open var y: CGFloat = 0
+    @IBInspectable open var scaleX: CGFloat = 1
+    @IBInspectable open var scaleY: CGFloat = 1
+    @IBInspectable open var rotate: CGFloat = 0
+    @IBInspectable open var curve: String = ""
+    open var opacity: CGFloat = 1
+    open var animateFrom: Bool = false
 
-    lazy private var spring : Spring = Spring(self)
+    lazy fileprivate var spring : Spring = Spring(self)
 
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         self.spring.customAwakeFromNib()
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         spring.customLayoutSubviews()
     }
 
-    public func animate() {
+    open func animate() {
         self.spring.animate()
     }
 
-    public func animateNext(_ completion: () -> ()) {
+    open func animateNext(_ completion: () -> ()) {
         self.spring.animateNext(completion)
     }
 
-    public func animateTo() {
+    open func animateTo() {
         self.spring.animateTo()
     }
 
-    public func animateToNext(_ completion: () -> ()) {
+    open func animateToNext(_ completion: () -> ()) {
         self.spring.animateToNext(completion)
     }
 }

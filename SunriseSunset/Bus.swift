@@ -28,7 +28,7 @@ enum MessageType {
 //        case .MenuIn: return "MenuIn";
 //        case .MenuOut: return "MenuOut";
         case .timeFormat: return "TimeFormat";
-        case .foregrounded: return NSNotification.Name.UIApplicationWillEnterForeground
+        case .foregrounded: return Notification.Name.UIApplicationWillEnterForeground.rawValue
         case .sendMenuIn: return "SendMenuIn"
         case .notificationChange: return "NotificationChange"
         case .locationUpdate: return "LocationUpdate"
@@ -43,15 +43,15 @@ enum MessageType {
 
 class Bus {
     
-    static let ns = NotificationCenter.default()
-    static let defaults = UserDefaults.standard()
+    static let ns = NotificationCenter.default
+    static let defaults = UserDefaults.standard
     
-    class func sendMessage(_ message: MessageType, data: [NSObject: AnyObject]?) {
+    class func sendMessage(_ message: MessageType, data: [AnyHashable: Any]?) {
         ns.post(name: Notification.Name(rawValue: message.description), object: nil, userInfo: data)
     }
     
     class func subscribeEvent(_ message: MessageType, observer: AnyObject, selector: Selector) {
-        ns.addObserver(observer, selector: selector, name: message.description, object: nil)
+        ns.addObserver(observer, selector: selector, name: NSNotification.Name(rawValue: message.description), object: nil)
         
     }
     

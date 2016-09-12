@@ -45,15 +45,15 @@ class InfoViewController: UIViewController {
         
         navigationBar.titleTextAttributes =
             [NSFontAttributeName: UIFont(name: fontLight, size: 18)!]
-        navigationBar.tintColor = UIColor.white()
+        navigationBar.tintColor = UIColor.white
         
-        learnMoreButton.addUnderline(UIColor.white())
-        learnMoreButton.setTitleColor(UIColor.white(), for: UIControlState())
+        learnMoreButton.addUnderline(UIColor.white)
+        learnMoreButton.setTitleColor(UIColor.white, for: UIControlState())
         
         bottomView.backgroundColor = nauticalColour
         
-        textView.contentInset = UIEdgeInsetsZero
-        textView.textContainerInset = UIEdgeInsetsZero
+        textView.contentInset = UIEdgeInsets.zero
+        textView.textContainerInset = UIEdgeInsets.zero
         textView.textContainer.lineFragmentPadding = 0
 
         screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
@@ -77,11 +77,11 @@ class InfoViewController: UIViewController {
         textView.scrollRangeToVisible(NSMakeRange(0,0))
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return false
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.default
     }
     
@@ -114,7 +114,7 @@ class InfoViewController: UIViewController {
     
     @IBAction func learnMoreButtonDidTouch(_ sender: AnyObject) {
         Analytics.openLearnMore(infoTitle)
-        UIApplication.shared().openURL(URL(string: infoURLString)!)
+        UIApplication.shared.openURL(URL(string: infoURLString)!)
     }
     
     @IBAction func backButtonDidTouch(_ sender: AnyObject) {

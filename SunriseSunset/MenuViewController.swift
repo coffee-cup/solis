@@ -167,7 +167,7 @@ class MenuViewController: UIViewController {
         pscope.show({ finished, results in
             
             if results[0].status == .Authorized {
-                sender.selected = !sender.selected
+                sender.isSelected = !sender.isSelected
                 
                 var noti = ""
                 switch sender {
@@ -182,10 +182,10 @@ class MenuViewController: UIViewController {
                 default:
                     noti = ""
                 }
-                self.defaults.setBool(sender.selected, forKey: noti)
+                self.defaults.set(sender.isSelected, forKey: noti)
                 
                 Bus.sendMessage(.NotificationChange, data: nil)
-                Analytics.toggleNotificationForEvent(sender.selected, type: noti)
+                Analytics.toggleNotificationForEvent(sender.isSelected, type: noti)
             }
             }, cancelled: { (results) -> Void in
                 print("notification permissions were cancelled")

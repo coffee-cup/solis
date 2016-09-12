@@ -19,7 +19,7 @@ class Suntime: Comparable {
     
     var dateComponents: DateComponents!
     var date: Date!
-    var calendar = Calendar(calendarIdentifier: Calendar.Identifier.gregorian)!
+    var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
     let type: SunType
     var colour: CGColor {
         return type.colour
@@ -47,7 +47,7 @@ class Suntime: Comparable {
     func setValues(_ day: Date, dateComponents: DateComponents) {
         self.dateComponents = dateComponents
         
-        let dayComponents = calendar.components([.day, .month, .year], from: day)
+        let dayComponents = calendar.dateComponents([.day, .month, .year], from: day)
         self.dateComponents.year = dayComponents.year
         self.dateComponents.month = dayComponents.month
         self.dateComponents.day = dayComponents.day

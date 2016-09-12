@@ -8,8 +8,8 @@
 
 import UIKit
 
-public class AutoTextView: UITextView {
-    override public func intrinsicContentSize() -> CGSize {
+open class AutoTextView: UITextView {
+    override open var intrinsicContentSize : CGSize {
         var size = self.sizeThatFits(CGSize(width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
         size.width = self.frame.size.width
         if text.length == 0 {

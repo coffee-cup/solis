@@ -22,9 +22,9 @@
 
 import UIKit
 
-@IBDesignable public class DesignableLabel: SpringLabel {
+@IBDesignable open class DesignableLabel: SpringLabel {
 
-    @IBInspectable public var lineHeight: CGFloat = 1.5 {
+    @IBInspectable open var lineHeight: CGFloat = 1.5 {
         didSet {
             let font = UIFont(name: self.font.fontName, size: self.font.pointSize)
             let text = self.text

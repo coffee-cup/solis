@@ -84,7 +84,7 @@ class Sunline: UIView {
             let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel])
             NSLayoutConstraint.activate(timeHorizontalConstraints + [timeCenterConstraint])
             
-            self.backgroundColor = UIColor.red()
+            self.backgroundColor = UIColor.red
             self.line.backgroundColor = type.lineColour
             
             self.nameLabel.text = type.description.lowercased()
