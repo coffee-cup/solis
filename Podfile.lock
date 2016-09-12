@@ -10,7 +10,7 @@ PODS:
   - GoogleMaps/Maps (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
   - PermissionScope (1.0.2)
-  - SwiftLocation (1.0.6)
+  - SwiftLocation (1.1.0)
   - SwiftyJSON (2.3.2)
   - UIView-Easing (0.0.1)
 
@@ -21,7 +21,7 @@ DEPENDENCIES:
   - Fabric
   - GoogleMaps
   - PermissionScope (from `https://github.com/nickoneill/PermissionScope.git`, branch `swift3`)
-  - SwiftLocation (from `https://github.com/malcommac/SwiftLocation.git`, commit `af2b78f3daf8e78c60537dd02103262676b53c3c`)
+  - SwiftLocation (from `https://github.com/malcommac/SwiftLocation.git`, branch `master`)
   - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
   - UIView-Easing
 
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
     :branch: swift3
     :git: https://github.com/nickoneill/PermissionScope.git
   SwiftLocation:
-    :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
+    :branch: master
     :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
@@ -46,7 +46,7 @@ CHECKOUT OPTIONS:
     :commit: 6cc38490429f6a37bc6f2f62a12fdaf27b4e52cf
     :git: https://github.com/nickoneill/PermissionScope.git
   SwiftLocation:
-    :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
+    :commit: 9db2c814782c5db8a8e0c1edea1a4778be4f207f
     :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :commit: 46324eb5c8ba6adf6b31b16d3173c194242558de
@@ -59,10 +59,10 @@ SPEC CHECKSUMS:
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
-  SwiftLocation: 4e68bfd474e3a38ef82bd1d90619bed013706d06
+  SwiftLocation: f1bf5acb7992dd96c6f773c383f9c0479f07727d
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: 2e095a936fc5fff7a1a3c29415635d64de66a94f
+PODFILE CHECKSUM: ce092a651bad3d8b3c0c3cd5b147d0d6de0d349c
 
 COCOAPODS: 1.1.0.rc.1

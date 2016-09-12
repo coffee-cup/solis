@@ -6,12 +6,12 @@ use_frameworks!
 def swift3_overrides
     pod 'PermissionScope', git: 'https://github.com/nickoneill/PermissionScope.git', branch: 'swift3'
     pod 'SwiftyJSON', git: 'https://github.com/IBM-Swift/SwiftyJSON.git'
-    pod 'SwiftLocation', :git => 'https://github.com/malcommac/SwiftLocation.git', :commit => 'af2b78f3daf8e78c60537dd02103262676b53c3c'
+    pod 'SwiftLocation', :git => 'https://github.com/malcommac/SwiftLocation.git', :branch => 'master'
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', branch: 'master'
 end
 
 def swift3_overrides_widget
-    pod 'SwiftLocation', :git => 'https://github.com/malcommac/SwiftLocation.git', :commit => 'af2b78f3daf8e78c60537dd02103262676b53c3c'
+    pod 'SwiftLocation', :git => 'https://github.com/malcommac/SwiftLocation.git', :branch => 'master'
 end
 
 target 'SunriseSunset' do
