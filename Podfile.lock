@@ -22,7 +22,7 @@ DEPENDENCIES:
   - GoogleMaps
   - PermissionScope (from `https://github.com/nickoneill/PermissionScope.git`, branch `swift3`)
   - SwiftLocation (from `https://github.com/malcommac/SwiftLocation.git`, commit `af2b78f3daf8e78c60537dd02103262676b53c3c`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift3`)
+  - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
   - UIView-Easing
 
 EXTERNAL SOURCES:
@@ -36,8 +36,7 @@ EXTERNAL SOURCES:
     :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
     :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
-    :branch: swift3
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -50,8 +49,8 @@ CHECKOUT OPTIONS:
     :commit: af2b78f3daf8e78c60537dd02103262676b53c3c
     :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
-    :commit: 1a9755949a652967dc2986cd7f4653496e556715
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :commit: 46324eb5c8ba6adf6b31b16d3173c194242558de
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
@@ -64,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: f47b3faa36d161e2158bf322e2029db9d8626a83
+PODFILE CHECKSUM: 2e095a936fc5fff7a1a3c29415635d64de66a94f
 
 COCOAPODS: 1.1.0.rc.1
