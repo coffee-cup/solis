@@ -11,18 +11,18 @@ import UIKit
 
 extension UIButton {
     func addSimpleShadow() {
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowOffset = CGSizeMake(2, 1)
+        self.layer.shadowColor = UIColor.black().cgColor
+        self.layer.shadowOffset = CGSize(width: 2, height: 1)
         self.layer.shadowOpacity = 0.5
     }
     
-    func addUnderline(colour: UIColor = UIColor.whiteColor(), state: UIControlState = UIControlState.Normal) {
+    func addUnderline(_ colour: UIColor = UIColor.white(), state: UIControlState = UIControlState()) {
         if let title = currentTitle {
             let titleString: NSMutableAttributedString = NSMutableAttributedString(string: title)
             let fullRange = NSMakeRange(0, title.characters.count)
-            titleString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: fullRange)
+            titleString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: fullRange)
             titleString.addAttribute(NSForegroundColorAttributeName, value: colour, range: fullRange)
-            setAttributedTitle(titleString, forState: state)
+            setAttributedTitle(titleString, for: state)
         }
     }
 }

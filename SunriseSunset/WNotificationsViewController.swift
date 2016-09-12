@@ -13,7 +13,7 @@ class WNotificationsViewController: UIViewController {
     
     @IBOutlet weak var headingLabel: UILabel!
     
-    var timer: NSTimer!
+    var timer: Timer!
     
     let emojis = ["☀️", "🌙", "🌅", "🌄"]
     var emojiIndex = 0
@@ -21,10 +21,10 @@ class WNotificationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateHeading), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateHeading), userInfo: nil, repeats: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -36,7 +36,7 @@ class WNotificationsViewController: UIViewController {
             }
             let newEmoji = emojis[emojiIndex]
             
-            let cutText = text.substringToIndex(text.endIndex.advancedBy(-1))
+            let cutText = text.substring(to: text.characters.index(text.endIndex, offsetBy: -1))
             headingLabel.text = "\(cutText)\(newEmoji)"
         }
     }

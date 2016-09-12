@@ -11,42 +11,42 @@ import Crashlytics
 
 class Analytics {
     class func openLocationChange() {
-        Answers.logCustomEventWithName("Open Location Change", customAttributes: nil)
+        Answers.logCustomEvent(withName: "Open Location Change", customAttributes: nil)
     }
     
     class func openInfoMenu() {
-        Answers.logCustomEventWithName("Open Info Menu", customAttributes: nil)
+        Answers.logCustomEvent(withName: "Open Info Menu", customAttributes: nil)
     }
     
-    class func openInfoPage(page: String) {
-        Answers.logCustomEventWithName("Open Info Page", customAttributes: ["page": page])
+    class func openInfoPage(_ page: String) {
+        Answers.logCustomEvent(withName: "Open Info Page", customAttributes: ["page": page])
     }
     
-    class func openLearnMore(page: String) {
-        Answers.logCustomEventWithName("Open Learn More", customAttributes: ["page": page])
+    class func openLearnMore(_ page: String) {
+        Answers.logCustomEvent(withName: "Open Learn More", customAttributes: ["page": page])
     }
     
-    class func selectLocation(current: Bool, sunPlace: SunPlace?) {
+    class func selectLocation(_ current: Bool, sunPlace: SunPlace?) {
         if let sunPlace = sunPlace {
-            Answers.logCustomEventWithName("Select Location", customAttributes: ["primary": sunPlace.primary, "secondary": sunPlace.secondary, "current": current])
+            Answers.logCustomEvent(withName: "Select Location", customAttributes: ["primary": sunPlace.primary, "secondary": sunPlace.secondary, "current": current])
         } else {
-            Answers.logCustomEventWithName("Select Location", customAttributes: ["current": current])
+            Answers.logCustomEvent(withName: "Select Location", customAttributes: ["current": current])
         }
     }
     
-    class func setNotificationPlace(current: Bool, sunPlace: SunPlace?) {
+    class func setNotificationPlace(_ current: Bool, sunPlace: SunPlace?) {
         if let sunPlace = sunPlace {
-            Answers.logCustomEventWithName("Set Notification Place", customAttributes: ["primary": sunPlace.primary, "secondary": sunPlace.secondary, "current": current])
+            Answers.logCustomEvent(withName: "Set Notification Place", customAttributes: ["primary": sunPlace.primary, "secondary": sunPlace.secondary, "current": current])
         } else {
-            Answers.logCustomEventWithName("Set Notification Place", customAttributes: ["current": current])
+            Answers.logCustomEvent(withName: "Set Notification Place", customAttributes: ["current": current])
         }
     }
     
-    class func toggleNotificationForEvent(on: Bool, type: String) {
-        Answers.logCustomEventWithName("Toggle Notification", customAttributes: ["on": on, "event": type])
+    class func toggleNotificationForEvent(_ on: Bool, type: String) {
+        Answers.logCustomEvent(withName: "Toggle Notification", customAttributes: ["on": on, "event": type])
     }
     
-    class func notificationTriggeredForType(type: String) {
-        Answers.logCustomEventWithName("Notification Triggered", customAttributes: ["type": type])
+    class func notificationTriggeredForType(_ type: String) {
+        Answers.logCustomEvent(withName: "Notification Triggered", customAttributes: ["type": type])
     }
 }

@@ -11,26 +11,26 @@ import UIKit
 
 extension NSMutableAttributedString {
     enum AtributeSearchType {
-        case First, All, Last
+        case first, all, last
     }
     
-    func attributeRangeFor(searchString: String, attributeName: String, attributeValue: AnyObject, atributeSearchType: AtributeSearchType) {
+    func attributeRangeFor(_ searchString: String, attributeName: String, attributeValue: AnyObject, atributeSearchType: AtributeSearchType) {
         let inputLength = self.string.characters.count
         let searchLength = searchString.characters.count
         var range = NSRange(location: 0, length: self.length)
         var rangeCollection = [NSRange]()
         
         while (range.location != NSNotFound) {
-            range = (self.string as NSString).rangeOfString(searchString, options: [], range: range)
+            range = (self.string as NSString).range(of: searchString, options: [], range: range)
             if (range.location != NSNotFound) {
                 switch atributeSearchType {
-                case .First:
+                case .first:
                     self.addAttribute(attributeName, value: attributeValue, range: NSRange(location: range.location, length: searchLength))
                     return
-                case .All:
+                case .all:
                     self.addAttribute(attributeName, value: attributeValue, range: NSRange(location: range.location, length: searchLength))
                     break
-                case .Last:
+                case .last:
                     rangeCollection.append(range)
                     break
                 }
@@ -40,7 +40,7 @@ extension NSMutableAttributedString {
         }
         
         switch atributeSearchType {
-        case .Last:
+        case .last:
             let indexOfLast = rangeCollection.count - 1
             self.addAttribute(attributeName, value: attributeValue, range: rangeCollection[indexOfLast])
             break

@@ -46,13 +46,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // The offset y transform that we are for rest position
     var offsetTranslation: Double = 0
     
-    var timer = NSTimer()
+    var timer = Timer()
     
     // How long the sun view has been free scrolling
-    var animationTimer = NSTimer()
+    var animationTimer = Timer()
     
     // The date the timer started running
-    var animationFireDate: NSDate!
+    var animationFireDate: Date!
     
     // Whether or not we are scrolling free form
     var scrolling = false
@@ -76,7 +76,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var colliding = false
     
     // The duration we will free form for
-    var scrollAnimationDuration: NSTimeInterval = 0
+    var scrollAnimationDuration: TimeInterval = 0
     
     // The duration the animation went for before it was stopped
     var stopAnimationDuration: Double = 0
@@ -88,10 +88,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var transformAfterAnimation: Double = 0
 
     // TODO: Remove hardcoded free form scroll duration
-    let SCROLL_DURATION: NSTimeInterval = 1.2
+    let SCROLL_DURATION: TimeInterval = 1.2
     
     // Duration to use when animation sun view fade
-    let MenuFadeAnimationDuration: NSTimeInterval = 0.25
+    let MenuFadeAnimationDuration: TimeInterval = 0.25
     
     // Background alpha of background overlay view when menu is out
     let MenuBackgroundAlpha: CGFloat = 0.4
@@ -117,14 +117,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let sunHeight = screenHeight * Float(SunViewScreenMultiplier)
         
         sunView.translatesAutoresizingMaskIntoConstraints = true
-        sunView.frame = CGRectMake(0, 0, view.frame.width, CGFloat(sunHeight))
+        sunView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: CGFloat(sunHeight))
         sunView.center = view.center
         
         touchDownView = view as! TouchDownView
         touchDownView.delegate = self
         
         touchDownView.backgroundColor = nauticalColour
-        gradientLayer.backgroundColor = nauticalColour.CGColor
+        gradientLayer.backgroundColor = nauticalColour.cgColor
         sunView.layer.addSublayer(gradientLayer)
         
         nowLabel.textColor = nameTextColour
@@ -132,14 +132,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         nowTimeLabel.textColor = timeTextColour
         nowTimeLabel.font = fontDetail
         nowLineView.backgroundColor = nowLineColour
-        nowLineView.userInteractionEnabled = false
+        nowLineView.isUserInteractionEnabled = false
         
         nowLabel.addSimpleShadow()
         nowTimeLabel.addSimpleShadow()
         pastLabel.addSimpleShadow()
         futureLabel.addSimpleShadow()
         
-        centerButton.enabled = false
+        centerButton.isEnabled = false
         centerImageView.duration = CGFloat(1)
         centerImageView.curve = "easeInOut"
         centerImageView.alpha = 0
@@ -176,16 +176,16 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         sunView.addGestureRecognizer(longPressRecognizer)
         
         // Update every minute
-        timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
         
         setupBackgroundView()
         
         // Notifications
         
-        Bus.subscribeEvent(.LocationUpdate, observer: self, selector: #selector(locationUpdate))
-        Bus.subscribeEvent(.LocationChanged, observer: self, selector: #selector(locationChanged))
-        Bus.subscribeEvent(.GotTimeZone, observer: self, selector: #selector(timeZoneUpdate))
-        Bus.subscribeEvent(.Foregrounded, observer: self, selector: #selector(scrollReset))
+        Bus.subscribeEvent(.locationUpdate, observer: self, selector: #selector(locationUpdate))
+        Bus.subscribeEvent(.locationChanged, observer: self, selector: #selector(locationChanged))
+        Bus.subscribeEvent(.gotTimeZone, observer: self, selector: #selector(timeZoneUpdate))
+        Bus.subscribeEvent(.foregrounded, observer: self, selector: #selector(scrollReset))
         
         setupPermissions()
         
@@ -193,19 +193,19 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollReset()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         sunView.alpha = 0
         update()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
         Bus.removeSubscriptions(self)
     }
     
@@ -215,22 +215,22 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func setupBackgroundView() {
         backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.blackColor()
+        backgroundView.backgroundColor = UIColor.black()
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.userInteractionEnabled = false
+        backgroundView.isUserInteractionEnabled = false
         backgroundView.alpha = 0
         
         view.addSubview(backgroundView)
-        view.bringSubviewToFront(backgroundView)
+        view.bringSubview(toFront: backgroundView)
         
-        let horizontalContraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
-        let verticalContraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
-        NSLayoutConstraint.activateConstraints(horizontalContraints + verticalContraints)
+        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
+        let verticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
+        NSLayoutConstraint.activate(horizontalContraints + verticalContraints)
     }
     
     func startAnimationTimer() {
-        animationTimer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: #selector(animationUpdate), userInfo: nil, repeats: true)
-        animationFireDate = NSDate()
+        animationTimer = Timer.scheduledTimer(timeInterval: 0.06, target: self, selector: #selector(animationUpdate), userInfo: nil, repeats: true)
+        animationFireDate = Date()
     }
     
     func stopAnimationTimer() {
@@ -260,7 +260,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         // Dispose of any resources that can be recreated.
     }
 
-    func dateComponentsToString(d: NSDateComponents) -> String {
+    func dateComponentsToString(_ d: DateComponents) -> String {
         return "\(d.hour):\(d.minute)"
     }
     
@@ -277,14 +277,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     // Update all the views the with the time offset value
-    func update(offset: Double = 0) {
+    func update(_ offset: Double = 0) {
         if !scrolling && !panning && !offNow {
             if let location = Location.getLocation() {
                 sun.update(offset, location: location)
                 
                 // Fade in sun view if not already visible
                 if self.sunView.alpha == 0 {
-                    UIView.animateWithDuration(0.5) {
+                    UIView.animate(withDuration: 0.5) {
                         self.sunView.alpha = 1
                     }
                 }
@@ -296,19 +296,19 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // Update from transformation move
     // Do not update maths of sunlines
-    func moveUpdate(offset: Double = 0) {
+    func moveUpdate(_ offset: Double = 0) {
         sun.findNow(offset)
         offNow = Int(floor(offset)) != 0
         setCenterButton()
     }
     
     func setCenterButton() {
-        if offNow && !centerButton.enabled {
-            centerButton.enabled = true
+        if offNow && !centerButton.isEnabled {
+            centerButton.isEnabled = true
             centerImageView.animation = "fadeIn"
             centerImageView.animate()
-        } else if !offNow && centerButton.enabled {
-            centerButton.enabled = false
+        } else if !offNow && centerButton.isEnabled {
+            centerButton.isEnabled = false
             centerImageView.animation = "fadeOut"
             centerImageView.animate()
         }
@@ -334,7 +334,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func menuStartAnimatingIn() {
-        UIView.animateWithDuration(MenuFadeAnimationDuration) {
+        UIView.animate(withDuration: MenuFadeAnimationDuration) {
             self.backgroundView.alpha = 0
             self.isMenuOut = false
         }
@@ -347,7 +347,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func menuStartAnimatingOut() {
         isMenuOut = true
-        UIView.animateWithDuration(MenuFadeAnimationDuration) {
+        UIView.animate(withDuration: MenuFadeAnimationDuration) {
             self.backgroundView.alpha = self.MenuBackgroundAlpha
         }
     }
@@ -357,7 +357,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         isMenuOut = true
     }
     
-    func menuIsMoving(percent: Float) {
+    func menuIsMoving(_ percent: Float) {
         let alpha = CGFloat(percent) * MenuBackgroundAlpha
         backgroundView.alpha = alpha
         isMenuOut = alpha != 0
@@ -366,7 +366,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Touch and Dragging
     
     // constrain offset minutes and offset tranform within proper view bounds
-    func normalizeOffsets(transformBy: Double, offsetBy: Double) -> (Double, Double) {
+    func normalizeOffsets(_ transformBy: Double, offsetBy: Double) -> (Double, Double) {
         var newTransformBy = transformBy
         var newOffsetBy = offsetBy
         let ViewPadding: Double = 0
@@ -385,39 +385,39 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     // Convert tranform y translation to minute offset and normalize
-    func setOffsetFromTranslation(translation: Double) {
+    func setOffsetFromTranslation(_ translation: Double) {
         offsetTranslation = translation
         offset = sun.pointsToMinutes(offsetTranslation)
         (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
     }
     
-    func panGesture(recognizer: UIPanGestureRecognizer) {
-        let translation = Double(recognizer.translationInView(view).y)
+    func panGesture(_ recognizer: UIPanGestureRecognizer) {
+        let translation = Double(recognizer.translation(in: view).y)
         let offsetMinutes = sun.pointsToMinutes(translation)
         let offsetSeconds = offsetMinutes
         
-        if (recognizer.state == .Began) {
-            if recognizer.locationInView(view).x < 40 || scrolling { // 40 so pan gestures don't interfer with pulling menu out
+        if (recognizer.state == .began) {
+            if recognizer.location(in: view).x < 40 || scrolling { // 40 so pan gestures don't interfer with pulling menu out
                 allowedPan = false
             } else {
                 panning = true
             }
-        } else if (recognizer.state == .Changed) {
+        } else if (recognizer.state == .changed) {
             if allowedPan && !isMenuOut && !scrolling {
                 let transformBy = translation + offsetTranslation
                 let offsetBy = offsetSeconds + offset
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
                 
-                self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(newTransformBy))
+                self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(newTransformBy))
                 moveUpdate(newOffsetBy)
             }
-        } else if (recognizer.state == .Ended) {
+        } else if (recognizer.state == .ended) {
             if allowedPan && !isMenuOut {
                 offset += offsetSeconds
                 offsetTranslation += translation
                 (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
                 
-                let velocity = Double(recognizer.velocityInView(view).y)
+                let velocity = Double(recognizer.velocity(in: view).y)
                 if abs(velocity) > 12 { // 12 so scroll doesn't animate for soft pans
                     animateScroll(velocity * 0.55) // 0.55 to weaken momentum scoll velocity
                 }
@@ -427,7 +427,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         }
     }
     
-    func animateScroll(velocity: Double) {
+    func animateScroll(_ velocity: Double) {
         transformAfterAnimation = offsetTranslation + velocity
         (transformAfterAnimation, _) = normalizeOffsets(transformAfterAnimation, offsetBy: 0)
         
@@ -438,16 +438,16 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollAnimationDuration = SCROLL_DURATION
         scrolling = true
         
-        UIView.animateWithDuration(scrollAnimationDuration, delay: 0, options: [.AllowUserInteraction, .BeginFromCurrentState], animations: {
+        UIView.animate(withDuration: scrollAnimationDuration, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
-            self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.transformAfterAnimation))
+            self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(self.transformAfterAnimation))
             }, completion: {finished in
                 self.setTransformWhenStopped()
                 self.animationStopped = false
         })
     }
     
-    func doubleTap(recognizer: UITapGestureRecognizer) {
+    func doubleTap(_ recognizer: UITapGestureRecognizer) {
         scrollReset()
     }
     
@@ -467,7 +467,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         self.setOffsetFromTranslation(self.offsetTranslation)
         moveUpdate(self.offset)
-        self.sunView.transform = CGAffineTransformMakeTranslation(0, CGFloat(self.offsetTranslation))
+        self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(self.offsetTranslation))
     }
     
     func scrollReset() {
@@ -476,9 +476,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollAnimationDuration = SCROLL_DURATION
         startAnimationTimer()
         scrolling = true
-        UIView.animateWithDuration(scrollAnimationDuration, animations: {
+        UIView.animate(withDuration: scrollAnimationDuration, animations: {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
-            self.sunView.transform = CGAffineTransformMakeTranslation(0, 0)
+            self.sunView.transform = CGAffineTransform(translationX: 0, y: 0)
             }, completion: { finished in
                 self.sunView.removeEasingFunctionForKeyPath("transform")
                 self.reset()
@@ -500,27 +500,27 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         moveUpdate(sun.pointsToMinutes(ease))
     }
     
-    func tapGesture(recognizer: UITapGestureRecognizer) {
-        Bus.sendMessage(.SendMenuIn, data: nil)
+    func tapGesture(_ recognizer: UITapGestureRecognizer) {
+        Bus.sendMessage(.sendMenuIn, data: nil)
     }
     
-    func longPressGesture(recognizer: UILongPressGestureRecognizer) {
-        if recognizer.state == .Began {
+    func longPressGesture(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
             sun.toggleSunAreas()
         }
     }
     
-    func touchDown(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func touchDown(_ touches: Set<UITouch>, withEvent event: UIEvent?) {
         if scrolling {
             stopScroll()
         }
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
-    @IBAction func centerButtonDidTouch(sender: AnyObject) {
+    @IBAction func centerButtonDidTouch(_ sender: AnyObject) {
         stopAnimationTimer()
         scrollReset()
     }
@@ -529,7 +529,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         if !colliding {
             // Fixes sunline overlap on iphone5 screens and smaller
             nowLeftConstraint.constant = sunView.frame.width < 375 ? 210 : 240
-            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
                 }, completion: nil)
         }
@@ -539,7 +539,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func collisionNotHappening() {
         if colliding {
             nowLeftConstraint.constant = 100
-            UIView.animateWithDuration(0.25, delay: 0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
                 }, completion: nil)
         }

@@ -16,19 +16,19 @@ class TimeZones {
     let ApiKey = "3GEZEJL3FJ03"
     let Endpoint = "https://api.timezonedb.com/v2/get-time-zone"
     
-    static var currentTimeZone: NSTimeZone {
+    static var currentTimeZone: TimeZone {
         if Location.isCurrentLocation() {
-            return NSTimeZone.localTimeZone()
+            return TimeZone.local()
         }
         if let timeZone = getTimeZone() {
             return timeZone
         }
         
-        return NSTimeZone.localTimeZone()
+        return TimeZone.local()
     }
     
     init() {
-        Bus.subscribeEvent(.FetchTimeZone, observer: self, selector: #selector(fetchTimeZone))
+        Bus.subscribeEvent(.fetchTimeZone, observer: self, selector: #selector(fetchTimeZone))
     }
     
     @objc func fetchTimeZone() {
@@ -51,18 +51,18 @@ class TimeZones {
         }
     }
     
-    func saveTimeZone(gmtOffset: Int) {
-        Defaults.defaults.setInteger(gmtOffset, forKey: DefaultKey.LocationTimeZoneOffset.description)
-        Bus.sendMessage(.GotTimeZone, data: nil )
+    func saveTimeZone(_ gmtOffset: Int) {
+        Defaults.defaults.set(gmtOffset, forKey: DefaultKey.locationTimeZoneOffset.description)
+        Bus.sendMessage(.gotTimeZone, data: nil )
     }
     
-    class func getTimeZone() -> NSTimeZone? {
-        let gmtOffset = Defaults.defaults.integerForKey(DefaultKey.LocationTimeZoneOffset.description)
-        let timeZone = NSTimeZone(forSecondsFromGMT: gmtOffset)
+    class func getTimeZone() -> TimeZone? {
+        let gmtOffset = Defaults.defaults.integer(forKey: DefaultKey.locationTimeZoneOffset.description)
+        let timeZone = TimeZone(forSecondsFromGMT: gmtOffset)
         return timeZone
     }
     
-    func timeZoneForLocation(location: CLLocationCoordinate2D, completionHandler: (gmtOffset: Int?, abbreviation: String?) -> ()) {
+    func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: (gmtOffset: Int?, abbreviation: String?) -> ()) {
         Alamofire.request(.GET, Endpoint, parameters: [
             "key": ApiKey,
             "by": "position",

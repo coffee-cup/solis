@@ -21,13 +21,13 @@ let lightLineColour = UIColor(hex: 0x00D3D0)
 let darkLineColour = UIColor(hex: 0x6A00CD)
 let nowLineColour = UIColor(hex: 0xF44336)
 
-let nameTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
-let timeTextColour = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+let nameTextColour = UIColor.white().withAlphaComponent(0.8)
+let timeTextColour = UIColor.white().withAlphaComponent(0.8)
 
 let menuBackgroundColour = UIColor(hex: 0x4E50B8)
 
-let goldenHourColour = UIColor(hex: 0xFFEC00).colorWithAlphaComponent(0.2)
-let blueHourColour = UIColor(hex: 0x03FFFB).colorWithAlphaComponent(0.2)
+let goldenHourColour = UIColor(hex: 0xFFEC00).withAlphaComponent(0.2)
+let blueHourColour = UIColor(hex: 0x03FFFB).withAlphaComponent(0.2)
 
 let buttonDisabled = UIColor(hex: 0x290050)
 let buttonEnabled = UIColor(hex: 0x00D3D0)

@@ -10,76 +10,76 @@ import Foundation
 import UIKit
 
 enum SunType {
-    case AstronomicalDawn
-    case NauticalDawn
-    case CivilDawn
-    case Sunrise
-    case Sunset
-    case CivilDusk
-    case NauticalDusk
-    case AstronomicalDusk
+    case astronomicalDawn
+    case nauticalDawn
+    case civilDawn
+    case sunrise
+    case sunset
+    case civilDusk
+    case nauticalDusk
+    case astronomicalDusk
     
     var description: String {
         switch self {
-        case .AstronomicalDawn: return "Astronomical Dawn";
-        case .NauticalDawn: return "Nautical Dawn";
-        case .CivilDawn: return "Civil Dawn";
-        case .Sunrise: return "Sunrise";
-        case .Sunset: return "Sunset";
-        case .CivilDusk: return "Civil Dusk";
-        case .NauticalDusk: return "Nautical Dusk";
-        case .AstronomicalDusk: return "Astronomical Dusk";
+        case .astronomicalDawn: return "Astronomical Dawn";
+        case .nauticalDawn: return "Nautical Dawn";
+        case .civilDawn: return "Civil Dawn";
+        case .sunrise: return "Sunrise";
+        case .sunset: return "Sunset";
+        case .civilDusk: return "Civil Dusk";
+        case .nauticalDusk: return "Nautical Dusk";
+        case .astronomicalDusk: return "Astronomical Dusk";
         }
     }
     
     var marker: Bool {
         switch self {
-        case .AstronomicalDawn: return true;
-        case .NauticalDawn: return false;
-        case .CivilDawn: return false;
-        case .Sunrise: return true;
-        case .Sunset: return true;
-        case .CivilDusk: return false;
-        case .NauticalDusk: return false;
-        case .AstronomicalDusk: return true;
+        case .astronomicalDawn: return true;
+        case .nauticalDawn: return false;
+        case .civilDawn: return false;
+        case .sunrise: return true;
+        case .sunset: return true;
+        case .civilDusk: return false;
+        case .nauticalDusk: return false;
+        case .astronomicalDusk: return true;
         }
     }
     
-    var colour: CGColorRef {
+    var colour: CGColor {
         switch self {
-        case .AstronomicalDawn: return astronomicalColour.CGColor as CGColorRef
-        case .NauticalDawn: return nauticalColour.CGColor as CGColorRef
-        case .CivilDawn: return civilColour.CGColor as CGColorRef
-        case .Sunrise: return risesetColour.CGColor as CGColorRef
-        case .CivilDusk: return civilColour.CGColor as CGColorRef
-        case .NauticalDusk: return nauticalColour.CGColor as CGColorRef
-        case .Sunset: return risesetColour.CGColor as CGColorRef
-        case .AstronomicalDusk: return astronomicalColour.CGColor as CGColorRef
+        case .astronomicalDawn: return astronomicalColour.cgColor as CGColor
+        case .nauticalDawn: return nauticalColour.cgColor as CGColor
+        case .civilDawn: return civilColour.cgColor as CGColor
+        case .sunrise: return risesetColour.cgColor as CGColor
+        case .civilDusk: return civilColour.cgColor as CGColor
+        case .nauticalDusk: return nauticalColour.cgColor as CGColor
+        case .sunset: return risesetColour.cgColor as CGColor
+        case .astronomicalDusk: return astronomicalColour.cgColor as CGColor
         }
     }
     
     var lineColour: UIColor {
         switch self {
-        case .AstronomicalDawn: return lightLineColour;
-        case .NauticalDawn: return lightLineColour;
-        case .CivilDawn: return lightLineColour;
-        case .Sunrise: return lightLineColour;
-        case .Sunset: return darkLineColour;
-        case .CivilDusk: return darkLineColour;
-        case .NauticalDusk: return darkLineColour;
-        case .AstronomicalDusk: return darkLineColour;
+        case .astronomicalDawn: return lightLineColour;
+        case .nauticalDawn: return lightLineColour;
+        case .civilDawn: return lightLineColour;
+        case .sunrise: return lightLineColour;
+        case .sunset: return darkLineColour;
+        case .civilDusk: return darkLineColour;
+        case .nauticalDusk: return darkLineColour;
+        case .astronomicalDusk: return darkLineColour;
         }
     }
     
     var message: String {
         var message = ""
-        if self == .AstronomicalDawn || self == .NauticalDawn || self == .CivilDawn {
+        if self == .astronomicalDawn || self == .nauticalDawn || self == .civilDawn {
             message = "The sun is awake now ☀️ Have a good day"
-        } else if self == .Sunrise {
+        } else if self == .sunrise {
             message = "The sun has risen 🌄"
-        } else if self == .Sunset {
+        } else if self == .sunset {
             message = "The sun has set 🌇"
-        } else if self == .CivilDusk || self == .NauticalDusk || self == .AstronomicalDusk {
+        } else if self == .civilDusk || self == .nauticalDusk || self == .astronomicalDusk {
             message = "The sun has gone to sleep for the night 🌚 Goodnight"
         }
         return message
@@ -87,13 +87,13 @@ enum SunType {
     
     var event: String {
         var message = ""
-        if self == .AstronomicalDawn || self == .NauticalDawn || self == .CivilDawn {
+        if self == .astronomicalDawn || self == .nauticalDawn || self == .civilDawn {
             message = "First Light"
-        } else if self == .Sunrise {
+        } else if self == .sunrise {
             message = "Sunrise"
-        } else if self == .Sunset {
+        } else if self == .sunset {
             message = "Sunset"
-        } else if self == .CivilDusk || self == .NauticalDusk || self == .AstronomicalDusk {
+        } else if self == .civilDusk || self == .nauticalDusk || self == .astronomicalDusk {
             message = "Last Light"
         }
         return message
@@ -101,66 +101,66 @@ enum SunType {
     
     var twilightDawn: Bool {
         switch self {
-        case .AstronomicalDawn: return true;
-        case .NauticalDawn: return true;
-        case .CivilDawn: return true;
-        case .Sunrise: return false;
-        case .Sunset: return false;
-        case .CivilDusk: return false;
-        case .NauticalDusk: return false;
-        case .AstronomicalDusk: return false;
+        case .astronomicalDawn: return true;
+        case .nauticalDawn: return true;
+        case .civilDawn: return true;
+        case .sunrise: return false;
+        case .sunset: return false;
+        case .civilDusk: return false;
+        case .nauticalDusk: return false;
+        case .astronomicalDusk: return false;
         }
     }
     
     var twilightDusk: Bool {
         switch self {
-        case .AstronomicalDawn: return false;
-        case .NauticalDawn: return false;
-        case .CivilDawn: return false;
-        case .Sunrise: return false;
-        case .Sunset: return false;
-        case .CivilDusk: return true;
-        case .NauticalDusk: return true;
-        case .AstronomicalDusk: return true;
+        case .astronomicalDawn: return false;
+        case .nauticalDawn: return false;
+        case .civilDawn: return false;
+        case .sunrise: return false;
+        case .sunset: return false;
+        case .civilDusk: return true;
+        case .nauticalDusk: return true;
+        case .astronomicalDusk: return true;
         }
     }
     
     var morning: Bool {
         switch self {
-        case .AstronomicalDawn: return true;
-        case .NauticalDawn: return true;
-        case .CivilDawn: return true;
-        case .Sunrise: return true;
-        case .Sunset: return false;
-        case .CivilDusk: return false;
-        case .NauticalDusk: return false;
-        case .AstronomicalDusk: return false;
+        case .astronomicalDawn: return true;
+        case .nauticalDawn: return true;
+        case .civilDawn: return true;
+        case .sunrise: return true;
+        case .sunset: return false;
+        case .civilDusk: return false;
+        case .nauticalDusk: return false;
+        case .astronomicalDusk: return false;
         }
     }
     
     var night: Bool {
         switch self {
-        case .AstronomicalDawn: return false;
-        case .NauticalDawn: return false;
-        case .CivilDawn: return false;
-        case .Sunrise: return false;
-        case .Sunset: return true;
-        case .CivilDusk: return true;
-        case .NauticalDusk: return true;
-        case .AstronomicalDusk: return true;
+        case .astronomicalDawn: return false;
+        case .nauticalDawn: return false;
+        case .civilDawn: return false;
+        case .sunrise: return false;
+        case .sunset: return true;
+        case .civilDusk: return true;
+        case .nauticalDusk: return true;
+        case .astronomicalDusk: return true;
         }
     }
     
     var degrees: Float {
         switch self {
-        case .AstronomicalDawn: return 18;
-        case .NauticalDawn: return 12;
-        case .CivilDawn: return 6;
-        case .Sunrise: return 0;
-        case .Sunset: return 0;
-        case .CivilDusk: return 6;
-        case .NauticalDusk: return 12;
-        case .AstronomicalDusk: return 18;
+        case .astronomicalDawn: return 18;
+        case .nauticalDawn: return 12;
+        case .civilDawn: return 6;
+        case .sunrise: return 0;
+        case .sunset: return 0;
+        case .civilDusk: return 6;
+        case .nauticalDusk: return 12;
+        case .astronomicalDusk: return 18;
         }
     }
 }

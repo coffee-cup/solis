@@ -53,10 +53,10 @@ class SunArea: UIView {
         fatalError("This class does not support NSCoding")
     }
     
-    func createArea(parentView: UIView) {
+    func createArea(_ parentView: UIView) {
         self.parentView = parentView
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.nameLabel = UILabel()
             
             self.translatesAutoresizingMaskIntoConstraints = false
@@ -68,11 +68,11 @@ class SunArea: UIView {
             
             // Area View
             
-            let viewHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: ["view": self])
-            self.topConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 1, constant: 0)
-            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100)
+            let viewHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
+            self.topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
+            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
             
-            NSLayoutConstraint.activateConstraints(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
+            NSLayoutConstraint.activate(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
             
 //            self.backgroundColor = UIColor.purpleColor().colorWithAlphaComponent(0.3)
             
@@ -95,10 +95,10 @@ class SunArea: UIView {
                 self.gradientLayer.colors = colours
             } else {
                 self.gradientLayer.colors = [
-                    self.colour.colorWithAlphaComponent(0.1).CGColor,
-                    self.colour.CGColor,
-                    self.colour.CGColor,
-                    self.colour.colorWithAlphaComponent(0.1).CGColor
+                    self.colour.withAlphaComponent(0.1).cgColor,
+                    self.colour.cgColor,
+                    self.colour.cgColor,
+                    self.colour.withAlphaComponent(0.1).cgColor
                 ]
             }
             
@@ -118,18 +118,18 @@ class SunArea: UIView {
     }
     
     func fadeOutView() {
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 0
         }
     }
     
     func fadeInView() {
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 1
         }
     }
     
-    func degreesToPercent(minMarker: SunTimeMarker, maxMarker: SunTimeMarker, findDegree: Float) -> Float {
+    func degreesToPercent(_ minMarker: SunTimeMarker, maxMarker: SunTimeMarker, findDegree: Float) -> Float {
         let minDegree = minMarker.sunTimeLine.suntime.type.degrees
         let maxDegree = maxMarker.sunTimeLine.suntime.type.degrees
         
@@ -141,7 +141,7 @@ class SunArea: UIView {
         return scaledPercent
     }
     
-    func updateAreaWithPercents(minPercent: Float, maxPercent: Float) {
+    func updateAreaWithPercents(_ minPercent: Float, maxPercent: Float) {
         if "\(minPercent)" == "nan" || "\(maxPercent)" == "nan" {
             return
         }
@@ -157,14 +157,14 @@ class SunArea: UIView {
         topConstraint.constant = top
         heightConstraint.constant = height
         
-        self.gradientLayer.frame = CGRectMake(0, 0, parentView.frame.width, height)
-        UIView.animateWithDuration(0.5) {
+        self.gradientLayer.frame = CGRect(x: 0, y: 0, width: parentView.frame.width, height: height)
+        UIView.animate(withDuration: 0.5) {
             self.parentView.layoutIfNeeded()
         }
     }
     
-    func updateArea(sunTimeMarkers: [SunTimeMarker]) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func updateArea(_ sunTimeMarkers: [SunTimeMarker]) {
+        DispatchQueue.main.async {
             
             // Only use relevant markers
             let filteredMarkers = sunTimeMarkers.filter { marker in
@@ -173,7 +173,7 @@ class SunArea: UIView {
             }
             
             // Sort markers by degrees
-            let sortedMarkers = filteredMarkers.sort { lhs, rhs in
+            let sortedMarkers = filteredMarkers.sorted { lhs, rhs in
                 return lhs.sunTimeLine.suntime.type.degrees < rhs.sunTimeLine.suntime.type.degrees
             }
             

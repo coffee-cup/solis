@@ -30,14 +30,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func setPreferred() {
-        preferredContentSize = CGSizeMake(0, ViewHeight)
+        preferredContentSize = CGSize(width: 0, height: ViewHeight)
     }
     
-    func setView(suntime: Suntime) {
+    func setView(_ suntime: Suntime) {
         eventLabel.text = "\(suntime.type.event) at"
-        timeLabel.text = TimeFormatters.formatter12h(NSTimeZone.localTimeZone()).stringFromDate(suntime.date)
-            .stringByReplacingOccurrencesOfString("AM", withString: "am")
-            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+        timeLabel.text = TimeFormatters.formatter12h(TimeZone.local()).string(from: suntime.date)
+            .replacingOccurrences(of: "AM", with: "am")
+            .replacingOccurrences(of: "PM", with: "pm")
     }
     
     func setSad() {
@@ -59,7 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+    func widgetPerformUpdate(completionHandler: ((NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
 
         // If an error is encountered, use NCUpdateResult.Failed
@@ -69,10 +69,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         setPreferred()
         setWidgetTimes()
         
-        completionHandler(NCUpdateResult.NewData)
+        completionHandler(NCUpdateResult.newData)
     }
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsetsZero
     }
     

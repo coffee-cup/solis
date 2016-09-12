@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 protocol TouchDownProtocol {
-    func touchDown(touches: Set<UITouch>, withEvent event: UIEvent?)
+    func touchDown(_ touches: Set<UITouch>, withEvent event: UIEvent?)
 }
 
 class TouchDownView: UIView {
     var delegate: TouchDownProtocol?
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         delegate?.touchDown(touches, withEvent: event)
     }
 }

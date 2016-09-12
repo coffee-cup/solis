@@ -29,16 +29,16 @@ struct SoundPlayer {
     static var enabled : Bool = true
     
     private struct Internal {
-        static var cache = [NSURL:SystemSoundID]()
+        static var cache = [URL:SystemSoundID]()
     }
     
-    static func playSound(soundFile: String) {
+    static func playSound(_ soundFile: String) {
         
         if !enabled {
             return
         }
         
-        if let url = NSBundle.mainBundle().URLForResource(soundFile, withExtension: nil) {
+        if let url = Bundle.main().urlForResource(soundFile, withExtension: nil) {
             
             var soundID : SystemSoundID = Internal.cache[url] ?? 0
             
@@ -54,7 +54,7 @@ struct SoundPlayer {
         }
     }
     
-    static func play(file: String) {
+    static func play(_ file: String) {
         self.playSound(file)
     }
 }

@@ -28,22 +28,22 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageViewController.delegate = self
         pageViewController.dataSource = self
 
         if let firstViewController = orderedViewControllers.first {
             pageViewController.setViewControllers([firstViewController],
-                               direction: .Forward,
+                               direction: .forward,
                                animated: true,
                                completion: nil)
         }
         
         view.addSubview(pageViewController.view)
         
-        view.bringSubviewToFront(takeOffButton)
-        view.bringSubviewToFront(skipButton)
-        view.bringSubviewToFront(pageControl)
+        view.bringSubview(toFront: takeOffButton)
+        view.bringSubview(toFront: skipButton)
+        view.bringSubview(toFront: pageControl)
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
         
@@ -51,17 +51,17 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         takeOffButton.alpha = 0
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    func viewControllerWithIdentifier(identifier: String) -> UIViewController {
+    func viewControllerWithIdentifier(_ identifier: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewControllerWithIdentifier(identifier)
+            instantiateViewController(withIdentifier: identifier)
     }
     
     func goToMainView() {
@@ -71,17 +71,17 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         
         Defaults.showWalkthrough = false
         
-        performSegueWithIdentifier("MainSegue", sender: nil)
+        performSegue(withIdentifier: "MainSegue", sender: nil)
     }
     
-    func fadeTakeOffButton(alphaValue: CGFloat) {
-        UIView.animateWithDuration(alphaValue == 0 ? 0 : 0.25) {
+    func fadeTakeOffButton(_ alphaValue: CGFloat) {
+        UIView.animate(withDuration: alphaValue == 0 ? 0 : 0.25) {
             self.takeOffButton.alpha = alphaValue
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         
@@ -94,8 +94,8 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         return orderedViewControllers[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         
@@ -113,12 +113,12 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         return orderedViewControllers[nextIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
-        pendingIndex = orderedViewControllers.indexOf(pendingViewControllers.first!)
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pendingIndex = orderedViewControllers.index(of: pendingViewControllers.first!)
         fadeTakeOffButton(0)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             currentIndex = pendingIndex
             if let index = currentIndex {
@@ -134,11 +134,11 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         }
     }
     
-    @IBAction func skipButtonDidTouch(sender: AnyObject) {
+    @IBAction func skipButtonDidTouch(_ sender: AnyObject) {
         goToMainView()
     }
     
-    @IBAction func takeOffButtonDidTouch(sender: AnyObject) {
+    @IBAction func takeOffButtonDidTouch(_ sender: AnyObject) {
         goToMainView()
     }
 }

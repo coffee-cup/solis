@@ -10,18 +10,18 @@ import Foundation
 import UIKit
 
 enum SunDay {
-    case Yesterday
-    case Today
-    case Tomorrow
+    case yesterday
+    case today
+    case tomorrow
 }
 
 class Suntime: Comparable {
     
-    var dateComponents: NSDateComponents!
-    var date: NSDate!
-    var calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var dateComponents: DateComponents!
+    var date: Date!
+    var calendar = Calendar(calendarIdentifier: Calendar.Identifier.gregorian)!
     let type: SunType
-    var colour: CGColorRef {
+    var colour: CGColor {
         return type.colour
     }
     var marker: Bool {
@@ -34,29 +34,29 @@ class Suntime: Comparable {
     
     var neverHappens = false
     
-    let formatter = NSDateFormatter()
+    let formatter = DateFormatter()
     
     init(type: SunType, day: SunDay) {
-        calendar.timeZone = NSTimeZone.localTimeZone()
+        calendar.timeZone = TimeZone.local()
         
         self.type = type
         self.day = day
         formatter.dateFormat = "MMMM d HH:mm"
     }
     
-    func setValues(day: NSDate, dateComponents: NSDateComponents) {
+    func setValues(_ day: Date, dateComponents: DateComponents) {
         self.dateComponents = dateComponents
         
-        let dayComponents = calendar.components([.Day, .Month, .Year], fromDate: day)
+        let dayComponents = calendar.components([.day, .month, .year], from: day)
         self.dateComponents.year = dayComponents.year
         self.dateComponents.month = dayComponents.month
         self.dateComponents.day = dayComponents.day
         
-        self.date = calendar.dateFromComponents(self.dateComponents)
+        self.date = calendar.date(from: self.dateComponents)
     }
     
     func description() -> String {
-        let dateString = formatter.stringFromDate(date)
+        let dateString = formatter.string(from: date)
         return "\(type.description): \(dateString)"
     }
 }
@@ -66,5 +66,5 @@ func < (lhs: Suntime, rhs: Suntime) -> Bool {
 }
 
 func == (lhs: Suntime, rhs: Suntime) -> Bool {
-    return Int(lhs.date.timeIntervalSinceDate(rhs.date)) == 0
+    return Int(lhs.date.timeIntervalSince(rhs.date)) == 0
 }

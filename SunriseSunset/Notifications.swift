@@ -13,31 +13,31 @@ import UIKit
 class Notifications {
     
     lazy var defaults = Defaults.defaults
-    lazy var application = UIApplication.sharedApplication()
+    lazy var application = UIApplication.shared()
     
-    let sunriseTypes: [SunType] = [.Sunrise]
-    let sunsetTypes: [SunType] = [.Sunset]
-    let lastLightTypes: [SunType] = [.AstronomicalDusk, .NauticalDusk, .CivilDusk]
-    let firstLightTypes: [SunType] = [.AstronomicalDawn, .NauticalDawn, .CivilDawn]
+    let sunriseTypes: [SunType] = [.sunrise]
+    let sunsetTypes: [SunType] = [.sunset]
+    let lastLightTypes: [SunType] = [.astronomicalDusk, .nauticalDusk, .civilDusk]
+    let firstLightTypes: [SunType] = [.astronomicalDawn, .nauticalDawn, .civilDawn]
     
-    lazy var notificationCountDefaults = NSUserDefaults.init(suiteName: "NotificationCount")!
+    lazy var notificationCountDefaults = UserDefaults.init(suiteName: "NotificationCount")!
     
     init() {
         // Default notification counts
-        notificationCountDefaults.registerDefaults([
-            SunType.AstronomicalDawn.description : 0,
-            SunType.NauticalDawn.description : 0,
-            SunType.CivilDawn.description : 0,
-            SunType.Sunrise.description : 0,
-            SunType.Sunset.description : 0,
-            SunType.CivilDusk.description : 0,
-            SunType.NauticalDusk.description : 0,
-            SunType.AstronomicalDusk.description : 0
+        notificationCountDefaults.register([
+            SunType.astronomicalDawn.description : 0,
+            SunType.nauticalDawn.description : 0,
+            SunType.civilDawn.description : 0,
+            SunType.sunrise.description : 0,
+            SunType.sunset.description : 0,
+            SunType.civilDusk.description : 0,
+            SunType.nauticalDusk.description : 0,
+            SunType.astronomicalDusk.description : 0
         ])
         checkIfNotificationsTriggered()
         
-        Bus.subscribeEvent(.NotificationChange, observer: self, selector: #selector(scheduleNotifications))
-        Bus.subscribeEvent(.ChangeNotificationPlace, observer: self, selector: #selector(changeNotificationPlace))
+        Bus.subscribeEvent(.notificationChange, observer: self, selector: #selector(scheduleNotifications))
+        Bus.subscribeEvent(.changeNotificationPlace, observer: self, selector: #selector(changeNotificationPlace))
         scheduleNotifications()
     }
     
@@ -48,12 +48,12 @@ class Notifications {
         
         let suntimes = SunLogic.todayTomorrow(location)
         
-        let timeBefore: NSTimeInterval = defaults.doubleForKey("NotificationPreTime")
+        let timeBefore: TimeInterval = defaults.double(forKey: "NotificationPreTime")
         
-        let sunriseNoti = defaults.boolForKey("Sunrise")
-        let sunsetNoti = defaults.boolForKey("Sunset")
-        let firstLightNoti = defaults.boolForKey("FirstLight")
-        let lastLightNoti = defaults.boolForKey("LastLight")
+        let sunriseNoti = defaults.bool(forKey: "Sunrise")
+        let sunsetNoti = defaults.bool(forKey: "Sunset")
+        let firstLightNoti = defaults.bool(forKey: "FirstLight")
+        let lastLightNoti = defaults.bool(forKey: "LastLight")
         
         var notificationTimes: [Suntime] = []
         
@@ -102,7 +102,7 @@ class Notifications {
         scheduleNotifications()
     }
     
-    func scheduleNotificationIfNotAlready(suntime: Suntime) -> Bool {
+    func scheduleNotificationIfNotAlready(_ suntime: Suntime) -> Bool {
         if !notificationAlreadyScheduled(suntime) {
             let notification = createNotification(suntime)
             application.scheduleLocalNotification(notification)
@@ -115,7 +115,7 @@ class Notifications {
         }
     }
     
-    func createNotification(suntime: Suntime) -> UILocalNotification {
+    func createNotification(_ suntime: Suntime) -> UILocalNotification {
         let notification = UILocalNotification()
         notification.fireDate = suntime.date
         notification.alertBody = suntime.type.message
@@ -128,7 +128,7 @@ class Notifications {
         return notification
     }
     
-    func notificationAlreadyScheduled(suntime: Suntime) -> Bool {
+    func notificationAlreadyScheduled(_ suntime: Suntime) -> Bool {
         let notifications = application.scheduledLocalNotifications ?? []
         let matches = notifications.filter { notification in
             guard let userInfo = notification.userInfo else {
@@ -144,7 +144,7 @@ class Notifications {
         return matches.count > 0
     }
     
-    func removeNotificationForTypes(types: [SunType]) {
+    func removeNotificationForTypes(_ types: [SunType]) {
         for type in types {
             let notifications = application.scheduledLocalNotifications ?? []
             for notification in notifications {
@@ -167,14 +167,14 @@ class Notifications {
     
     func checkIfNotificationsTriggered() {
         var allTypeCounts: [String : Int] = [
-            SunType.AstronomicalDawn.description : 0,
-            SunType.NauticalDawn.description : 0,
-            SunType.CivilDawn.description : 0,
-            SunType.Sunrise.description : 0,
-            SunType.Sunset.description : 0,
-            SunType.CivilDusk.description : 0,
-            SunType.NauticalDusk.description : 0,
-            SunType.AstronomicalDusk.description : 0
+            SunType.astronomicalDawn.description : 0,
+            SunType.nauticalDawn.description : 0,
+            SunType.civilDawn.description : 0,
+            SunType.sunrise.description : 0,
+            SunType.sunset.description : 0,
+            SunType.civilDusk.description : 0,
+            SunType.nauticalDusk.description : 0,
+            SunType.astronomicalDusk.description : 0
         ]
         
         let localNotifications = application.scheduledLocalNotifications ?? []
@@ -195,7 +195,7 @@ class Notifications {
         // a notification for that type was triggered
         // After comparing each type, set notificationCountDefaults[type] to allTypeCounts[type]
         for (type, count) in allTypeCounts {
-            let defaultCount = notificationCountDefaults.integerForKey(type)
+            let defaultCount = notificationCountDefaults.integer(forKey: type)
             let countDifference = defaultCount - count
             if countDifference > 0 {
                 // countDifference notifications were triggered for type :)
@@ -203,23 +203,23 @@ class Notifications {
                     // send analytics event as many times as notification was triggered
                     Analytics.notificationTriggeredForType(type)
                 }
-                notificationCountDefaults.setInteger(count, forKey: type)
+                notificationCountDefaults.set(count, forKey: type)
             }
         }
     }
     
-    func increaseCountForType(type: String) {
+    func increaseCountForType(_ type: String) {
         let notificationCount = getCountForType(type)
-        notificationCountDefaults.setInteger(notificationCount + 1, forKey: type)
+        notificationCountDefaults.set(notificationCount + 1, forKey: type)
     }
     
-    func decreaseCountForType(type: String) {
+    func decreaseCountForType(_ type: String) {
         let notificationCount = getCountForType(type)
         let newNotificationCount = notificationCount - 1 < 0 ? 0 : notificationCount - 1
-        notificationCountDefaults.setInteger(newNotificationCount, forKey: type)
+        notificationCountDefaults.set(newNotificationCount, forKey: type)
     }
     
-    func getCountForType(type: String) -> Int {
-        return notificationCountDefaults.integerForKey(type)
+    func getCountForType(_ type: String) -> Int {
+        return notificationCountDefaults.integer(forKey: type)
     }
 }

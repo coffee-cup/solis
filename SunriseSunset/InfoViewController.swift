@@ -45,10 +45,10 @@ class InfoViewController: UIViewController {
         
         navigationBar.titleTextAttributes =
             [NSFontAttributeName: UIFont(name: fontLight, size: 18)!]
-        navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.white()
         
-        learnMoreButton.addUnderline(UIColor.whiteColor())
-        learnMoreButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        learnMoreButton.addUnderline(UIColor.white())
+        learnMoreButton.setTitleColor(UIColor.white(), for: UIControlState())
         
         bottomView.backgroundColor = nauticalColour
         
@@ -57,11 +57,11 @@ class InfoViewController: UIViewController {
         textView.textContainer.lineFragmentPadding = 0
 
         screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        screenEdgeRecognizer.edges = .Left
+        screenEdgeRecognizer.edges = .left
         view.addGestureRecognizer(screenEdgeRecognizer)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationBarItem.title = infoTitle
@@ -72,7 +72,7 @@ class InfoViewController: UIViewController {
         textView.scrollRangeToVisible(NSMakeRange(0,0))
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         textView.scrollRangeToVisible(NSMakeRange(0,0))
     }
@@ -82,29 +82,29 @@ class InfoViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.default
     }
     
-    func highlightInfoText(text: String) -> NSAttributedString {
+    func highlightInfoText(_ text: String) -> AttributedString {
         let attributedString = NSMutableAttributedString(string: "\(text) ") // place space at the end of string so all words get highlighted
         attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: fontRegular, size: 18)!, range: NSMakeRange(0, attributedString.length))
         
         // highlight both lowercase and capitalized words
         for highlightWord in highlightWords {
-            attributedString.attributeRangeFor(highlightWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .All)
+            attributedString.attributeRangeFor(highlightWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
             
             let capitalizedWord = highlightWord.capitalizedString
-            attributedString.attributeRangeFor(capitalizedWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .All)
+            attributedString.attributeRangeFor(capitalizedWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
         }
         
         return attributedString
     }
     
     func goBack() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func setInfo(info: InfoData) {
+    func setInfo(_ info: InfoData) {
         infoTitle = info.title
         infoText = info.text
         infoPhotoDescription = info.photoDescription
@@ -112,12 +112,12 @@ class InfoViewController: UIViewController {
         infoURLString = info.learnMoreURL
     }
     
-    @IBAction func learnMoreButtonDidTouch(sender: AnyObject) {
+    @IBAction func learnMoreButtonDidTouch(_ sender: AnyObject) {
         Analytics.openLearnMore(infoTitle)
-        UIApplication.sharedApplication().openURL(NSURL(string: infoURLString)!)
+        UIApplication.shared().openURL(URL(string: infoURLString)!)
     }
     
-    @IBAction func backButtonDidTouch(sender: AnyObject) {
+    @IBAction func backButtonDidTouch(_ sender: AnyObject) {
         goBack()
     }
     
