@@ -20,7 +20,7 @@ class SunLogic {
         return abs(date1.timeIntervalSince(date2)) == 86400
     }
     
-    class func calculateTimesForDate(_ date: Date, location: CLLocationCoordinate2D, timezone: TimeZone = TimeZone.current, day: SunDay) -> [Suntime] {
+    class func calculateTimesForDate(_ date: Date, location: CLLocationCoordinate2D, timezone: TimeZone = TimeZone.ReferenceType.local, day: SunDay) -> [Suntime] {
         let ss = EDSunriseSet(timezone: timezone, latitude: location.latitude, longitude: location.longitude)
         
         ss?.calculateTwilight(date)

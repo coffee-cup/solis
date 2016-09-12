@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func setView(_ suntime: Suntime) {
         eventLabel.text = "\(suntime.type.event) at"
-        timeLabel.text = TimeFormatters.formatter12h(TimeZone.local()).string(from: suntime.date)
+        timeLabel.text = TimeFormatters.formatter12h(TimeZone.ReferenceType.local).string(from: suntime.date)
             .replacingOccurrences(of: "AM", with: "am")
             .replacingOccurrences(of: "PM", with: "pm")
     }

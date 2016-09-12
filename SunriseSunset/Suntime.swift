@@ -37,7 +37,7 @@ class Suntime: Comparable {
     let formatter = DateFormatter()
     
     init(type: SunType, day: SunDay) {
-        calendar.timeZone = TimeZone.local()
+        calendar.timeZone = TimeZone.ReferenceType.local
         
         self.type = type
         self.day = day
