@@ -353,15 +353,17 @@
 				9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */,
 				9C4EFA001D1A6C13001CA591 /* Objective-CBridgingHeader.h */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
+				9CFD34771D6EA98700B87FED /* Analytics.swift */,
 				9CB37BE81CE844400080B5B1 /* AppDelegate.swift */,
+				9CEDC3711D6C20C000F12B29 /* BellButton.swift */,
 				9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */,
 				9C236CD71D16798300FB9985 /* Defaults.swift */,
 				9C9740091CFC10F9000A5AFD /* Easing.swift */,
 				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
-				9CE885951CEFEC260045BEFB /* SunLocation.swift */,
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
 				9C20A3F41D0FCC470079F3A5 /* Notifications.swift */,
 				9C3314F31CE9712F004D012E /* Styles.swift */,
+				9CE885951CEFEC260045BEFB /* SunLocation.swift */,
 				9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */,
 				9CC052351D22465A00CBBECE /* TimeZones.swift */,
 				9C37C0C11CF6C929002ED35A /* TouchDownView.swift */,
@@ -374,8 +376,6 @@
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
-				9CEDC3711D6C20C000F12B29 /* BellButton.swift */,
-				9CFD34771D6EA98700B87FED /* Analytics.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";

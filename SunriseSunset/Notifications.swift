@@ -42,7 +42,7 @@ class Notifications {
     }
     
     @objc func scheduleNotifications() -> Bool {
-        guard let location = Location.getNotificationLocation() else {
+        guard let location = SunLocation.getNotificationLocation() else {
             return false
         }
         

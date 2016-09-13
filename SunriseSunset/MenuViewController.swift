@@ -153,9 +153,9 @@ class MenuViewController: UIViewController {
     }
     
     func setLocationLabels() {
-        if let locationName = Location.getLocationName() {
+        if let locationName = SunLocation.getLocationName() {
             buttonLocation.setTitle(locationName, for: UIControlState())
-            currentLocationLabel.isHidden = !Location.isCurrentLocation()
+            currentLocationLabel.isHidden = !SunLocation.isCurrentLocation()
         }
     }
     

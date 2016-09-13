@@ -209,9 +209,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         Bus.removeSubscriptions(self)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+//    override func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
     
     func setupBackgroundView() {
         backgroundView = UIView()
@@ -244,11 +244,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         
         // Show dialog with callbacks
         pscope.show({ finished, results in
-            if results[0].status == .Authorized {
+            if results[0].status == PermissionStatus.authorized {
                 print("got results \(results)")
                 
     //            Location.startLocationWatching()
-                Location.checkLocation()
+                SunLocation.checkLocation()
             }
             }, cancelled: { (results) -> Void in
                 print("thing was cancelled")
@@ -279,7 +279,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Update all the views the with the time offset value
     func update(_ offset: Double = 0) {
         if !scrolling && !panning && !offNow {
-            if let location = Location.getLocation() {
+            if let location = SunLocation.getLocation() {
                 sun.update(offset, location: location)
                 
                 // Fade in sun view if not already visible

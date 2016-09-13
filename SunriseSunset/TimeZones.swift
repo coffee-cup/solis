@@ -17,7 +17,7 @@ class TimeZones {
     let Endpoint = "https://api.timezonedb.com/v2/get-time-zone"
     
     static var currentTimeZone: TimeZone {
-        if Location.isCurrentLocation() {
+        if SunLocation.isCurrentLocation() {
             return TimeZone.local()
         }
         if let timeZone = getTimeZone() {
@@ -32,7 +32,7 @@ class TimeZones {
     }
     
     @objc func fetchTimeZone() {
-        if let location = Location.getLocation() {
+        if let location = SunLocation.getLocation() {
             timeZoneForLocation(location) { gmtOffset, abbreviation in
                 guard let gmtOffset = gmtOffset else {
                     return
@@ -43,8 +43,8 @@ class TimeZones {
                 self.saveTimeZone(gmtOffset)
                 
                 if !Location.isCurrentLocation() {
-                    if let placeID = Location.getPlaceID() {
-                        Location.updateLocationHistoryWithTimeZone(location, placeID: placeID, timeZoneOffset: gmtOffset)
+                    if let placeID = SunLocation.getPlaceID() {
+                        SunLocation.updateLocationHistoryWithTimeZone(location, placeID: placeID, timeZoneOffset: gmtOffset)
                     }
                 }
             }

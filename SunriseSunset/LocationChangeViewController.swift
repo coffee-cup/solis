@@ -39,7 +39,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         
         filter.type = .city
         
-        if let locationHistory = Location.getLocationHistory() {
+        if let locationHistory = SunLocation.getLocationHistory() {
             placeHistory = locationHistory
         } else {
             placeHistory = []
@@ -140,7 +140,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         goBack()
         
         if (indexPath as NSIndexPath).row == 0 {
-            Location.selectLocation(true, location: nil, name: nil, sunplace: nil)
+            SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
             Analytics.selectLocation(true, sunPlace: nil)
         } else {
             var sunplace: SunPlace!
@@ -165,12 +165,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                     
                     print("\(sunplace.primary) - \(coordinate)")
                     
-                    Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
+                    SunLocation.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
                     Analytics.selectLocation(false, sunPlace: sunplace)
                 }
             } else {
                 sunplace = placeHistory[(indexPath as NSIndexPath).row - 1]
-                Location.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
+                SunLocation.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
                 Analytics.selectLocation(false, sunPlace: sunplace)
             }
         }
@@ -247,7 +247,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         if (indexPath as NSIndexPath).row == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "CurrentPlaceCell")
             
-            if let locationName = Location.getCurrentLocationName() {
+            if let locationName = SunLocation.getCurrentLocationName() {
                 let locationLabel = cell.viewWithTag(3)! as! UILabel
                 let bellButton = cell.viewWithTag(4)! as! BellButton
                 
