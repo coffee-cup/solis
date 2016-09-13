@@ -10,26 +10,28 @@ import Foundation
 import CoreLocation
 import SwiftLocation
 
-class Location {
+class SunLocation {
     
     static let defaults = Defaults.defaults
     
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
     class func startLocationWatching() {
-        LocationManager.shared.observeLocations(.Block, frequency: .Significant, onSuccess: { location in
+        let _ = Location.getLocation(withAccuracy: .block, frequency: .significant, timeout: nil, onSuccess: { (location) in
+            // You will receive at max one event if desidered accuracy can be achieved; this because you have set .OneShot as frequency.
             print("\nSignificat Location")
             saveLocation(location.coordinate)
-            }, onError: {error in
-                print(error)
-        })
+        }) { (lastValidLocation, error) in
+            print(error)
+        }
     }
     
     class func checkLocation() {
-        LocationManager.shared.observeLocations(.Block, frequency: .OneShot, onSuccess: { location in
+        let _ = Location.getLocation(withAccuracy: .block, frequency: .oneShot, timeout: nil, onSuccess: { (location) in
+            // You will receive at max one event if desidered accuracy can be achieved; this because you have set .OneShot as frequency.
             print("\nOne Shot Location")
             saveLocation(location.coordinate)
-        }) { error in
+        }) { (lastValidLocation, error) in
             print(error)
         }
     }
