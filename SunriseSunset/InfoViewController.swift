@@ -85,7 +85,7 @@ class InfoViewController: UIViewController {
         return UIStatusBarStyle.default
     }
     
-    func highlightInfoText(_ text: String) -> AttributedString {
+    func highlightInfoText(_ text: String) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: "\(text) ") // place space at the end of string so all words get highlighted
         attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: fontRegular, size: 18)!, range: NSMakeRange(0, attributedString.length))
         
@@ -93,7 +93,7 @@ class InfoViewController: UIViewController {
         for highlightWord in highlightWords {
             attributedString.attributeRangeFor(highlightWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
             
-            let capitalizedWord = highlightWord.capitalizedString
+            let capitalizedWord = highlightWord.capitalized
             attributedString.attributeRangeFor(capitalizedWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
         }
         
