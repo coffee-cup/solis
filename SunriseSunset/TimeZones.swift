@@ -18,13 +18,13 @@ class TimeZones {
     
     static var currentTimeZone: TimeZone {
         if SunLocation.isCurrentLocation() {
-            return TimeZone.local()
+            return TimeZone.ReferenceType.local
         }
         if let timeZone = getTimeZone() {
             return timeZone
         }
         
-        return TimeZone.local()
+        return TimeZone.ReferenceType.local
     }
     
     init() {
@@ -42,7 +42,7 @@ class TimeZones {
 //                print("abb: \(abbreviation)")
                 self.saveTimeZone(gmtOffset)
                 
-                if !Location.isCurrentLocation() {
+                if !SunLocation.isCurrentLocation() {
                     if let placeID = SunLocation.getPlaceID() {
                         SunLocation.updateLocationHistoryWithTimeZone(location, placeID: placeID, timeZoneOffset: gmtOffset)
                     }
@@ -63,13 +63,13 @@ class TimeZones {
     }
     
     func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: @escaping (_ gmtOffset: Int?, _ abbreviation: String?) -> ()) {
-        Alamofire.request(.GET, Endpoint, parameters: [
+        Alamofire.request(Endpoint, method: .get, parameters: [
             "key": ApiKey,
             "by": "position",
             "format": "json",
             "lat": location.latitude,
-            "lng": location.longitude            
-        ])
+            "lng": location.longitude
+        ], encoding: JSONEncoding.default, headers: nil)
         .responseJSON { response in
 //                print(response.request)  // original URL request
 //                print(response.response) // URL response
@@ -78,26 +78,26 @@ class TimeZones {
             
             guard let data = response.data else {
                 print("Data from response is nil")
-                completionHandler(gmtOffset: nil, abbreviation: nil)
+                completionHandler(nil, nil)
                 return
             }
             
             let json = JSON(data: data)
             guard let abbreviation = json["abbreviation"].string else {
                 print("Abbreviation from response is nil")
-                completionHandler(gmtOffset: nil, abbreviation: nil)
+                completionHandler(nil, nil)
                 return
             }
             
             guard let gmtOffset = json["gmtOffset"].int else {
                 print("GmtOffset from response is nil")
-                completionHandler(gmtOffset: nil, abbreviation: nil)
+                completionHandler(nil, nil)
                 return
             }
             
             guard let dst = json["dst"].string else {
                 print("DST from response is nil")
-                completionHandler(gmtOffset: nil, abbreviation: nil)
+                completionHandler(nil, nil)
                 return
             }
             
@@ -106,7 +106,7 @@ class TimeZones {
 //            if daylightSavings {
 //                offsetWithGmt += 60 * 60
 //            }
-            completionHandler(gmtOffset: offsetWithGmt, abbreviation: abbreviation)
+            completionHandler(offsetWithGmt, abbreviation)
         }
     }
     

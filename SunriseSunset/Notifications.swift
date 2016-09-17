@@ -24,7 +24,7 @@ class Notifications {
     
     init() {
         // Default notification counts
-        notificationCountDefaults.register([
+        notificationCountDefaults.register(defaults: [
             SunType.astronomicalDawn.description : 0,
             SunType.nauticalDawn.description : 0,
             SunType.civilDawn.description : 0,

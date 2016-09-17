@@ -111,7 +111,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MenuSegue" {
             menuViewController = segue.destination as! MenuViewController
         } else if segue.identifier == "SunSegue" {

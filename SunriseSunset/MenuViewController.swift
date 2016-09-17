@@ -166,7 +166,7 @@ class MenuViewController: UIViewController {
         
         pscope.show({ finished, results in
             
-            if results[0].status == .Authorized {
+            if results[0].status == PermissionStatus.authorized {
                 sender.isSelected = !sender.isSelected
                 
                 var noti = ""
@@ -184,7 +184,7 @@ class MenuViewController: UIViewController {
                 }
                 self.defaults.set(sender.isSelected, forKey: noti)
                 
-                Bus.sendMessage(.NotificationChange, data: nil)
+                Bus.sendMessage(.notificationChange, data: nil)
                 Analytics.toggleNotificationForEvent(sender.isSelected, type: noti)
             }
             }, cancelled: { (results) -> Void in

@@ -89,7 +89,7 @@ class Sun {
     let defaults = UserDefaults.standard
     var now: Date = Date()
     var location: CLLocationCoordinate2D!
-    let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+    var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
     
     var delegate: SunProtocol?
     
@@ -114,7 +114,7 @@ class Sun {
         
         timeFormatUpdate()
         
-        calendar.timeZone = TimeZone.local()
+        calendar.timeZone = TimeZone.ReferenceType.local
         
         createSunAreas()
         
@@ -320,8 +320,8 @@ class Sun {
         self.location = location
         
         let today = Date()
-        let yesterday = calendar.date(byAdding: .day, value: -1, to: today, options: [])!
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today, options: [])!
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
         
         let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .yesterday)
             + SunLogic.calculateTimesForDate(today, location: location, day: .today)

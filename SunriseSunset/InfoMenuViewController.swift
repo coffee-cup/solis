@@ -130,14 +130,14 @@ class InfoMenuViewController: UIViewController {
         }
     }
     
-    func animateButtonsOut(_ completion: (()->())) {
+    func animateButtonsOut(_ completion: @escaping (()->())) {
         for (index, button) in infoButtons.enumerated() {
             button.animation = "fadeOut"
             button.duration = ButtonFadeOutDuration
             button.delay = CGFloat(index + 1) * ButtonAnimationDelay
             
             if index == infoButtons.count - 1 {
-                button.animateNext(completion)
+                button.animateNext(completion: completion)
             } else {
                 button.animate()
             }
@@ -158,7 +158,7 @@ class InfoMenuViewController: UIViewController {
 //        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let button = sender as? UIButton {
             if let infoViewController = segue.destination as? InfoViewController {
                 var infoData: InfoData!

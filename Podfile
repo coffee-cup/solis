@@ -8,7 +8,6 @@ def swift3_overrides
     pod 'SwiftyJSON', git: 'https://github.com/IBM-Swift/SwiftyJSON.git'
     pod 'SwiftLocation', :git => 'https://github.com/malcommac/SwiftLocation.git', :branch => 'master'
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', branch: 'master'
-    pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 end
 
 def swift3_overrides_widget
@@ -21,6 +20,7 @@ target 'SunriseSunset' do
     pod 'EDSunriseSet', '~> 1.0'
     pod 'UIView-Easing'
     pod 'GoogleMaps'
+    pod 'GooglePlaces'
     pod 'Fabric'
     pod 'Crashlytics'
 end
