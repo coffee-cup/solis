@@ -24,7 +24,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - PermissionScope (from `https://github.com/nickoneill/PermissionScope.git`, branch `swift3`)
-  - SwiftLocation (from `https://github.com/malcommac/SwiftLocation.git`, branch `master`)
+  - SwiftLocation
   - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
   - UIView-Easing
 
@@ -35,9 +35,6 @@ EXTERNAL SOURCES:
   PermissionScope:
     :branch: swift3
     :git: https://github.com/nickoneill/PermissionScope.git
-  SwiftLocation:
-    :branch: master
-    :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
@@ -48,9 +45,6 @@ CHECKOUT OPTIONS:
   PermissionScope:
     :commit: 10367783829706a54aad0e5c7d6f876564c68cfe
     :git: https://github.com/nickoneill/PermissionScope.git
-  SwiftLocation:
-    :commit: '0819e219eae1ae613490085d57977e4a1c7a6bb2'
-    :git: https://github.com/malcommac/SwiftLocation.git
   SwiftyJSON:
     :commit: 73b523a107b798021ca9af74b5f7c20e435c8809
     :git: https://github.com/IBM-Swift/SwiftyJSON.git
@@ -67,6 +61,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: f3b8d604a9294607448feeb7834fedca319d44f5
+PODFILE CHECKSUM: 4118eb0182560f1b6ed1be346eb6bee42206ded0
 
 COCOAPODS: 1.1.0.rc.2

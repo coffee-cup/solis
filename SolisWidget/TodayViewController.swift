@@ -41,8 +41,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func setSad() {
-        eventLabel.text = "😔"
-        timeLabel.text = "I don't know where you are"
+        eventLabel.text = "😔 I don't know"
+        timeLabel.text = "where you are"
     }
     
     func setWidgetTimes() {
