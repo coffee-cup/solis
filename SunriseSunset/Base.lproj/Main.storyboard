@@ -1,55 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4QA-JW-0cZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4QA-JW-0cZ">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Muli-Light.ttf">
+        <array key="Muli-Light.ttf">
             <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-            <string>Muli-Light</string>
-        </mutableArray>
-        <mutableArray key="Muli-Regular.ttf">
+        </array>
+        <array key="Muli-Regular.ttf">
             <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-            <string>Muli</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Main View Controller-->
@@ -65,19 +29,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v8-n2-2RF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="embed" identifier="SunSegue" id="Opu-hC-Go1"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAh-lL-ukP">
-                                <rect key="frame" x="0.0" y="0.0" width="263" height="667"/>
                                 <connections>
                                     <segue destination="QzE-la-Gm6" kind="embed" identifier="MenuSegue" id="ZMx-VL-qoz"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N13-bc-czv">
-                                <rect key="frame" x="30" y="593" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4zc-os-ZtV"/>
                                     <constraint firstAttribute="width" secondItem="N13-bc-czv" secondAttribute="height" multiplier="1:1" id="7iK-rA-SR7"/>
@@ -87,14 +48,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_button" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-kf-a5X" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="37" y="600" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7gJ-kf-a5X" secondAttribute="height" multiplier="1:1" id="1KT-vm-NEJ"/>
                                     <constraint firstAttribute="width" constant="30" id="c5c-zf-vGu"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="0v8-n2-2RF" secondAttribute="bottom" id="5s8-88-hBs"/>
                             <constraint firstItem="xEh-yn-cxY" firstAttribute="top" secondItem="qAh-lL-ukP" secondAttribute="bottom" id="Cfv-pM-3QX"/>
@@ -111,7 +71,6 @@
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="menuButton" destination="N13-bc-czv" id="e3M-ZQ-uHt"/>
                         <outlet property="menuContainerView" destination="qAh-lL-ukP" id="tFd-4i-jWj"/>
@@ -136,39 +95,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="XFw-11-KKz">
-                                <rect key="frame" x="168" y="600" width="39" height="37"/>
-                            </pageControl>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="XFw-11-KKz"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCs-ae-AyZ" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Dpd-HR-Epe"/>
                                     <constraint firstAttribute="width" constant="44" id="L11-D4-GzA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="15"/>
                                 <state key="normal" title="skip">
-                                    <color key="titleColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="skipButtonDidTouch:" destination="4QA-JW-0cZ" eventType="touchUpInside" id="jHW-Gi-4Zo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GU-Xh-DvT" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="127" y="542" width="120" height="38"/>
-                                <color key="backgroundColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="5b3-SY-ZpO"/>
                                     <constraint firstAttribute="height" constant="38" id="PBk-tn-pdv"/>
                                 </constraints>
                                 <state key="normal" title="Blast Off 🚀">
-                                    <color key="titleColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="takeOffButtonDidTouch:" destination="4QA-JW-0cZ" eventType="touchUpInside" id="vhx-xI-ref"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XFw-11-KKz" firstAttribute="centerX" secondItem="zRb-FX-y8k" secondAttribute="centerX" id="7dv-0j-2l0"/>
                             <constraint firstItem="XFw-11-KKz" firstAttribute="top" secondItem="2GU-Xh-DvT" secondAttribute="bottom" constant="20" id="9qI-YQ-V0J"/>
@@ -178,7 +133,6 @@
                             <constraint firstItem="FpF-tm-4dc" firstAttribute="top" secondItem="XFw-11-KKz" secondAttribute="bottom" constant="30" id="zUm-bd-ze3"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="pageControl" destination="XFw-11-KKz" id="0Oe-V7-5AF"/>
                         <outlet property="skipButton" destination="yCs-ae-AyZ" id="3Xb-JK-wB7"/>
@@ -202,28 +156,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_welcome_back" translatesAutoresizingMaskIntoConstraints="NO" id="fNl-Ge-weP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_welcome_back" translatesAutoresizingMaskIntoConstraints="NO" id="fNl-Ge-weP"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FR-ZB-FU2">
-                                <rect key="frame" x="87" y="224" width="200" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiG-94-Qcv">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="37"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gu-PO-ZyO">
-                                        <rect key="frame" x="0.0" y="37" width="200" height="37"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciB-Ih-7PL">
-                                        <rect key="frame" x="0.0" y="74" width="200" height="37"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -242,7 +190,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fNl-Ge-weP" secondAttribute="trailing" id="1AK-d6-I22"/>
                             <constraint firstItem="fNl-Ge-weP" firstAttribute="leading" secondItem="i53-Hm-VEk" secondAttribute="leading" id="Ima-Pj-pko"/>
@@ -252,7 +200,6 @@
                             <constraint firstItem="4FR-ZB-FU2" firstAttribute="centerX" secondItem="i53-Hm-VEk" secondAttribute="centerX" id="s9Q-io-XTR"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjB-j3-dpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -270,21 +217,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_dark_background" translatesAutoresizingMaskIntoConstraints="NO" id="4c8-l6-AYc">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_dark_background" translatesAutoresizingMaskIntoConstraints="NO" id="4c8-l6-AYc"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know when it gets dark in any city around the world 🌎" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZh-d0-mnP">
-                                <rect key="frame" x="83" y="120" width="210" height="83"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="83" id="AkO-uL-xlq"/>
                                     <constraint firstAttribute="width" constant="210" id="UQG-ai-TYY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4c8-l6-AYc" firstAttribute="top" secondItem="RHc-fO-PJM" secondAttribute="top" id="7b3-It-dk7"/>
                             <constraint firstAttribute="trailing" secondItem="4c8-l6-AYc" secondAttribute="trailing" id="E1T-wm-kMX"/>
@@ -294,14 +238,13 @@
                             <constraint firstItem="4c8-l6-AYc" firstAttribute="leading" secondItem="RHc-fO-PJM" secondAttribute="leading" id="uqa-V3-ak3"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="headingLabel" destination="pZh-d0-mnP" id="Qzz-e0-JN3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7e-Tn-YH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="310.5" y="-543.5"/>
+            <point key="canvasLocation" x="426" y="-544"/>
         </scene>
         <!--Notifications View Controller-->
         <scene sceneID="EWa-Fx-Twk">
@@ -315,21 +258,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_notifications_background" translatesAutoresizingMaskIntoConstraints="NO" id="Ppw-j3-RFb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_notifications_background" translatesAutoresizingMaskIntoConstraints="NO" id="Ppw-j3-RFb"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications for all the important sun events ☀️" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz9-w5-uyq">
-                                <rect key="frame" x="83" y="120" width="210" height="83"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="XNw-hb-zDd"/>
                                     <constraint firstAttribute="height" constant="83" id="x2m-bB-cLu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.27450980390000002" green="0.33629728619999999" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.27450980390000002" green="0.33629728619999999" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3cg-RW-b2N" firstAttribute="top" secondItem="Ppw-j3-RFb" secondAttribute="bottom" id="8sf-2C-ygo"/>
                             <constraint firstItem="pz9-w5-uyq" firstAttribute="centerX" secondItem="KZ0-Tg-SQH" secondAttribute="centerX" id="RfA-Rm-ebP"/>
@@ -339,14 +279,13 @@
                             <constraint firstItem="Ppw-j3-RFb" firstAttribute="leading" secondItem="KZ0-Tg-SQH" secondAttribute="leading" id="pwt-Xf-1ch"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="headingLabel" destination="pz9-w5-uyq" id="sRj-ba-hEo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yc-ph-ZHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836.5" y="-543.5"/>
+            <point key="canvasLocation" x="1062" y="-544"/>
         </scene>
         <!--Widget View Controller-->
         <scene sceneID="2kf-Zl-rAB">
@@ -360,21 +299,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_widget_background" translatesAutoresizingMaskIntoConstraints="NO" id="7fQ-bc-OpU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w_widget_background" translatesAutoresizingMaskIntoConstraints="NO" id="7fQ-bc-OpU"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Straight to the point today widget" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-CI-bkI">
-                                <rect key="frame" x="82" y="120" width="210" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="210" id="9JW-gB-wcJ"/>
                                     <constraint firstAttribute="height" constant="60" id="dBw-iD-cqd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Dkt-CI-bkI" firstAttribute="top" secondItem="kTd-50-60a" secondAttribute="bottom" constant="100" id="6oZ-5C-pXz"/>
                             <constraint firstAttribute="trailing" secondItem="7fQ-bc-OpU" secondAttribute="trailing" id="8Re-io-XUv"/>
@@ -384,11 +320,10 @@
                             <constraint firstItem="7fQ-bc-OpU" firstAttribute="top" secondItem="f1u-7D-RZY" secondAttribute="top" id="zYf-5c-Oxm"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0S0-ji-Aj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368.5" y="-543.5"/>
+            <point key="canvasLocation" x="1706" y="-544"/>
         </scene>
         <!--Sun View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -403,11 +338,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJD-Os-DA5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Z-bX-drh">
-                                <rect key="frame" x="285" y="593" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="FoW-pj-yKN"/>
                                     <constraint firstAttribute="width" secondItem="e5Z-bX-drh" secondAttribute="height" multiplier="1:1" id="TWk-gf-QLe"/>
@@ -418,32 +351,27 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="center_button" translatesAutoresizingMaskIntoConstraints="NO" id="zib-cc-JK8" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="292" y="600" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="771-bu-PbZ"/>
                                     <constraint firstAttribute="width" secondItem="zib-cc-JK8" secondAttribute="height" multiplier="1:1" id="tPI-vg-yUE"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-LU-RLd" customClass="TouchThroughView" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="309" width="375" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-1S-9Gf">
-                                        <rect key="frame" x="331" y="8" width="24" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M0S-kq-de6">
-                                        <rect key="frame" x="100" y="25" width="275" height="1"/>
-                                        <color key="backgroundColor" red="1" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.19215686269999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="jpG-3z-iHW"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrh-ze-8hI">
-                                        <rect key="frame" x="10" y="17" width="34" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -459,19 +387,17 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="past" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-kR-m70">
-                                <rect key="frame" x="169" y="634" width="37" height="23"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="future" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UY-fJ-dB7">
-                                <rect key="frame" x="162" y="10" width="51" height="23"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.61568627450000002" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" placeholder="YES" id="2Xy-0p-BC7"/>
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerY" secondItem="e5Z-bX-drh" secondAttribute="centerY" id="3FP-75-P2k"/>
@@ -482,16 +408,15 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
                             <constraint firstItem="6vs-LU-RLd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Rws-1N-pjz"/>
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerX" secondItem="e5Z-bX-drh" secondAttribute="centerX" id="U5W-Ja-9nz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="Ya9-nE-dcH"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
                             <constraint firstItem="6vs-LU-RLd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bL7-ca-d2l"/>
+                            <constraint firstAttribute="trailing" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="gkK-Hy-He3"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" placeholder="YES" id="oqW-1e-dSo"/>
                             <constraint firstAttribute="trailing" secondItem="6vs-LU-RLd" secondAttribute="trailing" id="woB-VE-GEj"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="centerButton" destination="e5Z-bX-drh" id="XUN-1O-bq5"/>
                         <outlet property="centerImageView" destination="zib-cc-JK8" id="6e1-F0-T7g"/>
@@ -507,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="310.5" y="253.5"/>
+            <point key="canvasLocation" x="426" y="253"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="cp8-IF-nHS">
@@ -522,61 +447,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arM-lv-Uf5">
-                                <rect key="frame" x="0.0" y="0.0" width="263" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xS8-6q-gFg">
-                                        <rect key="frame" x="138" y="40" width="80" height="13"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="W0h-bv-3fg"/>
                                             <constraint firstAttribute="height" constant="13" id="syA-yr-ZvN"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnn-21-qsx">
-                                        <rect key="frame" x="20" y="34" width="54" height="25"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seL-0V-NZ6">
-                                        <rect key="frame" x="0.0" y="134" width="263" height="400"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-1a-WQ3">
-                                                <rect key="frame" x="20" y="0.0" width="112" height="25"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNJ-MP-2rP">
-                                                <rect key="frame" x="20" y="35" width="44" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Lje-vi-N5H"/>
                                                     <constraint firstAttribute="width" constant="44" id="z0E-H1-EPT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
                                                 <state key="normal" title="24 h">
-                                                    <color key="titleColor" red="0.16078431372549018" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431372549018" green="0.0" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WA-bw-8mR">
-                                                <rect key="frame" x="110" y="35" width="44" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="23Z-dD-gEr"/>
                                                     <constraint firstAttribute="height" constant="44" id="znC-bk-HRg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
                                                 <state key="normal" title="12 h">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YW2-PL-0G3">
-                                                <rect key="frame" x="20" y="305" width="79" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="LMT-bM-JBo"/>
                                                     <constraint firstAttribute="height" constant="44" id="igo-to-QIz"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
                                                 <state key="normal" title="Vancouver">
-                                                    <color key="titleColor" red="0.023529411760000001" green="0.83921568629999999" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.023529411760000001" green="0.83921568629999999" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -588,30 +505,26 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1C-iH-Khz">
-                                                <rect key="frame" x="199" y="35" width="44" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="egg-mh-cmU"/>
                                                     <constraint firstAttribute="width" constant="44" id="kBt-SC-oZx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="16"/>
                                                 <state key="normal" title="±">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O87-qP-nkR">
-                                                <rect key="frame" x="20" y="99" width="116" height="25"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJS-Qm-o6f">
-                                                <rect key="frame" x="20" y="280" width="76" height="25"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4e-Pz-5mW">
-                                                <rect key="frame" x="20" y="134" width="56" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="56" id="ABM-9b-7s9"/>
                                                     <constraint firstAttribute="height" constant="48" id="JrR-T4-3EX"/>
@@ -620,11 +533,10 @@
                                                 <inset key="titleEdgeInsets" minX="-60" minY="40" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="sunrise" image="rise_off">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgW-KK-ATX">
-                                                <rect key="frame" x="20" y="202" width="56" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="K9F-Ip-JWZ"/>
                                                     <constraint firstAttribute="width" constant="56" id="hz5-tb-W0p"/>
@@ -633,11 +545,10 @@
                                                 <inset key="titleEdgeInsets" minX="-56" minY="40" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="sunset" image="set_off">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJe-5u-OWF">
-                                                <rect key="frame" x="136" y="139" width="69" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="6Rq-dD-x3x"/>
                                                     <constraint firstAttribute="width" constant="56" id="FRh-1K-Rgl"/>
@@ -648,7 +559,7 @@
                                                 <inset key="titleEdgeInsets" minX="-70" minY="30" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="-9" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="first light" image="first_off">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -658,7 +569,6 @@
                                                 </variation>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hc-wP-VK7">
-                                                <rect key="frame" x="136" y="207" width="69" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="69" id="106-wa-Yqx"/>
                                                     <constraint firstAttribute="width" constant="56" id="76K-Fs-lgk"/>
@@ -669,7 +579,7 @@
                                                 <inset key="titleEdgeInsets" minX="-70" minY="30" maxX="0.0" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="-9" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="last light" image="last_off">
-                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.16078431369999999" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -679,13 +589,11 @@
                                                 </variation>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="current location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1n-jH-0sn">
-                                                <rect key="frame" x="20" y="335" width="74" height="13"/>
                                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="10"/>
-                                                <color key="textColor" red="0.27450980390000002" green="1" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.27450980390000002" green="1" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfU-TI-b3v">
-                                                <rect key="frame" x="20" y="359" width="100" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4tN-IS-wDe"/>
                                                     <constraint firstAttribute="width" constant="44" id="XAf-dH-z9a"/>
@@ -745,7 +653,6 @@
                                         </variation>
                                     </view>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDg-oU-zCM">
-                                        <rect key="frame" x="193" y="597" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UgY-jz-MBR"/>
                                             <constraint firstAttribute="width" constant="50" id="wK8-aK-p7E"/>
@@ -753,7 +660,7 @@
                                         <state key="normal" image="settings"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="aDg-oU-zCM" secondAttribute="trailing" constant="20" id="8Te-EZ-UUN"/>
                                     <constraint firstAttribute="bottom" secondItem="aDg-oU-zCM" secondAttribute="bottom" constant="20" id="ASd-aN-rKG"/>
@@ -767,7 +674,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="arM-lv-Uf5" secondAttribute="trailing" id="C0r-73-i2S"/>
                             <constraint firstAttribute="bottom" secondItem="arM-lv-Uf5" secondAttribute="bottom" id="cWb-iE-j2n"/>
@@ -808,34 +715,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search City" translatesAutoresizingMaskIntoConstraints="NO" id="aeS-p9-Yg3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5qI-16-Cfc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaceCell" rowHeight="60" id="bpn-yP-LSB">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpn-yP-LSB" id="fVa-HM-XXM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vancouver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-KD-4qx">
-                                                    <rect key="frame" x="60" y="8" width="307" height="25"/>
                                                     <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BC, Canada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK6-wI-1yz">
-                                                    <rect key="frame" x="60" y="35" width="307" height="16"/>
                                                     <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZC-nY-eMM" customClass="BellButton" customModule="SunriseSunset" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="59"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="2LI-cy-vdO"/>
                                                         <constraint firstAttribute="height" constant="44" id="GiR-EE-jdw"/>
@@ -875,31 +777,27 @@
                                         <rect key="frame" x="0.0" y="88" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFk-7S-rpg" id="AtK-ki-cgV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-4z-85S">
-                                                    <rect key="frame" x="60" y="8" width="158" height="25"/>
                                                     <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BC, Canada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3p-DL-fa6">
-                                                    <rect key="frame" x="60" y="35" width="307" height="16"/>
                                                     <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="PR4-AZ-YiS">
-                                                    <rect key="frame" x="319" y="20" width="20" height="20"/>
-                                                    <color key="tintColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.32156862749999998" green="0.0" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="9yK-MZ-qBU"/>
                                                         <constraint firstAttribute="width" secondItem="PR4-AZ-YiS" secondAttribute="height" multiplier="1:1" id="bJh-DF-6aV"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBJ-py-2Ej" customClass="BellButton" customModule="SunriseSunset" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="59"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="IMt-7I-y9i"/>
                                                         <constraint firstAttribute="width" constant="60" id="MO7-KW-XMM"/>
@@ -935,7 +833,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CQp-Ci-K1k" firstAttribute="top" secondItem="5qI-16-Cfc" secondAttribute="bottom" id="7TO-zI-ncR"/>
                             <constraint firstItem="5qI-16-Cfc" firstAttribute="leading" secondItem="k5N-A1-vXp" secondAttribute="leading" id="CbI-8b-IKQ"/>
@@ -953,7 +851,6 @@
                         </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchTableView" destination="5qI-16-Cfc" id="Ppy-pI-Zy7"/>
                         <outlet property="searchTextField" destination="aeS-p9-Yg3" id="Hhs-zG-yMu"/>
@@ -961,7 +858,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOR-o9-qXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193.5" y="1058.5"/>
+            <point key="canvasLocation" x="426" y="1058"/>
         </scene>
         <!--Info Menu View Controller-->
         <scene sceneID="Dss-yF-BxA">
@@ -976,15 +873,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiU-9l-GVM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-fj-co0" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Day"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27450980392156865" green="0.91764705882352937" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.27450980392156865" green="0.91764705882352937" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="0lc-fj-co0" firstAttribute="top" secondItem="EiU-9l-GVM" secondAttribute="top" id="21y-5D-wlo"/>
                                     <constraint firstAttribute="trailing" secondItem="0lc-fj-co0" secondAttribute="trailing" id="6qL-sk-oVS"/>
@@ -993,19 +888,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeL-8i-M9L">
-                                <rect key="frame" x="0.0" y="133" width="375" height="400"/>
-                                <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.29019607843137252" green="0.61568627450980395" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPX-hT-eBo">
-                                <rect key="frame" x="0.0" y="533" width="375" height="134"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-UR-NrF" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Night"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.32156862745098036" green="0.0" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="xCf-UR-NrF" secondAttribute="bottom" id="HXr-u3-lEB"/>
                                     <constraint firstAttribute="trailing" secondItem="xCf-UR-NrF" secondAttribute="trailing" id="JUB-ue-t5D"/>
@@ -1014,40 +906,33 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="133" width="375" height="133"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Civil"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIg-ya-GXC" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="266" width="375" height="133"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Nautical"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-Mg-z0w" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="399" width="375" height="134"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Astronomical"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-4w-WOZ" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="163" y="213" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
-                                <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="163" y="346" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
-                                <rect key="frame" x="163" y="479" width="49" height="18"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwJ-H9-u6M">
-                                <rect key="frame" x="30" y="593" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="5iE-IQ-cET"/>
                                     <constraint firstAttribute="width" constant="44" id="wUE-1G-xcD"/>
@@ -1056,11 +941,9 @@
                                     <action selector="backButtonDidTouch:" destination="a7w-Tz-0eV" eventType="touchUpInside" id="dlq-D1-SPH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ZU-Q0H">
-                                <rect key="frame" x="44" y="601" width="16" height="28"/>
-                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="fdk-ZU-Q0H"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dfo-d3-DZC" firstAttribute="top" secondItem="NPX-hT-eBo" secondAttribute="bottom" id="1Ji-k5-EwK"/>
                             <constraint firstItem="cpL-Mg-z0w" firstAttribute="leading" secondItem="PpL-Lm-SUU" secondAttribute="leading" id="1nC-ZL-dHm"/>
@@ -1108,7 +991,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="astronomicalButton" destination="cpL-Mg-z0w" id="hcZ-9e-de0"/>
                         <outlet property="astronomicalTwilightLabel" destination="5DJ-xJ-ue2" id="cgV-Tv-TWC"/>
@@ -1127,7 +1009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBs-tE-mvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="658.5" y="1058.5"/>
+            <point key="canvasLocation" x="1110" y="1058"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="HrV-pE-1Br">
@@ -1142,38 +1024,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="night_image" translatesAutoresizingMaskIntoConstraints="NO" id="JeB-0h-p8V">
-                                <rect key="frame" x="0.0" y="64" width="375" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="JeB-0h-p8V" secondAttribute="height" multiplier="75:44" id="zCx-SR-1dy"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo taken taken in Cranbrook, BC at 9:47 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KY8-db-26V">
-                                <rect key="frame" x="20" y="294" width="335" height="16"/>
                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="12"/>
-                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-GB-Qxm">
-                                <rect key="frame" x="20" y="315" width="335" height="282"/>
                                 <string key="text">Civil Twilight occurs when the sun is between 0 and 6 degrees below the horizon. In the morning it is called civil dawn and in the evening it is civil dusk.
 
 It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.It is approximatley the limit at which solar illumination is suffient. Under clear weather conditions, terrestial objects are cleary distinguished.</string>
-                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Muli" family="Muli" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAe-kE-EvA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Astronomical Twilight" id="k70-2J-0Vr"/>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgJ-kH-bCl">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDc-bo-SCW">
-                                        <rect key="frame" x="20" y="8" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="c7c-xY-E6Q"/>
                                             <constraint firstAttribute="height" constant="44" id="fRv-DH-I1C"/>
@@ -1183,11 +1059,8 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                                             <action selector="backButtonDidTouch:" destination="Su2-8l-PQx" eventType="touchUpInside" id="noY-NN-4ug"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="wfK-um-tra">
-                                        <rect key="frame" x="34" y="16" width="16" height="28"/>
-                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_light" translatesAutoresizingMaskIntoConstraints="NO" id="wfK-um-tra"/>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-pA-tbU">
-                                        <rect key="frame" x="267" y="14" width="88" height="32"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                         <state key="normal" title="Learn More"/>
                                         <connections>
@@ -1195,7 +1068,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.30588235294117649" green="0.31372549019607843" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.31372549019607843" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="wfK-um-tra" firstAttribute="centerY" secondItem="mDc-bo-SCW" secondAttribute="centerY" id="4CC-XE-fuc"/>
                                     <constraint firstItem="mDc-bo-SCW" firstAttribute="leading" secondItem="DgJ-kH-bCl" secondAttribute="leading" constant="20" id="777-pr-6wQ"/>
@@ -1207,7 +1080,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lwu-GB-Qxm" firstAttribute="leading" secondItem="PrM-9z-X82" secondAttribute="leading" constant="20" id="171-8H-dqq"/>
                             <constraint firstItem="jEB-1K-tYa" firstAttribute="top" secondItem="DgJ-kH-bCl" secondAttribute="bottom" id="1Tg-7e-axA"/>
@@ -1234,7 +1107,6 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                         </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="backButton" destination="mDc-bo-SCW" id="bj3-4w-FAK"/>
                         <outlet property="bottomView" destination="DgJ-kH-bCl" id="dgK-kS-jfX"/>
@@ -1248,7 +1120,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpc-ro-rYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109.5" y="1058.5"/>
+            <point key="canvasLocation" x="1790" y="1058"/>
         </scene>
     </scenes>
     <resources>
