@@ -8,7 +8,6 @@
 
 import UIKit
 import PermissionScope
-import GoogleMaps
 
 import Crashlytics
 

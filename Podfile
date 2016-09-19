@@ -20,7 +20,6 @@ target 'SunriseSunset' do
     pod 'EDSunriseSet', '~> 1.0'
     pod 'UIView-Easing'
     pod 'SwiftLocation'
-    pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'Fabric'
     pod 'Crashlytics'

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import GoogleMaps
 import GooglePlaces
 
 class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {

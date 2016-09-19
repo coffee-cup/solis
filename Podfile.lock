@@ -4,11 +4,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - EDSunriseSet (1.0)
   - Fabric (1.6.8)
-  - GoogleMaps (2.0.1):
-    - GoogleMaps/Maps (= 2.0.1)
   - GoogleMaps/Base (2.0.1)
-  - GoogleMaps/Maps (2.0.1):
-    - GoogleMaps/Base (= 2.0.1)
   - GooglePlaces (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
   - PermissionScope (1.0.3)
@@ -21,7 +17,6 @@ DEPENDENCIES:
   - Crashlytics
   - EDSunriseSet (~> 1.0)
   - Fabric
-  - GoogleMaps
   - GooglePlaces
   - PermissionScope (from `https://github.com/nickoneill/PermissionScope.git`, branch `swift3`)
   - SwiftLocation
@@ -61,6 +56,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: 4118eb0182560f1b6ed1be346eb6bee42206ded0
+PODFILE CHECKSUM: 0f2fc41658db42d83cd8abce0e352b5a506baef1
 
 COCOAPODS: 1.1.0.rc.2
