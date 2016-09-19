@@ -158,7 +158,7 @@ class InfoMenuViewController: UIViewController {
 //        }
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let button = sender as? UIButton {
             if let infoViewController = segue.destination as? InfoViewController {
                 var infoData: InfoData!
