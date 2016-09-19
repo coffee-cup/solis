@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
-        #if DEBUG
+        #if RELEASE
             Fabric.with([Crashlytics.self])
         #else
             print("DEBUG MODE")
