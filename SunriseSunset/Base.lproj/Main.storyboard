@@ -76,6 +76,7 @@
                         <outlet property="menuContainerView" destination="qAh-lL-ukP" id="tFd-4i-jWj"/>
                         <outlet property="menuImageView" destination="7gJ-kf-a5X" id="UNx-1p-DEi"/>
                         <outlet property="menuLeadingConstraint" destination="cx0-3T-Kbg" id="DZS-bh-vNO"/>
+                        <outlet property="menuWidthConstraint" destination="QCp-rj-jCj" id="tJF-Bp-cDd"/>
                         <outlet property="sunContainerView" destination="0v8-n2-2RF" id="513-8U-RV9"/>
                     </connections>
                 </viewController>
@@ -244,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7e-Tn-YH7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="-544"/>
+            <point key="canvasLocation" x="466" y="-544"/>
         </scene>
         <!--Notifications View Controller-->
         <scene sceneID="EWa-Fx-Twk">
@@ -285,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Yc-ph-ZHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="-544"/>
+            <point key="canvasLocation" x="1105" y="-544"/>
         </scene>
         <!--Widget View Controller-->
         <scene sceneID="2kf-Zl-rAB">
@@ -323,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0S0-ji-Aj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="-544"/>
+            <point key="canvasLocation" x="1764" y="-544"/>
         </scene>
         <!--Sun View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -401,6 +402,7 @@
                         <constraints>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" placeholder="YES" id="2Xy-0p-BC7"/>
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerY" secondItem="e5Z-bX-drh" secondAttribute="centerY" id="3FP-75-P2k"/>
+                            <constraint firstAttribute="trailing" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="9q8-7G-cga"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="Asv-YP-ZWW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="e5Z-bX-drh" secondAttribute="bottom" constant="30" id="Dcs-H6-fhC"/>
                             <constraint firstItem="oYK-kR-m70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoW-9a-L6M"/>
@@ -410,7 +412,6 @@
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerX" secondItem="e5Z-bX-drh" secondAttribute="centerX" id="U5W-Ja-9nz"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
                             <constraint firstItem="6vs-LU-RLd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bL7-ca-d2l"/>
-                            <constraint firstAttribute="trailing" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="gkK-Hy-He3"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" placeholder="YES" id="oqW-1e-dSo"/>
                             <constraint firstAttribute="trailing" secondItem="6vs-LU-RLd" secondAttribute="trailing" id="woB-VE-GEj"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
@@ -432,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="253"/>
+            <point key="canvasLocation" x="487" y="253"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="cp8-IF-nHS">
@@ -682,6 +683,8 @@
                             <constraint firstItem="arM-lv-Uf5" firstAttribute="top" secondItem="1gX-Ru-O8l" secondAttribute="top" id="oGK-F6-vit"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="263" height="667"/>
                     <connections>
                         <outlet property="button12h" destination="0WA-bw-8mR" id="j97-K4-Lru"/>
                         <outlet property="button24h" destination="LNJ-MP-2rP" id="LM8-TL-7iY"/>
@@ -858,7 +861,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOR-o9-qXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="426" y="1058"/>
+            <point key="canvasLocation" x="378" y="1058"/>
         </scene>
         <!--Info Menu View Controller-->
         <scene sceneID="Dss-yF-BxA">
@@ -1009,7 +1012,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBs-tE-mvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="1058"/>
+            <point key="canvasLocation" x="1071" y="1058"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="HrV-pE-1Br">
@@ -1120,7 +1123,7 @@ It is approximatley the limit at which solar illumination is suffient. Under cle
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpc-ro-rYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="1058"/>
+            <point key="canvasLocation" x="1764" y="1057"/>
         </scene>
     </scenes>
     <resources>

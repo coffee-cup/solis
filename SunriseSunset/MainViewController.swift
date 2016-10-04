@@ -8,26 +8,6 @@
 
 import Foundation
 import UIKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 protocol MenuProtocol {
     func menuIsMoving(_ percent: Float)
@@ -42,6 +22,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var sunContainerView: UIView!
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var menuImageView: SpringImageView!
@@ -77,7 +58,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuWidth = menuContainerView.frame.width
+        menuWidth = view.frame.width * menuWidthConstraint.multiplier
         menuHardIn()
         
         addGestureRecognizers()
