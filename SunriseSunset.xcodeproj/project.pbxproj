@@ -62,6 +62,7 @@
 		9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5C1D5191D70009444E /* PermissionScope.swift */; };
 		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
+		9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
 		9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC052351D22465A00CBBECE /* TimeZones.swift */; };
 		9CC29EE41D8BB00A00542894 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29EC61D8BB00A00542894 /* AsyncButton.swift */; };
 		9CC29EE51D8BB00A00542894 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29EC71D8BB00A00542894 /* AsyncImageView.swift */; };
@@ -257,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */,
 				0EE0FF4A05F670EBE4A7D7C8 /* Pods_SolisWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
