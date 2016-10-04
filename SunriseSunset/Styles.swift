@@ -33,6 +33,8 @@ let buttonDisabled = UIColor(hex: 0x290050)
 let buttonEnabled = UIColor(hex: 0x00D3D0)
 let buttonHighlighted = UIColor(hex: 0x75FFFD)
 
+let widgetDarkTextColour = buttonDisabled
+
 let fontLight = "Muli-Light"
 let fontRegular = "Muli"
 

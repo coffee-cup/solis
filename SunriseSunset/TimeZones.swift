@@ -102,7 +102,7 @@ class TimeZones {
             }
             
             let daylightSavings = dst == "1"
-            var offsetWithGmt = gmtOffset
+            let offsetWithGmt = gmtOffset
 //            if daylightSavings {
 //                offsetWithGmt += 60 * 60
 //            }

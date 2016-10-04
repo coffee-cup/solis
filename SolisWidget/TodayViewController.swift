@@ -11,14 +11,24 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    // Constraints
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
-    let ViewHeight: CGFloat = 88
+    let ViewHeight: CGFloat = 110
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib
+        
+        if #available(iOSApplicationExtension 10.0, *) {
+            leadingConstraint.constant = 20
+            eventLabel.textColor = widgetDarkTextColour
+            timeLabel.textColor = widgetDarkTextColour
+        }
         
         setPreferred()
         setWidgetTimes()
@@ -38,6 +48,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         timeLabel.text = TimeFormatters.formatter12h(TimeZone.ReferenceType.local).string(from: suntime.date)
             .replacingOccurrences(of: "AM", with: "am")
             .replacingOccurrences(of: "PM", with: "pm")
+        
+        // Hide for now
+        imageView.isHidden = true
+        imageView.image = UIImage(named: "rise_off")
     }
     
     func setSad() {
