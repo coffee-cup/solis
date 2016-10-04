@@ -239,4 +239,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         sendMenuButtonIn()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SunSegue" {
+            if let sunViewController = segue.destination as? SunViewController {
+                delegate = sunViewController
+            }
+        }
+    }
 }
