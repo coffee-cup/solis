@@ -21,11 +21,17 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.32</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>1.32</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app does not require bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app does not require the calendar</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app does not require contacts</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionMainStoryboard</key>
@@ -33,5 +39,9 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app does not require the microphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app does not require motion</string>
 </dict>
 </plist>
