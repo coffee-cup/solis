@@ -175,9 +175,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         longPressRecognizer.minimumPressDuration = 0.5
         sunView.addGestureRecognizer(longPressRecognizer)
         
-        // Update every minute
-        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-        
         setupBackgroundView()
         
         // Notifications
@@ -202,6 +199,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Update every minute
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
     deinit {
@@ -277,7 +277,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     // Update all the views the with the time offset value
-    func update(_ offset: Double = 0) {
+    func update() {
         if !scrolling && !panning && !offNow {
             if let location = SunLocation.getLocation() {
                 sun.update(offset, location: location)
@@ -482,7 +482,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             }, completion: { finished in
                 self.sunView.removeEasingFunction(forKeyPath: "transform")
                 self.reset()
-                self.update(self.offset)
+                self.update()
         })
     }
     
