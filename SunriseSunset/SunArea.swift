@@ -32,6 +32,8 @@ class SunArea: UIView {
     var inMorning: Bool!
     var day: SunDay!
     
+    var firstLoad = true
+    
     let NameHorizontalPadding: CGFloat = 20
     
     override init (frame : CGRect) {
@@ -57,14 +59,9 @@ class SunArea: UIView {
         self.parentView = parentView
         
         DispatchQueue.main.async {
-            self.nameLabel = UILabel()
-            
             self.translatesAutoresizingMaskIntoConstraints = false
-            self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
             
             parentView.addSubview(self)
-            
-//            self.addSubview(self.nameLabel)
             
             // Area View
             
@@ -73,8 +70,6 @@ class SunArea: UIView {
             self.heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
             
             NSLayoutConstraint.activate(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
-            
-//            self.backgroundColor = UIColor.purpleColor().colorWithAlphaComponent(0.3)
             
             self.gradientLayer = CAGradientLayer()
             self.layer.addSublayer(self.gradientLayer)
@@ -102,18 +97,8 @@ class SunArea: UIView {
                 ]
             }
             
-//            self.backgroundColor = self.colour
-            
-            // Name Label
-            
-//            let nameVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel])
-//            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: self.NameHorizontalPadding)
-//            
-//            NSLayoutConstraint.activateConstraints(nameVerticalConstraints + [self.nameLeftConstraint])
-            
-//            self.nameLabel.textColor = nameTextColour
-//            self.nameLabel.font = fontTwilight
-//            self.nameLabel.text = self.name
+            // Hide view initially
+            self.alpha = 0
         }
     }
     
@@ -124,6 +109,9 @@ class SunArea: UIView {
     }
     
     func fadeInView() {
+        if firstLoad {
+            return
+        }
         UIView.animate(withDuration: 0.5) {
             self.alpha = 1
         }
@@ -158,9 +146,14 @@ class SunArea: UIView {
         heightConstraint.constant = height
         
         self.gradientLayer.frame = CGRect(x: 0, y: 0, width: parentView.frame.width, height: height)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             self.parentView.layoutIfNeeded()
-        }
+            }, completion: { finished in
+            if self.firstLoad {
+                self.firstLoad = false
+                self.fadeInView()
+            }
+        })
     }
     
     func updateArea(_ sunTimeMarkers: [SunTimeMarker]) {
@@ -204,7 +197,7 @@ class SunArea: UIView {
                     self.updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
                 }
             }
-            
+         
             if lowestMarker == nil || highestMarker == nil {
                 self.fadeOutView()
             }
