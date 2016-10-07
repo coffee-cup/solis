@@ -384,7 +384,7 @@
                                     <constraint firstItem="rrh-ze-8hI" firstAttribute="centerY" secondItem="M0S-kq-de6" secondAttribute="centerY" id="GAE-o4-zmM"/>
                                     <constraint firstAttribute="height" constant="50" id="NAR-Wl-ViM"/>
                                     <constraint firstItem="M0S-kq-de6" firstAttribute="top" secondItem="Ghu-1S-9Gf" secondAttribute="bottom" constant="2" id="spg-yG-5Fx"/>
-                                    <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="6vs-LU-RLd" secondAttribute="leading" constant="10" id="yTQ-BA-QM7"/>
+                                    <constraint firstItem="rrh-ze-8hI" firstAttribute="leading" secondItem="6vs-LU-RLd" secondAttribute="leading" constant="20" id="yTQ-BA-QM7"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="past" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYK-kR-m70">
@@ -727,7 +727,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpn-yP-LSB" id="fVa-HM-XXM">
-                                            <frame key="frameInset" width="375" height="60"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vancouver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBB-KD-4qx">
@@ -780,7 +780,7 @@
                                         <rect key="frame" x="0.0" y="88" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFk-7S-rpg" id="AtK-ki-cgV">
-                                            <frame key="frameInset" width="375" height="60"/>
+                                            <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-4z-85S">
