@@ -297,8 +297,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Update from transformation move
     // Do not update maths of sunlines
     func moveUpdate(_ offset: Double = 0) {
-        sun.findNow(offset)
-        offNow = Int(floor(offset)) != 0
+        offNow = Int(floor(abs(offset))) != 0
+        sun.findNow(offNow ? offset : 0)
         setCenterButton()
     }
     
