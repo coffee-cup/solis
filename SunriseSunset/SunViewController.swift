@@ -28,6 +28,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
+    @IBOutlet weak var noLocationLabel1: SpringLabel!
+    @IBOutlet weak var noLocationLabel2: SpringLabel!
+    
     @IBOutlet weak var centerImageView: SpringImageView!
     @IBOutlet weak var centerButton: UIButton!
     
@@ -74,6 +77,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // Whether or not the now line is colliding with a sun line
     var colliding = false
+    
+    // Whether we have a location to render a gradient with
+    var gotLocation = false
     
     // The duration we will free form for
     var scrollAnimationDuration: TimeInterval = 0
@@ -143,6 +149,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         centerImageView.duration = CGFloat(1)
         centerImageView.curve = "easeInOut"
         centerImageView.alpha = 0
+        
+        // Init assuming no location
+        noLocationLabel1.animation = "fadeOut"
+        noLocationLabel2.animation = "fadeOut"
+        nowView.alpha = 0
         
         sun = Sun(screenMinutes: screenMinutes,
                   screenHeight: screenHeight,
@@ -247,7 +258,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             if results[0].status == PermissionStatus.authorized {
                 print("got results \(results)")
                 
-    //            Location.startLocationWatching()
+                SunLocation.startLocationWatching()
                 SunLocation.checkLocation()
             }
             }, cancelled: { (results) -> Void in
@@ -276,6 +287,19 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollReset()
     }
     
+    func disableNoLocationViews() {
+        if !gotLocation {
+            gotLocation = true
+            
+            noLocationLabel1.animate()
+            noLocationLabel2.animate()
+            
+            UIView.animate(withDuration: 0.5) {
+                self.nowView.alpha = 1
+            }
+        }
+    }
+    
     // Update all the views the with the time offset value
     func update() {
         if !scrolling && !panning && !offNow {
@@ -288,6 +312,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                         self.sunView.alpha = 1
                     }
                 }
+                
+                disableNoLocationViews()
             }
         }
         offNow = Int(floor(offset)) != 0

@@ -18,7 +18,6 @@ class SunLocation {
     
     class func startLocationWatching() {
         let _ = Location.getLocation(withAccuracy: .block, frequency: .significant, timeout: nil, onSuccess: { (location) in
-            // You will receive at max one event if desidered accuracy can be achieved; this because you have set .OneShot as frequency.
             print("\nSignificat Location")
             saveLocation(location.coordinate)
         }) { (lastValidLocation, error) in
@@ -28,7 +27,6 @@ class SunLocation {
     
     class func checkLocation() {
         let _ = Location.getLocation(withAccuracy: .block, frequency: .oneShot, timeout: nil, onSuccess: { (location) in
-            // You will receive at max one event if desidered accuracy can be achieved; this because you have set .OneShot as frequency.
             print("\nOne Shot Location")
             saveLocation(location.coordinate)
         }) { (lastValidLocation, error) in

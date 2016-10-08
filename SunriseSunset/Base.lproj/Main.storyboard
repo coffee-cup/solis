@@ -357,6 +357,16 @@
                                     <constraint firstAttribute="width" secondItem="zib-cc-JK8" secondAttribute="height" multiplier="1:1" id="tPI-vg-yUE"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need a location to do anything 🌎" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTn-Lq-Mh2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable location services or choose a city from the menu ←" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-pc-rMn" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                                <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vs-LU-RLd" customClass="TouchThroughView" customModule="SunriseSunset" customModuleProvider="target">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-1S-9Gf">
@@ -404,16 +414,24 @@
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerY" secondItem="e5Z-bX-drh" secondAttribute="centerY" id="3FP-75-P2k"/>
                             <constraint firstAttribute="trailing" secondItem="e5Z-bX-drh" secondAttribute="trailing" constant="30" id="9q8-7G-cga"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="Asv-YP-ZWW"/>
+                            <constraint firstItem="GTn-Lq-Mh2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bpx-bD-wmc"/>
                             <constraint firstAttribute="bottomMargin" secondItem="e5Z-bX-drh" secondAttribute="bottom" constant="30" id="Dcs-H6-fhC"/>
                             <constraint firstItem="oYK-kR-m70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoW-9a-L6M"/>
+                            <constraint firstAttribute="trailing" secondItem="aCA-pc-rMn" secondAttribute="trailing" constant="44" id="IF0-ho-h8p"/>
+                            <constraint firstItem="aCA-pc-rMn" firstAttribute="top" secondItem="6vs-LU-RLd" secondAttribute="bottom" constant="40" id="Kq0-dJ-TSc"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" placeholder="YES" id="NMJ-2O-MYh"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oYK-kR-m70" secondAttribute="bottom" constant="10" id="RtC-zQ-Crv"/>
                             <constraint firstItem="6vs-LU-RLd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Rws-1N-pjz"/>
+                            <constraint firstItem="aCA-pc-rMn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SDJ-8D-ovF"/>
                             <constraint firstItem="zib-cc-JK8" firstAttribute="centerX" secondItem="e5Z-bX-drh" secondAttribute="centerX" id="U5W-Ja-9nz"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aKa-KZ-fZg"/>
                             <constraint firstItem="6vs-LU-RLd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bL7-ca-d2l"/>
                             <constraint firstItem="hJD-Os-DA5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" placeholder="YES" id="oqW-1e-dSo"/>
+                            <constraint firstItem="6vs-LU-RLd" firstAttribute="top" secondItem="GTn-Lq-Mh2" secondAttribute="bottom" constant="60" id="sWM-7e-KwO"/>
+                            <constraint firstItem="GTn-Lq-Mh2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="44" id="wWe-fe-OZR"/>
                             <constraint firstAttribute="trailing" secondItem="6vs-LU-RLd" secondAttribute="trailing" id="woB-VE-GEj"/>
+                            <constraint firstItem="aCA-pc-rMn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="44" id="xgm-Zq-6ur"/>
+                            <constraint firstAttribute="trailing" secondItem="GTn-Lq-Mh2" secondAttribute="trailing" constant="44" id="yH5-O5-GxL"/>
                             <constraint firstItem="6UY-fJ-dB7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="yJV-ue-PMx"/>
                         </constraints>
                     </view>
@@ -422,6 +440,8 @@
                         <outlet property="centerButton" destination="e5Z-bX-drh" id="XUN-1O-bq5"/>
                         <outlet property="centerImageView" destination="zib-cc-JK8" id="6e1-F0-T7g"/>
                         <outlet property="futureLabel" destination="6UY-fJ-dB7" id="Xlz-Wg-5K5"/>
+                        <outlet property="noLocationLabel1" destination="GTn-Lq-Mh2" id="D0T-Og-tGo"/>
+                        <outlet property="noLocationLabel2" destination="aCA-pc-rMn" id="FaS-4e-bYJ"/>
                         <outlet property="nowLabel" destination="Ghu-1S-9Gf" id="PFQ-yx-ogE"/>
                         <outlet property="nowLeftConstraint" destination="9UU-43-b9a" id="iTb-5s-g4G"/>
                         <outlet property="nowLineView" destination="M0S-kq-de6" id="xpp-4N-UX8"/>
@@ -433,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="253"/>
+            <point key="canvasLocation" x="485.60000000000002" y="252.32383808095955"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="cp8-IF-nHS">
