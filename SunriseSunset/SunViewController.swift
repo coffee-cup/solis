@@ -251,7 +251,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 SunLocation.checkLocation()
             }
             }, cancelled: { (results) -> Void in
-                print("thing was cancelled")
+                print("Location permission was cancelled")
         })
     }
     
