@@ -18,7 +18,7 @@ class SunLocation {
     
     class func startLocationWatching() {
         let _ = Location.getLocation(withAccuracy: .block, frequency: .significant, timeout: nil, onSuccess: { (location) in
-            print("\nSignificat Location")
+            print("Significant Location")
             saveLocation(location.coordinate)
         }) { (lastValidLocation, error) in
             print(error)

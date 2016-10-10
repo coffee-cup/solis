@@ -150,10 +150,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         centerImageView.curve = "easeInOut"
         centerImageView.alpha = 0
         
-        // Init assuming no location
-        noLocationLabel1.animation = "fadeOut"
-        noLocationLabel2.animation = "fadeOut"
-        nowView.alpha = 0
+        noLocationLabel1.alpha = 0
+        noLocationLabel2.alpha = 0
         
         sun = Sun(screenMinutes: screenMinutes,
                   screenHeight: screenHeight,
@@ -258,7 +256,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             if results[0].status == PermissionStatus.authorized {
                 print("got results \(results)")
                 
-                SunLocation.startLocationWatching()
+//                SunLocation.startLocationWatching()
                 SunLocation.checkLocation()
             }
             }, cancelled: { (results) -> Void in
@@ -287,15 +285,20 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollReset()
     }
     
-    func disableNoLocationViews() {
+    // Enable=true means we are showing the no location views
+    func noLocationViews(_ enable: Bool) {
         if !gotLocation {
-            gotLocation = true
-            
-            noLocationLabel1.animate()
-            noLocationLabel2.animate()
-            
+            // Do not re-animate if already showing
+            if enable && noLocationLabel1.alpha == 1 {
+                return
+            } else if !enable && noLocationLabel1.alpha == 0 {
+                return
+            }
+
             UIView.animate(withDuration: 0.5) {
-                self.nowView.alpha = 1
+                self.noLocationLabel1.alpha = enable ? 1 : 0
+                self.noLocationLabel2.alpha = enable ? 1 : 0
+                self.nowView.alpha = !enable ? 1 : 0
             }
         }
     }
@@ -313,7 +316,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                     }
                 }
                 
-                disableNoLocationViews()
+                noLocationViews(false)
+                gotLocation = true
+            } else {
+                noLocationViews(true)
             }
         }
         offNow = Int(floor(offset)) != 0

@@ -20,6 +20,7 @@ extension PermissionScope {
         permissionButtonTextColor = nauticalColour
         permissionButtonBorderColor = nauticalColour
         
-        bodyLabel.text = "We need something\r\nbefore you can start"
+        headerLabel.text = "Hey there!"
+        bodyLabel.text = "I need a little\r\nsomething something 😉"
     }
 }
