@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GooglePlaces
+import PermissionScope
 
 class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -27,6 +28,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     var notificationPlaceDirty = false
     var newNotificationSunPlace: SunPlace?
+    
+    let pscope = PermissionScope()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,6 +136,23 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         goBack()
     }
     
+    func ensureLocationPermissions(completion: @escaping () -> ()) {
+        pscope.style()
+        pscope.addPermission(LocationWhileInUsePermission(),
+                             message: "We rarely check your location but need it to calculate the suns position")
+        
+        // Show dialog with callbacks
+        pscope.show({ finished, results in
+            if results[0].status == PermissionStatus.authorized {
+                print("got results \(results)")
+                
+                completion()
+            }
+            }, cancelled: { (results) -> Void in
+                print("Location permission was cancelled")
+        })
+    }
+    
     // Table View
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -140,8 +160,10 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         goBack()
         
         if (indexPath as NSIndexPath).row == 0 {
-            SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
-            Analytics.selectLocation(true, sunPlace: nil)
+            ensureLocationPermissions {
+                SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
+                Analytics.selectLocation(true, sunPlace: nil)
+            }
         } else {
             var sunplace: SunPlace!
             if isSearching() {
