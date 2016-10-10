@@ -63,19 +63,14 @@ class TimeZones {
     }
     
     func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: @escaping (_ gmtOffset: Int?, _ abbreviation: String?) -> ()) {
-        Alamofire.request(Endpoint, method: .get, parameters: [
-            "key": ApiKey,
-            "by": "position",
-            "format": "json",
-            "lat": location.latitude,
-            "lng": location.longitude
-        ], encoding: JSONEncoding.default, headers: nil)
+        let requestString = "\(Endpoint)?by=position&format=json&key=\(ApiKey)&lat=\(location.latitude)&lng=\(location.longitude)"
+        Alamofire.request(requestString)
         .responseJSON { response in
-//                print(response.request)  // original URL request
-//                print(response.response) // URL response
-//                print(response.data)     // server data
-//                print(response.result)   // result of response serialization
-            
+//            print(response.request)  // original URL request
+//            print(response.response) // URL response
+//            print(response.data)     // server data
+//            print(response.result)   // result of response serialization
+        
             guard let data = response.data else {
                 print("Data from response is nil")
                 completionHandler(nil, nil)
