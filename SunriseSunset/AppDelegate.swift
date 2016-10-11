@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSPlacesClient.provideAPIKey(GoogleAPIKey)
         
-        application.setMinimumBackgroundFetchInterval(60 * 60 * 12) // 12 hours
+        application.setMinimumBackgroundFetchInterval(60 * 60 * 6) // 6 hours
         
         // Set initial view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
