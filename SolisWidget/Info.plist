@@ -21,11 +21,11 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.32</string>
+	<string>1.33</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.32</string>
+	<string>1.33</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>This app does not require bluetooth</string>
 	<key>NSCalendarsUsageDescription</key>
