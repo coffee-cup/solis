@@ -117,12 +117,14 @@ class SunLocation {
         if current {
             if let currentLocation = getCurrentLocation() {
                 if let locationName = getCurrentLocationName() {
+                    notifyLocationChanged()
                     setLocation(true, location: currentLocation, name: locationName)
                 }
             }
             checkLocation()
         } else {
             if let sunplace = sunplace {
+                notifyLocationChanged()
                 setLocation(false, location: location!, name: name!, sunplace: sunplace)
                 addLocationToHistory(sunplace)
                 if let timeZoneOffset = sunplace.timeZoneOffset {
@@ -225,6 +227,10 @@ class SunLocation {
     
     class func notifyLocation() {
         Bus.sendMessage(.locationUpdate, data: nil)
+    }
+    
+    class func notifyLocationChanged() {
+        Bus.sendMessage(.locationChanged, data: nil)
     }
     
     class func saveLocation(_ location: CLLocationCoordinate2D) {

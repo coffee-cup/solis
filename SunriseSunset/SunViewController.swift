@@ -81,6 +81,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Whether we have a location to render a gradient with
     var gotLocation = false
     
+    // Flag indicating the location just changed
+    var locationJustChanged = false
+    
     // The duration we will free form for
     var scrollAnimationDuration: TimeInterval = 0
     
@@ -274,11 +277,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func locationUpdate() {
+        print("location update")
         update()
     }
     
     func locationChanged() {
-        scrollReset()
+        print("location changed")
+        locationJustChanged = true
+//        scrollReset()
     }
     
     // Enable=true means we are showing the no location views
@@ -301,7 +307,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // Update all the views the with the time offset value
     func update() {
-        if !scrolling && !panning && !offNow {
+        if (!scrolling && !panning && !offNow) || locationJustChanged {
             if let location = SunLocation.getLocation() {
                 sun.update(offset, location: location)
                 
@@ -310,6 +316,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                     UIView.animate(withDuration: 0.5) {
                         self.sunView.alpha = 1
                     }
+                }
+                
+                // If we are updating right from changing location
+                // reset the scroll
+                if locationJustChanged {
+                    locationJustChanged = false
+                    scrollReset()
                 }
                 
                 noLocationViews(false)
