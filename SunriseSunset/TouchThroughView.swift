@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TouchThroughView: UIView {
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return false
     }
 }

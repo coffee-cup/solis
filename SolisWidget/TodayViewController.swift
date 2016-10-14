@@ -11,14 +11,24 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
+    // Constraints
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
-    let ViewHeight: CGFloat = 88
+    let ViewHeight: CGFloat = 110
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib
+        
+        if #available(iOSApplicationExtension 10.0, *) {
+            leadingConstraint.constant = 20
+            eventLabel.textColor = widgetDarkTextColour
+            timeLabel.textColor = widgetDarkTextColour
+        }
         
         setPreferred()
         setWidgetTimes()
@@ -30,23 +40,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func setPreferred() {
-        preferredContentSize = CGSizeMake(0, ViewHeight)
+        preferredContentSize = CGSize(width: 0, height: ViewHeight)
     }
     
-    func setView(suntime: Suntime) {
+    func setView(_ suntime: Suntime) {
         eventLabel.text = "\(suntime.type.event) at"
-        timeLabel.text = TimeFormatters.formatter12h(NSTimeZone.localTimeZone()).stringFromDate(suntime.date)
-            .stringByReplacingOccurrencesOfString("AM", withString: "am")
-            .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+        timeLabel.text = TimeFormatters.formatter12h(TimeZone.ReferenceType.local).string(from: suntime.date)
+            .replacingOccurrences(of: "AM", with: "am")
+            .replacingOccurrences(of: "PM", with: "pm")
+        
+        // Hide for now
+        imageView.isHidden = true
+        imageView.image = UIImage(named: "rise_off")
     }
     
     func setSad() {
-        eventLabel.text = "😔"
-        timeLabel.text = "I don't know where you are"
+        eventLabel.text = "😔 I don't know"
+        timeLabel.text = "where you are"
     }
     
     func setWidgetTimes() {
-        if let location = Location.getCurrentLocation() {
+        if let location = SunLocation.getCurrentLocation() {
             let suntimes = SunLogic.todayTomorrow(location)
             if let nextSuntime = SunLogic.nextEvent(suntimes) {
                 setView(nextSuntime)
@@ -59,7 +73,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+    func widgetPerformUpdate(_ completionHandler: ((NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
 
         // If an error is encountered, use NCUpdateResult.Failed
@@ -69,11 +83,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         setPreferred()
         setWidgetTimes()
         
-        completionHandler(NCUpdateResult.NewData)
+        completionHandler(NCUpdateResult.newData)
     }
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsetsZero
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
     }
     
 }

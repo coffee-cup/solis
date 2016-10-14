@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol MenuProtocol {
-    func menuIsMoving(percent: Float)
+    func menuIsMoving(_ percent: Float)
     func menuStartAnimatingIn()
     func menuStartAnimatingOut()
     func menuIsIn()
@@ -22,6 +22,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var sunContainerView: UIView!
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var menuImageView: SpringImageView!
@@ -50,32 +51,32 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     var holdingWhileOut = false
     
     // Constants
-    let MenuAnimaitonDuration: NSTimeInterval = 0.25
+    let MenuAnimaitonDuration: TimeInterval = 0.25
     let ClosenessToEdgeIn: CGFloat = 40
     let ClosenessToEdgeOut: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuWidth = menuContainerView.frame.width
+        menuWidth = view.frame.width * menuWidthConstraint.multiplier
         menuHardIn()
         
         addGestureRecognizers()
-        Bus.subscribeEvent(.SendMenuIn, observer: self, selector: #selector(sendMenuIn))
+        Bus.subscribeEvent(.sendMenuIn, observer: self, selector: #selector(sendMenuIn))
         
         menuImageView.duration = CGFloat(1)
         menuImageView.curve = "easeInOut"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
@@ -84,18 +85,18 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addGestureRecognizer(panRecognizer)
         
         menuRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        menuRecognizer.edges = .Left
+        menuRecognizer.edges = .left
         menuRecognizer.delegate = self
         view.addGestureRecognizer(menuRecognizer)
     }
     
     // Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MenuSegue" {
-            menuViewController = segue.destinationViewController as! MenuViewController
+            menuViewController = segue.destination as! MenuViewController
         } else if segue.identifier == "SunSegue" {
-            sunViewController = segue.destinationViewController as! SunViewController
+            sunViewController = segue.destination as! SunViewController
             delegate = sunViewController
         }
     }
@@ -109,7 +110,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
 //    }
     
     // Adjusts the x position to be negative in terms of menuWidth
-    func adjustNegative(x: CGFloat) -> CGFloat {
+    func adjustNegative(_ x: CGFloat) -> CGFloat {
         return -menuWidth + x
     }
     
@@ -123,7 +124,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     func menuSoftIn() {
         menuLeadingConstraint.constant = adjustNegative(-1)
         delegate?.menuStartAnimatingIn()
-        UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
+        UIView.animate(withDuration: MenuAnimaitonDuration, animations: {
             self.view.layoutIfNeeded()
             }, completion: { finished in
                 self.menuOut = false
@@ -144,7 +145,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuContainerView.alpha = 1
         menuLeadingConstraint.constant = adjustNegative(menuWidth)
         delegate?.menuStartAnimatingOut()
-        UIView.animateWithDuration(MenuAnimaitonDuration, animations: {
+        UIView.animate(withDuration: MenuAnimaitonDuration, animations: {
             self.view.layoutIfNeeded()
             }, completion: { finished in
                 self.menuOut = true
@@ -163,49 +164,49 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func menuToFinger(x: CGFloat) {
+    func menuToFinger(_ x: CGFloat) {
         let adjustedX = x > menuWidth ? menuWidth : x
-        let menuTransform = adjustNegative(adjustedX)
+        let menuTransform = adjustNegative(adjustedX!)
         
-        delegate?.menuIsMoving(Float(adjustedX / menuWidth))
+        delegate?.menuIsMoving(Float(adjustedX! / menuWidth))
         
         menuLeadingConstraint.constant = menuTransform
     }
     
-    func sideSwipe(recognizer: UIScreenEdgePanGestureRecognizer) {
-        let fingerX = recognizer.locationInView(view).x
+    func sideSwipe(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        let fingerX = recognizer.location(in: view).x
 
-        if recognizer.state == .Began {
+        if recognizer.state == .began {
             menuContainerView.alpha = 1
             if !menuOut {
                 sendMenuButtonIn()
             }
-        } else if recognizer.state == .Changed {
+        } else if recognizer.state == .changed {
             if !menuOut {
                 menuToFinger(fingerX)
             }
-        } else if recognizer.state == .Ended {
+        } else if recognizer.state == .ended {
             menuInOut()
         }
     }
     
-    func between(val: Double, low: Double, high: Double) -> Bool {
+    func between(_ val: Double, low: Double, high: Double) -> Bool {
         return val >= low && val <= high
     }
     
-    func menuPan(recognizer: UIPanGestureRecognizer) {
-        let fingerX = recognizer.locationInView(view).x
+    func menuPan(_ recognizer: UIPanGestureRecognizer) {
+        let fingerX = recognizer.location(in: view).x
     
-        if recognizer.state == .Began {
+        if recognizer.state == .began {
             if menuOut && between(Double(fingerX), low: Double(menuWidth - ClosenessToEdgeIn), high: Double(menuWidth + menuWidth))  {
                 holdingWhileOut = true
                 anchorX = menuWidth - fingerX
             }
-        } else if recognizer.state == .Changed {
+        } else if recognizer.state == .changed {
             if holdingWhileOut {
                 menuToFinger(fingerX + anchorX)
             }
-        } else if recognizer.state == .Ended {
+        } else if recognizer.state == .ended {
             if holdingWhileOut {
                 menuInOut()
                 holdingWhileOut = false
@@ -219,7 +220,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
@@ -233,9 +234,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuImageView.animate()
     }
     
-    @IBAction func menuButtonDidTouch(sender: AnyObject) {
+    @IBAction func menuButtonDidTouch(_ sender: AnyObject) {
         menuSoftOut()
         
         sendMenuButtonIn()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SunSegue" {
+            if let sunViewController = segue.destination as? SunViewController {
+                delegate = sunViewController
+            }
+        }
     }
 }

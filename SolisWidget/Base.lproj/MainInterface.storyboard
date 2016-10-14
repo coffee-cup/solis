@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -14,31 +14,36 @@
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSM-sv-PON">
-                                <rect key="frame" x="48" y="12" width="272" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Light at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI6-3O-9H2">
-                                        <rect key="frame" x="0.0" y="0.0" width="272" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:42 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PD-qf-acS">
-                                        <rect key="frame" x="0.0" y="32" width="99" height="32"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rise_off" translatesAutoresizingMaskIntoConstraints="NO" id="fYl-bO-PqO">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="1XQ-d6-ocb"/>
+                                            <constraint firstAttribute="width" constant="60" id="cIo-hI-Kjz"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6PD-qf-acS" firstAttribute="top" secondItem="zI6-3O-9H2" secondAttribute="bottom" id="CpI-1o-dSw"/>
+                                    <constraint firstAttribute="trailing" secondItem="fYl-bO-PqO" secondAttribute="trailing" constant="20" id="8V2-0f-zgh"/>
+                                    <constraint firstItem="fYl-bO-PqO" firstAttribute="centerY" secondItem="wSM-sv-PON" secondAttribute="centerY" id="GAx-n1-XOr"/>
                                     <constraint firstItem="zI6-3O-9H2" firstAttribute="leading" secondItem="wSM-sv-PON" secondAttribute="leading" id="GTs-eo-Wb7"/>
                                     <constraint firstItem="6PD-qf-acS" firstAttribute="leading" secondItem="wSM-sv-PON" secondAttribute="leading" id="PbX-Yl-NVm"/>
                                     <constraint firstAttribute="trailing" secondItem="zI6-3O-9H2" secondAttribute="trailing" id="Sgc-gw-AXY"/>
-                                    <constraint firstAttribute="height" constant="64" id="VlC-cV-dWj"/>
+                                    <constraint firstAttribute="height" constant="70" id="VlC-cV-dWj"/>
+                                    <constraint firstAttribute="bottom" secondItem="6PD-qf-acS" secondAttribute="bottom" id="gum-nX-f2x"/>
                                     <constraint firstItem="zI6-3O-9H2" firstAttribute="top" secondItem="wSM-sv-PON" secondAttribute="top" id="n9f-kJ-4JE"/>
                                 </constraints>
                             </view>
@@ -54,9 +59,11 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="88"/>
+                    <size key="freeformSize" width="320" height="110"/>
                     <connections>
                         <outlet property="eventLabel" destination="zI6-3O-9H2" id="Df0-CF-QQZ"/>
+                        <outlet property="imageView" destination="fYl-bO-PqO" id="JO3-Jh-OKf"/>
+                        <outlet property="leadingConstraint" destination="Ug1-6q-eGT" id="V3l-te-L7C"/>
                         <outlet property="timeLabel" destination="6PD-qf-acS" id="mt6-re-EFq"/>
                     </connections>
                 </viewController>
@@ -65,4 +72,12 @@
             <point key="canvasLocation" x="516" y="285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rise_off" width="56" height="27"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

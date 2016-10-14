@@ -8,7 +8,6 @@
 
 import UIKit
 import PermissionScope
-import GoogleMaps
 
 import Crashlytics
 
@@ -42,7 +41,7 @@ class MenuViewController: UIViewController {
     var locationChangeViewController: LocationChangeViewController?
     var infoMenuViewController: InfoMenuViewController?
     
-    let SoftAnimationDuration: NSTimeInterval = 1
+    let SoftAnimationDuration: TimeInterval = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +62,12 @@ class MenuViewController: UIViewController {
         notificationButtons = [buttonSunrise, buttonSunset, buttonFirstLight, buttonLastLight]
         menuButtons = timeButtons + notificationButtons
         
-        Bus.subscribeEvent(.LocationUpdate, observer: self, selector: #selector(locationUpdate))
+        Bus.subscribeEvent(.locationUpdate, observer: self, selector: #selector(locationUpdate))
         
         setupButtons()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         setLocationLabels()
@@ -87,53 +86,53 @@ class MenuViewController: UIViewController {
         
         // All buttons
         for button in menuButtons {
-            button.setTitleColor(buttonDisabled, forState: .Normal)
-            button.setTitleColor(buttonEnabled, forState: .Selected)
+            button.setTitleColor(buttonDisabled, for: UIControlState())
+            button.setTitleColor(buttonEnabled, for: .selected)
 //            button.setTitleColor(buttonHighlighted, forState: .Highlighted)
         }
         
         // Time buttons
         for button in timeButtons {
-            button.addTarget(self, action: #selector(timeButtonDidTouch), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(timeButtonDidTouch), for: .touchUpInside)
         }
         
-        let timeFormat = defaults.stringForKey(MessageType.TimeFormat.description)
+        let timeFormat = defaults.string(forKey: MessageType.timeFormat.description)
         if timeFormat == TimeFormat.hour24.description {
-            button24h.selected = true
+            button24h.isSelected = true
         } else if timeFormat == TimeFormat.hour12.description {
-            button12h.selected = true
+            button12h.isSelected = true
         } else if timeFormat == TimeFormat.delta.description {
-            buttonDelta.selected = true
+            buttonDelta.isSelected = true
         }
         
         // Notification buttons
         for button in notificationButtons {
-            button.addTarget(self, action: #selector(notificationButtonDidTouch), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(notificationButtonDidTouch), for: .touchUpInside)
         }
         
-        buttonSunrise.setImage(UIImage(named: "rise_off"), forState: .Normal)
-        buttonSunrise.setImage(UIImage(named: "rise_on"), forState: .Selected)
-        buttonSunrise.selected = defaults.boolForKey("Sunrise")
+        buttonSunrise.setImage(UIImage(named: "rise_off"), for: UIControlState())
+        buttonSunrise.setImage(UIImage(named: "rise_on"), for: .selected)
+        buttonSunrise.isSelected = defaults.bool(forKey: "Sunrise")
         
-        buttonSunset.setImage(UIImage(named: "set_off"), forState: .Normal)
-        buttonSunset.setImage(UIImage(named: "set_on"), forState: .Selected)
-        buttonSunset.selected = defaults.boolForKey("Sunset")
+        buttonSunset.setImage(UIImage(named: "set_off"), for: UIControlState())
+        buttonSunset.setImage(UIImage(named: "set_on"), for: .selected)
+        buttonSunset.isSelected = defaults.bool(forKey: "Sunset")
         
-        buttonFirstLight.setImage(UIImage(named: "first_off"), forState: .Normal)
-        buttonFirstLight.setImage(UIImage(named: "first_on"), forState: .Selected)
-        buttonFirstLight.selected = defaults.boolForKey("FirstLight")
+        buttonFirstLight.setImage(UIImage(named: "first_off"), for: UIControlState())
+        buttonFirstLight.setImage(UIImage(named: "first_on"), for: .selected)
+        buttonFirstLight.isSelected = defaults.bool(forKey: "FirstLight")
         
-        buttonLastLight.setImage(UIImage(named: "last_off"), forState: .Normal)
-        buttonLastLight.setImage(UIImage(named: "last_on"), forState: .Selected)
-        buttonLastLight.selected = defaults.boolForKey("LastLight")
+        buttonLastLight.setImage(UIImage(named: "last_off"), for: UIControlState())
+        buttonLastLight.setImage(UIImage(named: "last_on"), for: .selected)
+        buttonLastLight.isSelected = defaults.bool(forKey: "LastLight")
     }
     
-    func timeButtonDidTouch(sender: UIButton) {
-        if !sender.selected {
+    func timeButtonDidTouch(_ sender: UIButton) {
+        if !sender.isSelected {
             for button in timeButtons {
-                button.selected = false
+                button.isSelected = false
             }
-            sender.selected = true
+            sender.isSelected = true
             
             var timeFormat = ""
             if sender == button24h {
@@ -143,31 +142,31 @@ class MenuViewController: UIViewController {
             } else if sender == buttonDelta {
                 timeFormat = TimeFormat.delta.description
             }
-            defaults.setObject(timeFormat, forKey: MessageType.TimeFormat.description)
-            Bus.sendMessage(.TimeFormat, data: nil)
+            defaults.set(timeFormat, forKey: MessageType.timeFormat.description)
+            Bus.sendMessage(.timeFormat, data: nil)
         }
     }
     
-    func notificationButtonDidTouch(sender: UIButton) {
+    func notificationButtonDidTouch(_ sender: UIButton) {
         getNotificationPermission(sender)
     }
     
     func setLocationLabels() {
-        if let locationName = Location.getLocationName() {
-            buttonLocation.setTitle(locationName, forState: .Normal)
-            currentLocationLabel.hidden = !Location.isCurrentLocation()
+        if let locationName = SunLocation.getLocationName() {
+            buttonLocation.setTitle(locationName, for: UIControlState())
+            currentLocationLabel.isHidden = !SunLocation.isCurrentLocation()
         }
     }
     
-    func getNotificationPermission(sender: UIButton) {
+    func getNotificationPermission(_ sender: UIButton) {
         let pscope = PermissionScope()
         pscope.style()
         pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow")
         
         pscope.show({ finished, results in
             
-            if results[0].status == .Authorized {
-                sender.selected = !sender.selected
+            if results[0].status == PermissionStatus.authorized {
+                sender.isSelected = !sender.isSelected
                 
                 var noti = ""
                 switch sender {
@@ -182,10 +181,10 @@ class MenuViewController: UIViewController {
                 default:
                     noti = ""
                 }
-                self.defaults.setBool(sender.selected, forKey: noti)
+                self.defaults.set(sender.isSelected, forKey: noti)
                 
-                Bus.sendMessage(.NotificationChange, data: nil)
-                Analytics.toggleNotificationForEvent(sender.selected, type: noti)
+                Bus.sendMessage(.notificationChange, data: nil)
+                Analytics.toggleNotificationForEvent(sender.isSelected, type: noti)
             }
             }, cancelled: { (results) -> Void in
                 print("notification permissions were cancelled")
@@ -198,17 +197,17 @@ class MenuViewController: UIViewController {
         setLocationLabels()
     }
     
-    func viewControllerWithIdentifier(identifier: String) -> UIViewController {
-        return storyBoard.instantiateViewControllerWithIdentifier(identifier)
+    func viewControllerWithIdentifier(_ identifier: String) -> UIViewController {
+        return storyBoard.instantiateViewController(withIdentifier: identifier)
     }
 
-    @IBAction func locationButtonDidTouch(sender: AnyObject) {
-        performSegueWithIdentifier("LocationChangeSegue", sender: self)
+    @IBAction func locationButtonDidTouch(_ sender: AnyObject) {
+        performSegue(withIdentifier: "LocationChangeSegue", sender: self)
         Analytics.openLocationChange()
     }
     
-    @IBAction func aboutButtonDidTouch(sender: AnyObject) {
-        performSegueWithIdentifier("InfoMenuSegue", sender: self)
+    @IBAction func aboutButtonDidTouch(_ sender: AnyObject) {
+        performSegue(withIdentifier: "InfoMenuSegue", sender: self)
         Analytics.openInfoMenu()
     }
     

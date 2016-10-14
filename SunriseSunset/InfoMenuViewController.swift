@@ -45,11 +45,11 @@ class InfoMenuViewController: UIViewController {
         twilightLabels = [civilTwilightLabel, nauticalTwilightLabel, astronomicalTwilightLabel]
         
         screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(sideSwipe))
-        screenEdgeRecognizer.edges = .Left
+        screenEdgeRecognizer.edges = .left
         view.addGestureRecognizer(screenEdgeRecognizer)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("called in view did load")
@@ -66,15 +66,15 @@ class InfoMenuViewController: UIViewController {
         nightButton.addSimpleShadow()
         
         for button in infoButtons {
-            button.addTarget(self, action: #selector(infoButtonPressed), forControlEvents: .TouchDown)
+            button.addTarget(self, action: #selector(infoButtonPressed), for: .touchDown)
         }
         
-        let highlightColour = UIColor.lightGrayColor()
-        dayButton.setTitleColor(highlightColour, forState: .Highlighted)
-        civilButton.setTitleColor(highlightColour, forState: .Highlighted)
-        nauticalButton.setTitleColor(highlightColour, forState: .Highlighted)
-        astronomicalButton.setTitleColor(highlightColour, forState: .Highlighted)
-        nightButton.setTitleColor(highlightColour, forState: .Highlighted)
+        let highlightColour = UIColor.lightGray
+        dayButton.setTitleColor(highlightColour, for: .highlighted)
+        civilButton.setTitleColor(highlightColour, for: .highlighted)
+        nauticalButton.setTitleColor(highlightColour, for: .highlighted)
+        astronomicalButton.setTitleColor(highlightColour, for: .highlighted)
+        nightButton.setTitleColor(highlightColour, for: .highlighted)
         
         // Twilight Labels
         civilTwilightLabel.addSimpleShadow()
@@ -87,33 +87,33 @@ class InfoMenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         twilightGradientLayer = CAGradientLayer()
         twilightGradientLayer.frame = twilightView.bounds
-        twilightGradientLayer.colors = [risesetColour.CGColor, astronomicalColour.CGColor]
+        twilightGradientLayer.colors = [risesetColour.cgColor, astronomicalColour.cgColor]
         twilightGradientLayer.locations = [0.0, 1.0]
         twilightView.layer.addSublayer(twilightGradientLayer)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return false
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     
-    @IBAction func backButtonDidTouch(sender: AnyObject) {
+    @IBAction func backButtonDidTouch(_ sender: AnyObject) {
         goBack()
     }
     
     func goBack() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func animateButtonsIn() {
-        for (index, button) in infoButtons.enumerate() {
+        for (index, button) in infoButtons.enumerated() {
             button.animation = "fadeInRight"
             button.duration = ButtonAnimationDuration
             button.delay = CGFloat(index + 1) * ButtonAnimationDelay
@@ -121,7 +121,7 @@ class InfoMenuViewController: UIViewController {
             button.animate()
         }
         
-        for (index, label) in twilightLabels.enumerate() {
+        for (index, label) in twilightLabels.enumerated() {
             label.animation = "fadeInRight"
             label.duration = ButtonAnimationDuration
             label.delay = CGFloat(index + 2) * ButtonAnimationDelay + CGFloat(0.250)
@@ -130,20 +130,20 @@ class InfoMenuViewController: UIViewController {
         }
     }
     
-    func animateButtonsOut(completion: (()->())) {
-        for (index, button) in infoButtons.enumerate() {
+    func animateButtonsOut(_ completion: @escaping (()->())) {
+        for (index, button) in infoButtons.enumerated() {
             button.animation = "fadeOut"
             button.duration = ButtonFadeOutDuration
             button.delay = CGFloat(index + 1) * ButtonAnimationDelay
             
             if index == infoButtons.count - 1 {
-                button.animateNext(completion)
+                button.animateNext(completion: completion)
             } else {
                 button.animate()
             }
         }
         
-        for (index, label) in twilightLabels.enumerate() {
+        for (index, label) in twilightLabels.enumerated() {
             label.animation = "fadeOut"
             label.duration = ButtonFadeOutDuration
             label.delay = CGFloat(index + 2) * ButtonAnimationDelay
@@ -151,27 +151,27 @@ class InfoMenuViewController: UIViewController {
         }
     }
     
-    func infoButtonPressed(sender: AnyObject) {
-        self.performSegueWithIdentifier("InfoSegue", sender: sender)
+    func infoButtonPressed(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "InfoSegue", sender: sender)
 //        animateButtonsOut() {
 //            self.performSegueWithIdentifier("InfoSegue", sender: sender)
 //        }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let button = sender as? UIButton {
-            if let infoViewController = segue.destinationViewController as? InfoViewController {
+            if let infoViewController = segue.destination as? InfoViewController {
                 var infoData: InfoData!
                 if button == dayButton {
-                    infoData = InfoData.Day
+                    infoData = InfoData.day
                 } else if button == civilButton {
-                    infoData = InfoData.CivilTwilight
+                    infoData = InfoData.civilTwilight
                 } else if button == nauticalButton {
-                    infoData = InfoData.NauticalTwilight
+                    infoData = InfoData.nauticalTwilight
                 } else if button == astronomicalButton {
-                    infoData = InfoData.AstronomicalTwilight
+                    infoData = InfoData.astronomicalTwilight
                 } else if button == nightButton {
-                    infoData = InfoData.Night
+                    infoData = InfoData.night
                 }
                 infoViewController.setInfo(infoData)
                 

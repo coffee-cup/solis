@@ -32,6 +32,8 @@ class SunArea: UIView {
     var inMorning: Bool!
     var day: SunDay!
     
+    var firstLoad = true
+    
     let NameHorizontalPadding: CGFloat = 20
     
     override init (frame : CGRect) {
@@ -53,35 +55,28 @@ class SunArea: UIView {
         fatalError("This class does not support NSCoding")
     }
     
-    func createArea(parentView: UIView) {
+    func createArea(_ parentView: UIView) {
         self.parentView = parentView
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.nameLabel = UILabel()
-            
+        DispatchQueue.main.async {
             self.translatesAutoresizingMaskIntoConstraints = false
-            self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
             
             parentView.addSubview(self)
             
-//            self.addSubview(self.nameLabel)
-            
             // Area View
             
-            let viewHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: ["view": self])
-            self.topConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 1, constant: 0)
-            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 100)
+            let viewHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
+            self.topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
+            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
             
-            NSLayoutConstraint.activateConstraints(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
-            
-//            self.backgroundColor = UIColor.purpleColor().colorWithAlphaComponent(0.3)
+            NSLayoutConstraint.activate(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
             
             self.gradientLayer = CAGradientLayer()
             self.layer.addSublayer(self.gradientLayer)
             self.gradientLayer.frame = self.frame
             
             if let locations = self.locations {
-                self.gradientLayer.locations = locations
+                self.gradientLayer.locations = locations as [NSNumber]?
             } else {
                 self.gradientLayer.locations = [
                     0,
@@ -95,41 +90,34 @@ class SunArea: UIView {
                 self.gradientLayer.colors = colours
             } else {
                 self.gradientLayer.colors = [
-                    self.colour.colorWithAlphaComponent(0.1).CGColor,
-                    self.colour.CGColor,
-                    self.colour.CGColor,
-                    self.colour.colorWithAlphaComponent(0.1).CGColor
+                    self.colour.withAlphaComponent(0.1).cgColor,
+                    self.colour.cgColor,
+                    self.colour.cgColor,
+                    self.colour.withAlphaComponent(0.1).cgColor
                 ]
             }
             
-//            self.backgroundColor = self.colour
-            
-            // Name Label
-            
-//            let nameVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel])
-//            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: self.NameHorizontalPadding)
-//            
-//            NSLayoutConstraint.activateConstraints(nameVerticalConstraints + [self.nameLeftConstraint])
-            
-//            self.nameLabel.textColor = nameTextColour
-//            self.nameLabel.font = fontTwilight
-//            self.nameLabel.text = self.name
+            // Hide view initially
+            self.alpha = 0
         }
     }
     
     func fadeOutView() {
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 0
         }
     }
     
     func fadeInView() {
-        UIView.animateWithDuration(0.5) {
+        if firstLoad {
+            return
+        }
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 1
         }
     }
     
-    func degreesToPercent(minMarker: SunTimeMarker, maxMarker: SunTimeMarker, findDegree: Float) -> Float {
+    func degreesToPercent(_ minMarker: SunTimeMarker, maxMarker: SunTimeMarker, findDegree: Float) -> Float {
         let minDegree = minMarker.sunTimeLine.suntime.type.degrees
         let maxDegree = maxMarker.sunTimeLine.suntime.type.degrees
         
@@ -141,7 +129,7 @@ class SunArea: UIView {
         return scaledPercent
     }
     
-    func updateAreaWithPercents(minPercent: Float, maxPercent: Float) {
+    func updateAreaWithPercents(_ minPercent: Float, maxPercent: Float) {
         if "\(minPercent)" == "nan" || "\(maxPercent)" == "nan" {
             return
         }
@@ -157,14 +145,19 @@ class SunArea: UIView {
         topConstraint.constant = top
         heightConstraint.constant = height
         
-        self.gradientLayer.frame = CGRectMake(0, 0, parentView.frame.width, height)
-        UIView.animateWithDuration(0.5) {
+        self.gradientLayer.frame = CGRect(x: 0, y: 0, width: parentView.frame.width, height: height)
+        UIView.animate(withDuration: 0.5, animations: {
             self.parentView.layoutIfNeeded()
-        }
+            }, completion: { finished in
+            if self.firstLoad {
+                self.firstLoad = false
+                self.fadeInView()
+            }
+        })
     }
     
-    func updateArea(sunTimeMarkers: [SunTimeMarker]) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func updateArea(_ sunTimeMarkers: [SunTimeMarker]) {
+        DispatchQueue.main.async {
             
             // Only use relevant markers
             let filteredMarkers = sunTimeMarkers.filter { marker in
@@ -173,7 +166,7 @@ class SunArea: UIView {
             }
             
             // Sort markers by degrees
-            let sortedMarkers = filteredMarkers.sort { lhs, rhs in
+            let sortedMarkers = filteredMarkers.sorted { lhs, rhs in
                 return lhs.sunTimeLine.suntime.type.degrees < rhs.sunTimeLine.suntime.type.degrees
             }
             
@@ -181,7 +174,7 @@ class SunArea: UIView {
             var highestMarker: SunTimeMarker?
             for marker in sortedMarkers {
                 let sunDegree = marker.sunTimeLine.suntime.type.degrees
-                if sunDegree <= self.startDegrees || (self.startDegrees < 0 && (lowestMarker == nil || sunDegree < lowestMarker?.sunTimeLine.suntime.type.degrees)) {
+                if sunDegree <= self.startDegrees || (self.startDegrees < 0 && (lowestMarker == nil || sunDegree < (lowestMarker?.sunTimeLine.suntime.type.degrees)!)) {
                     lowestMarker = marker
                 }
                 if highestMarker == nil && sunDegree >= self.endDegrees {
@@ -204,7 +197,7 @@ class SunArea: UIView {
                     self.updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
                 }
             }
-            
+         
             if lowestMarker == nil || highestMarker == nil {
                 self.fadeOutView()
             }

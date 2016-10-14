@@ -8,14 +8,13 @@
 
 import Foundation
 import UIKit
-import GoogleMaps
+import GooglePlaces
+import PermissionScope
 
 class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
-    
-    var hideStatusBar = true
     
     lazy var placesClient = GMSPlacesClient()
     lazy var filter = GMSAutocompleteFilter()
@@ -28,6 +27,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     var notificationPlaceDirty = false
     var newNotificationSunPlace: SunPlace?
     
+    let pscope = PermissionScope()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,24 +38,23 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
-        filter.type = .City
+        filter.type = .city
         
-        if let locationHistory = Location.getLocationHistory() {
+        if let locationHistory = SunLocation.getLocationHistory() {
             placeHistory = locationHistory
         } else {
             placeHistory = []
         }
-        
-        Bus.subscribeEvent(.ShowStatusBar, observer: self, selector: #selector(showStatusBar))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
         
         searchTextField.becomeFirstResponder()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -62,20 +62,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         Bus.removeSubscriptions(self)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-//        return hideStatusBar
+    override var prefersStatusBarHidden : Bool {
         return false
     }
     
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return UIStatusBarAnimation.Fade
-    }
-    
-    func showStatusBar() {
-        hideStatusBar = false
-        setNeedsStatusBarAppearanceUpdate()
-        view.layoutIfNeeded()
-        view.layoutSubviews()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.default
     }
     
     func isSearching() -> Bool {
@@ -87,7 +79,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     func goBack() {
         if notificationPlaceDirty {
-            Bus.sendMessage(.ChangeNotificationPlace, data: nil)
+            Bus.sendMessage(.changeNotificationPlace, data: nil)
             
             if let newNotificationSunPlace = newNotificationSunPlace {
                 Analytics.setNotificationPlace(false, sunPlace: newNotificationSunPlace)
@@ -96,17 +88,17 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             }
         }
         searchTextField.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func updateWithSearchResults(results: [GMSAutocompletePrediction]) {
+    func updateWithSearchResults(_ results: [GMSAutocompletePrediction]) {
         places = results.map { result in
             return SunPlace(primary: result.attributedPrimaryText.string, secondary: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
         }
         searchTableView.reloadData()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             placesClient.autocompleteQuery(searchText, bounds: nil, filter: filter) { results, error in
                 guard error == nil else {
@@ -121,31 +113,50 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         }
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         goBack()
     }
     
-    @IBAction func cancelButtonDidTouch(sender: AnyObject) {
+    @IBAction func cancelButtonDidTouch(_ sender: AnyObject) {
 //        goBack()
     }
     
-    @IBAction func setButtonDidTouch(sender: AnyObject) {
+    @IBAction func setButtonDidTouch(_ sender: AnyObject) {
         goBack()
+    }
+    
+    func ensureLocationPermissions(completion: @escaping () -> ()) {
+        pscope.style()
+        pscope.addPermission(LocationWhileInUsePermission(),
+                             message: "We rarely check your location but need it to calculate the suns position")
+        
+        // Show dialog with callbacks
+        pscope.show({ finished, results in
+            if results[0].status == PermissionStatus.authorized {
+                print("got results \(results)")
+                
+                completion()
+            }
+            }, cancelled: { (results) -> Void in
+                print("Location permission was cancelled")
+        })
     }
     
     // Table View
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         goBack()
         
-        if indexPath.row == 0 {
-            Location.selectLocation(true, location: nil, name: nil, sunplace: nil)
-            Analytics.selectLocation(true, sunPlace: nil)
+        if (indexPath as NSIndexPath).row == 0 {
+            ensureLocationPermissions {
+                SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
+                Analytics.selectLocation(true, sunPlace: nil)
+            }
         } else {
             var sunplace: SunPlace!
             if isSearching() {
-                sunplace = places[indexPath.row - 1]
+                sunplace = places[(indexPath as NSIndexPath).row - 1]
                 let placeID = sunplace.placeID
                 placesClient.lookUpPlaceID(placeID) { googlePlace, error in
                     guard error == nil else {
@@ -165,31 +176,31 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                     
                     print("\(sunplace.primary) - \(coordinate)")
                     
-                    Location.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
+                    SunLocation.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
                     Analytics.selectLocation(false, sunPlace: sunplace)
                 }
             } else {
-                sunplace = placeHistory[indexPath.row - 1]
-                Location.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
+                sunplace = placeHistory[(indexPath as NSIndexPath).row - 1]
+                SunLocation.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
                 Analytics.selectLocation(false, sunPlace: sunplace)
             }
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching() ? places.count + 1 : placeHistory.count + 1
     }
     
     func getNotificationPlaceID() -> String? {
-        if let sunPlaceString = defaults.objectForKey(DefaultKey.NotificationPlace.description) as? String {
+        if let sunPlaceString = defaults.object(forKey: DefaultKey.notificationPlace.description) as? String {
             if sunPlaceString != "" {
                 if let sunPlace = SunPlace.sunPlaceFromString(sunPlaceString) {
                     return sunPlace.placeID
@@ -199,15 +210,15 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         return nil
     }
     
-    func setNotificationSunPlace(sunPlace: SunPlace?) {
+    func setNotificationSunPlace(_ sunPlace: SunPlace?) {
         sunPlace?.isNotification = true
         let sunPlaceString = sunPlace == nil ? "" : sunPlace?.toString
-        defaults.setObject(sunPlaceString, forKey: DefaultKey.NotificationPlace.description)
+        defaults.set(sunPlaceString, forKey: DefaultKey.notificationPlace.description)
         
         newNotificationSunPlace = sunPlace
     }
     
-    func bellButtonDidTouch(bellButton: BellButton) {
+    func bellButtonDidTouch(_ bellButton: BellButton) {
         if bellButton.useCurrentLocation {
             setNotificationSunPlace(nil)
         } else {
@@ -219,35 +230,35 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         searchTableView.reloadData()
     }
     
-    func setBellButton(button: BellButton, sunPlace: SunPlace?) {
-        button.setImage(UIImage(named: "bell_grey"), forState: .Normal)
-        button.setImage(UIImage(named: "bell_red"), forState: .Selected)
+    func setBellButton(_ button: BellButton, sunPlace: SunPlace?) {
+        button.setImage(UIImage(named: "bell_grey"), for: UIControlState())
+        button.setImage(UIImage(named: "bell_red"), for: .selected)
         button.sunPlace = sunPlace
         
         let placeId: String? = getNotificationPlaceID()
         
-        button.selected = false
+        button.isSelected = false
         if let sunPlace = sunPlace {
             // custom notification
             if placeId != nil && placeId! == sunPlace.placeID {
-                button.selected = true
+                button.isSelected = true
             }
         } else {
             // current location notification
             if placeId == nil {
-                button.selected = true
+                button.isSelected = true
             }
         }
         
-        button.addTarget(self, action: #selector(bellButtonDidTouch), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(bellButtonDidTouch), for: .touchUpInside)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
-        if indexPath.row == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier("CurrentPlaceCell")
+        if (indexPath as NSIndexPath).row == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "CurrentPlaceCell")
             
-            if let locationName = Location.getCurrentLocationName() {
+            if let locationName = SunLocation.getCurrentLocationName() {
                 let locationLabel = cell.viewWithTag(3)! as! UILabel
                 let bellButton = cell.viewWithTag(4)! as! BellButton
                 
@@ -255,13 +266,13 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                 locationLabel.text = locationName
             }
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier("PlaceCell")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell")!
             
             var sunplace: SunPlace!
             if isSearching() {
-                sunplace = places[indexPath.row - 1]
+                sunplace = places[(indexPath as NSIndexPath).row - 1]
             } else {
-                sunplace = placeHistory[indexPath.row - 1]
+                sunplace = placeHistory[(indexPath as NSIndexPath).row - 1]
             }
             
             let cityLabel = cell.viewWithTag(1)! as! UILabel
@@ -270,9 +281,9 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
             
             if !isSearching() {
                 setBellButton(bellButton, sunPlace: sunplace)
-                bellButton.hidden = false
+                bellButton.isHidden = false
             } else {
-                bellButton.hidden = true
+                bellButton.isHidden = true
             }
             cityLabel.text = sunplace.primary
             stateCountryLabel.text = sunplace.secondary

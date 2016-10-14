@@ -9,82 +9,82 @@
 import Foundation
 
 enum DefaultKey {
-    case TimeFormat
-    case FirstLight
-    case LastLight
-    case Sunrise
-    case Sunset
-    case NotificationPreTime
-    case CurrentLocation
-    case LocationName
-    case CurrentLocationName
-    case LocationDateSet
-    case CurrentLocationLatitude
-    case CurrentLocationLongitude
-    case LocationLatitude
-    case LocationLongitude
-    case LocationPlaceID
-    case LocationTimeZoneOffset
-    case LocationHistoryPlaces
-    case ShowWalkthrough
-    case ShowTutorial
-    case ShowSunAreas
-    case NotificationPlace
+    case timeFormat
+    case firstLight
+    case lastLight
+    case sunrise
+    case sunset
+    case notificationPreTime
+    case currentLocation
+    case locationName
+    case currentLocationName
+    case locationDateSet
+    case currentLocationLatitude
+    case currentLocationLongitude
+    case locationLatitude
+    case locationLongitude
+    case locationPlaceID
+    case locationTimeZoneOffset
+    case locationHistoryPlaces
+    case showWalkthrough
+    case showTutorial
+    case showSunAreas
+    case notificationPlace
     
     var description: String {
         switch self {
-        case .TimeFormat: return "TimeFormat"
-        case .FirstLight: return "FirstLight"
-        case .LastLight: return "LastLight"
-        case .Sunrise: return "Sunrise"
-        case .Sunset: return "Sunset"
-        case .NotificationPreTime: return "NotificationPreTime"
-        case .CurrentLocation: return "CurrentLocation"
-        case .LocationName: return "LocationName"
-        case .CurrentLocationName: return "CurrentLocationName"
-        case .LocationDateSet: return "LocationDateSet"
-        case .CurrentLocationLatitude: return "CurrentLocationLatitude"
-        case .CurrentLocationLongitude: return "CurrentLocationLongitude"
-        case .LocationLatitude: return "LocationLatitude"
-        case .LocationLongitude: return "LocationLongitude"
-        case .LocationPlaceID: return "LocationPlaceID"
-        case .LocationTimeZoneOffset: return "LocationTimeZoneOffset"
-        case .LocationHistoryPlaces: return "LocationHistoryPlaces"
-        case .ShowWalkthrough: return "ShowWalkthrough"
-        case .ShowTutorial: return "ShowTutorial"
-        case .ShowSunAreas: return "ShowSunAreas"
-        case .NotificationPlace: return "NotificationPlace"
+        case .timeFormat: return "TimeFormat"
+        case .firstLight: return "FirstLight"
+        case .lastLight: return "LastLight"
+        case .sunrise: return "Sunrise"
+        case .sunset: return "Sunset"
+        case .notificationPreTime: return "NotificationPreTime"
+        case .currentLocation: return "CurrentLocation"
+        case .locationName: return "LocationName"
+        case .currentLocationName: return "CurrentLocationName"
+        case .locationDateSet: return "LocationDateSet"
+        case .currentLocationLatitude: return "CurrentLocationLatitude"
+        case .currentLocationLongitude: return "CurrentLocationLongitude"
+        case .locationLatitude: return "LocationLatitude"
+        case .locationLongitude: return "LocationLongitude"
+        case .locationPlaceID: return "LocationPlaceID"
+        case .locationTimeZoneOffset: return "LocationTimeZoneOffset"
+        case .locationHistoryPlaces: return "LocationHistoryPlaces"
+        case .showWalkthrough: return "ShowWalkthrough"
+        case .showTutorial: return "ShowTutorial"
+        case .showSunAreas: return "ShowSunAreas"
+        case .notificationPlace: return "NotificationPlace"
         }
     }
 }
 
 class Defaults {
-    static let defaults = NSUserDefaults.init(suiteName: "group.SunriseSunset")!
+    static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
     
     static var delta: Bool {
-        let timeformat = defaults.stringForKey(MessageType.TimeFormat.description)
+        let timeformat = defaults.string(forKey: MessageType.timeFormat.description)
         return timeformat == "delta"
     }
     
     static var timeFormat: String {
-        return defaults.stringForKey(DefaultKey.TimeFormat.description)!
+        return defaults.string(forKey: DefaultKey.timeFormat.description)!
     }
     
     static var showWalkthrough: Bool {
         get {
-            return defaults.boolForKey(DefaultKey.ShowWalkthrough.description)
+            return defaults.bool(forKey: DefaultKey.showWalkthrough.description)
         }
         set {
-            defaults.setBool(newValue, forKey: DefaultKey.ShowWalkthrough.description)
+            defaults.set(newValue, forKey: DefaultKey.showWalkthrough.description)
         }
     }
     
     static var showSunAreas: Bool {
         get {
-            return defaults.boolForKey(DefaultKey.ShowSunAreas.description)
+            return defaults.bool(forKey: DefaultKey.showSunAreas.description)
         }
         set {
-            defaults.setBool(newValue, forKey: DefaultKey.ShowSunAreas.description)
+            defaults.set(newValue, forKey: DefaultKey.showSunAreas.description)
         }
     }
 }

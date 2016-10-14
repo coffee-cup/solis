@@ -13,7 +13,7 @@ class WDarkViewController: UIViewController {
     
     @IBOutlet weak var headingLabel: UILabel!
     
-    var timer: NSTimer!
+    var timer: Timer!
     
     let worldEmojis = ["🌎", "🌏", "🌍"]
     var emojiIndex = 0
@@ -22,10 +22,10 @@ class WDarkViewController: UIViewController {
         super.viewDidLoad()
         
         emojiIndex = worldEmojis.count
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateHeading), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateHeading), userInfo: nil, repeats: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -37,7 +37,7 @@ class WDarkViewController: UIViewController {
             }
             let newEmoji = worldEmojis[emojiIndex]
             
-            let cutText = text.substringToIndex(text.endIndex.advancedBy(-1))
+            let cutText = text.substring(to: text.characters.index(text.endIndex, offsetBy: -1))
             headingLabel.text = "\(cutText)\(newEmoji)"
         }
     }

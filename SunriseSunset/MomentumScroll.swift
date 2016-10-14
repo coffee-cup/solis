@@ -12,7 +12,7 @@ import UIKit
 class MomentumScroll: NSObject, UIDynamicItem {
     
     var bounds: CGRect
-    var center: CGPoint = CGPointZero
+    var center: CGPoint = CGPoint.zero
     var transform: CGAffineTransform
 
     init(sunView: UIView) {

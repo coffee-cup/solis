@@ -79,17 +79,17 @@ class Sun {
     var nowLabel: UILabel
     
     // Formatter for now label text
-    let nowTextFormatter = NSDateFormatter()
+    let nowTextFormatter = DateFormatter()
     
-    var offset: NSTimeInterval = 0
+    var offset: TimeInterval = 0
     
     // Whether or not the sun areas or visible
     var sunAreasVisible = true
     
-    let defaults = NSUserDefaults.standardUserDefaults()
-    var now: NSDate = NSDate()
+    let defaults = UserDefaults.standard
+    var now: Date = Date()
     var location: CLLocationCoordinate2D!
-    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
     
     var delegate: SunProtocol?
     
@@ -114,7 +114,7 @@ class Sun {
         
         timeFormatUpdate()
         
-        calendar.timeZone = NSTimeZone.localTimeZone()
+        calendar.timeZone = TimeZone.ReferenceType.local
         
         createSunAreas()
         
@@ -122,27 +122,27 @@ class Sun {
         toggleSunAreas()
         
         for dayNumber in 1...3 {
-            createSuntime(.AstronomicalDusk, view: sunView, dayNumber: dayNumber)
-            createSuntime(.NauticalDusk, view: sunView, dayNumber: dayNumber)
-            createSuntime(.CivilDusk, view: sunView, dayNumber: dayNumber)
-            createSuntime(.Sunrise, view: sunView, dayNumber: dayNumber)
-            createSuntime(.Sunset, view: sunView, dayNumber: dayNumber)
-            createSuntime(.CivilDawn, view: sunView, dayNumber: dayNumber)
-            createSuntime(.NauticalDawn, view: sunView, dayNumber: dayNumber)
-            createSuntime(.AstronomicalDawn, view: sunView, dayNumber: dayNumber)
+            createSuntime(.astronomicalDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.nauticalDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.civilDusk, view: sunView, dayNumber: dayNumber)
+            createSuntime(.sunrise, view: sunView, dayNumber: dayNumber)
+            createSuntime(.sunset, view: sunView, dayNumber: dayNumber)
+            createSuntime(.civilDawn, view: sunView, dayNumber: dayNumber)
+            createSuntime(.nauticalDawn, view: sunView, dayNumber: dayNumber)
+            createSuntime(.astronomicalDawn, view: sunView, dayNumber: dayNumber)
         }
         
-        Bus.subscribeEvent(.TimeFormat, observer: self, selector: #selector(timeFormatUpdate))
+        Bus.subscribeEvent(.timeFormat, observer: self, selector: #selector(timeFormatUpdate))
     }
     
-    func createSuntime(type: SunType, view: UIView, dayNumber: Int) {
+    func createSuntime(_ type: SunType, view: UIView, dayNumber: Int) {
         var day: SunDay!
         if dayNumber == 1 {
-            day = .Yesterday
+            day = .yesterday
         } else if dayNumber == 2 {
-            day = .Today
+            day = .today
         } else if dayNumber == 3 {
-            day = .Tomorrow
+            day = .tomorrow
         }
         
         let suntime = Suntime(type: type, day: day)
@@ -152,19 +152,19 @@ class Sun {
         sunTimeLines.append(SunTimeLine(suntime: suntime, sunline: sunline))
     }
     
-    func createGoldenHourArea(day: SunDay, inMorning: Bool) -> SunArea {
+    func createGoldenHourArea(_ day: SunDay, inMorning: Bool) -> SunArea {
         let startDegrees: Float = -6
         let endDegrees: Float = 4
         
         // Carefully fuck with these numbers
         var colours = [
-            goldenHourColour.colorWithAlphaComponent(0).CGColor,
-            goldenHourColour.colorWithAlphaComponent(0.2).CGColor,
-            goldenHourColour.CGColor,
-            blueHourColour.colorWithAlphaComponent(0.2).CGColor
+            goldenHourColour.withAlphaComponent(0).cgColor,
+            goldenHourColour.withAlphaComponent(0.2).cgColor,
+            goldenHourColour.cgColor,
+            blueHourColour.withAlphaComponent(0.2).cgColor
         ]
         if !inMorning {
-            colours = colours.reverse()
+            colours = colours.reversed()
         }
         
         let locations: [Float] = inMorning ? [
@@ -193,19 +193,19 @@ class Sun {
         return goldenHourArea
     }
     
-    func createBlueHourArea(day: SunDay, inMorning: Bool) -> SunArea {
+    func createBlueHourArea(_ day: SunDay, inMorning: Bool) -> SunArea {
         let startDegrees: Float = 4
         let endDegrees: Float = 6
         
         // Carefully fuck with these numbers
         var colours = [
-            blueHourColour.colorWithAlphaComponent(0.2).CGColor,
-            blueHourColour.CGColor,
-            blueHourColour.colorWithAlphaComponent(0.1).CGColor,
-            blueHourColour.colorWithAlphaComponent(0).CGColor
+            blueHourColour.withAlphaComponent(0.2).cgColor,
+            blueHourColour.cgColor,
+            blueHourColour.withAlphaComponent(0.1).cgColor,
+            blueHourColour.withAlphaComponent(0).cgColor
         ]
         if !inMorning {
-           colours = colours.reverse()
+           colours = colours.reversed()
         }
         
         let locations: [Float] = inMorning ? [
@@ -236,24 +236,24 @@ class Sun {
     
     func createSunAreas() {
         // Evening Golden Hour
-        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: false))
-        sunAreas.append(createGoldenHourArea(.Today, inMorning: false))
-        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.yesterday, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.today, inMorning: false))
+        sunAreas.append(createGoldenHourArea(.tomorrow, inMorning: false))
 
         // Morning Golden Hour
-        sunAreas.append(createGoldenHourArea(.Yesterday, inMorning: true))
-        sunAreas.append(createGoldenHourArea(.Today, inMorning: true))
-        sunAreas.append(createGoldenHourArea(.Tomorrow, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.yesterday, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.today, inMorning: true))
+        sunAreas.append(createGoldenHourArea(.tomorrow, inMorning: true))
 
         // Evening Blue Hour
-        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: false))
-        sunAreas.append(createBlueHourArea(.Today, inMorning: false))
-        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: false))
+        sunAreas.append(createBlueHourArea(.yesterday, inMorning: false))
+        sunAreas.append(createBlueHourArea(.today, inMorning: false))
+        sunAreas.append(createBlueHourArea(.tomorrow, inMorning: false))
 
         // Morning Blue Hour
-        sunAreas.append(createBlueHourArea(.Yesterday, inMorning: true))
-        sunAreas.append(createBlueHourArea(.Today, inMorning: true))
-        sunAreas.append(createBlueHourArea(.Tomorrow, inMorning: true))
+        sunAreas.append(createBlueHourArea(.yesterday, inMorning: true))
+        sunAreas.append(createBlueHourArea(.today, inMorning: true))
+        sunAreas.append(createBlueHourArea(.tomorrow, inMorning: true))
     }
     
     func toggleSunAreas() {
@@ -281,72 +281,72 @@ class Sun {
     
     func setNowTimeText() {
         if let formatter = TimeFormatters.currentFormatter(TimeZones.currentTimeZone) {
-            nowTimeLabel.text = formatter.stringFromDate(now)
-                .stringByReplacingOccurrencesOfString("AM", withString: "am")
-                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+            nowTimeLabel.text = formatter.string(from: now)
+                .replacingOccurrences(of: "AM", with: "am")
+                .replacingOccurrences(of: "PM", with: "pm")
         } else {
-            nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).stringFromDate(now)
-                .stringByReplacingOccurrencesOfString("AM", withString: "am")
-                .stringByReplacingOccurrencesOfString("PM", withString: "pm")
+            nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).string(from: now)
+                .replacingOccurrences(of: "AM", with: "am")
+                .replacingOccurrences(of: "PM", with: "pm")
         }
         
         if offset == 0 {
             nowLabel.text = "now"
         } else {
-            nowLabel.text = nowTextFormatter.stringFromDate(now)
+            nowLabel.text = nowTextFormatter.string(from: now)
         }
     }
     
-    func update(offset: Double, location: CLLocationCoordinate2D) {
+    func update(_ offset: Double, location: CLLocationCoordinate2D) {
         calculateSunriseSunset(location)
         calculateGradient()
         findNow(offset)
     }
     
-    func pointsToMinutes(points: Double) -> Double {
+    func pointsToMinutes(_ points: Double) -> Double {
         let scale = points / Double(screenHeight)
         return scale * Double(screenMinutes)
     }
     
     // offset is in minutes
-    func findNow(offset: Double) {
+    func findNow(_ offset: Double) {
         self.offset = offset * 60
-        self.now = NSDate().dateByAddingTimeInterval(offset * 60)
+        self.now = Date().addingTimeInterval(offset * 60)
         self.setNowTimeText()
         self.setSunlineTimes()
     }
     
-    func calculateSunriseSunset(location: CLLocationCoordinate2D) {
+    func calculateSunriseSunset(_ location: CLLocationCoordinate2D) {
         self.location = location
         
-        let today = NSDate()
-        let yesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: today, options: [])!
-        let tomorrow = calendar.dateByAddingUnit(.Day, value: 1, toDate: today, options: [])!
+        let today = Date()
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
         
-        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .Yesterday)
-            + SunLogic.calculateTimesForDate(today, location: location, day: .Today)
-            + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .Tomorrow)
-        for (index, time) in suntimes.enumerate() {
+        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .yesterday)
+            + SunLogic.calculateTimesForDate(today, location: location, day: .today)
+            + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .tomorrow)
+        for (index, time) in suntimes.enumerated() {
             sunTimeLines[index].suntime = time
         }
     }
     
-    func getDifferenceInMinutes(date1: NSDate, date2: NSDate) -> Int {
-        let differenceSeconds = date1.timeIntervalSinceDate(date2)
+    func getDifferenceInMinutes(_ date1: Date, date2: Date) -> Int {
+        let differenceSeconds = date1.timeIntervalSince(date2)
         return abs(Int(differenceSeconds / 60))
     }
     
-    func getGradientPercent(time: Suntime, now: NSDate) -> Float {
-        let difference: Int = getDifferenceInMinutes(time.date, date2: now)
+    func getGradientPercent(_ time: Suntime, now: Date) -> Float {
+        let difference: Int = getDifferenceInMinutes(time.date as Date, date2: now)
         let scaled: Float = Float(difference) / screenMinutes
         let percent: Float = (scaled * screenHeight) / sunHeight
         return percent
     }
     
     func calculateGradient() {
-        sunView.backgroundColor = UIColor.clearColor()
+        sunView.backgroundColor = UIColor.clear
 
-        let sortedFiltered = sunTimeLines.sort()
+        let sortedFiltered = sunTimeLines.sorted()
         
         var pastTimeLines: [SunTimeLine] = []
         var futureTimeLines: [SunTimeLine] = []
@@ -359,13 +359,13 @@ class Sun {
         }
         
         var sunTimeMarkers: [SunTimeMarker] = []
-        var colours: [CGColorRef] = []
+        var colours: [CGColor] = []
 //        var locations: [Float] = []
         
         var lowestStl: SunTimeLine!
         var lowestLocation: Float = -Float.infinity
-        var lowestColour: CGColorRef?
-        for stl in futureTimeLines.reverse() {
+        var lowestColour: CGColor?
+        for stl in futureTimeLines.reversed() {
             let per = 0.5  - getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 sunTimeMarkers.append(SunTimeMarker(sunTimeLine: stl, percent: per))
@@ -380,15 +380,15 @@ class Sun {
             stl.sunline.updateLine(stl.suntime.date, percent: per, happens: !stl.suntime.neverHappens)
         }
         if let lowestColour = lowestColour {
-            sunTimeMarkers.insert(SunTimeMarker(sunTimeLine: lowestStl, percent: 0), atIndex: 0)
+            sunTimeMarkers.insert(SunTimeMarker(sunTimeLine: lowestStl, percent: 0), at: 0)
 //            locations.insert(0, atIndex: 0)
-            colours.insert(lowestColour, atIndex: 0)
+            colours.insert(lowestColour, at: 0)
         }
         
         var highestStl: SunTimeLine!
         var highestLocation: Float = Float.infinity
-        var highestColour: CGColorRef?
-        for stl in pastTimeLines.reverse() {
+        var highestColour: CGColor?
+        for stl in pastTimeLines.reversed() {
             let per = 0.5 + getGradientPercent(stl.suntime, now: now)
             if stl.suntime.marker && !stl.suntime.neverHappens && per >= 0 && per <= 1 {
                 sunTimeMarkers.append(SunTimeMarker(sunTimeLine: stl, percent: per))
@@ -417,18 +417,18 @@ class Sun {
         calculateSunAreas(sunTimeMarkers)
     }
     
-    func calculateSunAreas(sunTimeMarkers: [SunTimeMarker]) {
+    func calculateSunAreas(_ sunTimeMarkers: [SunTimeMarker]) {
         for sunArea in sunAreas {
             sunArea.updateArea(sunTimeMarkers)
         }
     }
     
-    func animateGradient(gradientLayer: CAGradientLayer, toColours: [CGColorRef], toLocations: [Float]) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func animateGradient(_ gradientLayer: CAGradientLayer, toColours: [CGColor], toLocations: [Float]) {
+        DispatchQueue.main.async {
             // Do not animate the first gradient
             guard let _ = gradientLayer.colors else {
                 gradientLayer.colors = toColours
-                gradientLayer.locations = toLocations
+                gradientLayer.locations = toLocations as [NSNumber]?
                 return
             }
             
@@ -438,7 +438,7 @@ class Sun {
             let fromLocations = gradientLayer.locations!
             
             gradientLayer.colors = toColours
-            gradientLayer.locations = toLocations
+            gradientLayer.locations = toLocations as [NSNumber]?
             
             let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
             let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
@@ -446,19 +446,19 @@ class Sun {
             colourAnimation.fromValue = fromColours
             colourAnimation.toValue = toColours
             colourAnimation.duration = duration
-            colourAnimation.removedOnCompletion = true
+            colourAnimation.isRemovedOnCompletion = true
             colourAnimation.fillMode = kCAFillModeForwards
             colourAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             
             locationAnimation.fromValue = fromLocations
             locationAnimation.toValue = toLocations
             locationAnimation.duration = duration
-            locationAnimation.removedOnCompletion = true
+            locationAnimation.isRemovedOnCompletion = true
             locationAnimation.fillMode = kCAFillModeForwards
             locationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
             
-            gradientLayer.addAnimation(colourAnimation, forKey: "animateGradientColour")
-            gradientLayer.addAnimation(locationAnimation, forKey: "animateGradientLocation")
+            gradientLayer.add(colourAnimation, forKey: "animateGradientColour")
+            gradientLayer.add(locationAnimation, forKey: "animateGradientLocation")
         }
     }
     

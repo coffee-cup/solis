@@ -42,7 +42,7 @@ class Easing {
     static let easeInOutBack = CAMediaTimingFunction(controlPoints: 0.68, -0.55, 0.265, 1.55)
     
     // t: current time, b: beginning value, c: change in value, d: duration
-    class func easeOutQuadFunc(currentTime: Double, startValue: Double, changeInValue: Double, duration: Double) -> Double {
+    class func easeOutQuadFunc(_ currentTime: Double, startValue: Double, changeInValue: Double, duration: Double) -> Double {
         let t = currentTime / duration
         return -changeInValue * t * (t-2) + startValue
     }

@@ -22,14 +22,14 @@ class Sunline: UIView {
     var lineRightConstraint: NSLayoutConstraint!
     var nameLeftConstraint: NSLayoutConstraint!
     
-    var time: NSDate!
+    var time: Date!
     
     var colliding = false
     let CollidingMinutesThreshhold = 12
     let LineHorizontalPadding: CGFloat = 100
     let NameHorizontalPadding: CGFloat = 20
     
-    let CollideAnimationDuration: NSTimeInterval = 0.25
+    let CollideAnimationDuration: TimeInterval = 0.25
 
     override init (frame : CGRect) {
         super.init(frame : frame)
@@ -43,10 +43,10 @@ class Sunline: UIView {
         fatalError("This class does not support NSCoding")
     }
     
-    func createLine(parentView: UIView, type: SunType) {
+    func createLine(_ parentView: UIView, type: SunType) {
         self.parentView = parentView
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
         
             self.line = UIView()
             self.timeLabel = UILabel()
@@ -63,31 +63,31 @@ class Sunline: UIView {
             self.addSubview(self.nameLabel)
             
             // View Contraints
-            self.topConstraint = NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: parentView, attribute: .Top, multiplier: 1, constant: 0)
-            let edgeConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: [], metrics: nil, views: ["view": self])
-            NSLayoutConstraint.activateConstraints(edgeConstraints + [self.topConstraint])
+            self.topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
+            let edgeConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
+            NSLayoutConstraint.activate(edgeConstraints + [self.topConstraint])
             
             // Line Constraints
-            self.lineLeftConstraint = NSLayoutConstraint(item: self.line, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 0)
-            self.lineRightConstraint = NSLayoutConstraint(item: self.line, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1, constant: -self.LineHorizontalPadding)
-            let lineVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]|", options: [], metrics: nil, views: ["view": self.line])
-            let lineHeightContraint = NSLayoutConstraint(item: self.line, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0, constant: 1)
-            NSLayoutConstraint.activateConstraints([self.lineLeftConstraint, self.lineRightConstraint, lineHeightContraint] + lineVerticalConstraints)
+            self.lineLeftConstraint = NSLayoutConstraint(item: self.line, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+            self.lineRightConstraint = NSLayoutConstraint(item: self.line, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.LineHorizontalPadding)
+            let lineVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|", options: [], metrics: nil, views: ["view": self.line])
+            let lineHeightContraint = NSLayoutConstraint(item: self.line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 1)
+            NSLayoutConstraint.activate([self.lineLeftConstraint, self.lineRightConstraint, lineHeightContraint] + lineVerticalConstraints)
             
             // Name Constraints
-            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: self.NameHorizontalPadding)
-            let nameVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel])
-            NSLayoutConstraint.activateConstraints(nameVerticalConstraints + [self.nameLeftConstraint])
+            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: self.NameHorizontalPadding)
+            let nameVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel])
+            NSLayoutConstraint.activate(nameVerticalConstraints + [self.nameLeftConstraint])
             
             // Time Contstraints
-            let timeCenterConstraint = NSLayoutConstraint(item: self.timeLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.line, attribute: .CenterY, multiplier: 1, constant: 0)
-            let timeHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel])
-            NSLayoutConstraint.activateConstraints(timeHorizontalConstraints + [timeCenterConstraint])
+            let timeCenterConstraint = NSLayoutConstraint(item: self.timeLabel, attribute: .centerY, relatedBy: .equal, toItem: self.line, attribute: .centerY, multiplier: 1, constant: 0)
+            let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel])
+            NSLayoutConstraint.activate(timeHorizontalConstraints + [timeCenterConstraint])
             
-            self.backgroundColor = UIColor.redColor()
+            self.backgroundColor = UIColor.red
             self.line.backgroundColor = type.lineColour
             
-            self.nameLabel.text = type.description.lowercaseString
+            self.nameLabel.text = type.description.lowercased()
             self.nameLabel.textColor = nameTextColour
             self.nameLabel.font = fontTwilight
             
@@ -98,20 +98,20 @@ class Sunline: UIView {
             self.nameLabel.addSimpleShadow()
             self.timeLabel.addSimpleShadow()
             
-            self.hidden = true
+            self.isHidden = true
             self.alpha = 0
         }
     }
     
-    func getTimeText(offset: NSTimeInterval) -> String {
+    func getTimeText(_ offset: TimeInterval) -> String {
         let text = TimeFormatters.currentFormattedString(time, timeZone: TimeZones.currentTimeZone)
         return text
     }
     
     // Animates the items in the sunline to avoid collision with now line
     // Returns whether there will be a collision with now line
-    func animateAvoidCollision(offset: NSTimeInterval) -> Bool {
-        let offsetTime = NSDate().dateByAddingTimeInterval(offset)
+    func animateAvoidCollision(_ offset: TimeInterval) -> Bool {
+        let offsetTime = Date().addingTimeInterval(offset)
         let difference = abs(offsetTime.getDifferenceInMinutes(time))
         
         if difference < CollidingMinutesThreshhold {
@@ -129,7 +129,7 @@ class Sunline: UIView {
             let namePaddingFraction: CGFloat = parentView.frame.width < 375 ? 3 : 1
             lineLeftConstraint.constant = LineHorizontalPadding
             nameLeftConstraint.constant = LineHorizontalPadding + (NameHorizontalPadding / namePaddingFraction)
-            UIView.animateWithDuration(CollideAnimationDuration, delay: 0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.layoutIfNeeded()
                 self.timeLabel.alpha = 0
                 }, completion: nil)
@@ -141,7 +141,7 @@ class Sunline: UIView {
         if colliding {
             lineLeftConstraint.constant = 0
             nameLeftConstraint.constant = NameHorizontalPadding
-            UIView.animateWithDuration(CollideAnimationDuration, delay: 0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.layoutIfNeeded()
                 self.timeLabel.alpha = 1
                 }, completion: nil)
@@ -150,14 +150,14 @@ class Sunline: UIView {
     }
     
     // Returns whether there will be a collision with now line
-    func updateTime(offset: NSTimeInterval = 0) -> Bool {
+    func updateTime(_ offset: TimeInterval = 0) -> Bool {
         if time == nil {
             return false
         }
         
         let timeText = getTimeText(offset)
         let isCollision = animateAvoidCollision(offset)
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if self.time != nil {
                 self.timeLabel.text = timeText
             }
@@ -165,23 +165,23 @@ class Sunline: UIView {
         return isCollision
     }
 
-    func updateLine(time: NSDate, percent: Float, happens: Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func updateLine(_ time: Date, percent: Float, happens: Bool) {
+        DispatchQueue.main.async {
             self.time = time
             self.updateTime()
             
             self.topConstraint.constant = self.parentView.frame.height * CGFloat(percent)
-            UIView.animateWithDuration(0.5) {
+            UIView.animate(withDuration: 0.5) {
                 self.parentView.layoutIfNeeded()
             }
             
             if happens {
-                self.hidden = false
-                UIView.animateWithDuration(0.5, delay: 1, options: .CurveEaseInOut, animations: {
+                self.isHidden = false
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: {
                     self.alpha = 1
                     }, completion: nil)
             } else {
-                UIView.animateWithDuration(0.5, delay: 1, options: .CurveEaseInOut, animations: {
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: {
                     self.alpha = 0
                     }, completion: nil)
             }
