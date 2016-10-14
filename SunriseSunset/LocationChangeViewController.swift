@@ -16,8 +16,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
     
-    var hideStatusBar = true
-    
     lazy var placesClient = GMSPlacesClient()
     lazy var filter = GMSAutocompleteFilter()
     
@@ -47,12 +45,11 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         } else {
             placeHistory = []
         }
-        
-        Bus.subscribeEvent(.showStatusBar, observer: self, selector: #selector(showStatusBar))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
         
         searchTextField.becomeFirstResponder()
     }
@@ -66,19 +63,11 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     override var prefersStatusBarHidden : Bool {
-//        return hideStatusBar
         return false
     }
     
-    override var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
-        return UIStatusBarAnimation.fade
-    }
-    
-    func showStatusBar() {
-        hideStatusBar = false
-        setNeedsStatusBarAppearanceUpdate()
-        view.layoutIfNeeded()
-        view.layoutSubviews()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.default
     }
     
     func isSearching() -> Bool {

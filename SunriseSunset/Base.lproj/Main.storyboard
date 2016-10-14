@@ -873,7 +873,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="searchTableView" destination="5qI-16-Cfc" id="Ppy-pI-Zy7"/>
                         <outlet property="searchTextField" destination="aeS-p9-Yg3" id="Hhs-zG-yMu"/>
