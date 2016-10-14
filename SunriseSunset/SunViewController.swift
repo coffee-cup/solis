@@ -210,17 +210,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         super.viewDidAppear(animated)
         
         // Update every minute
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
         Bus.removeSubscriptions(self)
     }
-    
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
     
     func setupBackgroundView() {
         backgroundView = UIView()
