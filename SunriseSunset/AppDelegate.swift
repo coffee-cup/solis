@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSPlacesClient.provideAPIKey(GoogleAPIKey)
         
-        application.setMinimumBackgroundFetchInterval(60 * 60 * 6) // 6 hours
+        application.setMinimumBackgroundFetchInterval(60 * 60 * 3) // 3 hours
         
         // Set initial view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             notifications = Notifications()
         }
         
-        let triggered = notifications.scheduleNotifications()
+        _ = notifications.scheduleNotifications()
         notifications.checkIfNotificationsTriggered()
         
         completionHandler(.newData)
