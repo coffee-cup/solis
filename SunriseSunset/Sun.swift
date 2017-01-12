@@ -129,6 +129,8 @@ class Sun {
             createSuntime(.nauticalDawn, view: sunView, dayNumber: dayNumber)
             createSuntime(.astronomicalDawn, view: sunView, dayNumber: dayNumber)
         }
+        createSuntime(.middleNight, view: sunView, dayNumber: 2)
+        createSuntime(.middleNight, view: sunView, dayNumber: 3)
         
         Bus.subscribeEvent(.timeFormat, observer: self, selector: #selector(timeFormatUpdate))
     }
@@ -321,12 +323,17 @@ class Sun {
         let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
         let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
         
-        let suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .yesterday)
+        
+        var suntimes = SunLogic.calculateTimesForDate(yesterday, location: location, day: .yesterday)
             + SunLogic.calculateTimesForDate(today, location: location, day: .today)
             + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .tomorrow)
+          
+        suntimes = suntimes + SunLogic.createMiddleLines(suntimes)
+        
         for (index, time) in suntimes.enumerated() {
             sunTimeLines[index].suntime = time
         }
+        
     }
     
     func getDifferenceInMinutes(_ date1: Date, date2: Date) -> Int {
@@ -370,7 +377,7 @@ class Sun {
                 colours.append(stl.suntime.colour)
 //                locations.append(per)
             }
-            if per < 0 && per > lowestLocation && !stl.suntime.neverHappens {
+            if per < 0 && per > lowestLocation && !stl.suntime.neverHappens && stl.suntime.marker {
                 lowestLocation = per
                 lowestColour = stl.suntime.colour
                 lowestStl = stl
@@ -394,7 +401,7 @@ class Sun {
 //                locations.append(per)
             }
             
-            if per > 1 && per < highestLocation && !stl.suntime.neverHappens {
+            if per > 1 && per < highestLocation && !stl.suntime.neverHappens && stl.suntime.marker {
                 highestLocation = per
                 highestColour = stl.suntime.colour
                 highestStl = stl

@@ -18,6 +18,7 @@ enum SunType {
     case civilDusk
     case nauticalDusk
     case astronomicalDusk
+    case middleNight
     
     var description: String {
         switch self {
@@ -29,6 +30,7 @@ enum SunType {
         case .civilDusk: return "Civil Dusk";
         case .nauticalDusk: return "Nautical Dusk";
         case .astronomicalDusk: return "Astronomical Dusk";
+        case .middleNight: return "Middle of Night";
         }
     }
     
@@ -42,6 +44,7 @@ enum SunType {
         case .civilDusk: return false;
         case .nauticalDusk: return false;
         case .astronomicalDusk: return true;
+        case .middleNight: return false;
         }
     }
     
@@ -55,6 +58,7 @@ enum SunType {
         case .nauticalDusk: return nauticalColour.cgColor as CGColor
         case .sunset: return risesetColour.cgColor as CGColor
         case .astronomicalDusk: return astronomicalColour.cgColor as CGColor
+        case .middleNight: return astronomicalColour.cgColor as CGColor
         }
     }
     
@@ -68,6 +72,7 @@ enum SunType {
         case .civilDusk: return darkLineColour;
         case .nauticalDusk: return darkLineColour;
         case .astronomicalDusk: return darkLineColour;
+        case .middleNight: return middleLineColour;
         }
     }
     
@@ -109,6 +114,7 @@ enum SunType {
         case .civilDusk: return false;
         case .nauticalDusk: return false;
         case .astronomicalDusk: return false;
+        case .middleNight: return false;
         }
     }
     
@@ -122,6 +128,7 @@ enum SunType {
         case .civilDusk: return true;
         case .nauticalDusk: return true;
         case .astronomicalDusk: return true;
+        case .middleNight: return false;
         }
     }
     
@@ -135,6 +142,7 @@ enum SunType {
         case .civilDusk: return false;
         case .nauticalDusk: return false;
         case .astronomicalDusk: return false;
+        case .middleNight: return false;
         }
     }
     
@@ -148,6 +156,7 @@ enum SunType {
         case .civilDusk: return true;
         case .nauticalDusk: return true;
         case .astronomicalDusk: return true;
+        case .middleNight: return false;
         }
     }
     
@@ -161,6 +170,7 @@ enum SunType {
         case .civilDusk: return 6;
         case .nauticalDusk: return 12;
         case .astronomicalDusk: return 18;
+        case .middleNight: return 270;
         }
     }
 }

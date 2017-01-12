@@ -61,6 +61,36 @@ class SunLogic {
         return suntimes
     }
     
+    class func createSuntimeInMiddle(startTime: Suntime, endTime: Suntime) -> Suntime {
+        let middleTimeDate = Date.init(timeIntervalSince1970: (endTime.date.timeIntervalSince1970 + startTime.date.timeIntervalSince1970) / 2)
+        print("middle time: \(middleTimeDate)")
+        
+        let middleTime = Suntime(type: .middleNight, day: .today)
+        middleTime.date = middleTimeDate
+        return middleTime
+    }
+    
+    class func createMiddleLines(_ suntimes: [Suntime]) -> [Suntime] {
+        print("\n===== Checking")
+        
+        
+        guard let nightStartTime1 = SunLogic.getSunType(suntimes, type: .astronomicalDusk, day: .yesterday) else {
+            return []
+        }
+        guard let nightEndTime1 = SunLogic.getSunType(suntimes, type: .astronomicalDawn, day: .today) else {
+            return []
+        }
+        
+        guard let nightStartTime2 = SunLogic.getSunType(suntimes, type: .astronomicalDusk, day: .today) else {
+            return []
+        }
+        guard let nightEndTime2 = SunLogic.getSunType(suntimes, type: .astronomicalDawn, day: .tomorrow) else {
+            return []
+        }
+        
+        return [createSuntimeInMiddle(startTime: nightStartTime1, endTime: nightEndTime1), createSuntimeInMiddle(startTime: nightStartTime2, endTime: nightEndTime2)]
+    }
+    
     class func todayTomorrow(_ location: CLLocationCoordinate2D) -> [Suntime] {
         let today = Date()
         let tomorrow = today.addDays(1)
@@ -74,13 +104,21 @@ class SunLogic {
         }
     }
     
-    class func getNextSunType(_ suntimes: [Suntime], type: SunType) -> Suntime? {
-        let times = futureTimes(suntimes)
-        let matches = times.filter { time in
-            return time.type == type && !time.neverHappens
+    class func getSunType(_ suntimes: [Suntime], type: SunType, day: SunDay? = nil) -> Suntime? {
+        let matches = suntimes.filter { time in
+            let m = time.type == type && !time.neverHappens
+            if let day = day {
+                return m && (time.day == day)
+            }
+            return m
         }
         let sorted = matches.sorted()
         return sorted.count > 0 ? sorted[0] : nil
+    }
+    
+    class func getNextSunType(_ suntimes: [Suntime], type: SunType) -> Suntime? {
+        let times = futureTimes(suntimes)
+        return getSunType(times, type: type)
     }
     
     class func sunrise(_ suntimes: [Suntime]) -> Suntime? {

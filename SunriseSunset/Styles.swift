@@ -20,6 +20,7 @@ let astronomicalColour = UIColor(hex: 0x52009F)
 let lightLineColour = UIColor(hex: 0x00D3D0)
 let darkLineColour = UIColor(hex: 0x6A00CD)
 let nowLineColour = UIColor(hex: 0xF44336)
+let middleLineColour = UIColor.white.withAlphaComponent(0.5)
 
 let nameTextColour = UIColor.white.withAlphaComponent(0.8)
 let timeTextColour = UIColor.white.withAlphaComponent(0.8)
