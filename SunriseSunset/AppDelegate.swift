@@ -97,11 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let triggered = notifications.scheduleNotifications()
         notifications.checkIfNotificationsTriggered()
         
-        if triggered {
-            completionHandler(.newData)
-        } else {
-            completionHandler(.noData)
-        }
+        completionHandler(.newData)
     }
 
 }

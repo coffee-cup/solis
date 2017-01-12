@@ -93,8 +93,6 @@ class Sun {
     
     var delegate: SunProtocol?
     
-//    var suntimes: [Suntime] = []
-//    var sunlines: [Sunline] = []
     var sunTimeLines: [SunTimeLine] = []
     var sunAreas: [SunArea] = []
     
