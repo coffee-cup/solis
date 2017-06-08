@@ -330,10 +330,17 @@ class Sun {
           
         suntimes = suntimes + SunLogic.createMiddleLines(suntimes)
         
+        if suntimes.count < sunTimeLines.count {
+            sunTimeLines = Array(sunTimeLines[0 ..< suntimes.count])
+        }
+        
+        if sunTimeLines.count < suntimes.count {
+            suntimes = Array(suntimes[0 ..< sunTimeLines.count])
+        }
+        
         for (index, time) in suntimes.enumerated() {
             sunTimeLines[index].suntime = time
         }
-        
     }
     
     func getDifferenceInMinutes(_ date1: Date, date2: Date) -> Int {
