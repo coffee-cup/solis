@@ -74,17 +74,21 @@ class SunLogic {
         print("\n===== Checking")
         
         
-        guard let nightStartTime1 = SunLogic.getSunType(suntimes, type: .astronomicalDusk, day: .yesterday) else {
-            return []
-        }
-        guard let nightEndTime1 = SunLogic.getSunType(suntimes, type: .astronomicalDawn, day: .today) else {
+        let nightTypes: [SunType] = [.astronomicalDusk, .nauticalDusk, .civilDusk, .sunset]
+        let dayTypes: [SunType] = [.astronomicalDawn, .nauticalDawn, .civilDawn, .sunrise]
+        
+        guard let nightStartTime1 = SunLogic.getFirstSunType(suntimes, sunTypes: nightTypes, day: .yesterday) else {
             return []
         }
         
-        guard let nightStartTime2 = SunLogic.getSunType(suntimes, type: .astronomicalDusk, day: .today) else {
+        guard let nightEndTime1 = SunLogic.getFirstSunType(suntimes, sunTypes: dayTypes, day: .today) else {
             return []
         }
-        guard let nightEndTime2 = SunLogic.getSunType(suntimes, type: .astronomicalDawn, day: .tomorrow) else {
+        
+        guard let nightStartTime2 = SunLogic.getFirstSunType(suntimes, sunTypes: nightTypes, day: .today) else {
+            return []
+        }
+        guard let nightEndTime2 = SunLogic.getFirstSunType(suntimes, sunTypes: dayTypes, day: .tomorrow) else {
             return []
         }
         
@@ -114,6 +118,15 @@ class SunLogic {
         }
         let sorted = matches.sorted()
         return sorted.count > 0 ? sorted[0] : nil
+    }
+    
+    class func getFirstSunType(_ suntimes: [Suntime], sunTypes: [SunType], day: SunDay? = nil) -> Suntime? {
+        for type in sunTypes {
+            if let suntime = getSunType(suntimes, type: type, day: day) {
+                return suntime
+            }
+        }
+        return nil
     }
     
     class func getNextSunType(_ suntimes: [Suntime], type: SunType) -> Suntime? {
