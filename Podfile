@@ -4,9 +4,6 @@ platform :ios, '9.0'
 use_frameworks!
 
 def swift3_overrides
-    pod 'PermissionScope', git: 'https://github.com/nickoneill/PermissionScope.git', branch: 'swift3'
-    pod 'SwiftyJSON', git: 'https://github.com/IBM-Swift/SwiftyJSON.git'
-    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', branch: 'master'
 end
 
 def swift3_overrides_widget
@@ -17,6 +14,8 @@ target 'SunriseSunset' do
 
     swift3_overrides
 
+    pod 'Alamofire', '~> 4.5.1'
+    pod 'PermissionScope'
     pod 'EDSunriseSet', '~> 1.0'
     pod 'UIView-Easing'
     pod 'SwiftLocation'

@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 import Alamofire
-import SwiftyJSON
 
 class TimeZones {
     
@@ -77,7 +76,7 @@ class TimeZones {
                 return
             }
             
-            let json = JSON(data: data)
+            let json = try! JSON(data: data)
             guard let abbreviation = json["abbreviation"].string else {
                 print("Abbreviation from response is nil")
                 completionHandler(nil, nil)
