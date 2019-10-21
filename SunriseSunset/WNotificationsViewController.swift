@@ -36,9 +36,7 @@ class WNotificationsViewController: UIViewController {
             }
             let newEmoji = emojis[emojiIndex]
             
-            let reqIndex = text.endIndex
-            let cutText = String(text[..<reqIndex])
-            headingLabel.text = "\(cutText)\(newEmoji)"
+            headingLabel.text = "\(String(text.dropLast()))\(newEmoji)"
         }
     }
 }

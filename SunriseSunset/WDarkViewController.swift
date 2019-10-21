@@ -37,9 +37,7 @@ class WDarkViewController: UIViewController {
             }
             let newEmoji = worldEmojis[emojiIndex]
             
-            let reqIndex = text.endIndex
-            let cutText = text[..<reqIndex]
-            headingLabel.text = "\(cutText)\(newEmoji)"
+            headingLabel.text = "\(String(text.dropLast()))\(newEmoji)"
         }
     }
 }
