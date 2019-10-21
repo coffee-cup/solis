@@ -46,6 +46,8 @@
 	<string>This app does not require the calendar</string>
 	<key>NSContactsUsageDescription</key>
 	<string>This app does not require contacts</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The location is needed to calculate the position of the earth relative to the sun</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is needed to calculate the position of the earth relative to the sun</string>
 	<key>NSMicrophoneUsageDescription</key>

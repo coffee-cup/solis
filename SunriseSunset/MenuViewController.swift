@@ -7,12 +7,12 @@
 //
 
 import UIKit
-//import PermissionScope
+import SPPermission
 
 import Crashlytics
 
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, SPPermissionDialogDelegate {
 
     let defaults = Defaults.defaults
     @IBOutlet weak var menuView: UIView!
@@ -42,6 +42,9 @@ class MenuViewController: UIViewController {
     var infoMenuViewController: InfoMenuViewController?
     
     let SoftAnimationDuration: TimeInterval = 1
+    
+    var notificationText: String?
+    var notificationSelected: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,36 +162,44 @@ class MenuViewController: UIViewController {
     }
     
     func getNotificationPermission(_ sender: UIButton) {
-//        let pscope = PermissionScope()
-//        pscope.style()
-//        pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow")
-//        
-//        pscope.show({ finished, results in
-//            
-//            if results[0].status == PermissionStatus.authorized {
-//                sender.isSelected = !sender.isSelected
-//                
-//                var noti = ""
-//                switch sender {
-//                case self.buttonSunrise:
-//                    noti = "Sunrise"
-//                case self.buttonSunset:
-//                    noti = "Sunset"
-//                case self.buttonFirstLight:
-//                    noti = "FirstLight"
-//                case self.buttonLastLight:
-//                    noti = "LastLight"
-//                default:
-//                    noti = ""
-//                }
-//                self.defaults.set(sender.isSelected, forKey: noti)
-//                
-//                Bus.sendMessage(.notificationChange, data: nil)
-//                Analytics.toggleNotificationForEvent(sender.isSelected, type: noti)
-//            }
-//            }, cancelled: { (results) -> Void in
-//                print("notification permissions were cancelled")
-//        })
+        sender.isSelected = !sender.isSelected
+        notificationSelected = sender.isSelected
+        
+        switch sender {
+        case self.buttonSunrise:
+            notificationText = "Sunrise"
+        case self.buttonSunset:
+            notificationText = "Sunset"
+        case self.buttonFirstLight:
+            notificationText = "FirstLight"
+        case self.buttonLastLight:
+            notificationText = "LastLight"
+        default:
+            notificationText = ""
+        }
+        
+        if SPPermission.isAllowed(.notification) {
+            notificationPermissionCallback()
+        } else {
+            SPPermission.Dialog.request(with: [.notification], on: self, delegate: self, dataSource: PermissionController())
+        }
+    }
+    
+    func notificationPermissionCallback() {
+        if let noti = notificationText {
+            if let selected = notificationSelected {
+                self.defaults.set(notificationSelected, forKey: noti)
+                Bus.sendMessage(.notificationChange, data: nil)
+                Analytics.toggleNotificationForEvent(selected, type: noti)
+            }
+        }
+        
+        notificationText = nil
+        notificationSelected = nil
+    }
+    
+    @objc func didAllow(permission: SPPermissionType) {
+        notificationPermissionCallback()
     }
     
     // Location

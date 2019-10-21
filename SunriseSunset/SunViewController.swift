@@ -12,8 +12,8 @@ import CoreLocation
 import UIView_Easing
 import SPPermission
 
-class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol {
-
+class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol, SPPermissionDialogDelegate {
+    
     @IBOutlet weak var sunView: UIView!
     @IBOutlet weak var hourSlider: UISlider!
     var gradientLayer = CAGradientLayer()
@@ -95,7 +95,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // The y transform after the free form scrolling ended
     var transformAfterAnimation: Double = 0
-
+    
     // TODO: Remove hardcoded free form scroll duration
     let SCROLL_DURATION: TimeInterval = 1.2
     
@@ -110,9 +110,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // How large the sun view is compared to the normal view
     let SunViewScreenMultiplier: CGFloat = 9
-    
-    // Modal we use to get location permissions
-//    let pscope = PermissionScope()
     
     var smoothyOffset: Double = 0
     var smoothyForward = true
@@ -196,8 +193,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         Bus.subscribeEvent(.gotTimeZone, observer: self, selector: #selector(timeZoneUpdate))
         Bus.subscribeEvent(.foregrounded, observer: self, selector: #selector(scrollReset))
         
-        setupPermissions()
-        
         reset()
         scrollReset()
     }
@@ -211,6 +206,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        setupPermissions()
         
         // Update every minute
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
@@ -247,35 +244,23 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func setupPermissions() {
         if SPPermission.isAllowed(.locationWhenInUse) {
-            SunLocation.checkLocation()
+            SunLocation.startLocationWatching()
         } else {
-            SPPermission.request(.locationWhenInUse, with: {
-              print("test")
-            })
+            SPPermission.Dialog.request(with: [.locationWhenInUse], on: self, delegate: self, dataSource: PermissionController())
         }
-        
-//        pscope.style()
-//        pscope.addPermission(LocationWhileInUsePermission(),
-//                             message: "We rarely check your location but need it to calculate the suns position")
-//        
-//        // Show dialog with callbacks
-//        pscope.show({ finished, results in
-//            if results[0].status == PermissionStatus.authorized {
-//                print("got results \(results)")
-//                
-////                SunLocation.startLocationWatching()
-//                SunLocation.checkLocation()
-//            }
-//            }, cancelled: { (results) -> Void in
-//                print("Location permission was cancelled")
-//        })
+    }
+    
+    @objc func didAllow(permission: SPPermissionType) {
+        if SPPermission.isAllowed(.locationWhenInUse) {
+            SunLocation.startLocationWatching()
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func dateComponentsToString(_ d: DateComponents) -> String {
         return "\(String(describing: d.hour)):\(String(describing: d.minute))"
     }
@@ -292,7 +277,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @objc func locationChanged() {
         print("location changed")
         locationJustChanged = true
-//        scrollReset()
+        //        scrollReset()
     }
     
     // Enable=true means we are showing the no location views
@@ -304,7 +289,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             } else if !enable && noLocationLabel1.alpha == 0 {
                 return
             }
-
+            
             UIView.animate(withDuration: 0.5) {
                 self.noLocationLabel1.alpha = enable ? 1 : 0
                 self.noLocationLabel2.alpha = enable ? 1 : 0
@@ -490,9 +475,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         UIView.animate(withDuration: scrollAnimationDuration, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(self.transformAfterAnimation))
-            }, completion: {finished in
-                self.setTransformWhenStopped()
-                self.animationStopped = false
+        }, completion: {finished in
+            self.setTransformWhenStopped()
+            self.animationStopped = false
         })
     }
     
@@ -528,10 +513,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         UIView.animate(withDuration: scrollAnimationDuration, animations: {
             self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransform(translationX: 0, y: 0)
-            }, completion: { finished in
-                self.sunView.removeEasingFunction(forKeyPath: "transform")
-                self.reset()
-                self.update()
+        }, completion: { finished in
+            self.sunView.removeEasingFunction(forKeyPath: "transform")
+            self.reset()
+            self.update()
         })
     }
     
@@ -544,7 +529,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @objc func animationUpdate() {
         let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
         let ease = Easing.easeOutQuadFunc(animationFireDate.timeIntervalSinceNow * -1, startValue: transformBeforeAnimation, changeInValue: transformDifference, duration:scrollAnimationDuration)
-//        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
+        //        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
         moveUpdate(sun.pointsToMinutes(ease))
     }
@@ -580,7 +565,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             nowLeftConstraint.constant = sunView.frame.width < 375 ? 210 : 240
             UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
-                }, completion: nil)
+            }, completion: nil)
         }
         colliding = true
     }
@@ -590,7 +575,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             nowLeftConstraint.constant = 100
             UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
-                }, completion: nil)
+            }, completion: nil)
         }
         colliding = false
     }

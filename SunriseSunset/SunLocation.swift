@@ -17,6 +17,7 @@ class SunLocation {
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
     class func startLocationWatching() {
+        print("start watching")
         LocationManager.shared.locateFromGPS(.significant, accuracy: .block, result: { result in
             print("Significant Location")
             if let location = try? result.get() {

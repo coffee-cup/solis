@@ -105,6 +105,7 @@
 		9CEDC3721D6C20C000F12B29 /* BellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEDC3711D6C20C000F12B29 /* BellButton.swift */; };
 		9CFD34781D6EA98700B87FED /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFD34771D6EA98700B87FED /* Analytics.swift */; };
 		B73D6629235E2FD500F3679B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D6628235E2FD500F3679B /* SwiftyJSON.swift */; };
+		B77D2722235E4D53008DD6C9 /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D2721235E4D53008DD6C9 /* PermissionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +251,7 @@
 		A07D9BCD5E0AB6D95398E704 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC9E47BCFBC827300245BD08 /* Pods-SolisWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolisWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SolisWidget/Pods-SolisWidget.release.xcconfig"; sourceTree = "<group>"; };
 		B73D6628235E2FD500F3679B /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		B77D2721235E4D53008DD6C9 /* PermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
 		C29B29B7B94F576EA4BB3E93 /* Pods_SunriseSunsetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunsetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -418,6 +420,7 @@
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 				B73D6628235E2FD500F3679B /* SwiftyJSON.swift */,
+				B77D2721235E4D53008DD6C9 /* PermissionController.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				9CC427A51D11088100693E32 /* UILabel.swift in Sources */,
 				9C27BE6B1D3212520093B2A6 /* UIButton.swift in Sources */,
 				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
+				B77D2722235E4D53008DD6C9 /* PermissionController.swift in Sources */,
 				9CC29EFE1D8BB00A00542894 /* TransitionManager.swift in Sources */,
 				9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */,
 				9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */,

@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 import GooglePlaces
-//import PermissionScope
+import SPPermission
 
-class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SPPermissionDialogDelegate {
     
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
@@ -27,8 +27,8 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     var notificationPlaceDirty = false
     var newNotificationSunPlace: SunPlace?
     
-//    let pscope = PermissionScope()
-    
+    var locationCompletion: (() -> ())?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,20 +126,20 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func ensureLocationPermissions(completion: @escaping () -> ()) {
-//        pscope.style()
-//        pscope.addPermission(LocationWhileInUsePermission(),
-//                             message: "We rarely check your location but need it to calculate the suns position")
-//        
-//        // Show dialog with callbacks
-//        pscope.show({ finished, results in
-//            if results[0].status == PermissionStatus.authorized {
-//                print("got results \(results)")
-//                
-//                completion()
-//            }
-//            }, cancelled: { (results) -> Void in
-//                print("Location permission was cancelled")
-//        })
+        if SPPermission.isAllowed(.locationWhenInUse) {
+            SunLocation.startLocationWatching()
+            completion()
+        } else {
+            locationCompletion = completion
+            SPPermission.Dialog.request(with: [.locationWhenInUse], on: self, delegate: self, dataSource: PermissionController())
+        }
+    }
+    
+    @objc func didAllow(permission: SPPermissionType) {
+        if let locationCompletion = locationCompletion {
+            locationCompletion()
+        }
+        locationCompletion = nil
     }
     
     // Table View
