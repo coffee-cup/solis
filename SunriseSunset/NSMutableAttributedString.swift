@@ -15,8 +15,8 @@ extension NSMutableAttributedString {
     }
     
     func attributeRangeFor(_ searchString: String, attributeName: String, attributeValue: AnyObject, atributeSearchType: AtributeSearchType) {
-        let inputLength = self.string.characters.count
-        let searchLength = searchString.characters.count
+        let inputLength = self.string.count
+        let searchLength = searchString.count
         var range = NSRange(location: 0, length: self.length)
         var rangeCollection = [NSRange]()
         

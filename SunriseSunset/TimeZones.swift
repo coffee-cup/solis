@@ -63,7 +63,7 @@ class TimeZones {
     
     func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: @escaping (_ gmtOffset: Int?, _ abbreviation: String?) -> ()) {
         let requestString = "\(Endpoint)?by=position&format=json&key=\(ApiKey)&lat=\(location.latitude)&lng=\(location.longitude)"
-        Alamofire.request(requestString)
+        AF.request(requestString)
         .responseJSON { response in
 //            print(response.request)  // original URL request
 //            print(response.response) // URL response

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return defaultKey.description
     }
     
-    private func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         Defaults.defaults.register(defaults: [

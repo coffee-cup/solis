@@ -22,7 +22,7 @@ class SunPlace: Equatable {
     var isNotification: Bool = false
     
     class func sunPlaceFromString(_ string: String) -> SunPlace? {
-        let split = string.characters.split{$0 == "|"}.map(String.init)
+        let split = string.split{$0 == "|"}.map(String.init)
         
         if split.count < 5 {
             return nil

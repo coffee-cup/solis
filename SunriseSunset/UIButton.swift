@@ -19,7 +19,7 @@ extension UIButton {
     func addUnderline(_ colour: UIColor = UIColor.white, state: UIControl.State = UIControl.State()) {
         if let title = currentTitle {
             let titleString: NSMutableAttributedString = NSMutableAttributedString(string: title)
-            let fullRange = NSMakeRange(0, title.characters.count)
+            let fullRange = NSMakeRange(0, title.count)
             titleString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: fullRange)
             titleString.addAttribute(NSAttributedString.Key.foregroundColor, value: colour, range: fullRange)
             setAttributedTitle(titleString, for: state)

@@ -9,7 +9,7 @@ target 'SunriseSunset' do
     pod 'SPPermission/Notification'
     pod 'SPPermission/Location'
 
-    pod 'Alamofire'
+    pod 'Alamofire', '~> 5.0.0-beta.6'
     pod 'EDSunriseSet', '~> 1.0'
     pod 'UIView-Easing'
     pod 'SwiftLocation', '~> 4.0'
