@@ -68,20 +68,20 @@ class Sunline: UIView {
             NSLayoutConstraint.activate(edgeConstraints + [self.topConstraint])
             
             // Line Constraints
-            self.lineLeftConstraint = NSLayoutConstraint(item: self.line, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-            self.lineRightConstraint = NSLayoutConstraint(item: self.line, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.LineHorizontalPadding)
-            let lineVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|", options: [], metrics: nil, views: ["view": self.line])
-            let lineHeightContraint = NSLayoutConstraint(item: self.line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 1)
+            self.lineLeftConstraint = NSLayoutConstraint(item: self.line!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+            self.lineRightConstraint = NSLayoutConstraint(item: self.line!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.LineHorizontalPadding)
+            let lineVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|", options: [], metrics: nil, views: ["view": self.line!])
+            let lineHeightContraint = NSLayoutConstraint(item: self.line!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 1)
             NSLayoutConstraint.activate([self.lineLeftConstraint, self.lineRightConstraint, lineHeightContraint] + lineVerticalConstraints)
             
             // Name Constraints
-            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: self.NameHorizontalPadding)
-            let nameVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel])
+            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: self.NameHorizontalPadding)
+            let nameVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel!])
             NSLayoutConstraint.activate(nameVerticalConstraints + [self.nameLeftConstraint])
             
             // Time Contstraints
-            let timeCenterConstraint = NSLayoutConstraint(item: self.timeLabel, attribute: .centerY, relatedBy: .equal, toItem: self.line, attribute: .centerY, multiplier: 1, constant: 0)
-            let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel])
+            let timeCenterConstraint = NSLayoutConstraint(item: self.timeLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.line, attribute: .centerY, multiplier: 1, constant: 0)
+            let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel!])
             NSLayoutConstraint.activate(timeHorizontalConstraints + [timeCenterConstraint])
             
             self.backgroundColor = UIColor.red
@@ -168,7 +168,7 @@ class Sunline: UIView {
     func updateLine(_ time: Date, percent: Float, happens: Bool) {
         DispatchQueue.main.async {
             self.time = time
-            self.updateTime()
+            let _ = self.updateTime()
             
             self.topConstraint.constant = self.parentView.frame.height * CGFloat(percent)
             UIView.animate(withDuration: 0.5) {

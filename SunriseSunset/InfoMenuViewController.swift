@@ -151,7 +151,7 @@ class InfoMenuViewController: UIViewController {
         }
     }
     
-    func infoButtonPressed(_ sender: AnyObject) {
+    @objc func infoButtonPressed(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "InfoSegue", sender: sender)
 //        animateButtonsOut() {
 //            self.performSegueWithIdentifier("InfoSegue", sender: sender)
@@ -180,7 +180,7 @@ class InfoMenuViewController: UIViewController {
         }
     }
     
-    func sideSwipe() {
+    @objc func sideSwipe() {
         goBack()
     }
 }

@@ -102,7 +102,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         if !searchText.isEmpty {
             placesClient.autocompleteQuery(searchText, bounds: nil, filter: filter) { results, error in
                 guard error == nil else {
-                    print("Autocomplete error \(error)")
+                    print("Autocomplete error \(error!)")
                     return
                 }
                 
@@ -159,7 +159,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
                 sunplace = places[(indexPath as NSIndexPath).row - 1]
                 let placeID = sunplace.placeID
                 placesClient.lookUpPlaceID(placeID) { googlePlace, error in
-                    guard error == nil else {
+                    if let error = error {
                         print("PlaceID lookup error \(error)")
                         return
                     }
@@ -218,7 +218,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         newNotificationSunPlace = sunPlace
     }
     
-    func bellButtonDidTouch(_ bellButton: BellButton) {
+    @objc func bellButtonDidTouch(_ bellButton: BellButton) {
         if bellButton.useCurrentLocation {
             setNotificationSunPlace(nil)
         } else {

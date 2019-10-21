@@ -129,7 +129,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         sunView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: CGFloat(sunHeight))
         sunView.center = view.center
         
-        touchDownView = view as! TouchDownView
+        touchDownView = view as? TouchDownView
         touchDownView.delegate = self
         
         touchDownView.backgroundColor = nauticalColour
@@ -231,8 +231,8 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         view.addSubview(backgroundView)
         view.bringSubviewToFront(backgroundView)
         
-        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
-        let verticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
+        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView!])
+        let verticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView!])
         NSLayoutConstraint.activate(horizontalContraints + verticalContraints)
     }
     
@@ -277,19 +277,19 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
 
     func dateComponentsToString(_ d: DateComponents) -> String {
-        return "\(d.hour):\(d.minute)"
+        return "\(String(describing: d.hour)):\(String(describing: d.minute))"
     }
     
-    func timeZoneUpdate() {
+    @objc func timeZoneUpdate() {
         update()
     }
     
-    func locationUpdate() {
+    @objc func locationUpdate() {
         print("location update")
         update()
     }
     
-    func locationChanged() {
+    @objc func locationChanged() {
         print("location changed")
         locationJustChanged = true
 //        scrollReset()
@@ -314,7 +314,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     // Update all the views the with the time offset value
-    func update() {
+    @objc func update() {
         if (!scrolling && !panning && !offNow) || locationJustChanged {
             if let location = SunLocation.getLocation() {
                 sun.update(offset, location: location)
@@ -440,7 +440,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
     }
     
-    func panGesture(_ recognizer: UIPanGestureRecognizer) {
+    @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {
         let translation = Double(recognizer.translation(in: view).y)
         let offsetMinutes = sun.pointsToMinutes(translation)
         let offsetSeconds = offsetMinutes
@@ -496,7 +496,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         })
     }
     
-    func doubleTap(_ recognizer: UITapGestureRecognizer) {
+    @objc func doubleTap(_ recognizer: UITapGestureRecognizer) {
         scrollReset()
     }
     
@@ -519,7 +519,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(self.offsetTranslation))
     }
     
-    func scrollReset() {
+    @objc func scrollReset() {
         transformBeforeAnimation = Double(sunView.transform.ty)
         transformAfterAnimation = 0.0
         scrollAnimationDuration = SCROLL_DURATION
@@ -541,7 +541,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         self.setTransformWhenStopped()
     }
     
-    func animationUpdate() {
+    @objc func animationUpdate() {
         let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
         let ease = Easing.easeOutQuadFunc(animationFireDate.timeIntervalSinceNow * -1, startValue: transformBeforeAnimation, changeInValue: transformDifference, duration:scrollAnimationDuration)
 //        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
@@ -549,11 +549,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         moveUpdate(sun.pointsToMinutes(ease))
     }
     
-    func tapGesture(_ recognizer: UITapGestureRecognizer) {
+    @objc func tapGesture(_ recognizer: UITapGestureRecognizer) {
         Bus.sendMessage(.sendMenuIn, data: nil)
     }
     
-    func longPressGesture(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func longPressGesture(_ recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
             sun.toggleSunAreas()
         }

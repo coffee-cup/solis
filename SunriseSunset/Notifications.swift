@@ -99,7 +99,7 @@ class Notifications {
     @objc func changeNotificationPlace() {
         let allTypes = firstLightTypes + sunriseTypes + sunsetTypes + lastLightTypes
         removeNotificationForTypes(allTypes)
-        scheduleNotifications()
+        let _ = scheduleNotifications()
     }
     
     func scheduleNotificationIfNotAlready(_ suntime: Suntime) -> Bool {

@@ -138,7 +138,7 @@ class SunLocation {
     
     class func updateLocationHistoryWithTimeZone(_ location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int) {
         if let locationHistory = getLocationHistory() {
-            let index = locationHistory.index { place in
+            let index = locationHistory.firstIndex { place in
                 return place.placeID == placeID
             }
             if let index = index {
@@ -193,7 +193,7 @@ class SunLocation {
     
     class func addLocationToHistory(_ sunplace: SunPlace) {
         if var locationHistory: [SunPlace] = getLocationHistory() {
-            if let index = locationHistory.index(of: sunplace) {
+            if let index = locationHistory.firstIndex(of: sunplace) {
                 locationHistory.remove(at: index)
             }
             

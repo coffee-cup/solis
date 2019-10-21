@@ -89,13 +89,13 @@ class TimeZones {
                 return
             }
             
-            guard let dst = json["dst"].string else {
-                print("DST from response is nil")
-                completionHandler(nil, nil)
-                return
-            }
+//            guard let dst = json["dst"].string else {
+//                print("DST from response is nil")
+//                completionHandler(nil, nil)
+//                return
+//            }
             
-            let daylightSavings = dst == "1"
+//            let daylightSavings = dst == "1"
             let offsetWithGmt = gmtOffset
 //            if daylightSavings {
 //                offsetWithGmt += 60 * 60

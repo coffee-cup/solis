@@ -114,14 +114,14 @@ class InfoViewController: UIViewController {
     
     @IBAction func learnMoreButtonDidTouch(_ sender: AnyObject) {
         Analytics.openLearnMore(infoTitle)
-        UIApplication.shared.openURL(URL(string: infoURLString)!)
+        UIApplication.shared.open(URL(string: infoURLString)!, options: [:], completionHandler: nil)
     }
     
     @IBAction func backButtonDidTouch(_ sender: AnyObject) {
         goBack()
     }
     
-    func sideSwipe() {
+    @objc func sideSwipe() {
         goBack()
     }
 }

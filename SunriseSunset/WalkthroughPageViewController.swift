@@ -81,7 +81,7 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
+        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
         
@@ -95,7 +95,7 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
+        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
             return nil
         }
         
@@ -114,7 +114,7 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        pendingIndex = orderedViewControllers.index(of: pendingViewControllers.first!)
+        pendingIndex = orderedViewControllers.firstIndex(of: pendingViewControllers.first!)
         fadeTakeOffButton(0)
     }
     
