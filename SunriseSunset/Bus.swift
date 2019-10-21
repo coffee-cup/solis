@@ -28,7 +28,7 @@ enum MessageType {
 //        case .MenuIn: return "MenuIn";
 //        case .MenuOut: return "MenuOut";
         case .timeFormat: return "TimeFormat";
-        case .foregrounded: return Notification.Name.UIApplicationWillEnterForeground.rawValue
+        case .foregrounded: return UIApplication.willEnterForegroundNotification.rawValue
         case .sendMenuIn: return "SendMenuIn"
         case .notificationChange: return "NotificationChange"
         case .locationUpdate: return "LocationUpdate"

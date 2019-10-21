@@ -129,7 +129,7 @@ class Sunline: UIView {
             let namePaddingFraction: CGFloat = parentView.frame.width < 375 ? 3 : 1
             lineLeftConstraint.constant = LineHorizontalPadding
             nameLeftConstraint.constant = LineHorizontalPadding + (NameHorizontalPadding / namePaddingFraction)
-            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.layoutIfNeeded()
                 self.timeLabel.alpha = 0
                 }, completion: nil)
@@ -141,7 +141,7 @@ class Sunline: UIView {
         if colliding {
             lineLeftConstraint.constant = 0
             nameLeftConstraint.constant = NameHorizontalPadding
-            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: CollideAnimationDuration, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.layoutIfNeeded()
                 self.timeLabel.alpha = 1
                 }, completion: nil)
@@ -177,11 +177,11 @@ class Sunline: UIView {
             
             if happens {
                 self.isHidden = false
-                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: {
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
                     self.alpha = 1
                     }, completion: nil)
             } else {
-                UIView.animate(withDuration: 0.5, delay: 1, options: UIViewAnimationOptions(), animations: {
+                UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
                     self.alpha = 0
                     }, completion: nil)
             }

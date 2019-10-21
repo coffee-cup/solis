@@ -459,15 +459,15 @@ class Sun {
             colourAnimation.toValue = toColours
             colourAnimation.duration = duration
             colourAnimation.isRemovedOnCompletion = true
-            colourAnimation.fillMode = kCAFillModeForwards
-            colourAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            colourAnimation.fillMode = CAMediaTimingFillMode.forwards
+            colourAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
             
             locationAnimation.fromValue = fromLocations
             locationAnimation.toValue = toLocations
             locationAnimation.duration = duration
             locationAnimation.isRemovedOnCompletion = true
-            locationAnimation.fillMode = kCAFillModeForwards
-            locationAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            locationAnimation.fillMode = CAMediaTimingFillMode.forwards
+            locationAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
             
             gradientLayer.add(colourAnimation, forKey: "animateGradientColour")
             gradientLayer.add(locationAnimation, forKey: "animateGradientLocation")

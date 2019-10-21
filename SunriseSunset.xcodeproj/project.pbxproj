@@ -24,7 +24,6 @@
 		9C236CDF1D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		9C236CE11D16B08D00FB9985 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DFA591D1673DF00353D8C /* TodayViewController.swift */; };
-		9C236CE41D16B0B100FB9985 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5E1D1673DF00353D8C /* Info.plist */; };
 		9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
 		9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
 		9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
@@ -76,7 +75,6 @@
 		9CC29EED1D8BB00A00542894 /* DesignableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29ECF1D8BB00A00542894 /* DesignableTextView.swift */; };
 		9CC29EEE1D8BB00A00542894 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29ED01D8BB00A00542894 /* DesignableView.swift */; };
 		9CC29EEF1D8BB00A00542894 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29ED11D8BB00A00542894 /* ImageLoader.swift */; };
-		9CC29EF01D8BB00A00542894 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CC29ED21D8BB00A00542894 /* Info.plist */; };
 		9CC29EF11D8BB00A00542894 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29ED31D8BB00A00542894 /* KeyboardLayoutConstraint.swift */; };
 		9CC29EF21D8BB00A00542894 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29ED41D8BB00A00542894 /* LoadingView.swift */; };
 		9CC29EF31D8BB00A00542894 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC29ED51D8BB00A00542894 /* LoadingView.xib */; };
@@ -610,7 +608,7 @@
 					9C4774521D16762C00C38FFF = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 4TPDCY22V9;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -620,7 +618,7 @@
 					9CB37BE41CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 4TPDCY22V9;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -632,12 +630,12 @@
 					};
 					9CB37BF81CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0940;
 						TestTargetID = 9CB37BE41CE844400080B5B1;
 					};
 					9CB37C031CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0940;
 						TestTargetID = 9CB37BE41CE844400080B5B1;
 					};
 				};
@@ -647,6 +645,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -679,13 +678,11 @@
 			files = (
 				9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */,
 				9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */,
-				9CC29EF01D8BB00A00542894 /* Info.plist in Resources */,
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
 				9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */,
 				9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */,
-				9C236CE41D16B0B100FB9985 /* Info.plist in Resources */,
 				9CC29EF31D8BB00A00542894 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -820,7 +817,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EDSunriseSet/EDSunriseSet.framework",
-				"${BUILT_PRODUCTS_DIR}/PermissionScope/PermissionScope.framework",
+				"${BUILT_PRODUCTS_DIR}/SPPermission/SPPermission.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/UIView-Easing/UIView_Easing.framework",
 			);
@@ -828,7 +825,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EDSunriseSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PermissionScope.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SPPermission.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_Easing.framework",
 			);
@@ -1008,12 +1005,13 @@
 				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1027,13 +1025,14 @@
 				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1076,7 +1075,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1117,7 +1116,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1134,12 +1133,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -1152,13 +1152,14 @@
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -1171,7 +1172,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunriseSunset.app/SunriseSunset";
 			};
 			name = Debug;
@@ -1186,7 +1188,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunriseSunset.app/SunriseSunset";
 			};
 			name = Release;
@@ -1199,7 +1202,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = SunriseSunset;
 			};
 			name = Debug;
@@ -1213,7 +1217,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = SunriseSunset;
 			};
 			name = Release;

@@ -44,11 +44,11 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         
         navigationBar.titleTextAttributes =
-            [NSFontAttributeName: UIFont(name: fontLight, size: 18)!]
+            [NSAttributedString.Key.font: UIFont(name: fontLight, size: 18)!]
         navigationBar.tintColor = UIColor.white
         
         learnMoreButton.addUnderline(UIColor.white)
-        learnMoreButton.setTitleColor(UIColor.white, for: UIControlState())
+        learnMoreButton.setTitleColor(UIColor.white, for: UIControl.State())
         
         bottomView.backgroundColor = nauticalColour
         
@@ -87,14 +87,14 @@ class InfoViewController: UIViewController {
     
     func highlightInfoText(_ text: String) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: "\(text) ") // place space at the end of string so all words get highlighted
-        attributedString.addAttribute(NSFontAttributeName, value: UIFont(name: fontRegular, size: 18)!, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: fontRegular, size: 18)!, range: NSMakeRange(0, attributedString.length))
         
         // highlight both lowercase and capitalized words
         for highlightWord in highlightWords {
-            attributedString.attributeRangeFor(highlightWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
+            attributedString.attributeRangeFor(highlightWord, attributeName: NSAttributedString.Key.foregroundColor.rawValue, attributeValue: highlightColour, atributeSearchType: .all)
             
             let capitalizedWord = highlightWord.capitalized
-            attributedString.attributeRangeFor(capitalizedWord, attributeName: NSForegroundColorAttributeName, attributeValue: highlightColour, atributeSearchType: .all)
+            attributedString.attributeRangeFor(capitalizedWord, attributeName: NSAttributedString.Key.foregroundColor.rawValue, attributeValue: highlightColour, atributeSearchType: .all)
         }
         
         return attributedString

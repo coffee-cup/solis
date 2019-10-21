@@ -9,8 +9,8 @@
 import UIKit
 import EDSunriseSet
 import CoreLocation
-import PermissionScope
 import UIView_Easing
+import SPPermission
 
 class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol {
 
@@ -112,7 +112,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     let SunViewScreenMultiplier: CGFloat = 9
     
     // Modal we use to get location permissions
-    let pscope = PermissionScope()
+//    let pscope = PermissionScope()
     
     var smoothyOffset: Double = 0
     var smoothyForward = true
@@ -229,7 +229,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         backgroundView.alpha = 0
         
         view.addSubview(backgroundView)
-        view.bringSubview(toFront: backgroundView)
+        view.bringSubviewToFront(backgroundView)
         
         let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
         let verticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView])
@@ -246,21 +246,29 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func setupPermissions() {
-        pscope.style()
-        pscope.addPermission(LocationWhileInUsePermission(),
-                             message: "We rarely check your location but need it to calculate the suns position")
+        if SPPermission.isAllowed(.locationWhenInUse) {
+            SunLocation.checkLocation()
+        } else {
+            SPPermission.request(.locationWhenInUse, with: {
+              print("test")
+            })
+        }
         
-        // Show dialog with callbacks
-        pscope.show({ finished, results in
-            if results[0].status == PermissionStatus.authorized {
-                print("got results \(results)")
-                
-//                SunLocation.startLocationWatching()
-                SunLocation.checkLocation()
-            }
-            }, cancelled: { (results) -> Void in
-                print("Location permission was cancelled")
-        })
+//        pscope.style()
+//        pscope.addPermission(LocationWhileInUsePermission(),
+//                             message: "We rarely check your location but need it to calculate the suns position")
+//        
+//        // Show dialog with callbacks
+//        pscope.show({ finished, results in
+//            if results[0].status == PermissionStatus.authorized {
+//                print("got results \(results)")
+//                
+////                SunLocation.startLocationWatching()
+//                SunLocation.checkLocation()
+//            }
+//            }, cancelled: { (results) -> Void in
+//                print("Location permission was cancelled")
+//        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -570,7 +578,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         if !colliding {
             // Fixes sunline overlap on iphone5 screens and smaller
             nowLeftConstraint.constant = sunView.frame.width < 375 ? 210 : 240
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
                 }, completion: nil)
         }
@@ -580,7 +588,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func collisionNotHappening() {
         if colliding {
             nowLeftConstraint.constant = 100
-            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions(), animations: {
                 self.nowView.layoutIfNeeded()
                 }, completion: nil)
         }

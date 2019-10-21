@@ -7,18 +7,23 @@ PODS:
   - GoogleMaps/Base (2.0.1)
   - GooglePlaces (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
-  - PermissionScope (1.1.1)
-  - SwiftLocation (1.1.0)
+  - SPPermission/Core (4.0.6)
+  - SPPermission/Location (4.0.6):
+    - SPPermission/Core
+  - SPPermission/Notification (4.0.6):
+    - SPPermission/Core
+  - SwiftLocation (4.1.0)
   - UIView-Easing (0.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5.1)
+  - Alamofire
   - Crashlytics
   - EDSunriseSet (~> 1.0)
   - Fabric
   - GooglePlaces
-  - PermissionScope
-  - SwiftLocation
+  - SPPermission/Location
+  - SPPermission/Notification
+  - SwiftLocation (~> 4.0)
   - UIView-Easing
 
 SPEC REPOS:
@@ -29,7 +34,7 @@ SPEC REPOS:
     - Fabric
     - GoogleMaps
     - GooglePlaces
-    - PermissionScope
+    - SPPermission
     - SwiftLocation
     - UIView-Easing
 
@@ -40,10 +45,10 @@ SPEC CHECKSUMS:
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlaces: 72fab1d1651c6df0322f2aad245ffb15b80d3c56
-  PermissionScope: a30c16e015779ba27c97c124e7539e27b5829de2
-  SwiftLocation: f1bf5acb7992dd96c6f773c383f9c0479f07727d
+  SPPermission: 1807bce0f1d8cf4bb0185a46d3acfaf5a6cff2d8
+  SwiftLocation: e89dd4dbebbce1755836154103546f4ab3d92aae
   UIView-Easing: 4cce1b81d94abd6bc1ea68709353bd1f90319c5b
 
-PODFILE CHECKSUM: 044a197d2832c0d9e3faccead51d5bf7f615a30e
+PODFILE CHECKSUM: 493e419b598f986fc79ae6e4a0746a56c65ecf39
 
 COCOAPODS: 1.8.3

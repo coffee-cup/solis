@@ -41,9 +41,9 @@ class WalkthroughPageViewController: UIViewController, UIPageViewControllerDeleg
         
         view.addSubview(pageViewController.view)
         
-        view.bringSubview(toFront: takeOffButton)
-        view.bringSubview(toFront: skipButton)
-        view.bringSubview(toFront: pageControl)
+        view.bringSubviewToFront(takeOffButton)
+        view.bringSubviewToFront(skipButton)
+        view.bringSubviewToFront(pageControl)
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.currentPage = 0
         

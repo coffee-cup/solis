@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import GooglePlaces
-import PermissionScope
+//import PermissionScope
 
 class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -27,7 +27,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     var notificationPlaceDirty = false
     var newNotificationSunPlace: SunPlace?
     
-    let pscope = PermissionScope()
+//    let pscope = PermissionScope()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,20 +126,20 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func ensureLocationPermissions(completion: @escaping () -> ()) {
-        pscope.style()
-        pscope.addPermission(LocationWhileInUsePermission(),
-                             message: "We rarely check your location but need it to calculate the suns position")
-        
-        // Show dialog with callbacks
-        pscope.show({ finished, results in
-            if results[0].status == PermissionStatus.authorized {
-                print("got results \(results)")
-                
-                completion()
-            }
-            }, cancelled: { (results) -> Void in
-                print("Location permission was cancelled")
-        })
+//        pscope.style()
+//        pscope.addPermission(LocationWhileInUsePermission(),
+//                             message: "We rarely check your location but need it to calculate the suns position")
+//        
+//        // Show dialog with callbacks
+//        pscope.show({ finished, results in
+//            if results[0].status == PermissionStatus.authorized {
+//                print("got results \(results)")
+//                
+//                completion()
+//            }
+//            }, cancelled: { (results) -> Void in
+//                print("Location permission was cancelled")
+//        })
     }
     
     // Table View
@@ -231,7 +231,7 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func setBellButton(_ button: BellButton, sunPlace: SunPlace?) {
-        button.setImage(UIImage(named: "bell_grey"), for: UIControlState())
+        button.setImage(UIImage(named: "bell_grey"), for: UIControl.State())
         button.setImage(UIImage(named: "bell_red"), for: .selected)
         button.sunPlace = sunPlace
         

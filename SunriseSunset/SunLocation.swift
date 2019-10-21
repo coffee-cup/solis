@@ -17,21 +17,21 @@ class SunLocation {
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
     class func startLocationWatching() {
-        let _ = Location.getLocation(withAccuracy: .block, frequency: .significant, timeout: nil, onSuccess: { (location) in
+        LocationManager.shared.locateFromGPS(.significant, accuracy: .block, result: { result in
             print("Significant Location")
-            saveLocation(location.coordinate)
-        }) { (lastValidLocation, error) in
-            print(error)
-        }
+            if let location = try? result.get() {
+                saveLocation(location.coordinate)
+            }
+        })
     }
     
     class func checkLocation() {
-        let _ = Location.getLocation(withAccuracy: .block, frequency: .oneShot, timeout: nil, onSuccess: { (location) in
-            print("\nOne Shot Location")
-            saveLocation(location.coordinate)
-        }) { (lastValidLocation, error) in
-            print(error)
-        }
+        LocationManager.shared.locateFromGPS(.oneShot, accuracy: .block, result: { result in
+            print("Significant Location")
+            if let location = try? result.get() {
+                saveLocation(location.coordinate)
+            }
+        })
     }
     
     class func getCurrentLocation() -> CLLocationCoordinate2D? {
@@ -109,7 +109,7 @@ class SunLocation {
             defaults.set(sunplace?.placeID, forKey: DefaultKey.locationPlaceID.description)
             Bus.sendMessage(.fetchTimeZone, data: nil)
         }
-    
+
         notifyLocation()
     }
     
