@@ -29,7 +29,7 @@ class WDarkViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    func updateHeading() {
+    @objc func updateHeading() {
         if let text = headingLabel.text {
             emojiIndex = emojiIndex + 1
             if emojiIndex >= worldEmojis.count {
@@ -37,8 +37,7 @@ class WDarkViewController: UIViewController {
             }
             let newEmoji = worldEmojis[emojiIndex]
             
-            let cutText = text.substring(to: text.characters.index(text.endIndex, offsetBy: -1))
-            headingLabel.text = "\(cutText)\(newEmoji)"
+            headingLabel.text = "\(String(text.dropLast()))\(newEmoji)"
         }
     }
 }

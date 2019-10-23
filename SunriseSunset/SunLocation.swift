@@ -17,21 +17,22 @@ class SunLocation {
     static let CHECK_THRESHOLD = 60 * 10; // seconds
     
     class func startLocationWatching() {
-        let _ = Location.getLocation(withAccuracy: .block, frequency: .significant, timeout: nil, onSuccess: { (location) in
+        print("start watching")
+        LocationManager.shared.locateFromGPS(.significant, accuracy: .block, result: { result in
             print("Significant Location")
-            saveLocation(location.coordinate)
-        }) { (lastValidLocation, error) in
-            print(error)
-        }
+            if let location = try? result.get() {
+                saveLocation(location.coordinate)
+            }
+        })
     }
     
     class func checkLocation() {
-        let _ = Location.getLocation(withAccuracy: .block, frequency: .oneShot, timeout: nil, onSuccess: { (location) in
-            print("\nOne Shot Location")
-            saveLocation(location.coordinate)
-        }) { (lastValidLocation, error) in
-            print(error)
-        }
+        LocationManager.shared.locateFromGPS(.oneShot, accuracy: .block, result: { result in
+            print("Significant Location")
+            if let location = try? result.get() {
+                saveLocation(location.coordinate)
+            }
+        })
     }
     
     class func getCurrentLocation() -> CLLocationCoordinate2D? {
@@ -109,7 +110,7 @@ class SunLocation {
             defaults.set(sunplace?.placeID, forKey: DefaultKey.locationPlaceID.description)
             Bus.sendMessage(.fetchTimeZone, data: nil)
         }
-    
+
         notifyLocation()
     }
     
@@ -138,7 +139,7 @@ class SunLocation {
     
     class func updateLocationHistoryWithTimeZone(_ location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int) {
         if let locationHistory = getLocationHistory() {
-            let index = locationHistory.index { place in
+            let index = locationHistory.firstIndex { place in
                 return place.placeID == placeID
             }
             if let index = index {
@@ -193,7 +194,7 @@ class SunLocation {
     
     class func addLocationToHistory(_ sunplace: SunPlace) {
         if var locationHistory: [SunPlace] = getLocationHistory() {
-            if let index = locationHistory.index(of: sunplace) {
+            if let index = locationHistory.firstIndex(of: sunplace) {
                 locationHistory.remove(at: index)
             }
             

@@ -16,12 +16,12 @@ extension UIButton {
         self.layer.shadowOpacity = 0.5
     }
     
-    func addUnderline(_ colour: UIColor = UIColor.white, state: UIControlState = UIControlState()) {
+    func addUnderline(_ colour: UIColor = UIColor.white, state: UIControl.State = UIControl.State()) {
         if let title = currentTitle {
             let titleString: NSMutableAttributedString = NSMutableAttributedString(string: title)
-            let fullRange = NSMakeRange(0, title.characters.count)
-            titleString.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: fullRange)
-            titleString.addAttribute(NSForegroundColorAttributeName, value: colour, range: fullRange)
+            let fullRange = NSMakeRange(0, title.count)
+            titleString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: fullRange)
+            titleString.addAttribute(NSAttributedString.Key.foregroundColor, value: colour, range: fullRange)
             setAttributedTitle(titleString, for: state)
         }
     }

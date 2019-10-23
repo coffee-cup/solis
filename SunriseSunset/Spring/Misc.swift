@@ -23,9 +23,7 @@
 import UIKit
 
 public extension String {
-    public var length: Int { return self.characters.count }
-    
-    public func toURL() -> NSURL? {
+    func toURL() -> NSURL? {
         return NSURL(string: self)
     }
 }
@@ -34,7 +32,7 @@ public func htmlToAttributedString(text: String) -> NSAttributedString! {
     let htmlData = text.data(using: String.Encoding.utf8, allowLossyConversion: false)
     let htmlString: NSAttributedString?
     do {
-        htmlString = try NSAttributedString(data: htmlData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        htmlString = try NSAttributedString(data: htmlData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
     } catch _ {
         htmlString = nil
     }
@@ -43,7 +41,7 @@ public func htmlToAttributedString(text: String) -> NSAttributedString! {
 }
 
 public func degreesToRadians(degrees: CGFloat) -> CGFloat {
-    return degrees * CGFloat(M_PI / 180)
+    return degrees * CGFloat(CGFloat.pi / 180)
 }
 
 public func delay(delay:Double, closure: @escaping ()->()) {
@@ -157,7 +155,7 @@ public func timeAgoSinceDate(date: Date, numericDates: Bool) -> String {
             return "1w"
         }
     } else if (day >= 2) {
-        return "\(components.day)d"
+        return "\(String(describing: components.day))d"
     } else if (day >= 1){
         if (numericDates){
             return "1d"

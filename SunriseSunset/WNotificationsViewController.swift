@@ -28,7 +28,7 @@ class WNotificationsViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    func updateHeading() {
+    @objc func updateHeading() {
         if let text = headingLabel.text {
             emojiIndex = emojiIndex + 1
             if emojiIndex >= emojis.count {
@@ -36,8 +36,7 @@ class WNotificationsViewController: UIViewController {
             }
             let newEmoji = emojis[emojiIndex]
             
-            let cutText = text.substring(to: text.characters.index(text.endIndex, offsetBy: -1))
-            headingLabel.text = "\(cutText)\(newEmoji)"
+            headingLabel.text = "\(String(text.dropLast()))\(newEmoji)"
         }
     }
 }

@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 import Alamofire
-import SwiftyJSON
 
 class TimeZones {
     
@@ -64,7 +63,7 @@ class TimeZones {
     
     func timeZoneForLocation(_ location: CLLocationCoordinate2D, completionHandler: @escaping (_ gmtOffset: Int?, _ abbreviation: String?) -> ()) {
         let requestString = "\(Endpoint)?by=position&format=json&key=\(ApiKey)&lat=\(location.latitude)&lng=\(location.longitude)"
-        Alamofire.request(requestString)
+        AF.request(requestString)
         .responseJSON { response in
 //            print(response.request)  // original URL request
 //            print(response.response) // URL response
@@ -77,7 +76,7 @@ class TimeZones {
                 return
             }
             
-            let json = JSON(data: data)
+            let json = try! JSON(data: data)
             guard let abbreviation = json["abbreviation"].string else {
                 print("Abbreviation from response is nil")
                 completionHandler(nil, nil)
@@ -90,13 +89,13 @@ class TimeZones {
                 return
             }
             
-            guard let dst = json["dst"].string else {
-                print("DST from response is nil")
-                completionHandler(nil, nil)
-                return
-            }
+//            guard let dst = json["dst"].string else {
+//                print("DST from response is nil")
+//                completionHandler(nil, nil)
+//                return
+//            }
             
-            let daylightSavings = dst == "1"
+//            let daylightSavings = dst == "1"
             let offsetWithGmt = gmtOffset
 //            if daylightSavings {
 //                offsetWithGmt += 60 * 60

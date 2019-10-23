@@ -94,9 +94,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MenuSegue" {
-            menuViewController = segue.destination as! MenuViewController
+            menuViewController = segue.destination as? MenuViewController
         } else if segue.identifier == "SunSegue" {
-            sunViewController = segue.destination as! SunViewController
+            sunViewController = segue.destination as? SunViewController
             delegate = sunViewController
         }
     }
@@ -173,7 +173,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuLeadingConstraint.constant = menuTransform
     }
     
-    func sideSwipe(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+    @objc func sideSwipe(_ recognizer: UIScreenEdgePanGestureRecognizer) {
         let fingerX = recognizer.location(in: view).x
 
         if recognizer.state == .began {
@@ -194,7 +194,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         return val >= low && val <= high
     }
     
-    func menuPan(_ recognizer: UIPanGestureRecognizer) {
+    @objc func menuPan(_ recognizer: UIPanGestureRecognizer) {
         let fingerX = recognizer.location(in: view).x
     
         if recognizer.state == .began {
@@ -214,7 +214,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func sendMenuIn() {
+    @objc func sendMenuIn() {
         if menuOut {
             menuSoftIn()
         }
@@ -224,12 +224,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         return true
     }
     
-    func sendMenuButtonOut() {
+    @objc func sendMenuButtonOut() {
         menuImageView.animation = "fadeIn"
         menuImageView.animate()
     }
     
-    func sendMenuButtonIn() {
+    @objc func sendMenuButtonIn() {
         menuImageView.animation = "fadeOut"
         menuImageView.animate()
     }

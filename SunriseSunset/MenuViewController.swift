@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import PermissionScope
+import SPPermission
 
 import Crashlytics
 
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, SPPermissionDialogDelegate {
 
     let defaults = Defaults.defaults
     @IBOutlet weak var menuView: UIView!
@@ -42,6 +42,9 @@ class MenuViewController: UIViewController {
     var infoMenuViewController: InfoMenuViewController?
     
     let SoftAnimationDuration: TimeInterval = 1
+    
+    var notificationText: String?
+    var notificationSelected: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +89,7 @@ class MenuViewController: UIViewController {
         
         // All buttons
         for button in menuButtons {
-            button.setTitleColor(buttonDisabled, for: UIControlState())
+            button.setTitleColor(buttonDisabled, for: UIControl.State())
             button.setTitleColor(buttonEnabled, for: .selected)
 //            button.setTitleColor(buttonHighlighted, forState: .Highlighted)
         }
@@ -110,24 +113,24 @@ class MenuViewController: UIViewController {
             button.addTarget(self, action: #selector(notificationButtonDidTouch), for: .touchUpInside)
         }
         
-        buttonSunrise.setImage(UIImage(named: "rise_off"), for: UIControlState())
+        buttonSunrise.setImage(UIImage(named: "rise_off"), for: UIControl.State())
         buttonSunrise.setImage(UIImage(named: "rise_on"), for: .selected)
         buttonSunrise.isSelected = defaults.bool(forKey: "Sunrise")
         
-        buttonSunset.setImage(UIImage(named: "set_off"), for: UIControlState())
+        buttonSunset.setImage(UIImage(named: "set_off"), for: UIControl.State())
         buttonSunset.setImage(UIImage(named: "set_on"), for: .selected)
         buttonSunset.isSelected = defaults.bool(forKey: "Sunset")
         
-        buttonFirstLight.setImage(UIImage(named: "first_off"), for: UIControlState())
+        buttonFirstLight.setImage(UIImage(named: "first_off"), for: UIControl.State())
         buttonFirstLight.setImage(UIImage(named: "first_on"), for: .selected)
         buttonFirstLight.isSelected = defaults.bool(forKey: "FirstLight")
         
-        buttonLastLight.setImage(UIImage(named: "last_off"), for: UIControlState())
+        buttonLastLight.setImage(UIImage(named: "last_off"), for: UIControl.State())
         buttonLastLight.setImage(UIImage(named: "last_on"), for: .selected)
         buttonLastLight.isSelected = defaults.bool(forKey: "LastLight")
     }
     
-    func timeButtonDidTouch(_ sender: UIButton) {
+    @objc func timeButtonDidTouch(_ sender: UIButton) {
         if !sender.isSelected {
             for button in timeButtons {
                 button.isSelected = false
@@ -147,53 +150,61 @@ class MenuViewController: UIViewController {
         }
     }
     
-    func notificationButtonDidTouch(_ sender: UIButton) {
+    @objc func notificationButtonDidTouch(_ sender: UIButton) {
         getNotificationPermission(sender)
     }
     
     func setLocationLabels() {
         if let locationName = SunLocation.getLocationName() {
-            buttonLocation.setTitle(locationName, for: UIControlState())
+            buttonLocation.setTitle(locationName, for: UIControl.State())
             currentLocationLabel.isHidden = !SunLocation.isCurrentLocation()
         }
     }
     
     func getNotificationPermission(_ sender: UIButton) {
-        let pscope = PermissionScope()
-        pscope.style()
-        pscope.addPermission(NotificationsPermission(), message: "We only send you notifications for what you allow")
+        sender.isSelected = !sender.isSelected
+        notificationSelected = sender.isSelected
         
-        pscope.show({ finished, results in
-            
-            if results[0].status == PermissionStatus.authorized {
-                sender.isSelected = !sender.isSelected
-                
-                var noti = ""
-                switch sender {
-                case self.buttonSunrise:
-                    noti = "Sunrise"
-                case self.buttonSunset:
-                    noti = "Sunset"
-                case self.buttonFirstLight:
-                    noti = "FirstLight"
-                case self.buttonLastLight:
-                    noti = "LastLight"
-                default:
-                    noti = ""
-                }
-                self.defaults.set(sender.isSelected, forKey: noti)
-                
+        switch sender {
+        case self.buttonSunrise:
+            notificationText = "Sunrise"
+        case self.buttonSunset:
+            notificationText = "Sunset"
+        case self.buttonFirstLight:
+            notificationText = "FirstLight"
+        case self.buttonLastLight:
+            notificationText = "LastLight"
+        default:
+            notificationText = ""
+        }
+        
+        if SPPermission.isAllowed(.notification) {
+            notificationPermissionCallback()
+        } else {
+            SPPermission.Dialog.request(with: [.notification], on: self, delegate: self, dataSource: PermissionController())
+        }
+    }
+    
+    func notificationPermissionCallback() {
+        if let noti = notificationText {
+            if let selected = notificationSelected {
+                self.defaults.set(notificationSelected, forKey: noti)
                 Bus.sendMessage(.notificationChange, data: nil)
-                Analytics.toggleNotificationForEvent(sender.isSelected, type: noti)
+                Analytics.toggleNotificationForEvent(selected, type: noti)
             }
-            }, cancelled: { (results) -> Void in
-                print("notification permissions were cancelled")
-        })
+        }
+        
+        notificationText = nil
+        notificationSelected = nil
+    }
+    
+    @objc func didAllow(permission: SPPermissionType) {
+        notificationPermissionCallback()
     }
     
     // Location
     
-    func locationUpdate() {
+    @objc func locationUpdate() {
         setLocationLabels()
     }
     

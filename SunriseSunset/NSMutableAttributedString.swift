@@ -15,8 +15,8 @@ extension NSMutableAttributedString {
     }
     
     func attributeRangeFor(_ searchString: String, attributeName: String, attributeValue: AnyObject, atributeSearchType: AtributeSearchType) {
-        let inputLength = self.string.characters.count
-        let searchLength = searchString.characters.count
+        let inputLength = self.string.count
+        let searchLength = searchString.count
         var range = NSRange(location: 0, length: self.length)
         var rangeCollection = [NSRange]()
         
@@ -25,10 +25,10 @@ extension NSMutableAttributedString {
             if (range.location != NSNotFound) {
                 switch atributeSearchType {
                 case .first:
-                    self.addAttribute(attributeName, value: attributeValue, range: NSRange(location: range.location, length: searchLength))
+                    self.addAttribute(NSAttributedString.Key(rawValue: attributeName), value: attributeValue, range: NSRange(location: range.location, length: searchLength))
                     return
                 case .all:
-                    self.addAttribute(attributeName, value: attributeValue, range: NSRange(location: range.location, length: searchLength))
+                    self.addAttribute(NSAttributedString.Key(rawValue: attributeName), value: attributeValue, range: NSRange(location: range.location, length: searchLength))
                     break
                 case .last:
                     rangeCollection.append(range)
@@ -42,7 +42,7 @@ extension NSMutableAttributedString {
         switch atributeSearchType {
         case .last:
             let indexOfLast = rangeCollection.count - 1
-            self.addAttribute(attributeName, value: attributeValue, range: rangeCollection[indexOfLast])
+            self.addAttribute(NSAttributedString.Key(rawValue: attributeName), value: attributeValue, range: rangeCollection[indexOfLast])
             break
         default:
             break
