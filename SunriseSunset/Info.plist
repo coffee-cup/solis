@@ -22,20 +22,6 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>12</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>ab09dfba68ec87866fde734a063b9f3fffb4cf7c</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -73,6 +59,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
