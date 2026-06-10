@@ -130,8 +130,6 @@ class Sun {
         }
         createSuntime(.middleNight, view: sunView, dayNumber: 2)
         createSuntime(.middleNight, view: sunView, dayNumber: 3)
-        
-        Bus.subscribeEvent(.timeFormat, observer: self, selector: #selector(timeFormatUpdate))
     }
     
     func createSuntime(_ type: SunType, view: UIView, dayNumber: Int) {
@@ -279,12 +277,12 @@ class Sun {
     }
     
     func setNowTimeText() {
-        if let formatter = TimeFormatters.currentFormatter(TimeZones.currentTimeZone) {
+        if let formatter = TimeFormatters.currentFormatter(SunLocation.currentTimeZone) {
             nowTimeLabel.text = formatter.string(from: now)
                 .replacingOccurrences(of: "AM", with: "am")
                 .replacingOccurrences(of: "PM", with: "pm")
         } else {
-            nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).string(from: now)
+            nowTimeLabel.text = TimeFormatters.formatter12h(SunLocation.currentTimeZone).string(from: now)
                 .replacingOccurrences(of: "AM", with: "am")
                 .replacingOccurrences(of: "PM", with: "pm")
         }

@@ -9,12 +9,10 @@
 import UIKit
 import CoreLocation
 
-class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol {
+class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, SunProtocol {
 
     var sunView: UIView!
     var gradientLayer = CAGradientLayer()
-
-    var backgroundView: UIView!
 
     var nowView: TouchThroughView!
     var nowTimeLabel: UILabel!
@@ -94,21 +92,21 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     // TODO: Remove hardcoded free form scroll duration
     let SCROLL_DURATION: TimeInterval = 1.2
-    
-    // Duration to use when animation sun view fade
-    let MenuFadeAnimationDuration: TimeInterval = 0.25
-    
-    // Background alpha of background overlay view when menu is out
-    let MenuBackgroundAlpha: CGFloat = 0.4
-    
-    // Whether or not the sun view is fading due to the menu animating
-    let menuAnimation = false
-    
+
     // How large the sun view is compared to the normal view
     let SunViewScreenMultiplier: CGFloat = 9
-    
+
     var smoothyOffset: Double = 0
     var smoothyForward = true
+
+    // Closes the slide-out menu when the gradient is tapped while it is out.
+    var onTapWhileMenuOut: (() -> Void)?
+
+    // Last-applied model state, diffed in apply()
+    private var appliedUpdateToken = 0
+    private var appliedChangeToken = 0
+    private var appliedResetToken = 0
+    private var appliedTimeFormat: String?
     
     override func loadView() {
         let root = TouchDownView()
@@ -276,14 +274,36 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         longPressRecognizer.minimumPressDuration = 0.5
         sunView.addGestureRecognizer(longPressRecognizer)
 
-        setupBackgroundView()
+    }
 
-        // Notifications
+    // Reacts to observable-model changes forwarded by TimelineView.
+    func apply(updateToken: Int, changeToken: Int, resetToken: Int, timeFormat: String, isMenuOut: Bool) {
+        self.isMenuOut = isMenuOut
 
-        Bus.subscribeEvent(.locationUpdate, observer: self, selector: #selector(locationUpdate))
-        Bus.subscribeEvent(.locationChanged, observer: self, selector: #selector(locationChanged))
-        Bus.subscribeEvent(.gotTimeZone, observer: self, selector: #selector(timeZoneUpdate))
-        Bus.subscribeEvent(.foregrounded, observer: self, selector: #selector(scrollReset))
+        guard sun != nil else {
+            appliedUpdateToken = updateToken
+            appliedChangeToken = changeToken
+            appliedResetToken = resetToken
+            appliedTimeFormat = timeFormat
+            return
+        }
+
+        if appliedChangeToken != changeToken {
+            appliedChangeToken = changeToken
+            locationJustChanged = true
+        }
+        if appliedTimeFormat != timeFormat {
+            appliedTimeFormat = timeFormat
+            sun.timeFormatUpdate()
+        }
+        if appliedResetToken != resetToken {
+            appliedResetToken = resetToken
+            scrollReset()
+        }
+        if appliedUpdateToken != updateToken {
+            appliedUpdateToken = updateToken
+            update()
+        }
     }
 
     // The gradient maths capture the view height once; the frame is not
@@ -330,33 +350,11 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        setupPermissions()
-        
+
         // Update every minute
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        Bus.removeSubscriptions(self)
-    }
-    
-    func setupBackgroundView() {
-        backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.black
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.isUserInteractionEnabled = false
-        backgroundView.alpha = 0
-        
-        view.addSubview(backgroundView)
-        view.bringSubviewToFront(backgroundView)
-        
-        let horizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: ["view": backgroundView!])
-        let verticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": backgroundView!])
-        NSLayoutConstraint.activate(horizontalContraints + verticalContraints)
-    }
-    
+
     func startAnimationTimer() {
         animationTimer = Timer.scheduledTimer(timeInterval: 0.06, target: self, selector: #selector(animationUpdate), userInfo: nil, repeats: true)
         animationFireDate = Date()
@@ -364,38 +362,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     
     func stopAnimationTimer() {
         animationTimer.invalidate()
-    }
-    
-    func setupPermissions() {
-        SunLocation.requestLocationPermission { granted in
-            if granted {
-                SunLocation.startLocationWatching()
-            }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func dateComponentsToString(_ d: DateComponents) -> String {
-        return "\(String(describing: d.hour)):\(String(describing: d.minute))"
-    }
-    
-    @objc func timeZoneUpdate() {
-        update()
-    }
-    
-    @objc func locationUpdate() {
-        print("location update")
-        update()
-    }
-    
-    @objc func locationChanged() {
-        print("location changed")
-        locationJustChanged = true
-        //        scrollReset()
     }
     
     // Enable=true means we are showing the no location views
@@ -476,46 +442,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         self.allowedPan = true
         self.offset = 0.0
         self.offsetTranslation = 0.0
-    }
-    
-    // Menu
-    
-    func menuIn() {
-        isMenuOut = false
-    }
-    
-    func menuOut() {
-        isMenuOut = true
-    }
-    
-    func menuStartAnimatingIn() {
-        UIView.animate(withDuration: MenuFadeAnimationDuration) {
-            self.backgroundView.alpha = 0
-            self.isMenuOut = false
-        }
-    }
-    
-    func menuIsIn() {
-        backgroundView.alpha = 0
-        isMenuOut = false
-    }
-    
-    func menuStartAnimatingOut() {
-        isMenuOut = true
-        UIView.animate(withDuration: MenuFadeAnimationDuration) {
-            self.backgroundView.alpha = self.MenuBackgroundAlpha
-        }
-    }
-    
-    func menuIsOut() {
-        backgroundView.alpha = MenuBackgroundAlpha
-        isMenuOut = true
-    }
-    
-    func menuIsMoving(_ percent: Float) {
-        let alpha = CGFloat(percent) * MenuBackgroundAlpha
-        backgroundView.alpha = alpha
-        isMenuOut = alpha != 0
     }
     
     // Touch and Dragging
@@ -659,7 +585,9 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     @objc func tapGesture(_ recognizer: UITapGestureRecognizer) {
-        Bus.sendMessage(.sendMenuIn, data: nil)
+        if isMenuOut {
+            onTapWhileMenuOut?()
+        }
     }
     
     @objc func longPressGesture(_ recognizer: UILongPressGestureRecognizer) {

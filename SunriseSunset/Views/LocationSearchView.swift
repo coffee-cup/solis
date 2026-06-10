@@ -8,6 +8,7 @@ import SwiftUI
 
 struct LocationSearchView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LocationModel.self) private var locationModel
 
     @State private var model = LocationSearchModel()
     @State private var history: [SunPlace] = SunLocation.getLocationHistory() ?? []
@@ -100,12 +101,7 @@ struct LocationSearchView: View {
         .accessibilityLabel("Current Location")
         .onTapGesture {
             dismiss()
-            SunLocation.requestLocationPermission { granted in
-                if granted {
-                    SunLocation.startLocationWatching()
-                    SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
-                }
-            }
+            locationModel.selectCurrentLocation()
         }
     }
 
@@ -125,7 +121,7 @@ struct LocationSearchView: View {
                     // Stable identity for history/notification matching now that
                     // there are no Google place IDs.
                     place.placeID = "\(coordinate.latitude),\(coordinate.longitude)"
-                    SunLocation.selectLocation(false, location: coordinate, name: place.primary, sunplace: place)
+                    locationModel.select(place, coordinate: coordinate)
                 }
             }
     }
@@ -142,7 +138,9 @@ struct LocationSearchView: View {
         .contentShape(Rectangle())
         .onTapGesture {
             dismiss()
-            SunLocation.selectLocation(false, location: place.location, name: place.primary, sunplace: place)
+            if let coordinate = place.location {
+                locationModel.select(place, coordinate: coordinate)
+            }
         }
     }
 

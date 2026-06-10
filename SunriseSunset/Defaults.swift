@@ -58,7 +58,7 @@ class Defaults {
     static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
     
     static var delta: Bool {
-        let timeformat = defaults.string(forKey: MessageType.timeFormat.description)
+        let timeformat = defaults.string(forKey: DefaultKey.timeFormat.description)
         return timeformat == "delta"
     }
     

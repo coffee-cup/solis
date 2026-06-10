@@ -1,23 +1,24 @@
 # Solis — Agent Guide
 
-iOS app showing sunrise/sunset/twilight times on a scrollable day timeline. UIKit + storyboards (2016-era, being modernized), Swift 5 mode, zero external dependencies, iOS 16+, built with Xcode 26.
+iOS app showing sunrise/sunset/twilight times on a scrollable day timeline. SwiftUI app lifecycle with one wrapped UIKit view controller for the timeline, zero external dependencies, iOS 18+, built with Xcode 26.
 
 ## Layout
 
 ```text
 SunriseSunset.xcodeproj        the whole project (no workspace, no CocoaPods — never add/recreate either)
 SunriseSunset/                 app target source
-  SunViewController.swift      main timeline UI (scroll/zoom, sun lines)
+  SolisApp.swift               @main SwiftUI App: registered defaults, BGTask registration, model wiring
+  Views/                       RootView (menu shell + dim overlay), MenuView, LocationSearchView, InfoMenuView, InfoView
+  Models/                      @Observable models: LocationModel, SettingsModel, MenuState, LocationSearchModel
+  Timeline/TimelineView.swift  UIViewControllerRepresentable hosting SunViewController; token-diffed updates
+  SunViewController.swift      UIKit timeline (programmatic layout; gesture scroll/momentum, gradient, sun lines)
   SunLogic.swift, Sun.swift    sun-time calculations (wraps EDSunriseSet)
   EDSunriseSet/                vendored ObjC sunrise/sunset lib (via bridging header)
-  SunLocation.swift            CoreLocation wrapper (LocationProvider) + saved-location accessors
-  TimeZones.swift              timezone via CLGeocoder reverse geocoding
-  LocationChangeViewController.swift   city search via MKLocalSearchCompleter/MKLocalSearch
-  Notifications.swift          local notifications (still on legacy UILocalNotification)
+  SunLocation.swift            shared app-group location storage (also compiled into the widget)
+  LocationProvider.swift       app-only CLLocationManager wrapper + SunLocation mutation/geocoding extension
+  Services/                    NotificationScheduler (UNUserNotificationCenter), BackgroundRefresh (BGAppRefreshTask)
   Defaults.swift               UserDefaults(suiteName: "group.SunriseSunset") + DefaultKey enum
-  Bus.swift                    NotificationCenter wrapper for app events
-  Spring/                      vendored animation lib
-SolisWidget/                   WidgetKit extension (SwiftUI), shares app sources + EDSunriseSet
+SolisWidget/                   WidgetKit extension (SwiftUI), shares SunLogic/SunLocation/Defaults/EDSunriseSet
 scripts/ios-loop-*.sh          simulator loop helpers (see below)
 ```
 
@@ -48,6 +49,7 @@ For anything interactive (taps, assertions, screenshots, logs, seeding app state
 
 ## Modernization state
 
-- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), iOS 16 floor, WidgetKit widget replacing the old Today extension.
-- Backlog (phase 3): `UILocalNotification` → `UNUserNotificationCenter`, `setMinimumBackgroundFetchInterval` → `BGAppRefreshTask`, async/await + Swift 6 mode, replace `Bus` with typed notifications, accessibility labels on main-screen buttons, privacy manifest before any App Store release.
+- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons.
+- Remaining backlog: Swift 6 language mode (strict concurrency), privacy manifest before any App Store release.
+- The widget compiles `SunLogic/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
 - Old Google Places/timezonedb API keys exist in git history; they are dead/revoked — do not reuse that pattern; the app needs no API keys.

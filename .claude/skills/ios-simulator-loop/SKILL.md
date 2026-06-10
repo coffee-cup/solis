@@ -72,7 +72,7 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
    iosef tap --name "Allow While Using App"
    ```
 8. Inspect structure before guessing coordinates: `iosef describe --depth 3`
-9. Act with selectors first (`iosef tap/type/wait/exists`), coordinates only for the unlabeled buttons (see App map).
+9. Act with selectors first (`iosef tap/type/wait/exists`); main-screen buttons are labeled (`menu`, `center on now`). Watch for substring matches — `--name "Allow"` can hit "Don't Allow" on system alerts; describe first and tap exact coordinates on permission dialogs.
 10. Make the smallest code change, rebuild (`scripts/ios-loop-build.sh`), relaunch.
 11. Capture after evidence and compare semantically.
 
@@ -81,18 +81,20 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
 Main screen (sun timeline):
 - Scrollable day view; "now" line with current time; sun-event lines (sunrise/sunset/first light/last light) appear at their time positions — events can be off-screen at default zoom, so an empty-looking colored screen is normal during midday/midnight.
 - Background colour reflects the current sun period (teal/cyan = day, blues/purples = twilight/night) and is itself evidence the EDSunriseSet calculations ran.
-- Two **unlabeled** AXButtons at the bottom (2016 storyboard, few accessibility labels): bottom-left `(52, 788)` toggles the menu; bottom-right is context-dependent. Get fresh centers from `iosef describe`.
+- Bottom-left AXButton `menu` opens the slide-out menu; bottom-right `center on now` appears after panning and recenters the timeline.
+- The app is SwiftUI (UIKit only for the timeline view controller, hosted in a representable). The slide-out menu also opens by dragging from the left edge — `iosef swipe --x-start 5 ... --x-end 220` works (SwiftUI DragGesture, unlike the old UIKit edge recognizer).
 
 Menu (after tapping bottom-left button) — all selector-accessible:
 - `24 h` / `12 h` / `±` time-format buttons
 - `sunrise` / `first light` / `sunset` / `last light` notification toggles (these trigger the notification permission prompt)
-- location button (labeled with current city, e.g. `Vancouver`) → opens location change
+- location button (labeled `<City>` or `<City>, current location`) → opens location change
 - `about`
 
 Location change screen:
-- Search field (AXTextField, `[searchField]`), `Close` button.
+- Search field (AXTextField, identifier `citySearchField`), `Close` button.
 - Type a city; results come from `MKLocalSearchCompleter` async — `iosef wait --name "<City>, <Country>" --timeout 10` then tap the row (rows are AXStaticText, tappable).
-- Row 0 is "Current Location"; bell buttons set the notification place.
+- Row 0 is "Current Location"; bell buttons (`notifications on`/`notifications off`) set the notification place.
+- Result rows expose one combined label, `"<Primary>, <Secondary>"` (e.g. `Tokyo, Japan`). The completer list reshuffles asynchronously while typing — a tap right after `wait` can land on a different row whose subtitle contains the same text; `describe` and tap exact coordinates when row identity matters.
 - Selecting a result resolves coordinates via `MKLocalSearch`, then saves location + fetches timezone via `CLGeocoder` — verify via group plist keys below.
 
 Group defaults keys (app-group plist): `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
@@ -128,7 +130,7 @@ nohup xcrun simctl launch --console-pty --terminate-running-process "$UDID" xyz.
 
 ```bash
 iosef tap --name "Vancouver"
-iosef tap --x 52 --y 788                      # unlabeled menu button
+iosef tap --name "menu"                       # bottom-left menu button
 iosef tap --role AXTextField && iosef type --text "Tokyo"
 xcrun simctl ui "$UDID" appearance dark        # restore after validating
 xcrun simctl location "$UDID" set 49.2827,-123.1207
@@ -169,12 +171,12 @@ Then assert the group plist has `CurrentLocationName => Vancouver` (location pip
 ### Change location flow
 
 ```bash
-iosef tap --x 52 --y 788                 # open menu
+iosef tap --name "menu"                  # open menu
 iosef tap --name "Vancouver"             # menu location button (label = current city)
 iosef tap --role AXTextField
 iosef type --text "Tokyo"
 iosef wait --name "Tokyo, Japan" --timeout 10
-iosef tap --name "Tokyo, Japan"
+iosef tap --name "Tokyo, Japan"          # combined row label; see completer-reshuffle caveat
 sleep 6                                  # MKLocalSearch + CLGeocoder timezone fetch
 ```
 
