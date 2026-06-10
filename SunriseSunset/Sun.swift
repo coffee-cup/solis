@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import EDSunriseSet
 import CoreLocation
 
 struct SunTimeLine: Comparable {

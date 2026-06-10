@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import GooglePlaces
-import Fabric
-import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notifications: Notifications!
     let timeZones = TimeZones()
 
-    let GoogleAPIKey = "AIzaSyATdTWF9AwHXq3UnCrAfr6czN7f_E86658"
-    
     func defaultString(_ defaultKey: DefaultKey) -> String {
         return defaultKey.description
     }
@@ -40,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.showSunAreas): true
         ])
         
-        GMSPlacesClient.provideAPIKey(GoogleAPIKey)
-        
         application.setMinimumBackgroundFetchInterval(60 * 60 * 3) // 3 hours
         
         // Set initial view controller
@@ -55,13 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
-        #if RELEASE
-            Fabric.with([Crashlytics.self])
-        #else
-            print("DEBUG MODE")
-        #endif
-            
-        // This MUST come after Fabric has been initialized
         notifications = Notifications()
         
         return true

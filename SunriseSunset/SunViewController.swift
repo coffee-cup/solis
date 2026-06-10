@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import EDSunriseSet
 import CoreLocation
-import UIView_Easing
-import SPPermission
 
-class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol, SPPermissionDialogDelegate {
+class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognizerDelegate, MenuProtocol, SunProtocol {
     
     @IBOutlet weak var sunView: UIView!
     @IBOutlet weak var hourSlider: UISlider!
@@ -243,16 +240,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
     
     func setupPermissions() {
-        if SPPermission.isAllowed(.locationWhenInUse) {
-            SunLocation.startLocationWatching()
-        } else {
-            SPPermission.Dialog.request(with: [.locationWhenInUse], on: self, delegate: self, dataSource: PermissionController())
-        }
-    }
-    
-    @objc func didAllow(permission: SPPermissionType) {
-        if SPPermission.isAllowed(.locationWhenInUse) {
-            SunLocation.startLocationWatching()
+        SunLocation.requestLocationPermission { granted in
+            if granted {
+                SunLocation.startLocationWatching()
+            }
         }
     }
     
@@ -472,13 +463,15 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollAnimationDuration = SCROLL_DURATION
         scrolling = true
         
+        CATransaction.begin()
+        CATransaction.setAnimationTimingFunction(Easing.easeOutQuad)
         UIView.animate(withDuration: scrollAnimationDuration, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-            self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransform(translationX: 0, y: CGFloat(self.transformAfterAnimation))
         }, completion: {finished in
             self.setTransformWhenStopped()
             self.animationStopped = false
         })
+        CATransaction.commit()
     }
     
     @objc func doubleTap(_ recognizer: UITapGestureRecognizer) {
@@ -488,8 +481,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func setTransformWhenStopped() {
         self.stopAnimationTimer()
         self.scrolling = false
-        self.sunView.removeEasingFunction(forKeyPath: "transform")
-        
+
         let transformDifference = self.transformAfterAnimation - self.transformBeforeAnimation
         let animationDuration = abs(self.animationFireDate.timeIntervalSinceNow) + (1 / 60) // <- this magic number makes view not jump as much when scroll stopping
         
@@ -510,14 +502,15 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         scrollAnimationDuration = SCROLL_DURATION
         startAnimationTimer()
         scrolling = true
+        CATransaction.begin()
+        CATransaction.setAnimationTimingFunction(Easing.easeOutQuad)
         UIView.animate(withDuration: scrollAnimationDuration, animations: {
-            self.sunView.setEasingFunction(Easing.easeOutQuad, forKeyPath: "transform")
             self.sunView.transform = CGAffineTransform(translationX: 0, y: 0)
         }, completion: { finished in
-            self.sunView.removeEasingFunction(forKeyPath: "transform")
             self.reset()
             self.update()
         })
+        CATransaction.commit()
     }
     
     func stopScroll() {
