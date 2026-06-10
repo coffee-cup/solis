@@ -7,24 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0766453BE08DF11A201E19B7 /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
+		1366C148184BDFB624578598 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
+		1D08C72F7F3FDEEF62617817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE7CBA9AB862BFA860F55BA /* Foundation.framework */; };
 		21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
+		230AF26175B6E6B26362968D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
+		48D2BEE4C590A877365129A5 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
+		4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
+		4DD0CFDBA78A3D6910ADE8F7 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
+		4F979626AF749AB7EDF9BC1C /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
+		903779BFB71DE7562D6290A7 /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */; };
 		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
 		9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F41D0FCC470079F3A5 /* Notifications.swift */; };
 		9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9C236CD81D16798300FB9985 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
-		9C236CD91D16798300FB9985 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
-		9C236CDA1D1679A800FB9985 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
-		9C236CDB1D1679B600FB9985 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
-		9C236CDC1D1679C200FB9985 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
-		9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
 		9C236CDF1D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
-		9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
-		9C236CE11D16B08D00FB9985 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DFA591D1673DF00353D8C /* TodayViewController.swift */; };
 		9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
-		9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */; };
-		9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
-		9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */; };
 		9C27BE671D2CDBDE0093B2A6 /* InfoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27BE661D2CDBDE0093B2A6 /* InfoMenuViewController.swift */; };
 		9C27BE6B1D3212520093B2A6 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C27BE6A1D3212520093B2A6 /* UIButton.swift */; };
 		9C3314F21CE95783004D012E /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
@@ -32,14 +31,12 @@
 		9C3314F71CE976BE004D012E /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
 		9C3314F91CE9A723004D012E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
 		9C36570E1D471688001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
-		9C36570F1D471C27001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
 		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
 		9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */; };
 		9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */; };
 		9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
-		9C6BCB231D3CA7080069BC16 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C88799F1D3752AF00B8D1B9 /* InfoViewController.swift */; };
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB196371D53190E005CD74E /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */; };
@@ -50,13 +47,8 @@
 		9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */; };
 		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
-		9CB5F24B1D167719005F4E10 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DFA591D1673DF00353D8C /* TodayViewController.swift */; };
-		9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
-		9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
-		9CB5F2501D16791F005F4E10 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
-		9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
 		9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC052351D22465A00CBBECE /* TimeZones.swift */; };
 		9CC29EE41D8BB00A00542894 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29EC61D8BB00A00542894 /* AsyncButton.swift */; };
 		9CC29EE51D8BB00A00542894 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29EC71D8BB00A00542894 /* AsyncImageView.swift */; };
@@ -98,9 +90,24 @@
 		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
 		9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		9CEDC3721D6C20C000F12B29 /* BellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEDC3711D6C20C000F12B29 /* BellButton.swift */; };
+		ACF45D78DAA5A864F2F29079 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
+		BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
+		D076170565B3BC91A7AE6855 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
+		D9A845FED744919AEBB915F5 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
+		DA9E27A743466059639DD154 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
+		DF75EEAD813A951B758723F8 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
+		EAB24A15FED9F76A9E01C843 /* SolisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242A66A4072558D25ABC9DE /* SolisWidget.swift */; };
+		F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8F91B608A14F05E778707478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 980440F7EF737CC85D9BCC59;
+			remoteInfo = SolisWidget;
+		};
 		9CB37BFA1CE844400080B5B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
@@ -117,8 +124,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3C89CC51989E1DCE383B524F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				903779BFB71DE7562D6290A7 /* SolisWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
+		3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AE7CBA9AB862BFA860F55BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChangeViewController.swift; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
 		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -133,7 +157,6 @@
 		9C3314F81CE9A723004D012E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9C36570D1D471688001019BB /* SunPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunPlace.swift; sourceTree = "<group>"; };
 		9C37C0C11CF6C929002ED35A /* TouchDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchDownView.swift; sourceTree = "<group>"; };
-		9C4774531D16762C00C38FFF /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C485AB01CED7E130086B22E /* Sunline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sunline.swift; sourceTree = "<group>"; };
 		9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -144,8 +167,6 @@
 		9C857ADD1D23ABCA0016F9EC /* EDSunriseSet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EDSunriseSet.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SunriseSunset-esumxsdsrqiykhcezudskznhehjj/Build/Products/Debug-iphoneos/EDSunriseSet/EDSunriseSet.framework"; sourceTree = "<group>"; };
 		9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftLocation.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SunriseSunset-esumxsdsrqiykhcezudskznhehjj/Build/Products/Debug-iphoneos/SwiftLocation/SwiftLocation.framework"; sourceTree = "<group>"; };
 		9C88799F1D3752AF00B8D1B9 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		9C8DFA591D1673DF00353D8C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9C8DFA5C1D1673DF00353D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9C8DFA5E1D1673DF00353D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9740091CFC10F9000A5AFD /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
 		9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
@@ -213,11 +234,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9C4774501D16762C00C38FFF /* Frameworks */ = {
+		470CD166B859024876E31296 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */,
+				1D08C72F7F3FDEEF62617817 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,8 +272,17 @@
 				9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */,
 				9C857ADD1D23ABCA0016F9EC /* EDSunriseSet.framework */,
 				9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */,
+				94A04458970CE1F63678EFB6 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94A04458970CE1F63678EFB6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4AE7CBA9AB862BFA860F55BA /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		9C13350D1D1529A1004B3F1B /* ViewControllers */ = {
@@ -307,9 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */,
-				9C8DFA591D1673DF00353D8C /* TodayViewController.swift */,
-				9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */,
 				9C8DFA5E1D1673DF00353D8C /* Info.plist */,
+				2242A66A4072558D25ABC9DE /* SolisWidget.swift */,
 			);
 			path = SolisWidget;
 			sourceTree = "<group>";
@@ -332,7 +361,7 @@
 				9CB37BE51CE844400080B5B1 /* SunriseSunset.app */,
 				9CB37BF91CE844400080B5B1 /* SunriseSunsetTests.xctest */,
 				9CB37C041CE844400080B5B1 /* SunriseSunsetUITests.xctest */,
-				9C4774531D16762C00C38FFF /* SolisWidget.appex */,
+				3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -452,20 +481,19 @@
 				E6912BE2275D31864D92802B /* EDSunriseSet.h */,
 				3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */,
 			);
-			name = EDSunriseSet;
 			path = EDSunriseSet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C4774521D16762C00C38FFF /* SolisWidget */ = {
+		980440F7EF737CC85D9BCC59 /* SolisWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C4774611D16762C00C38FFF /* Build configuration list for PBXNativeTarget "SolisWidget" */;
+			buildConfigurationList = 87BDA18B344A66A22AE7EFA1 /* Build configuration list for PBXNativeTarget "SolisWidget" */;
 			buildPhases = (
-				9C47744F1D16762C00C38FFF /* Sources */,
-				9C4774501D16762C00C38FFF /* Frameworks */,
-				9C4774511D16762C00C38FFF /* Resources */,
+				D39D010DD54DB83A9DA23D7C /* Sources */,
+				470CD166B859024876E31296 /* Frameworks */,
+				C24C82740E78D74C654ACC20 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -473,7 +501,7 @@
 			);
 			name = SolisWidget;
 			productName = SolisWidget;
-			productReference = 9C4774531D16762C00C38FFF /* SolisWidget.appex */;
+			productReference = 3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		9CB37BE41CE844400080B5B1 /* SunriseSunset */ = {
@@ -483,10 +511,12 @@
 				9CB37BE11CE844400080B5B1 /* Sources */,
 				9CB37BE21CE844400080B5B1 /* Frameworks */,
 				9CB37BE31CE844400080B5B1 /* Resources */,
+				3C89CC51989E1DCE383B524F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3EE05AD470706E60DDCC04AC /* PBXTargetDependency */,
 			);
 			name = SunriseSunset;
 			productName = SunriseSunset;
@@ -539,15 +569,8 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = Puddllee;
 				TargetAttributes = {
-					9C4774521D16762C00C38FFF = {
-						CreatedOnToolsVersion = 7.3.1;
+					980440F7EF737CC85D9BCC59 = {
 						DevelopmentTeam = 4TPDCY22V9;
-						LastSwiftMigration = 1110;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
 					};
 					9CB37BE41CE844400080B5B1 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -591,21 +614,12 @@
 				9CB37BE41CE844400080B5B1 /* SunriseSunset */,
 				9CB37BF81CE844400080B5B1 /* SunriseSunsetTests */,
 				9CB37C031CE844400080B5B1 /* SunriseSunsetUITests */,
-				9C4774521D16762C00C38FFF /* SolisWidget */,
+				980440F7EF737CC85D9BCC59 /* SolisWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9C4774511D16762C00C38FFF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9C236CE91D16B13100FB9985 /* MainInterface.storyboard in Resources */,
-				9C236CE71D16B0B600FB9985 /* SolisWidget.entitlements in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9CB37BE31CE844400080B5B1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -615,7 +629,6 @@
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
-				9C236CE81D16B12F00FB9985 /* MainInterface.storyboard in Resources */,
 				9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */,
 				9CC29EF31D8BB00A00542894 /* LoadingView.xib in Resources */,
 			);
@@ -635,28 +648,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		9C47744F1D16762C00C38FFF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		C24C82740E78D74C654ACC20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C236CDB1D1679B600FB9985 /* UIColor.swift in Sources */,
-				9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */,
-				9C236CE11D16B08D00FB9985 /* TodayViewController.swift in Sources */,
-				9C236CE01D169C6900FB9985 /* TimeFormatters.swift in Sources */,
-				9C236CD91D16798300FB9985 /* Defaults.swift in Sources */,
-				9C236CDD1D1679CC00FB9985 /* NSDate.swift in Sources */,
-				9C236CDA1D1679A800FB9985 /* Styles.swift in Sources */,
-				9CB5F2501D16791F005F4E10 /* SunLocation.swift in Sources */,
-				9C36570F1D471C27001019BB /* SunPlace.swift in Sources */,
-				9C6BCB231D3CA7080069BC16 /* SunType.swift in Sources */,
-				9C236CDC1D1679C200FB9985 /* Bus.swift in Sources */,
-				9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */,
+				BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */,
+				D9A845FED744919AEBB915F5 /* Muli-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		9CB37BE11CE844400080B5B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,7 +700,6 @@
 				9CB196371D53190E005CD74E /* NSMutableAttributedString.swift in Sources */,
 				9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */,
 				9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */,
-				9CB5F24B1D167719005F4E10 /* TodayViewController.swift in Sources */,
 				9C3314F71CE976BE004D012E /* NSDate.swift in Sources */,
 				9CC29EFB1D8BB00A00542894 /* SpringTextField.swift in Sources */,
 				9C3314F41CE9712F004D012E /* Styles.swift in Sources */,
@@ -746,9 +748,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D39D010DD54DB83A9DA23D7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAB24A15FED9F76A9E01C843 /* SolisWidget.swift in Sources */,
+				D076170565B3BC91A7AE6855 /* UIColor.swift in Sources */,
+				DF75EEAD813A951B758723F8 /* SunLogic.swift in Sources */,
+				F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */,
+				4DD0CFDBA78A3D6910ADE8F7 /* Defaults.swift in Sources */,
+				1366C148184BDFB624578598 /* NSDate.swift in Sources */,
+				230AF26175B6E6B26362968D /* Styles.swift in Sources */,
+				48D2BEE4C590A877365129A5 /* SunLocation.swift in Sources */,
+				0766453BE08DF11A201E19B7 /* SunPlace.swift in Sources */,
+				DA9E27A743466059639DD154 /* SunType.swift in Sources */,
+				ACF45D78DAA5A864F2F29079 /* Bus.swift in Sources */,
+				4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */,
+				4F979626AF749AB7EDF9BC1C /* EDSunriseSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3EE05AD470706E60DDCC04AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SolisWidget;
+			target = 980440F7EF737CC85D9BCC59 /* SolisWidget */;
+			targetProxy = 8F91B608A14F05E778707478 /* PBXContainerItemProxy */;
+		};
 		9CB37BFB1CE844400080B5B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9CB37BE41CE844400080B5B1 /* SunriseSunset */;
@@ -762,14 +790,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9C8DFA5B1D1673DF00353D8C /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C8DFA5C1D1673DF00353D8C /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		9CB37BEC1CE844400080B5B1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -789,45 +809,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9C47745F1D16762C00C38FFF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		9C4774601D16762C00C38FFF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		9CB37C0B1CE844400080B5B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -941,6 +922,7 @@
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -960,6 +942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1033,14 +1016,53 @@
 			};
 			name = Release;
 		};
+		E25BBFCDEEBD543F0A32E1E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = SolisWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SunriseSunset/Objective-CBridgingHeader.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E36C5867569A7761D9AC32DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
+				DEVELOPMENT_TEAM = 4TPDCY22V9;
+				INFOPLIST_FILE = SolisWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SunriseSunset/Objective-CBridgingHeader.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C4774611D16762C00C38FFF /* Build configuration list for PBXNativeTarget "SolisWidget" */ = {
+		87BDA18B344A66A22AE7EFA1 /* Build configuration list for PBXNativeTarget "SolisWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9C47745F1D16762C00C38FFF /* Debug */,
-				9C4774601D16762C00C38FFF /* Release */,
+				E25BBFCDEEBD543F0A32E1E5 /* Release */,
+				E36C5867569A7761D9AC32DD /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
