@@ -37,9 +37,6 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
 
         searchCompleter.delegate = self
         searchCompleter.resultTypes = .address
-        if #available(iOS 18.0, *) {
-            searchCompleter.addressFilter = MKAddressFilter(including: .locality)
-        }
 
         if let locationHistory = SunLocation.getLocationHistory() {
             placeHistory = locationHistory
