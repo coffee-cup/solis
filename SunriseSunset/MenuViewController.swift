@@ -6,6 +6,7 @@
 //  Copyright © 2016 Puddllee. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 import UserNotifications
 
@@ -32,12 +33,7 @@ class MenuViewController: UIViewController {
     var timeButtons: [UIButton]!
     var notificationButtons: [UIButton]!
     var menuButtons: [UIButton] = []
-    
-    lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
-    
-    var locationChangeViewController: LocationChangeViewController?
-    var infoMenuViewController: InfoMenuViewController?
-    
+
     let SoftAnimationDuration: TimeInterval = 1
     
     var notificationText: String?
@@ -207,26 +203,18 @@ class MenuViewController: UIViewController {
         setLocationLabels()
     }
     
-    func viewControllerWithIdentifier(_ identifier: String) -> UIViewController {
-        return storyBoard.instantiateViewController(withIdentifier: identifier)
-    }
-
     @IBAction func locationButtonDidTouch(_ sender: AnyObject) {
-        performSegue(withIdentifier: "LocationChangeSegue", sender: self)
+        presentFullScreen(LocationSearchView())
     }
-    
-    @IBAction func aboutButtonDidTouch(_ sender: AnyObject) {
-        performSegue(withIdentifier: "InfoMenuSegue", sender: self)
-    }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func aboutButtonDidTouch(_ sender: AnyObject) {
+        presentFullScreen(InfoMenuView())
     }
-    */
+
+    func presentFullScreen(_ view: some View) {
+        let host = UIHostingController(rootView: view)
+        host.modalPresentationStyle = .overFullScreen
+        present(host, animated: true)
+    }
 
 }
