@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.notificationPreTime): 60 * 60 * 5, // minutes
             defaultString(.currentLocation): true,
             defaultString(.locationHistoryPlaces): [],
-            defaultString(.showWalkthrough): true,
             defaultString(.showSunAreas): true
         ])
         
@@ -41,10 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let initViewControllerIdentifier = Defaults.showWalkthrough ? "WalkthroughViewController" : "MainViewController"
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: initViewControllerIdentifier)
-        
+
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         

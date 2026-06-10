@@ -1,6 +1,6 @@
 ---
 name: ios-simulator-loop
-description: Close the iOS Simulator feedback loop for Solis. Use when an agent needs to build/install/launch the app, boot/inspect/control the simulator, capture screenshots/logs, seed app state (location, walkthrough), validate UI changes, run selector-based interactions, or produce before/after evidence.
+description: Close the iOS Simulator feedback loop for Solis. Use when an agent needs to build/install/launch the app, boot/inspect/control the simulator, capture screenshots/logs, seed app state (location), validate UI changes, run selector-based interactions, or produce before/after evidence.
 version: 1.0.0
 license: MIT
 ---
@@ -51,7 +51,7 @@ Run from the repo root.
 scripts/ios-loop-env.sh                                  # tool/sim/app status
 scripts/ios-loop-sim.sh --connect-iosef --shutdown-older # pin latest sim, close others
 scripts/ios-loop-build.sh                                # xcodebuild + simctl install (app + widget)
-scripts/ios-loop-prepare.sh --skip-walkthrough --grant-location --location 49.2827,-123.1207
+scripts/ios-loop-prepare.sh --grant-location --location 49.2827,-123.1207
 scripts/ios-loop-launch.sh                               # launch (terminates running instance)
 scripts/ios-loop-screenshot.sh --name base               # capture PNG into .ios-loop/screenshots
 scripts/ios-loop-logs.sh --last 2m                       # app/widget logs into .ios-loop/logs
@@ -65,7 +65,7 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
 2. `scripts/ios-loop-env.sh`
 3. `scripts/ios-loop-sim.sh --connect-iosef --shutdown-older`
 4. `scripts/ios-loop-build.sh`
-5. `scripts/ios-loop-prepare.sh --reset --skip-walkthrough --grant-location --location 49.2827,-123.1207` (pick flags for the scenario; set `--location` again before every launch that needs a fix)
+5. `scripts/ios-loop-prepare.sh --reset --grant-location --location 49.2827,-123.1207` (pick flags for the scenario; set `--location` again before every launch that needs a fix)
 6. `scripts/ios-loop-launch.sh` and capture baseline screenshot + logs.
 7. If the location permission dialog appears anyway, dismiss it by selector:
    ```bash
@@ -77,8 +77,6 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
 11. Capture after evidence and compare semantically.
 
 ## App map
-
-First launch shows a walkthrough (`ShowWalkthrough` default); skip it via prepare script or tap `skip`.
 
 Main screen (sun timeline):
 - Scrollable day view; "now" line with current time; sun-event lines (sunrise/sunset/first light/last light) appear at their time positions — events can be off-screen at default zoom, so an empty-looking colored screen is normal during midday/midnight.
@@ -97,7 +95,7 @@ Location change screen:
 - Row 0 is "Current Location"; bell buttons set the notification place.
 - Selecting a result resolves coordinates via `MKLocalSearch`, then saves location + fetches timezone via `CLGeocoder` — verify via group plist keys below.
 
-Group defaults keys (app-group plist): `ShowWalkthrough`, `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
+Group defaults keys (app-group plist): `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
 
 Read state:
 
@@ -159,7 +157,7 @@ Timeline logic lives in `SolisWidget/SolisWidget.swift` and reuses `SunLogic`, w
 ```bash
 scripts/ios-loop-sim.sh --connect-iosef --shutdown-older
 scripts/ios-loop-build.sh
-scripts/ios-loop-prepare.sh --reset --skip-walkthrough --grant-location --location 49.2827,-123.1207
+scripts/ios-loop-prepare.sh --reset --grant-location --location 49.2827,-123.1207
 scripts/ios-loop-launch.sh
 sleep 5
 iosef exists --name "now"      # main screen rendered
@@ -200,7 +198,6 @@ Remaining issues: ...
 - **App state assertion fails right after acting**: cfprefsd lag — re-read the plist after a few seconds before debugging the app.
 - **Empty search results while typing**: completer callbacks are async and can deliver a stale list before the final one; `iosef wait` on the expected row instead of asserting immediately.
 - **Selector missing**: most legacy controls lack accessibility labels; use `iosef describe` coordinates. Adding labels is a welcome small improvement when touching a screen.
-- **Walkthrough appears unexpectedly**: prepare script ran against a different UDID, or `--reset` cleared `ShowWalkthrough`.
 - **No location fix after relaunch** (no `CurrentLocationName` saved, no sun lines): `simctl location set` does not always survive app relaunches — re-run `scripts/ios-loop-prepare.sh --location ...` immediately before the launch that needs it.
 - **Stale app state after `--reset`**: should not happen (the script restarts cfprefsd), but if values look like the pre-reset state, terminate the app, restart cfprefsd (`xcrun simctl spawn "$UDID" launchctl kickstart -k system/com.apple.cfprefsd.xpc.daemon`), and relaunch.
 - **App not installed**: run `scripts/ios-loop-build.sh`; do not pretend validation passed.

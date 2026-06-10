@@ -26,7 +26,7 @@ scripts/ios-loop-*.sh          simulator loop helpers (see below)
 ```bash
 scripts/ios-loop-sim.sh --connect-iosef --shutdown-older   # pin ONE simulator (critical)
 scripts/ios-loop-build.sh                                  # build app + widget, install on sim
-scripts/ios-loop-prepare.sh --skip-walkthrough --grant-location --location 49.2827,-123.1207
+scripts/ios-loop-prepare.sh --grant-location --location 49.2827,-123.1207
 scripts/ios-loop-launch.sh
 scripts/ios-loop-screenshot.sh --name check
 ```

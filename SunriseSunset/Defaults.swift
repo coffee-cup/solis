@@ -26,8 +26,6 @@ enum DefaultKey {
     case locationPlaceID
     case locationTimeZoneOffset
     case locationHistoryPlaces
-    case showWalkthrough
-    case showTutorial
     case showSunAreas
     case notificationPlace
     
@@ -50,8 +48,6 @@ enum DefaultKey {
         case .locationPlaceID: return "LocationPlaceID"
         case .locationTimeZoneOffset: return "LocationTimeZoneOffset"
         case .locationHistoryPlaces: return "LocationHistoryPlaces"
-        case .showWalkthrough: return "ShowWalkthrough"
-        case .showTutorial: return "ShowTutorial"
         case .showSunAreas: return "ShowSunAreas"
         case .notificationPlace: return "NotificationPlace"
         }
@@ -68,15 +64,6 @@ class Defaults {
     
     static var timeFormat: String {
         return defaults.string(forKey: DefaultKey.timeFormat.description)!
-    }
-    
-    static var showWalkthrough: Bool {
-        get {
-            return defaults.bool(forKey: DefaultKey.showWalkthrough.description)
-        }
-        set {
-            defaults.set(newValue, forKey: DefaultKey.showWalkthrough.description)
-        }
     }
     
     static var showSunAreas: Bool {

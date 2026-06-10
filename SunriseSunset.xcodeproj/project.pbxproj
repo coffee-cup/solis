@@ -80,11 +80,6 @@
 		9CC29F001D8BB00A00542894 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC29EE31D8BB00A00542894 /* UnwindSegue.swift */; };
 		9CC427A51D11088100693E32 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC427A41D11088100693E32 /* UILabel.swift */; };
 		9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92F631CFEB1D500FA320D /* MenuViewController.swift */; };
-		9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */; };
-		9CDA4B5B1D4F16FA00639954 /* WDarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */; };
-		9CDA4B5D1D4F170C00639954 /* WNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */; };
-		9CDA4B5F1D4F171700639954 /* WWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */; };
-		9CDA4B611D4F172200639954 /* WWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */; };
 		9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
 		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
@@ -220,11 +215,6 @@
 		9CC29EE31D8BB00A00542894 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CC92F631CFEB1D500FA320D /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
-		9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDarkViewController.swift; sourceTree = "<group>"; };
-		9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNotificationsViewController.swift; sourceTree = "<group>"; };
-		9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWidgetViewController.swift; sourceTree = "<group>"; };
-		9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWelcomeViewController.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
@@ -288,7 +278,6 @@
 		9C13350D1D1529A1004B3F1B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9CDA4B571D4F04C500639954 /* Walkthrough */,
 				9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */,
 				9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */,
 				9CC92F631CFEB1D500FA320D /* MenuViewController.swift */,
@@ -452,18 +441,6 @@
 				9CC29EE31D8BB00A00542894 /* UnwindSegue.swift */,
 			);
 			path = Spring;
-			sourceTree = "<group>";
-		};
-		9CDA4B571D4F04C500639954 /* Walkthrough */ = {
-			isa = PBXGroup;
-			children = (
-				9CDA4B581D4F04D600639954 /* WalkthroughPageViewController.swift */,
-				9CDA4B5A1D4F16FA00639954 /* WDarkViewController.swift */,
-				9CDA4B5C1D4F170C00639954 /* WNotificationsViewController.swift */,
-				9CDA4B5E1D4F171700639954 /* WWidgetViewController.swift */,
-				9CDA4B601D4F172200639954 /* WWelcomeViewController.swift */,
-			);
-			name = Walkthrough;
 			sourceTree = "<group>";
 		};
 		9CDE815A1D03E7D50036FD34 /* Fonts */ = {
@@ -669,12 +646,10 @@
 				9CB37BE91CE844400080B5B1 /* AppDelegate.swift in Sources */,
 				9CC29EFF1D8BB00A00542894 /* TransitionZoom.swift in Sources */,
 				9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */,
-				9CDA4B611D4F172200639954 /* WWelcomeViewController.swift in Sources */,
 				9C6BCB201D3CA6970069BC16 /* InfoData.swift in Sources */,
 				9C36570E1D471688001019BB /* SunPlace.swift in Sources */,
 				9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */,
 				9CC29EE81D8BB00A00542894 /* DesignableButton.swift in Sources */,
-				9CDA4B5F1D4F171700639954 /* WWidgetViewController.swift in Sources */,
 				9CC29EEC1D8BB00A00542894 /* DesignableTextField.swift in Sources */,
 				9CEDC3721D6C20C000F12B29 /* BellButton.swift in Sources */,
 				9CC29EFC1D8BB00A00542894 /* SpringTextView.swift in Sources */,
@@ -687,11 +662,9 @@
 				9CC29EED1D8BB00A00542894 /* DesignableTextView.swift in Sources */,
 				9CC29EE41D8BB00A00542894 /* AsyncButton.swift in Sources */,
 				9C3314F21CE95783004D012E /* Suntime.swift in Sources */,
-				9CDA4B591D4F04D600639954 /* WalkthroughPageViewController.swift in Sources */,
 				9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */,
 				9CC29EE91D8BB00A00542894 /* DesignableImageView.swift in Sources */,
 				9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */,
-				9CDA4B5D1D4F170C00639954 /* WNotificationsViewController.swift in Sources */,
 				9CC29EFA1D8BB00A00542894 /* SpringLabel.swift in Sources */,
 				9CC29EF61D8BB00A00542894 /* Spring.swift in Sources */,
 				9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */,
@@ -713,7 +686,6 @@
 				9CC052361D22465A00CBBECE /* TimeZones.swift in Sources */,
 				9CC29EEF1D8BB00A00542894 /* ImageLoader.swift in Sources */,
 				9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */,
-				9CDA4B5B1D4F16FA00639954 /* WDarkViewController.swift in Sources */,
 				9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */,
 				9CC29EEA1D8BB00A00542894 /* DesignableLabel.swift in Sources */,
 				9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */,
