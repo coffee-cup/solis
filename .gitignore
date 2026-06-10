@@ -78,3 +78,10 @@ xcuserdata/
 
 # Cocoapods
 Pods/
+
+# Stale CocoaPods-era workspace (Xcode recreates it if an old window is open)
+/SunriseSunset.xcworkspace/
+
+# iOS simulator loop artifacts
+.ios-loop/
+.iosef/
