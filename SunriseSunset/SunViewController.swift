@@ -25,10 +25,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     @IBOutlet weak var futureLabel: UILabel!
     @IBOutlet weak var pastLabel: UILabel!
     
-    @IBOutlet weak var noLocationLabel1: SpringLabel!
-    @IBOutlet weak var noLocationLabel2: SpringLabel!
-    
-    @IBOutlet weak var centerImageView: SpringImageView!
+    @IBOutlet weak var noLocationLabel1: UILabel!
+    @IBOutlet weak var noLocationLabel2: UILabel!
+
+    @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var centerButton: UIButton!
     
     // You guessed it: users current coordinates
@@ -143,8 +143,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         futureLabel.addSimpleShadow()
         
         centerButton.isEnabled = false
-        centerImageView.duration = CGFloat(1)
-        centerImageView.curve = "easeInOut"
         centerImageView.alpha = 0
         
         noLocationLabel1.alpha = 0
@@ -330,12 +328,14 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     func setCenterButton() {
         if offNow && !centerButton.isEnabled {
             centerButton.isEnabled = true
-            centerImageView.animation = "fadeIn"
-            centerImageView.animate()
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut) {
+                self.centerImageView.alpha = 1
+            }
         } else if !offNow && centerButton.isEnabled {
             centerButton.isEnabled = false
-            centerImageView.animation = "fadeOut"
-            centerImageView.animate()
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut) {
+                self.centerImageView.alpha = 0
+            }
         }
     }
     

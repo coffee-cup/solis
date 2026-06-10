@@ -25,7 +25,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var menuWidthConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var menuImageView: SpringImageView!
+    @IBOutlet weak var menuImageView: UIImageView!
     
     var menuViewController: MenuViewController!
     var sunViewController: SunViewController!
@@ -63,9 +63,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         
         addGestureRecognizers()
         Bus.subscribeEvent(.sendMenuIn, observer: self, selector: #selector(sendMenuIn))
-        
-        menuImageView.duration = CGFloat(1)
-        menuImageView.curve = "easeInOut"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,13 +222,15 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func sendMenuButtonOut() {
-        menuImageView.animation = "fadeIn"
-        menuImageView.animate()
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut) {
+            self.menuImageView.alpha = 1
+        }
     }
-    
+
     @objc func sendMenuButtonIn() {
-        menuImageView.animation = "fadeOut"
-        menuImageView.animate()
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut) {
+            self.menuImageView.alpha = 0
+        }
     }
     
     @IBAction func menuButtonDidTouch(_ sender: AnyObject) {

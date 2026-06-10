@@ -15,26 +15,24 @@ class InfoMenuViewController: UIViewController {
     @IBOutlet weak var twilightView: UIView!
     @IBOutlet weak var nightView: UIView!
     
-    @IBOutlet weak var dayButton: SpringButton!
-    @IBOutlet weak var civilButton: SpringButton!
-    @IBOutlet weak var nauticalButton: SpringButton!
-    @IBOutlet weak var astronomicalButton: SpringButton!
-    @IBOutlet weak var nightButton: SpringButton!
-    @IBOutlet weak var civilTwilightLabel: SpringLabel!
-    @IBOutlet weak var nauticalTwilightLabel: SpringLabel!
-    @IBOutlet weak var astronomicalTwilightLabel: SpringLabel!
-    
+    @IBOutlet weak var dayButton: UIButton!
+    @IBOutlet weak var civilButton: UIButton!
+    @IBOutlet weak var nauticalButton: UIButton!
+    @IBOutlet weak var astronomicalButton: UIButton!
+    @IBOutlet weak var nightButton: UIButton!
+    @IBOutlet weak var civilTwilightLabel: UILabel!
+    @IBOutlet weak var nauticalTwilightLabel: UILabel!
+    @IBOutlet weak var astronomicalTwilightLabel: UILabel!
+
     @IBOutlet weak var backButton: UIButton!
-    
-    var infoButtons: [SpringButton] = []
-    var twilightLabels: [SpringLabel] = []
-    
+
+    var infoButtons: [UIButton] = []
+    var twilightLabels: [UILabel] = []
+
     var twilightGradientLayer: CAGradientLayer!
-    
-    let ButtonAnimationDuration: CGFloat = 1
-    let ButtonAnimationDelay: CGFloat = 0.200
-    
-    let ButtonFadeOutDuration: CGFloat = 0.200
+
+    let ButtonAnimationDuration: TimeInterval = 1
+    let ButtonAnimationDelay: TimeInterval = 0.200
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     
@@ -114,40 +112,20 @@ class InfoMenuViewController: UIViewController {
     
     func animateButtonsIn() {
         for (index, button) in infoButtons.enumerated() {
-            button.animation = "fadeInRight"
-            button.duration = ButtonAnimationDuration
-            button.delay = CGFloat(index + 1) * ButtonAnimationDelay
-            button.curve = "easeInOut"
-            button.animate()
+            fadeInFromLeft(button, delay: TimeInterval(index + 1) * ButtonAnimationDelay)
         }
-        
+
         for (index, label) in twilightLabels.enumerated() {
-            label.animation = "fadeInRight"
-            label.duration = ButtonAnimationDuration
-            label.delay = CGFloat(index + 2) * ButtonAnimationDelay + CGFloat(0.250)
-            label.curve = "easeInOut"
-            label.animate()
+            fadeInFromLeft(label, delay: TimeInterval(index + 2) * ButtonAnimationDelay + 0.250)
         }
     }
-    
-    func animateButtonsOut(_ completion: @escaping (()->())) {
-        for (index, button) in infoButtons.enumerated() {
-            button.animation = "fadeOut"
-            button.duration = ButtonFadeOutDuration
-            button.delay = CGFloat(index + 1) * ButtonAnimationDelay
-            
-            if index == infoButtons.count - 1 {
-                button.animateNext(completion: completion)
-            } else {
-                button.animate()
-            }
-        }
-        
-        for (index, label) in twilightLabels.enumerated() {
-            label.animation = "fadeOut"
-            label.duration = ButtonFadeOutDuration
-            label.delay = CGFloat(index + 2) * ButtonAnimationDelay
-            label.animate()
+
+    func fadeInFromLeft(_ view: UIView, delay: TimeInterval) {
+        view.alpha = 0
+        view.transform = CGAffineTransform(translationX: -300, y: 0)
+        UIView.animate(withDuration: ButtonAnimationDuration, delay: delay, options: .curveEaseInOut) {
+            view.alpha = 1
+            view.transform = .identity
         }
     }
     

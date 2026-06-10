@@ -49,7 +49,7 @@
                                     <action selector="menuButtonDidTouch:" destination="wF3-0W-CIN" eventType="touchUpInside" id="OWg-eq-IjV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_button" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-kf-a5X" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_button" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-kf-a5X">
                                 <rect key="frame" x="37" y="747" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7gJ-kf-a5X" secondAttribute="height" multiplier="1:1" id="1KT-vm-NEJ"/>
@@ -114,20 +114,20 @@
                                     <action selector="menuButtonDidTouch:" destination="wF3-0W-CIN" eventType="touchUpInside" id="Drp-w6-Heh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="center_button" translatesAutoresizingMaskIntoConstraints="NO" id="zib-cc-JK8" customClass="SpringImageView" customModule="SunriseSunset" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="center_button" translatesAutoresizingMaskIntoConstraints="NO" id="zib-cc-JK8">
                                 <rect key="frame" x="347" y="747" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="771-bu-PbZ"/>
                                     <constraint firstAttribute="width" secondItem="zib-cc-JK8" secondAttribute="height" multiplier="1:1" id="tPI-vg-yUE"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need a location to do anything 🌎" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTn-Lq-Mh2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need a location to do anything 🌎" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTn-Lq-Mh2">
                                 <rect key="frame" x="44" y="284.5" width="326" height="54.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable location services or choose a city from the menu ←" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-pc-rMn" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable location services or choose a city from the menu ←" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-pc-rMn">
                                 <rect key="frame" x="44" y="489" width="326" height="54.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -698,7 +698,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiU-9l-GVM">
                                 <rect key="frame" x="0.0" y="0.0" width="290" height="169.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-fj-co0" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-fj-co0">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="169.5"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Day"/>
@@ -719,7 +719,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPX-hT-eBo">
                                 <rect key="frame" x="0.0" y="678.5" width="290" height="169.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-UR-NrF" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-UR-NrF">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="169.5"/>
                                         <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                         <state key="normal" title="Night"/>
@@ -733,34 +733,34 @@
                                     <constraint firstItem="xCf-UR-NrF" firstAttribute="top" secondItem="NPX-hT-eBo" secondAttribute="top" id="iwA-X1-lO6"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-Qb-Gl7">
                                 <rect key="frame" x="0.0" y="169.5" width="290" height="169.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Civil"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIg-ya-GXC" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIg-ya-GXC">
                                 <rect key="frame" x="0.0" y="339" width="290" height="170"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Nautical"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-Mg-z0w" customClass="SpringButton" customModule="SunriseSunset" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-Mg-z0w">
                                 <rect key="frame" x="0.0" y="509" width="290" height="169.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="28"/>
                                 <state key="normal" title="Astronomical"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-4w-WOZ" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgo-4w-WOZ">
                                 <rect key="frame" x="120.5" y="267.5" width="49" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705882352935" green="0.51764705882352935" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-qw-b6H">
                                 <rect key="frame" x="120.5" y="437.5" width="49" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2" customClass="SpringLabel" customModule="SunriseSunset" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="twilight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DJ-xJ-ue2">
                                 <rect key="frame" x="120.5" y="607" width="49" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="14"/>
                                 <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
