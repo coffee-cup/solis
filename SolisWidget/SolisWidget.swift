@@ -100,18 +100,6 @@ func muli(_ size: CGFloat, light: Bool = false) -> Font {
     .custom(light ? "Muli-Light" : "Muli", size: size)
 }
 
-// containerBackground is required on iOS 17+ but unavailable on 16
-extension View {
-    @ViewBuilder
-    func widgetBackground(_ background: some View) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
-            containerBackground(for: .widget) { background }
-        } else {
-            self.background(background)
-        }
-    }
-}
-
 func formattedTime(_ date: Date) -> String {
     TimeFormatters.formatter12h(TimeZone.ReferenceType.local).string(from: date)
         .replacingOccurrences(of: "AM", with: "am")
@@ -134,14 +122,6 @@ struct SolisWidgetEntryView: View {
         default:
             home
         }
-    }
-
-    // iOS 17+ applies container content margins; only pad ourselves on 16
-    var legacyPadding: CGFloat {
-        if #available(iOSApplicationExtension 17.0, *) {
-            return 0
-        }
-        return family == .systemMedium ? 16 : 12
     }
 
     var inline: some View {
@@ -169,7 +149,7 @@ struct SolisWidgetEntryView: View {
                 Text("Open Solis to set your location")
             }
         }
-        .widgetBackground(Color.clear)
+        .containerBackground(for: .widget) { Color.clear }
     }
 
     var home: some View {
@@ -208,8 +188,7 @@ struct SolisWidgetEntryView: View {
         }
         .foregroundColor(.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .padding(legacyPadding)
-        .widgetBackground(solisGradient)
+        .containerBackground(for: .widget) { solisGradient }
     }
 }
 
