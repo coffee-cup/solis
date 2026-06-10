@@ -57,12 +57,25 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        embedSunViewController()
+
         menuWidth = view.frame.width * menuWidthConstraint.multiplier
         menuHardIn()
-        
+
         addGestureRecognizers()
         Bus.subscribeEvent(.sendMenuIn, observer: self, selector: #selector(sendMenuIn))
+    }
+
+    func embedSunViewController() {
+        sunViewController = SunViewController()
+        delegate = sunViewController
+
+        addChild(sunViewController)
+        sunViewController.view.frame = sunContainerView.bounds
+        sunViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        sunContainerView.addSubview(sunViewController.view)
+        sunViewController.didMove(toParent: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,17 +98,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
         menuRecognizer.edges = .left
         menuRecognizer.delegate = self
         view.addGestureRecognizer(menuRecognizer)
-    }
-    
-    // Navigation
-    
-    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MenuSegue" {
-            menuViewController = segue.destination as? MenuViewController
-        } else if segue.identifier == "SunSegue" {
-            sunViewController = segue.destination as? SunViewController
-            delegate = sunViewController
-        }
     }
     
     // Side Menu
@@ -235,15 +237,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func menuButtonDidTouch(_ sender: AnyObject) {
         menuSoftOut()
-        
+
         sendMenuButtonIn()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SunSegue" {
-            if let sunViewController = segue.destination as? SunViewController {
-                delegate = sunViewController
-            }
-        }
     }
 }
