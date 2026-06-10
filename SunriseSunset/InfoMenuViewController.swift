@@ -174,8 +174,6 @@ class InfoMenuViewController: UIViewController {
                     infoData = InfoData.night
                 }
                 infoViewController.setInfo(infoData)
-                
-                Analytics.openInfoPage(infoData.title)
             }
         }
     }

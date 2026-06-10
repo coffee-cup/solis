@@ -198,11 +198,6 @@ class Notifications {
             let defaultCount = notificationCountDefaults.integer(forKey: type)
             let countDifference = defaultCount - count
             if countDifference > 0 {
-                // countDifference notifications were triggered for type :)
-                for _ in 1...countDifference {
-                    // send analytics event as many times as notification was triggered
-                    Analytics.notificationTriggeredForType(type)
-                }
                 notificationCountDefaults.set(count, forKey: type)
             }
         }

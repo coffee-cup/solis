@@ -8,38 +8,39 @@
 
 import Foundation
 import UIKit
-import GooglePlaces
-import SPPermission
+import MapKit
 
-class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SPPermissionDialogDelegate {
-    
+class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, MKLocalSearchCompleterDelegate {
+
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var searchTableView: UITableView!
-    
-    lazy var placesClient = GMSPlacesClient()
-    lazy var filter = GMSAutocompleteFilter()
-    
+
+    let searchCompleter = MKLocalSearchCompleter()
+    var searchCompletions: [MKLocalSearchCompletion] = []
+
     var places: [SunPlace] = []
     var placeHistory: [SunPlace] = []
-    
+
     let defaults = Defaults.defaults
-    
+
     var notificationPlaceDirty = false
     var newNotificationSunPlace: SunPlace?
-    
-    var locationCompletion: (() -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         searchTextField.delegate = self
         searchTextField.showsCancelButton = true
-        
+
         searchTableView.delegate = self
         searchTableView.dataSource = self
-        
-        filter.type = .city
-        
+
+        searchCompleter.delegate = self
+        searchCompleter.resultTypes = .address
+        if #available(iOS 18.0, *) {
+            searchCompleter.addressFilter = MKAddressFilter(including: .locality)
+        }
+
         if let locationHistory = SunLocation.getLocationHistory() {
             placeHistory = locationHistory
         } else {
@@ -80,35 +81,30 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     func goBack() {
         if notificationPlaceDirty {
             Bus.sendMessage(.changeNotificationPlace, data: nil)
-            
-            if let newNotificationSunPlace = newNotificationSunPlace {
-                Analytics.setNotificationPlace(false, sunPlace: newNotificationSunPlace)
-            } else {
-                Analytics.setNotificationPlace(true, sunPlace: nil)
-            }
         }
         searchTextField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
-    
-    func updateWithSearchResults(_ results: [GMSAutocompletePrediction]) {
-        places = results.map { result in
-            return SunPlace(primary: result.attributedPrimaryText.string, secondary: (result.attributedSecondaryText?.string)!, placeID: result.placeID!)
+
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchCompletions = completer.results
+        places = searchCompletions.map { completion in
+            return SunPlace(primary: completion.title, secondary: completion.subtitle, placeID: "")
         }
         searchTableView.reloadData()
     }
-    
+
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print("Autocomplete error \(error)")
+    }
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            placesClient.autocompleteQuery(searchText, bounds: nil, filter: filter) { results, error in
-                guard error == nil else {
-                    print("Autocomplete error \(error!)")
-                    return
-                }
-                
-                self.updateWithSearchResults(results!)
-            }
+            searchCompleter.queryFragment = searchText
         } else {
+            searchCompleter.cancel()
+            searchCompletions = []
+            places = []
             searchTableView.reloadData()
         }
     }
@@ -126,20 +122,12 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func ensureLocationPermissions(completion: @escaping () -> ()) {
-        if SPPermission.isAllowed(.locationWhenInUse) {
-            SunLocation.startLocationWatching()
-            completion()
-        } else {
-            locationCompletion = completion
-            SPPermission.Dialog.request(with: [.locationWhenInUse], on: self, delegate: self, dataSource: PermissionController())
+        SunLocation.requestLocationPermission { granted in
+            if granted {
+                SunLocation.startLocationWatching()
+                completion()
+            }
         }
-    }
-    
-    @objc func didAllow(permission: SPPermissionType) {
-        if let locationCompletion = locationCompletion {
-            locationCompletion()
-        }
-        locationCompletion = nil
     }
     
     // Table View
@@ -151,38 +139,33 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
         if (indexPath as NSIndexPath).row == 0 {
             ensureLocationPermissions {
                 SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
-                Analytics.selectLocation(true, sunPlace: nil)
             }
         } else {
             var sunplace: SunPlace!
             if isSearching() {
                 sunplace = places[(indexPath as NSIndexPath).row - 1]
-                let placeID = sunplace.placeID
-                placesClient.lookUpPlaceID(placeID) { googlePlace, error in
+                let completion = searchCompletions[(indexPath as NSIndexPath).row - 1]
+                let search = MKLocalSearch(request: MKLocalSearch.Request(completion: completion))
+                search.start { response, error in
                     if let error = error {
-                        print("PlaceID lookup error \(error)")
+                        print("Place lookup error \(error)")
                         return
                     }
-                    
-                    guard let coordinate = googlePlace?.coordinate else {
+
+                    guard let coordinate = response?.mapItems.first?.placemark.coordinate else {
                         return
                     }
-                    
-                    guard let _ = googlePlace?.name else {
-                        return
-                    }
-                    
+
                     sunplace.location = coordinate
-                    
-                    print("\(sunplace.primary) - \(coordinate)")
-                    
+                    // Stable identity for history/notification matching now that
+                    // there are no Google place IDs.
+                    sunplace.placeID = "\(coordinate.latitude),\(coordinate.longitude)"
+
                     SunLocation.selectLocation(false, location: coordinate, name: sunplace.primary, sunplace: sunplace)
-                    Analytics.selectLocation(false, sunPlace: sunplace)
                 }
             } else {
                 sunplace = placeHistory[(indexPath as NSIndexPath).row - 1]
                 SunLocation.selectLocation(false, location: sunplace.location, name: sunplace.primary, sunplace: sunplace)
-                Analytics.selectLocation(false, sunPlace: sunplace)
             }
         }
     }

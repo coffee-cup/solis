@@ -24,5 +24,6 @@ A simple iOS app to show you when the sun sets, rises, and in between.
 ## Development
 
 1. Clone repo
-2. `pod install`
-3. Open `SunriseSunset.xcworkspace`
+2. Open `SunriseSunset.xcodeproj`
+
+No external dependencies. Requires Xcode 16+, targets iOS 16+.

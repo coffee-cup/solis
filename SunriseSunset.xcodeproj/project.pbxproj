@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EE0FF4A05F670EBE4A7D7C8 /* Pods_SolisWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C4237EF355B69892A7ACB71 /* Pods_SolisWidget.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		1DDACEF192D1BA62712A2B91 /* Pods_SunriseSunsetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865A24C59A77DDB3576190F5 /* Pods_SunriseSunsetUITests.framework */; };
-		658F15AB5D9BCA62AE3CAE0C /* Pods_SunriseSunsetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29B29B7B94F576EA4BB3E93 /* Pods_SunriseSunsetTests.framework */; };
-		8C86E3698FAEC5318C6BE2F6 /* Pods_SunriseSunset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B38D8EDBAC54C59846A7E /* Pods_SunriseSunset.framework */; };
+		21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
 		9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */; };
 		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
 		9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F41D0FCC470079F3A5 /* Notifications.swift */; };
@@ -37,7 +34,6 @@
 		9C36570E1D471688001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
 		9C36570F1D471C27001019BB /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
 		9C37C0C21CF6C929002ED35A /* TouchDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37C0C11CF6C929002ED35A /* TouchDownView.swift */; };
-		9C47745E1D16762C00C38FFF /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9C4774531D16762C00C38FFF /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C485AB11CED7E130086B22E /* Sunline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C485AB01CED7E130086B22E /* Sunline.swift */; };
 		9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
 		9C4B86A61CFFE3D5002C4EA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A51CFFE3D5002C4EA4 /* MainViewController.swift */; };
@@ -58,7 +54,6 @@
 		9CB5F24C1D16781B005F4E10 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9CB5F24D1D167829005F4E10 /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		9CB5F2501D16791F005F4E10 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
-		9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5C1D5191D70009444E /* PermissionScope.swift */; };
 		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
 		9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */; };
@@ -103,19 +98,9 @@
 		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
 		9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		9CEDC3721D6C20C000F12B29 /* BellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEDC3711D6C20C000F12B29 /* BellButton.swift */; };
-		9CFD34781D6EA98700B87FED /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFD34771D6EA98700B87FED /* Analytics.swift */; };
-		B73D6629235E2FD500F3679B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73D6628235E2FD500F3679B /* SwiftyJSON.swift */; };
-		B77D2722235E4D53008DD6C9 /* PermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77D2721235E4D53008DD6C9 /* PermissionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9C47745C1D16762C00C38FFF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9C4774521D16762C00C38FFF;
-			remoteInfo = SolisWidget;
-		};
 		9CB37BFA1CE844400080B5B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9CB37BDD1CE844400080B5B1 /* Project object */;
@@ -132,30 +117,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9C76543C1D166C0800E0B4F9 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				9C47745E1D16762C00C38FFF /* SolisWidget.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		0C5CF42E70303A4C5A15B0BF /* Pods-SunriseSunsetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetUITests/Pods-SunriseSunsetUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5E6B38D8EDBAC54C59846A7E /* Pods_SunriseSunset.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunset.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C4237EF355B69892A7ACB71 /* Pods_SolisWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolisWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CF11DFE5B0B270AEA865A40 /* Pods-SolisWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolisWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SolisWidget/Pods-SolisWidget.debug.xcconfig"; sourceTree = "<group>"; };
-		865A24C59A77DDB3576190F5 /* Pods_SunriseSunsetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunsetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		89A421E5063F77A4022191E3 /* Pods-SunriseSunset.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.debug.xcconfig"; sourceTree = "<group>"; };
-		90007807A78E624367BC5282 /* Pods-SunriseSunsetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.release.xcconfig"; sourceTree = "<group>"; };
-		97888DCB6E8FCA4DDDDB3810 /* Pods-SunriseSunsetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetUITests/Pods-SunriseSunsetUITests.release.xcconfig"; sourceTree = "<group>"; };
-		97933A5607E59F58702D2B29 /* Pods-SunriseSunset.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunset.release.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset.release.xcconfig"; sourceTree = "<group>"; };
+		3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
 		9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChangeViewController.swift; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
 		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -201,7 +164,6 @@
 		9CB37C0A1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SolisWidget.entitlements; sourceTree = "<group>"; };
 		9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SunriseSunset.entitlements; sourceTree = "<group>"; };
-		9CBAFF5C1D5191D70009444E /* PermissionScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionScope.swift; sourceTree = "<group>"; };
 		9CBAFF5E1D5198790009444E /* TouchThroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchThroughView.swift; sourceTree = "<group>"; };
 		9CBB09AD1CED6D1000F344C4 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		9CC052351D22465A00CBBECE /* TimeZones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZones.swift; sourceTree = "<group>"; };
@@ -247,12 +209,7 @@
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
 		9CEDC3711D6C20C000F12B29 /* BellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellButton.swift; sourceTree = "<group>"; };
-		9CFD34771D6EA98700B87FED /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
-		A07D9BCD5E0AB6D95398E704 /* Pods-SunriseSunsetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SunriseSunsetTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SunriseSunsetTests/Pods-SunriseSunsetTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC9E47BCFBC827300245BD08 /* Pods-SolisWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolisWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-SolisWidget/Pods-SolisWidget.release.xcconfig"; sourceTree = "<group>"; };
-		B73D6628235E2FD500F3679B /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		B77D2721235E4D53008DD6C9 /* PermissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionController.swift; sourceTree = "<group>"; };
-		C29B29B7B94F576EA4BB3E93 /* Pods_SunriseSunsetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SunriseSunsetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6912BE2275D31864D92802B /* EDSunriseSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +218,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CBE043A1DA3847D00E3BF8A /* NotificationCenter.framework in Frameworks */,
-				0EE0FF4A05F670EBE4A7D7C8 /* Pods_SolisWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +225,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C86E3698FAEC5318C6BE2F6 /* Pods_SunriseSunset.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +232,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				658F15AB5D9BCA62AE3CAE0C /* Pods_SunriseSunsetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +239,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DDACEF192D1BA62712A2B91 /* Pods_SunriseSunsetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,10 +251,6 @@
 				9C857ADF1D23ABDC0016F9EC /* SwiftLocation.framework */,
 				9C857ADD1D23ABCA0016F9EC /* EDSunriseSet.framework */,
 				9C76542D1D166C0800E0B4F9 /* NotificationCenter.framework */,
-				6C4237EF355B69892A7ACB71 /* Pods_SolisWidget.framework */,
-				5E6B38D8EDBAC54C59846A7E /* Pods_SunriseSunset.framework */,
-				C29B29B7B94F576EA4BB3E93 /* Pods_SunriseSunsetTests.framework */,
-				865A24C59A77DDB3576190F5 /* Pods_SunriseSunsetUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -334,7 +283,6 @@
 				9C3314F81CE9A723004D012E /* UIColor.swift */,
 				9CC427A41D11088100693E32 /* UILabel.swift */,
 				9C27BE6A1D3212520093B2A6 /* UIButton.swift */,
-				9CBAFF5C1D5191D70009444E /* PermissionScope.swift */,
 				9CB196361D53190E005CD74E /* NSMutableAttributedString.swift */,
 			);
 			name = Extensions;
@@ -375,7 +323,6 @@
 				9C8DFA581D1673DF00353D8C /* SolisWidget */,
 				9CB37BE61CE844400080B5B1 /* Products */,
 				69BBFC24078540B1D3E7C31D /* Frameworks */,
-				D9B1C8DB746B6EB67B654760 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -397,7 +344,6 @@
 				9CB5F24F1D1678CE005F4E10 /* SunriseSunset.entitlements */,
 				9C4EFA001D1A6C13001CA591 /* Objective-CBridgingHeader.h */,
 				9CB37BF41CE844400080B5B1 /* Info.plist */,
-				9CFD34771D6EA98700B87FED /* Analytics.swift */,
 				9CB37BE81CE844400080B5B1 /* AppDelegate.swift */,
 				9CEDC3711D6C20C000F12B29 /* BellButton.swift */,
 				9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */,
@@ -419,8 +365,7 @@
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
-				B73D6628235E2FD500F3679B /* SwiftyJSON.swift */,
-				B77D2721235E4D53008DD6C9 /* PermissionController.swift */,
+				CA9CEEEFB9E17F518EAF1CFA /* EDSunriseSet */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -501,19 +446,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		D9B1C8DB746B6EB67B654760 /* Pods */ = {
+		CA9CEEEFB9E17F518EAF1CFA /* EDSunriseSet */ = {
 			isa = PBXGroup;
 			children = (
-				7CF11DFE5B0B270AEA865A40 /* Pods-SolisWidget.debug.xcconfig */,
-				AC9E47BCFBC827300245BD08 /* Pods-SolisWidget.release.xcconfig */,
-				89A421E5063F77A4022191E3 /* Pods-SunriseSunset.debug.xcconfig */,
-				97933A5607E59F58702D2B29 /* Pods-SunriseSunset.release.xcconfig */,
-				A07D9BCD5E0AB6D95398E704 /* Pods-SunriseSunsetTests.debug.xcconfig */,
-				90007807A78E624367BC5282 /* Pods-SunriseSunsetTests.release.xcconfig */,
-				0C5CF42E70303A4C5A15B0BF /* Pods-SunriseSunsetUITests.debug.xcconfig */,
-				97888DCB6E8FCA4DDDDB3810 /* Pods-SunriseSunsetUITests.release.xcconfig */,
+				E6912BE2275D31864D92802B /* EDSunriseSet.h */,
+				3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */,
 			);
-			name = Pods;
+			name = EDSunriseSet;
+			path = EDSunriseSet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,7 +463,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C4774611D16762C00C38FFF /* Build configuration list for PBXNativeTarget "SolisWidget" */;
 			buildPhases = (
-				EC13ACA60BA7219FC9F4EB79 /* [CP] Check Pods Manifest.lock */,
 				9C47744F1D16762C00C38FFF /* Sources */,
 				9C4774501D16762C00C38FFF /* Frameworks */,
 				9C4774511D16762C00C38FFF /* Resources */,
@@ -541,19 +480,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CB37C0D1CE844400080B5B1 /* Build configuration list for PBXNativeTarget "SunriseSunset" */;
 			buildPhases = (
-				E5B8CDB90FCD7841500657F0 /* [CP] Check Pods Manifest.lock */,
 				9CB37BE11CE844400080B5B1 /* Sources */,
 				9CB37BE21CE844400080B5B1 /* Frameworks */,
 				9CB37BE31CE844400080B5B1 /* Resources */,
-				9C76543C1D166C0800E0B4F9 /* Embed App Extensions */,
-				9C31D2251D6E99B4007E02EB /* Fabric */,
-				ED9F07019C966C530CB7CEA5 /* [CP] Embed Pods Frameworks */,
-				522A88493DA371610A7F4706 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9C47745D1D16762C00C38FFF /* PBXTargetDependency */,
 			);
 			name = SunriseSunset;
 			productName = SunriseSunset;
@@ -564,7 +497,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CB37C101CE844400080B5B1 /* Build configuration list for PBXNativeTarget "SunriseSunsetTests" */;
 			buildPhases = (
-				6D217AB5675A0C616EFD6545 /* [CP] Check Pods Manifest.lock */,
 				9CB37BF51CE844400080B5B1 /* Sources */,
 				9CB37BF61CE844400080B5B1 /* Frameworks */,
 				9CB37BF71CE844400080B5B1 /* Resources */,
@@ -583,7 +515,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CB37C131CE844400080B5B1 /* Build configuration list for PBXNativeTarget "SunriseSunsetUITests" */;
 			buildPhases = (
-				63ABB2090691CB881EB32813 /* [CP] Check Pods Manifest.lock */,
 				9CB37C001CE844400080B5B1 /* Sources */,
 				9CB37C011CE844400080B5B1 /* Frameworks */,
 				9CB37C021CE844400080B5B1 /* Resources */,
@@ -706,139 +637,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		522A88493DA371610A7F4706 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset-resources.sh",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63ABB2090691CB881EB32813 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SunriseSunsetUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D217AB5675A0C616EFD6545 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SunriseSunsetTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9C31D2251D6E99B4007E02EB /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ab09dfba68ec87866fde734a063b9f3fffb4cf7c a72dcfda26c2ccb4c7acd51b168dfa34f20c111471ffbb2a626fe5e2594d2e26";
-		};
-		E5B8CDB90FCD7841500657F0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SunriseSunset-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EC13ACA60BA7219FC9F4EB79 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SolisWidget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ED9F07019C966C530CB7CEA5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/EDSunriseSet/EDSunriseSet.framework",
-				"${BUILT_PRODUCTS_DIR}/SPPermission/SPPermission.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
-				"${BUILT_PRODUCTS_DIR}/UIView-Easing/UIView_Easing.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EDSunriseSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SPPermission.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_Easing.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SunriseSunset/Pods-SunriseSunset-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		9C47744F1D16762C00C38FFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -880,10 +678,8 @@
 				9CC427A51D11088100693E32 /* UILabel.swift in Sources */,
 				9C27BE6B1D3212520093B2A6 /* UIButton.swift in Sources */,
 				9C4B86A41CFEBAC3002C4EA4 /* Bus.swift in Sources */,
-				B77D2722235E4D53008DD6C9 /* PermissionController.swift in Sources */,
 				9CC29EFE1D8BB00A00542894 /* TransitionManager.swift in Sources */,
 				9C8879A01D3752AF00B8D1B9 /* InfoViewController.swift in Sources */,
-				9CBAFF5D1D5191D70009444E /* PermissionScope.swift in Sources */,
 				9CC29EF91D8BB00A00542894 /* SpringImageView.swift in Sources */,
 				9CC29EED1D8BB00A00542894 /* DesignableTextView.swift in Sources */,
 				9CC29EE41D8BB00A00542894 /* AsyncButton.swift in Sources */,
@@ -894,8 +690,6 @@
 				9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */,
 				9CDA4B5D1D4F170C00639954 /* WNotificationsViewController.swift in Sources */,
 				9CC29EFA1D8BB00A00542894 /* SpringLabel.swift in Sources */,
-				9CFD34781D6EA98700B87FED /* Analytics.swift in Sources */,
-				B73D6629235E2FD500F3679B /* SwiftyJSON.swift in Sources */,
 				9CC29EF61D8BB00A00542894 /* Spring.swift in Sources */,
 				9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */,
 				9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */,
@@ -932,6 +726,7 @@
 				9C27BE671D2CDBDE0093B2A6 /* InfoMenuViewController.swift in Sources */,
 				9CC29EE51D8BB00A00542894 /* AsyncImageView.swift in Sources */,
 				9CC29EEE1D8BB00A00542894 /* DesignableView.swift in Sources */,
+				21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,11 +749,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9C47745D1D16762C00C38FFF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9C4774521D16762C00C38FFF /* SolisWidget */;
-			targetProxy = 9C47745C1D16762C00C38FFF /* PBXContainerItemProxy */;
-		};
 		9CB37BFB1CE844400080B5B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9CB37BE41CE844400080B5B1 /* SunriseSunset */;
@@ -1001,7 +791,6 @@
 /* Begin XCBuildConfiguration section */
 		9C47745F1D16762C00C38FFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CF11DFE5B0B270AEA865A40 /* Pods-SolisWidget.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1009,7 +798,7 @@
 				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1021,7 +810,6 @@
 		};
 		9C4774601D16762C00C38FFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC9E47BCFBC827300245BD08 /* Pods-SolisWidget.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1029,7 +817,7 @@
 				CODE_SIGN_ENTITLEMENTS = SolisWidget/SolisWidget.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SolisWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis.SolisWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1088,7 +876,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1138,7 +926,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1147,7 +935,6 @@
 		};
 		9CB37C0E1CE844400080B5B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89A421E5063F77A4022191E3 /* Pods-SunriseSunset.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1155,11 +942,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SunriseSunset/Objective-CBridgingHeader.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1167,18 +955,18 @@
 		};
 		9CB37C0F1CE844400080B5B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97933A5607E59F58702D2B29 /* Pods-SunriseSunset.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SunriseSunset/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.jakerunzer.solis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SunriseSunset/Objective-CBridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -1187,10 +975,10 @@
 		};
 		9CB37C111CE844400080B5B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A07D9BCD5E0AB6D95398E704 /* Pods-SunriseSunsetTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SunriseSunsetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1202,10 +990,10 @@
 		};
 		9CB37C121CE844400080B5B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90007807A78E624367BC5282 /* Pods-SunriseSunsetTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SunriseSunsetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1218,9 +1006,9 @@
 		};
 		9CB37C141CE844400080B5B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C5CF42E70303A4C5A15B0BF /* Pods-SunriseSunsetUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SunriseSunsetUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1232,9 +1020,9 @@
 		};
 		9CB37C151CE844400080B5B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97888DCB6E8FCA4DDDDB3810 /* Pods-SunriseSunsetUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SunriseSunsetUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

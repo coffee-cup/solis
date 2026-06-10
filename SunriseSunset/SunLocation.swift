@@ -8,31 +8,98 @@
 
 import Foundation
 import CoreLocation
-import SwiftLocation
+
+// CLLocationManager wrapper providing permission requests, significant-change
+// watching, and one-shot location fixes. Updates are persisted via
+// SunLocation.saveLocation.
+class LocationProvider: NSObject, CLLocationManagerDelegate {
+
+    static let shared = LocationProvider()
+
+    private let manager = CLLocationManager()
+    private var watching = false
+    private var permissionCompletions: [(Bool) -> Void] = []
+
+    private override init() {
+        super.init()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+
+    var isAuthorized: Bool {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            return true
+        default:
+            return false
+        }
+    }
+
+    func requestPermission(_ completion: @escaping (Bool) -> Void) {
+        if manager.authorizationStatus == .notDetermined {
+            permissionCompletions.append(completion)
+            manager.requestWhenInUseAuthorization()
+        } else {
+            completion(isAuthorized)
+        }
+    }
+
+    func startWatching() {
+        watching = true
+        if isAuthorized {
+            manager.startMonitoringSignificantLocationChanges()
+            manager.requestLocation()
+        }
+    }
+
+    func requestOneShot() {
+        if isAuthorized {
+            manager.requestLocation()
+        }
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        guard manager.authorizationStatus != .notDetermined else { return }
+
+        let completions = permissionCompletions
+        permissionCompletions = []
+        completions.forEach { $0(isAuthorized) }
+
+        if watching {
+            startWatching()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        SunLocation.saveLocation(location.coordinate)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location error: \(error.localizedDescription)")
+    }
+}
 
 class SunLocation {
-    
+
     static let defaults = Defaults.defaults
-    
+
     static let CHECK_THRESHOLD = 60 * 10; // seconds
-    
+
     class func startLocationWatching() {
-        print("start watching")
-        LocationManager.shared.locateFromGPS(.significant, accuracy: .block, result: { result in
-            print("Significant Location")
-            if let location = try? result.get() {
-                saveLocation(location.coordinate)
-            }
-        })
+        LocationProvider.shared.startWatching()
     }
-    
+
     class func checkLocation() {
-        LocationManager.shared.locateFromGPS(.oneShot, accuracy: .block, result: { result in
-            print("Significant Location")
-            if let location = try? result.get() {
-                saveLocation(location.coordinate)
-            }
-        })
+        LocationProvider.shared.requestOneShot()
+    }
+
+    class func isLocationAuthorized() -> Bool {
+        return LocationProvider.shared.isAuthorized
+    }
+
+    class func requestLocationPermission(_ completion: @escaping (Bool) -> Void) {
+        LocationProvider.shared.requestPermission(completion)
     }
     
     class func getCurrentLocation() -> CLLocationCoordinate2D? {

@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import SPPermission
+import UserNotifications
 
-import Crashlytics
-
-
-class MenuViewController: UIViewController, SPPermissionDialogDelegate {
+class MenuViewController: UIViewController {
 
     let defaults = Defaults.defaults
     @IBOutlet weak var menuView: UIView!
@@ -178,28 +175,29 @@ class MenuViewController: UIViewController, SPPermissionDialogDelegate {
             notificationText = ""
         }
         
-        if SPPermission.isAllowed(.notification) {
-            notificationPermissionCallback()
-        } else {
-            SPPermission.Dialog.request(with: [.notification], on: self, delegate: self, dataSource: PermissionController())
-        }
-    }
-    
-    func notificationPermissionCallback() {
-        if let noti = notificationText {
-            if let selected = notificationSelected {
-                self.defaults.set(notificationSelected, forKey: noti)
-                Bus.sendMessage(.notificationChange, data: nil)
-                Analytics.toggleNotificationForEvent(selected, type: noti)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+            DispatchQueue.main.async {
+                if granted {
+                    self.notificationPermissionCallback()
+                } else {
+                    sender.isSelected = false
+                    self.notificationText = nil
+                    self.notificationSelected = nil
+                }
             }
         }
-        
+    }
+
+    func notificationPermissionCallback() {
+        if let noti = notificationText {
+            if notificationSelected != nil {
+                self.defaults.set(notificationSelected, forKey: noti)
+                Bus.sendMessage(.notificationChange, data: nil)
+            }
+        }
+
         notificationText = nil
         notificationSelected = nil
-    }
-    
-    @objc func didAllow(permission: SPPermissionType) {
-        notificationPermissionCallback()
     }
     
     // Location
@@ -214,12 +212,10 @@ class MenuViewController: UIViewController, SPPermissionDialogDelegate {
 
     @IBAction func locationButtonDidTouch(_ sender: AnyObject) {
         performSegue(withIdentifier: "LocationChangeSegue", sender: self)
-        Analytics.openLocationChange()
     }
     
     @IBAction func aboutButtonDidTouch(_ sender: AnyObject) {
         performSegue(withIdentifier: "InfoMenuSegue", sender: self)
-        Analytics.openInfoMenu()
     }
     
     /*
