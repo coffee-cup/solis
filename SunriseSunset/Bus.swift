@@ -15,13 +15,11 @@ enum MessageType {
     case timeFormat
     case foregrounded
     case sendMenuIn
-    case notificationChange
     case locationUpdate
     case locationChanged
     case showStatusBar
     case fetchTimeZone
     case gotTimeZone
-    case changeNotificationPlace
     
     var description: String {
         switch self {
@@ -30,13 +28,11 @@ enum MessageType {
         case .timeFormat: return "TimeFormat";
         case .foregrounded: return UIApplication.willEnterForegroundNotification.rawValue
         case .sendMenuIn: return "SendMenuIn"
-        case .notificationChange: return "NotificationChange"
         case .locationUpdate: return "LocationUpdate"
         case .locationChanged: return "LocationChanged"
         case .showStatusBar: return "ShowStatusBar"
         case .fetchTimeZone: return "FetchTimeZone"
         case .gotTimeZone: return "GotTimeZone"
-        case .changeNotificationPlace: return "ChangeNotificationPlace"
         }
     }
 }

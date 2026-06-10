@@ -175,15 +175,14 @@ class MenuViewController: UIViewController {
             notificationText = ""
         }
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-            DispatchQueue.main.async {
-                if granted {
-                    self.notificationPermissionCallback()
-                } else {
-                    sender.isSelected = false
-                    self.notificationText = nil
-                    self.notificationSelected = nil
-                }
+        Task { @MainActor in
+            let granted = await NotificationScheduler.requestAuthorization()
+            if granted {
+                self.notificationPermissionCallback()
+            } else {
+                sender.isSelected = false
+                self.notificationText = nil
+                self.notificationSelected = nil
             }
         }
     }
@@ -192,7 +191,9 @@ class MenuViewController: UIViewController {
         if let noti = notificationText {
             if notificationSelected != nil {
                 self.defaults.set(notificationSelected, forKey: noti)
-                Bus.sendMessage(.notificationChange, data: nil)
+                Task {
+                    await NotificationScheduler.reschedule()
+                }
             }
         }
 

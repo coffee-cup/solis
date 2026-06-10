@@ -77,7 +77,9 @@ class LocationChangeViewController: UIViewController, UISearchBarDelegate, UITab
     
     func goBack() {
         if notificationPlaceDirty {
-            Bus.sendMessage(.changeNotificationPlace, data: nil)
+            Task {
+                await NotificationScheduler.reschedule()
+            }
         }
         searchTextField.resignFirstResponder()
         dismiss(animated: true, completion: nil)

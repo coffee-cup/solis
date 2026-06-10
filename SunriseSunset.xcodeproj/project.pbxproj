@@ -16,10 +16,10 @@
 		4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		4DD0CFDBA78A3D6910ADE8F7 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
 		4F979626AF749AB7EDF9BC1C /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
+		875D0F018EA86DD31B0B14F0 /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */; };
 		903779BFB71DE7562D6290A7 /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C13350C1D152218004B3F1B /* LocationChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */; };
 		9C1F57A11CF26C67000E8B29 /* MomentumScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */; };
-		9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F41D0FCC470079F3A5 /* Notifications.swift */; };
 		9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9C236CD81D16798300FB9985 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
 		9C236CDF1D169C6900FB9985 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
@@ -85,6 +85,7 @@
 		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
 		9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		9CEDC3721D6C20C000F12B29 /* BellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEDC3711D6C20C000F12B29 /* BellButton.swift */; };
+		AAC4FAF18944557101AE3D05 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */; };
 		ACF45D78DAA5A864F2F29079 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B86A31CFEBAC3002C4EA4 /* Bus.swift */; };
 		BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
 		D076170565B3BC91A7AE6855 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
@@ -134,13 +135,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
 		3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE7CBA9AB862BFA860F55BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9C13350B1D152218004B3F1B /* LocationChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChangeViewController.swift; sourceTree = "<group>"; };
 		9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentumScroll.swift; sourceTree = "<group>"; };
-		9C20A3F41D0FCC470079F3A5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLogic.swift; sourceTree = "<group>"; };
 		9C236CD71D16798300FB9985 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatters.swift; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
 		9CEDC3711D6C20C000F12B29 /* BellButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellButton.swift; sourceTree = "<group>"; };
+		CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
 		E6912BE2275D31864D92802B /* EDSunriseSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,7 +371,6 @@
 				9C9740091CFC10F9000A5AFD /* Easing.swift */,
 				9C6BCB1F1D3CA6970069BC16 /* InfoData.swift */,
 				9C1F57A01CF26C67000E8B29 /* MomentumScroll.swift */,
-				9C20A3F41D0FCC470079F3A5 /* Notifications.swift */,
 				9C3314F31CE9712F004D012E /* Styles.swift */,
 				9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */,
 				9CC052351D22465A00CBBECE /* TimeZones.swift */,
@@ -384,6 +385,7 @@
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
 				CA9CEEEFB9E17F518EAF1CFA /* EDSunriseSet */,
+				D72A469B93F0784C99D7C91D /* Services */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -459,6 +461,16 @@
 				3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */,
 			);
 			path = EDSunriseSet;
+			sourceTree = "<group>";
+		};
+		D72A469B93F0784C99D7C91D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */,
+				CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */,
+			);
+			name = Services;
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -667,7 +679,6 @@
 				9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */,
 				9CC29EFA1D8BB00A00542894 /* SpringLabel.swift in Sources */,
 				9CC29EF61D8BB00A00542894 /* Spring.swift in Sources */,
-				9C20A3F51D0FCC470079F3A5 /* Notifications.swift in Sources */,
 				9CC92F641CFEB1D500FA320D /* MenuViewController.swift in Sources */,
 				9CC29F001D8BB00A00542894 /* UnwindSegue.swift in Sources */,
 				9CB196371D53190E005CD74E /* NSMutableAttributedString.swift in Sources */,
@@ -701,6 +712,8 @@
 				9CC29EE51D8BB00A00542894 /* AsyncImageView.swift in Sources */,
 				9CC29EEE1D8BB00A00542894 /* DesignableView.swift in Sources */,
 				21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */,
+				AAC4FAF18944557101AE3D05 /* NotificationScheduler.swift in Sources */,
+				875D0F018EA86DD31B0B14F0 /* BackgroundRefresh.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

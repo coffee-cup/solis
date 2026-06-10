@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var notifications: Notifications!
     let timeZones = TimeZones()
 
     func defaultString(_ defaultKey: DefaultKey) -> String {
@@ -34,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaultString(.showSunAreas): true
         ])
         
-        application.setMinimumBackgroundFetchInterval(60 * 60 * 3) // 3 hours
-        
+        BackgroundRefresh.register()
+
         // Set initial view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -45,9 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
-        
-        notifications = Notifications()
-        
+
+        Task {
+            await NotificationScheduler.reschedule()
+        }
+
         return true
     }
 
@@ -57,8 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        BackgroundRefresh.schedule()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -71,17 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if notifications == nil {
-            notifications = Notifications()
-        }
-        
-        _ = notifications.scheduleNotifications()
-        notifications.checkIfNotificationsTriggered()
-        
-        completionHandler(.newData)
     }
 
 }
