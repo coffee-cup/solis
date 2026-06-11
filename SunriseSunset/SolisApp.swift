@@ -24,6 +24,7 @@ struct SolisApp: App {
             DefaultKey.currentLocation.description: true,
             DefaultKey.locationHistoryPlaces.description: [],
             DefaultKey.showSunAreas.description: true,
+            DefaultKey.theme.description: SunTheme.classic.rawValue,
         ])
 
         BackgroundRefresh.register()
