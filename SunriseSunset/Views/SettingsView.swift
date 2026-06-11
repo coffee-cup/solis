@@ -87,7 +87,7 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: SettingsRoute.self) { route in
                 switch route {
-                case .location: LocationSearchView()
+                case .location: LocationSearchView(onSelect: { dismiss() })
                 case .themes: ThemePickerView()
                 case .learn: LearnView()
                 }

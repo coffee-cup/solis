@@ -7,8 +7,11 @@ import MapKit
 import SwiftUI
 
 struct LocationSearchView: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(LocationModel.self) private var locationModel
+
+    // Picking a place closes the whole settings sheet, landing back on the
+    // timeline; the settings root passes its own sheet dismiss in here.
+    let onSelect: () -> Void
 
     @State private var model = LocationSearchModel()
     @State private var history: [SunPlace] = SunLocation.getLocationHistory() ?? []
@@ -73,7 +76,7 @@ struct LocationSearchView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Current Location")
         .onTapGesture {
-            dismiss()
+            onSelect()
             locationModel.selectCurrentLocation()
         }
     }
@@ -86,7 +89,7 @@ struct LocationSearchView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(completion.title), \(completion.subtitle)")
             .onTapGesture {
-                dismiss()
+                onSelect()
                 Task {
                     guard let coordinate = await model.resolve(completion) else { return }
                     let place = SunPlace(primary: completion.title, secondary: completion.subtitle, placeID: "")
@@ -110,7 +113,7 @@ struct LocationSearchView: View {
         .frame(minHeight: 44)
         .contentShape(Rectangle())
         .onTapGesture {
-            dismiss()
+            onSelect()
             if let coordinate = place.location {
                 locationModel.select(place, coordinate: coordinate)
             }

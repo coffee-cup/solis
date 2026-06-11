@@ -99,7 +99,7 @@ Location search (pushed page):
 - Results come from `MKLocalSearchCompleter` async — `iosef wait --name "<City>, <Country>" --timeout 10` then tap the row.
 - Row 0 is "Current Location"; bell buttons (`notifications on`/`notifications off`) set the notification place.
 - Result rows expose one combined label, `"<Primary>, <Secondary>"` (e.g. `Tokyo, Japan`). The completer list reshuffles asynchronously while typing — a tap right after `wait` can land on a different row whose subtitle contains the same text; `describe` and tap exact coordinates when row identity matters.
-- Selecting a result resolves coordinates via `MKLocalSearch`, pops back to settings, then saves location + fetches timezone via `CLGeocoder` — verify via group plist keys below.
+- Selecting any row (result, history, or Current Location) closes the whole settings sheet and lands on the timeline; coordinates resolve via `MKLocalSearch`, then location + timezone (via `CLGeocoder`) are saved — verify via group plist keys below.
 
 Group defaults keys (app-group plist): `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Theme` (`classic`/`ember`/`midnight`/`aurora`), `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
 
