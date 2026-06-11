@@ -11,7 +11,6 @@ struct SolisApp: App {
 
     @State private var location = LocationModel()
     @State private var settings = SettingsModel()
-    @State private var menu = MenuState()
 
     init() {
         Defaults.defaults.register(defaults: [
@@ -39,7 +38,6 @@ struct SolisApp: App {
             RootView()
                 .environment(location)
                 .environment(settings)
-                .environment(menu)
                 .preferredColorScheme(.light)
         }
         .onChange(of: scenePhase) { _, phase in

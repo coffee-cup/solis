@@ -133,8 +133,6 @@ let middleLineColour = UIColor.white.withAlphaComponent(0.5)
 let nameTextColour = UIColor.white.withAlphaComponent(0.8)
 let timeTextColour = UIColor.white.withAlphaComponent(0.8)
 
-let menuBackgroundColour = UIColor(hex: 0x4E50B8)
-
 let fontLight = "Muli-Light"
 let fontRegular = "Muli"
 

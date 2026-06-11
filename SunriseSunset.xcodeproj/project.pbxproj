@@ -19,7 +19,6 @@
 		4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		4DD0CFDBA78A3D6910ADE8F7 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
 		4F979626AF749AB7EDF9BC1C /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
-		77950F2E9FEEFDE11B42CA34 /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F475466705B17C91B08CBBB /* MenuState.swift */; };
 		875D0F018EA86DD31B0B14F0 /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */; };
 		903779BFB71DE7562D6290A7 /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
@@ -47,6 +46,7 @@
 		9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
 		9CE6F8DE1D56E2F300CD5680 /* SunArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */; };
 		9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
+		A97C0A6AA25E5A4D93F1A978 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160A73A9443501621C6585F0 /* SettingsView.swift */; };
 		AAC4FAF18944557101AE3D05 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */; };
 		BAC45D09B58BAA2C2586239F /* InfoMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */; };
 		BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
@@ -59,7 +59,6 @@
 		DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765696F90C41EDE4C0AD8C7 /* SettingsModel.swift */; };
 		DA9E27A743466059639DD154 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		DF75EEAD813A951B758723F8 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
-		E1598B224E585F3A4B5E01E3 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857A8B6ACC1355C93CF3B49 /* MenuView.swift */; };
 		EAB24A15FED9F76A9E01C843 /* SolisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242A66A4072558D25ABC9DE /* SolisWidget.swift */; };
 		F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		F7ADFA7018FBB691E72B6390 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242E879322DD2753D25E8EFB /* RootView.swift */; };
@@ -106,7 +105,7 @@
 /* Begin PBXFileReference section */
 		04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoMenuView.swift; sourceTree = "<group>"; };
 		0AC69F3849FE0476619A6030 /* LocationSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
-		1857A8B6ACC1355C93CF3B49 /* MenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		160A73A9443501621C6585F0 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		242E879322DD2753D25E8EFB /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
-		9F475466705B17C91B08CBBB /* MenuState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
 		CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
 		E6912BE2275D31864D92802B /* EDSunriseSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
 		F0327EB706154F718A15E9BB /* SolisApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisApp.swift; sourceTree = "<group>"; };
@@ -202,7 +200,7 @@
 				04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */,
 				3E259C8E739316658A5C3327 /* InfoView.swift */,
 				242E879322DD2753D25E8EFB /* RootView.swift */,
-				1857A8B6ACC1355C93CF3B49 /* MenuView.swift */,
+				160A73A9443501621C6585F0 /* SettingsView.swift */,
 			);
 			name = Views;
 			path = Views;
@@ -223,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				60CA23C9A6F57123E7D25BE0 /* LocationSearchModel.swift */,
-				9F475466705B17C91B08CBBB /* MenuState.swift */,
 				2B2205266CEA5B6627F0C1FF /* LocationModel.swift */,
 				7765696F90C41EDE4C0AD8C7 /* SettingsModel.swift */,
 			);
@@ -603,11 +600,10 @@
 				CAA38F0DCE4688D69D467481 /* SolisApp.swift in Sources */,
 				D109968AF314144FC794F973 /* LocationProvider.swift in Sources */,
 				F7ADFA7018FBB691E72B6390 /* RootView.swift in Sources */,
-				E1598B224E585F3A4B5E01E3 /* MenuView.swift in Sources */,
-				77950F2E9FEEFDE11B42CA34 /* MenuState.swift in Sources */,
 				439D8C02013EC9EF7E205329 /* LocationModel.swift in Sources */,
 				DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */,
 				25996D1618113BDB229E641B /* TimelineView.swift in Sources */,
+				A97C0A6AA25E5A4D93F1A978 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
