@@ -72,7 +72,7 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
    iosef tap --name "Allow While Using App"
    ```
 8. Inspect structure before guessing coordinates: `iosef describe --depth 3`
-9. Act with selectors first (`iosef tap/type/wait/exists`); main-screen buttons are labeled (`menu`, `center on now`). Watch for substring matches — `--name "Allow"` can hit "Don't Allow" on system alerts; describe first and tap exact coordinates on permission dialogs.
+9. Act with selectors first (`iosef tap/type/wait/exists`); main-screen buttons are labeled (`settings`, `center on now`). Watch for substring matches — `--name "Allow"` can hit "Don't Allow" on system alerts; describe first and tap exact coordinates on permission dialogs.
 10. Make the smallest code change, rebuild (`scripts/ios-loop-build.sh`), relaunch.
 11. Capture after evidence and compare semantically.
 
@@ -81,23 +81,25 @@ Env overrides: `IOS_LOOP_DEVICE` (default "iPhone 17 Pro"), `IOS_LOOP_UDID`, `IO
 Main screen (sun timeline):
 - Scrollable day view; "now" line with current time; sun-event lines (sunrise/sunset/first light/last light) appear at their time positions — events can be off-screen at default zoom, so an empty-looking colored screen is normal during midday/midnight.
 - Background colour reflects the current sun period (teal/cyan = day, blues/purples = twilight/night) and is itself evidence the EDSunriseSet calculations ran.
-- Bottom-left AXButton `menu` opens the slide-out menu; bottom-right `center on now` appears after panning and recenters the timeline.
-- The app is SwiftUI (UIKit only for the timeline view controller, hosted in a representable). The slide-out menu also opens by dragging from the left edge — `iosef swipe --x-start 5 ... --x-end 220` works (SwiftUI DragGesture, unlike the old UIKit edge recognizer).
+- Bottom-left AXButton `settings` opens the settings sheet; bottom-right `center on now` appears after panning and recenters the timeline.
+- The app is SwiftUI (UIKit only for the timeline view controller, hosted in a representable). The timeline pans from any x position, including the left edge.
 
-Menu (after tapping bottom-left button) — all selector-accessible:
-- `24 h` / `12 h` / `±` time-format buttons
-- `sunrise` / `first light` / `sunset` / `last light` notification toggles (these trigger the notification permission prompt)
-- location button (labeled `<City>` or `<City>, current location`) → opens location change
-- `about`
+Settings sheet (after tapping bottom-left `settings`) — NavigationStack + Form, all selector-accessible:
+- location row (AXButton labeled `<City>` or `<City>, Current Location`) → pushes location search
+- `Theme, <Name>` row → pushes the theme picker (`Classic` / `Ember` / `Midnight` / `Aurora` rows; tap recolours the timeline live behind the sheet)
+- `Time Format, <value>` AXPopUpButton → menu with `12-hour` / `24-hour` / `Relative (±)`
+- `Sunrise` / `Sunset` / `First Light` / `Last Light` AXCheckBox toggles (these trigger the notification permission prompt; a denial snaps the toggle back off)
+- `About Solis` → pushes the gradient about page (`Day`/`Civil`/`Nautical`/`Astronomical`/`Night` buttons push detail pages with standard back chevrons)
+- `Done` closes the sheet (only on the root settings page; pushed pages show back chevrons)
 
-Location change screen:
-- Search field (AXTextField, identifier `citySearchField`), `Close` button.
-- Type a city; results come from `MKLocalSearchCompleter` async — `iosef wait --name "<City>, <Country>" --timeout 10` then tap the row (rows are AXStaticText, tappable).
+Location search (pushed page):
+- `.searchable` nav-bar search field — NOT exposed as a named AXTextField; tap it by coordinates (~x 200, y 155 in the sheet) then `iosef type --text "<city>"`.
+- Results come from `MKLocalSearchCompleter` async — `iosef wait --name "<City>, <Country>" --timeout 10` then tap the row.
 - Row 0 is "Current Location"; bell buttons (`notifications on`/`notifications off`) set the notification place.
 - Result rows expose one combined label, `"<Primary>, <Secondary>"` (e.g. `Tokyo, Japan`). The completer list reshuffles asynchronously while typing — a tap right after `wait` can land on a different row whose subtitle contains the same text; `describe` and tap exact coordinates when row identity matters.
-- Selecting a result resolves coordinates via `MKLocalSearch`, then saves location + fetches timezone via `CLGeocoder` — verify via group plist keys below.
+- Selecting a result resolves coordinates via `MKLocalSearch`, pops back to settings, then saves location + fetches timezone via `CLGeocoder` — verify via group plist keys below.
 
-Group defaults keys (app-group plist): `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
+Group defaults keys (app-group plist): `CurrentLocation` (bool: using current location), `CurrentLocationLatitude/Longitude/Name`, `LocationLatitude/Longitude`, `LocationName`, `LocationPlaceID` ("lat,lng" string), `LocationTimeZoneOffset` (seconds from GMT), `TimeFormat`, `Theme` (`classic`/`ember`/`midnight`/`aurora`), `Sunrise`/`Sunset`/`FirstLight`/`LastLight` (notification toggles), `LocationHistoryPlaces`.
 
 Read state:
 
@@ -130,8 +132,8 @@ nohup xcrun simctl launch --console-pty --terminate-running-process "$UDID" xyz.
 
 ```bash
 iosef tap --name "Vancouver"
-iosef tap --name "menu"                       # bottom-left menu button
-iosef tap --role AXTextField && iosef type --text "Tokyo"
+iosef tap --name "settings"                   # bottom-left settings button
+iosef tap --x 200 --y 155 && iosef type --text "Tokyo"   # nav-bar search field
 xcrun simctl ui "$UDID" appearance dark        # restore after validating
 xcrun simctl location "$UDID" set 49.2827,-123.1207
 xcrun simctl privacy "$UDID" grant location xyz.jakerunzer.solis
@@ -171,9 +173,9 @@ Then assert the group plist has `CurrentLocationName => Vancouver` (location pip
 ### Change location flow
 
 ```bash
-iosef tap --name "menu"                  # open menu
-iosef tap --name "Vancouver"             # menu location button (label = current city)
-iosef tap --role AXTextField
+iosef tap --name "settings"              # open settings sheet
+iosef tap --name "Vancouver"             # location row (label = current city)
+iosef tap --x 200 --y 155                # .searchable nav-bar field (no AX name)
 iosef type --text "Tokyo"
 iosef wait --name "Tokyo, Japan" --timeout 10
 iosef tap --name "Tokyo, Japan"          # combined row label; see completer-reshuffle caveat

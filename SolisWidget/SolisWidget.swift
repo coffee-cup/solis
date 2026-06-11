@@ -83,18 +83,15 @@ struct SunTimelineProvider: TimelineProvider {
 
 // MARK: - Styling
 
-extension Color {
-    // Mirrors Styles.swift app palette
-    static let solisLight = Color(red: 0x46 / 255, green: 0xEA / 255, blue: 0xE7 / 255)
-    static let solisCivil = Color(red: 0x4A / 255, green: 0x9D / 255, blue: 0xCF / 255)
-    static let solisNautical = Color(red: 0x4E / 255, green: 0x50 / 255, blue: 0xB8 / 255)
-    static let solisDark = Color(red: 0x52 / 255, green: 0x00 / 255, blue: 0x9F / 255)
+// Re-read per render so the widget follows the theme selected in the app;
+// the app reloads widget timelines on theme change.
+var solisGradient: LinearGradient {
+    let palette = SunTheme.current.palette
+    return LinearGradient(
+        colors: [Color(palette.civil), Color(palette.nautical)],
+        startPoint: .top,
+        endPoint: .bottom)
 }
-
-let solisGradient = LinearGradient(
-    colors: [.solisCivil, .solisNautical],
-    startPoint: .top,
-    endPoint: .bottom)
 
 func muli(_ size: CGFloat, light: Bool = false) -> Font {
     .custom(light ? "Muli-Light" : "Muli", size: size)

@@ -8,8 +8,8 @@ iOS app showing sunrise/sunset/twilight times on a scrollable day timeline. Swif
 SunriseSunset.xcodeproj        the whole project (no workspace, no CocoaPods — never add/recreate either)
 SunriseSunset/                 app target source
   SolisApp.swift               @main SwiftUI App: registered defaults, BGTask registration, model wiring
-  Views/                       RootView (menu shell + dim overlay), MenuView, LocationSearchView, InfoMenuView, InfoView
-  Models/                      @Observable models: LocationModel, SettingsModel, MenuState, LocationSearchModel
+  Views/                       RootView (timeline + gear → settings sheet), SettingsView (+ThemePickerView), LocationSearchView, InfoMenuView (AboutView), InfoView
+  Models/                      @Observable models: LocationModel, SettingsModel, LocationSearchModel
   Timeline/TimelineView.swift  UIViewControllerRepresentable hosting SunViewController; token-diffed updates
   SunViewController.swift      UIKit timeline (programmatic layout; gesture scroll/momentum, gradient, sun lines)
   SunLogic.swift, Sun.swift    sun-time calculations (wraps EDSunriseSet)
@@ -18,6 +18,7 @@ SunriseSunset/                 app target source
   LocationProvider.swift       app-only CLLocationManager wrapper + SunLocation mutation/geocoding extension
   Services/                    NotificationScheduler (UNUserNotificationCenter), BackgroundRefresh (BGAppRefreshTask)
   Defaults.swift               UserDefaults(suiteName: "group.SunriseSunset") + DefaultKey enum
+  Styles.swift                 SunTheme/SunPalette (selectable timeline palettes) + theme-aware colour globals + fonts
 SolisWidget/                   WidgetKit extension (SwiftUI), shares SunLogic/SunLocation/Defaults/EDSunriseSet
 scripts/ios-loop-*.sh          simulator loop helpers (see below)
 ```
@@ -47,10 +48,12 @@ For anything interactive (taps, assertions, screenshots, logs, seeding app state
 - The widget can't be added to the home screen headlessly; verify the `.appex` structure/entitlements instead (see skill) and ask the human for visual checks.
 - `print()` from the app does not appear in `log show`; use `simctl launch --console-pty` (backgrounded) to capture it.
 - SplashBoard caches the launch screen per bundle ID across reinstalls — after changing `UILaunchScreen`, reboot the sim to see it. To view the settled launch screen at all (the app paints over it in ~300ms), launch with `simctl launch --wait-for-debugger`, screenshot, then terminate.
+- Notification permission state (incl. a previous denial) survives app uninstall/reinstall on the iOS 26 sim — the permission prompt will not reappear; the alert toggles then silently snap back off. There is no simctl domain for notifications; flip it in the sim's Settings app or erase the sim.
+- Mixing view-destination `NavigationLink { ... }` with value-based pushes in the same `NavigationStack` double-pushes on iOS 26 — keep all settings-stack navigation value-based (`SettingsRoute`, `InfoData` destinations registered on the stack root).
 
 ## Modernization state
 
-- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons, Swift 6 language mode (default MainActor isolation on the app target; widget stays nonisolated).
+- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons, Swift 6 language mode (default MainActor isolation on the app target; widget stays nonisolated), settings sheet replacing the slide-out menu (SF Symbols, system font, NavigationStack pushes), selectable timeline palettes (`SunTheme`: classic/ember/midnight/aurora, persisted in `Theme` group-defaults key; widget follows). Timeline + widget keep the Muli brand font; all chrome uses the system font.
 - Remaining backlog: privacy manifest before any App Store release.
 - The widget compiles `SunLogic/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
 - Old Google Places/timezonedb API keys exist in git history; they are dead/revoked — do not reuse that pattern; the app needs no API keys.
