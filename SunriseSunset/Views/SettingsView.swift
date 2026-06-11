@@ -5,6 +5,15 @@
 
 import SwiftUI
 
+// Pushed pages inside the settings stack. All navigation is value-based; the
+// destinations are registered once on the stack root (mixing view-destination
+// links with value pushes double-pushes on iOS 26).
+enum SettingsRoute: Hashable {
+    case location
+    case themes
+    case about
+}
+
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(LocationModel.self) private var location
@@ -14,9 +23,7 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    NavigationLink {
-                        LocationSearchView()
-                    } label: {
+                    NavigationLink(value: SettingsRoute.location) {
                         Label {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(location.locationName ?? "Choose Location")
@@ -34,9 +41,7 @@ struct SettingsView: View {
                 }
 
                 Section("Appearance") {
-                    NavigationLink {
-                        ThemePickerView()
-                    } label: {
+                    NavigationLink(value: SettingsRoute.themes) {
                         HStack {
                             Label("Theme", systemImage: "paintpalette.fill")
                             Spacer()
@@ -67,15 +72,23 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    NavigationLink {
-                        AboutView()
-                    } label: {
+                    NavigationLink(value: SettingsRoute.about) {
                         Label("About Solis", systemImage: "info.circle.fill")
                     }
                 }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: SettingsRoute.self) { route in
+                switch route {
+                case .location: LocationSearchView()
+                case .themes: ThemePickerView()
+                case .about: AboutView()
+                }
+            }
+            .navigationDestination(for: InfoData.self) { info in
+                InfoView(info: info)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
