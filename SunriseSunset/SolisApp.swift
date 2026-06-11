@@ -38,7 +38,6 @@ struct SolisApp: App {
             RootView()
                 .environment(location)
                 .environment(settings)
-                .preferredColorScheme(.light)
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .background {

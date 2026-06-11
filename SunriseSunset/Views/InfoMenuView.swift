@@ -8,8 +8,7 @@ import SwiftUI
 // Full-bleed gradient page mirroring the timeline's day-to-night bands; each
 // band pushes its explainer. Reads the palette globals, so it doubles as a
 // live preview of the selected theme.
-struct AboutView: View {
-    @State private var visible = false
+struct LearnView: View {
 
     private let sections: [(info: InfoData, label: String, sublabel: String?)] = [
         (.day, "Day", nil),
@@ -22,19 +21,18 @@ struct AboutView: View {
     var body: some View {
         ZStack {
             background
+                .ignoresSafeArea()
 
+            // Links stay inside the safe area so the first label clears the
+            // floating nav title.
             VStack(spacing: 0) {
-                ForEach(Array(sections.enumerated()), id: \.offset) { index, section in
-                    sectionLink(section, index: index)
+                ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+                    sectionLink(section)
                 }
             }
         }
-        .ignoresSafeArea()
-        .navigationTitle("About")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .onAppear { visible = true }
     }
 
     // Day and night are flat colours; the three twilight sections sit on one
@@ -54,7 +52,7 @@ struct AboutView: View {
         }
     }
 
-    private func sectionLink(_ section: (info: InfoData, label: String, sublabel: String?), index: Int) -> some View {
+    private func sectionLink(_ section: (info: InfoData, label: String, sublabel: String?)) -> some View {
         NavigationLink(value: section.info) {
             VStack(spacing: 2) {
                 Text(section.label)
@@ -70,10 +68,5 @@ struct AboutView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .opacity(visible ? 1 : 0)
-        .offset(x: visible ? 0 : -300)
-        .animation(
-            .easeInOut(duration: 1).delay(Double(index + 1) * 0.2),
-            value: visible)
     }
 }

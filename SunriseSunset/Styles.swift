@@ -19,6 +19,7 @@ enum SunTheme: String, CaseIterable {
     case ember
     case midnight
     case aurora
+    case infrared
 
     var displayName: String {
         switch self {
@@ -26,6 +27,7 @@ enum SunTheme: String, CaseIterable {
         case .ember: return "Ember"
         case .midnight: return "Midnight"
         case .aurora: return "Aurora"
+        case .infrared: return "Infrared"
         }
     }
 
@@ -35,6 +37,7 @@ enum SunTheme: String, CaseIterable {
         case .ember: return .ember
         case .midnight: return .midnight
         case .aurora: return .aurora
+        case .infrared: return .infrared
         }
     }
 
@@ -105,6 +108,18 @@ struct SunPalette: Sendable {
         blueHour: UIColor(hex: 0x66FFE8).withAlphaComponent(0.2),
         accentEnabled: UIColor(hex: 0x8CF5CD),
         accentDisabled: UIColor(hex: 0x0B2034))
+
+    static let infrared = SunPalette(
+        riseset: UIColor(hex: 0xFF7459),
+        civil: UIColor(hex: 0xD93A30),
+        nautical: UIColor(hex: 0x8E1B26),
+        astronomical: UIColor(hex: 0x26060B),
+        lightLine: UIColor(hex: 0xFFB3A0),
+        darkLine: UIColor(hex: 0xCC4A3E),
+        goldenHour: UIColor(hex: 0xFFAA33).withAlphaComponent(0.2),
+        blueHour: UIColor(hex: 0xFF7B9E).withAlphaComponent(0.2),
+        accentEnabled: UIColor(hex: 0xFF7459),
+        accentDisabled: UIColor(hex: 0x1F0508))
 }
 
 // MARK: - Theme-aware colours

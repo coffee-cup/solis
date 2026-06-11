@@ -11,7 +11,7 @@ import SwiftUI
 enum SettingsRoute: Hashable {
     case location
     case themes
-    case about
+    case learn
 }
 
 struct SettingsView: View {
@@ -39,6 +39,7 @@ struct SettingsView: View {
                     }
                     .accessibilityIdentifier("locationRow")
                 }
+                .listRowBackground(glassRowBackground)
 
                 Section("Appearance") {
                     NavigationLink(value: SettingsRoute.themes) {
@@ -59,6 +60,7 @@ struct SettingsView: View {
                         Label("Time Format", systemImage: "clock.fill")
                     }
                 }
+                .listRowBackground(glassRowBackground)
 
                 Section {
                     alertToggle(.sunrise, title: "Sunrise", icon: "sunrise.fill")
@@ -70,20 +72,24 @@ struct SettingsView: View {
                 } footer: {
                     Text("Notifications fire for the place marked with the bell in location search.")
                 }
+                .listRowBackground(glassRowBackground)
 
                 Section {
-                    NavigationLink(value: SettingsRoute.about) {
-                        Label("About Solis", systemImage: "info.circle.fill")
+                    NavigationLink(value: SettingsRoute.learn) {
+                        Label("Learn", systemImage: "book.fill")
                     }
                 }
+                .listRowBackground(glassRowBackground)
             }
+            .scrollContentBackground(.hidden)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: SettingsRoute.self) { route in
                 switch route {
                 case .location: LocationSearchView()
                 case .themes: ThemePickerView()
-                case .about: AboutView()
+                case .learn: LearnView()
                 }
             }
             .navigationDestination(for: InfoData.self) { info in
@@ -101,6 +107,10 @@ struct SettingsView: View {
 
     private var currentTheme: SunTheme {
         SunTheme(rawValue: settings.theme) ?? .classic
+    }
+
+    private var glassRowBackground: some View {
+        Color.primary.opacity(0.06)
     }
 
     private var timeFormatBinding: Binding<TimeFormat> {
@@ -156,7 +166,11 @@ struct ThemePickerView: View {
                 }
             }
             .accessibilityLabel(theme.displayName)
+            .listRowBackground(Color.primary.opacity(0.06))
         }
+        .scrollContentBackground(.hidden)
+        .containerBackground(.clear, for: .navigation)
+        .toolbarBackground(.hidden, for: .navigationBar)
         .navigationTitle("Theme")
         .navigationBarTitleDisplayMode(.inline)
     }

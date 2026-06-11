@@ -22,6 +22,15 @@ struct RootView: View {
         .statusBarHidden(true)
         .sheet(isPresented: $showSettings) {
             SettingsView()
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+                // Faded material: blurred glass that still lets the timeline
+                // gradient read through.
+                .presentationBackground {
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                        .opacity(0.65)
+                }
         }
         .onAppear {
             location.start()

@@ -32,6 +32,8 @@ struct LocationSearchView: View {
             }
         }
         .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .containerBackground(.clear, for: .navigation)
         .searchable(
             text: $model.query,
             placement: .navigationBarDrawer(displayMode: .always),

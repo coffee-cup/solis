@@ -84,13 +84,15 @@ Main screen (sun timeline):
 - Bottom-left AXButton `settings` opens the settings sheet; bottom-right `center on now` appears after panning and recenters the timeline.
 - The app is SwiftUI (UIKit only for the timeline view controller, hosted in a representable). The timeline pans from any x position, including the left edge.
 
-Settings sheet (after tapping bottom-left `settings`) — NavigationStack + Form, all selector-accessible:
+Settings sheet (after tapping bottom-left `settings`) — NavigationStack + Form on a translucent glass background, medium/large detents, all selector-accessible:
+- Opens at the **medium detent** — the `Learn` row is below the fold; swipe up (`iosef swipe --y-start 660 --y-end 250`) before tapping it.
 - location row (AXButton labeled `<City>` or `<City>, Current Location`) → pushes location search
-- `Theme, <Name>` row → pushes the theme picker (`Classic` / `Ember` / `Midnight` / `Aurora` rows; tap recolours the timeline live behind the sheet)
+- `Theme, <Name>` row → pushes the theme picker (`Classic` / `Ember` / `Midnight` / `Aurora` / `Infrared` rows; tap recolours the timeline live behind the sheet)
 - `Time Format, <value>` AXPopUpButton → menu with `12-hour` / `24-hour` / `Relative (±)`
 - `Sunrise` / `Sunset` / `First Light` / `Last Light` AXCheckBox toggles (these trigger the notification permission prompt; a denial snaps the toggle back off)
-- `About Solis` → pushes the gradient about page (`Day`/`Civil`/`Nautical`/`Astronomical`/`Night` buttons push detail pages with standard back chevrons)
+- `Learn` → pushes the full-bleed gradient page, no nav title (`Day`/`Civil`/`Nautical`/`Astronomical`/`Night` buttons push detail pages with standard back chevrons)
 - `Done` closes the sheet (only on the root settings page; pushed pages show back chevrons)
+- The app supports light and dark mode. `xcrun simctl ui <udid> appearance dark` can report success while applying nothing (system apps stay light too) — shutdown/boot the sim and it takes effect.
 
 Location search (pushed page):
 - `.searchable` nav-bar search field — NOT exposed as a named AXTextField; tap it by coordinates (~x 200, y 155 in the sheet) then `iosef type --text "<city>"`.
