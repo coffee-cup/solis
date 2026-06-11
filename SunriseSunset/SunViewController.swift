@@ -66,9 +66,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     // Whether or not the sun view is off from rest position
     var offNow = false
     
-    // Whether or not the menu is out of position right now
-    var isMenuOut = false
-    
     // Whether or not the now line is colliding with a sun line
     var colliding = false
     
@@ -99,14 +96,12 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     var smoothyOffset: Double = 0
     var smoothyForward = true
 
-    // Closes the slide-out menu when the gradient is tapped while it is out.
-    var onTapWhileMenuOut: (() -> Void)?
-
     // Last-applied model state, diffed in apply()
     private var appliedUpdateToken = 0
     private var appliedChangeToken = 0
     private var appliedResetToken = 0
     private var appliedTimeFormat: String?
+    private var appliedThemeID: String?
     
     override func loadView() {
         let root = TouchDownView()
@@ -161,7 +156,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         noLocationLabel1 = UILabel()
         noLocationLabel1.text = "I need a location to do anything 🌎"
         noLocationLabel2 = UILabel()
-        noLocationLabel2.text = "Enable location services or choose a city from the menu ←"
+        noLocationLabel2.text = "Enable location services or choose a city in Settings ↙"
         for label in [noLocationLabel1!, noLocationLabel2!] {
             label.font = UIFont(name: fontLight, size: 22)
             label.textColor = .white
@@ -264,10 +259,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         panRecognizer.delegate = self
         sunView.addGestureRecognizer(panRecognizer)
 
-        // Send Menu in tap
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
-        sunView.addGestureRecognizer(tapRecognizer)
-
         // Long press tap (toggle sun areas)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressGesture))
         longPressRecognizer.allowableMovement = 0.5
@@ -277,14 +268,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
 
     // Reacts to observable-model changes forwarded by TimelineView.
-    func apply(updateToken: Int, changeToken: Int, resetToken: Int, timeFormat: String, isMenuOut: Bool) {
-        self.isMenuOut = isMenuOut
-
+    func apply(updateToken: Int, changeToken: Int, resetToken: Int, timeFormat: String, themeID: String) {
         guard sun != nil else {
             appliedUpdateToken = updateToken
             appliedChangeToken = changeToken
             appliedResetToken = resetToken
             appliedTimeFormat = timeFormat
+            appliedThemeID = themeID
             return
         }
 
@@ -296,6 +286,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             appliedTimeFormat = timeFormat
             sun.timeFormatUpdate()
         }
+        if appliedThemeID != themeID {
+            appliedThemeID = themeID
+            applyTheme()
+        }
         if appliedResetToken != resetToken {
             appliedResetToken = resetToken
             scrollReset()
@@ -303,6 +297,18 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         if appliedUpdateToken != updateToken {
             appliedUpdateToken = updateToken
             update()
+        }
+    }
+
+    // Recolours everything from the current palette. Calls sun.update directly
+    // (not update()) so the gradient recomputes even while scrolled off rest.
+    private func applyTheme() {
+        view.backgroundColor = nauticalColour
+        gradientLayer.backgroundColor = nauticalColour.cgColor
+        guard sun != nil else { return }
+        sun.applyTheme()
+        if let location = SunLocation.getLocation() {
+            sun.update(offset, location: location)
         }
     }
 
@@ -478,13 +484,13 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         let offsetSeconds = offsetMinutes
         
         if (recognizer.state == .began) {
-            if recognizer.location(in: view).x < 40 || scrolling { // 40 so pan gestures don't interfer with pulling menu out
+            if scrolling {
                 allowedPan = false
             } else {
                 panning = true
             }
         } else if (recognizer.state == .changed) {
-            if allowedPan && !isMenuOut && !scrolling {
+            if allowedPan && !scrolling {
                 let transformBy = translation + offsetTranslation
                 let offsetBy = offsetSeconds + offset
                 let (newTransformBy, newOffsetBy) = normalizeOffsets(transformBy, offsetBy: offsetBy)
@@ -493,7 +499,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
                 moveUpdate(newOffsetBy)
             }
         } else if (recognizer.state == .ended) {
-            if allowedPan && !isMenuOut {
+            if allowedPan {
                 offset += offsetSeconds
                 offsetTranslation += translation
                 (offsetTranslation, offset) = normalizeOffsets(offsetTranslation, offsetBy: offset)
@@ -582,12 +588,6 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         //        print("d: \(animationFireDate.timeIntervalSinceNow * -1) b: \(transformBeforeAnimation) a: \(transformAfterAnimation) ease: \(ease)")
         
         moveUpdate(sun.pointsToMinutes(ease))
-    }
-    
-    @objc func tapGesture(_ recognizer: UITapGestureRecognizer) {
-        if isMenuOut {
-            onTapWhileMenuOut?()
-        }
     }
     
     @objc func longPressGesture(_ recognizer: UILongPressGestureRecognizer) {

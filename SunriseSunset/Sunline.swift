@@ -23,7 +23,8 @@ class Sunline: UIView {
     var nameLeftConstraint: NSLayoutConstraint!
     
     var time: Date!
-    
+    var type: SunType!
+
     var colliding = false
     let CollidingMinutesThreshhold = 12
     let LineHorizontalPadding: CGFloat = 100
@@ -45,6 +46,7 @@ class Sunline: UIView {
     
     func createLine(_ parentView: UIView, type: SunType) {
         self.parentView = parentView
+        self.type = type
 
         line = UIView()
         timeLabel = UILabel()
@@ -100,6 +102,11 @@ class Sunline: UIView {
         alpha = 0
     }
     
+    // Line colour is cached at creation; re-read it after a theme change.
+    func refreshColours() {
+        line.backgroundColor = type.lineColour
+    }
+
     func getTimeText(_ offset: TimeInterval) -> String {
         let text = TimeFormatters.currentFormattedString(time, timeZone: SunLocation.currentTimeZone)
         return text

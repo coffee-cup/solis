@@ -5,11 +5,10 @@
 
 import SwiftUI
 
-struct InfoMenuView: View {
-    @Environment(\.dismiss) private var dismiss
-
-    @State private var presentedInfo: InfoData?
-    @State private var visible = false
+// Full-bleed gradient page mirroring the timeline's day-to-night bands; each
+// band pushes its explainer. Reads the palette globals, so it doubles as a
+// live preview of the selected theme.
+struct LearnView: View {
 
     private let sections: [(info: InfoData, label: String, sublabel: String?)] = [
         (.day, "Day", nil),
@@ -20,32 +19,20 @@ struct InfoMenuView: View {
     ]
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack {
             background
+                .ignoresSafeArea()
 
+            // Links stay inside the safe area so the first label clears the
+            // floating back button.
             VStack(spacing: 0) {
-                ForEach(Array(sections.enumerated()), id: \.offset) { index, section in
-                    sectionButton(section, index: index)
+                ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+                    sectionLink(section)
                 }
             }
-
-            Button {
-                dismiss()
-            } label: {
-                Image("back_light")
-                    .padding(14)
-            }
-            .accessibilityLabel("back")
-            .padding(.leading, 16)
-            .padding(.bottom, 16)
         }
-        .ignoresSafeArea()
-        .statusBarHidden(false)
-        .onAppear { visible = true }
-        .fullScreenCover(item: $presentedInfo) { info in
-            InfoView(info: info)
-        }
-        .gesture(edgeSwipeBack)
+        .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
     }
 
     // Day and night are flat colours; the three twilight sections sit on one
@@ -65,16 +52,14 @@ struct InfoMenuView: View {
         }
     }
 
-    private func sectionButton(_ section: (info: InfoData, label: String, sublabel: String?), index: Int) -> some View {
-        Button {
-            presentedInfo = section.info
-        } label: {
+    private func sectionLink(_ section: (info: InfoData, label: String, sublabel: String?)) -> some View {
+        NavigationLink(value: section.info) {
             VStack(spacing: 2) {
                 Text(section.label)
-                    .font(.custom(fontLight, size: 28))
+                    .font(.title2.weight(.light))
                 if let sublabel = section.sublabel {
                     Text(sublabel)
-                        .font(.custom(fontLight, size: 14))
+                        .font(.footnote)
                 }
             }
             .foregroundStyle(.white)
@@ -83,23 +68,5 @@ struct InfoMenuView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .opacity(visible ? 1 : 0)
-        .offset(x: visible ? 0 : -300)
-        .animation(
-            .easeInOut(duration: 1).delay(Double(index + 1) * 0.2),
-            value: visible)
     }
-
-    private var edgeSwipeBack: some Gesture {
-        DragGesture(minimumDistance: 30)
-            .onEnded { value in
-                if value.startLocation.x < 30 && value.translation.width > 80 {
-                    dismiss()
-                }
-            }
-    }
-}
-
-extension InfoData: Identifiable {
-    var id: String { title }
 }

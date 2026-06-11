@@ -28,7 +28,8 @@ enum DefaultKey {
     case locationHistoryPlaces
     case showSunAreas
     case notificationPlace
-    
+    case theme
+
     var description: String {
         switch self {
         case .timeFormat: return "TimeFormat"
@@ -50,6 +51,7 @@ enum DefaultKey {
         case .locationHistoryPlaces: return "LocationHistoryPlaces"
         case .showSunAreas: return "ShowSunAreas"
         case .notificationPlace: return "NotificationPlace"
+        case .theme: return "Theme"
         }
     }
 }

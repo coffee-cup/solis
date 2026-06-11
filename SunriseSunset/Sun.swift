@@ -150,21 +150,31 @@ class Sun {
         sunTimeLines.append(SunTimeLine(suntime: suntime, sunline: sunline))
     }
     
-    func createGoldenHourArea(_ day: SunDay, inMorning: Bool) -> SunArea {
-        let startDegrees: Float = -6
-        let endDegrees: Float = 4
-        
-        // Carefully fuck with these numbers
-        var colours = [
+    // Carefully fuck with these numbers
+    static func goldenHourColours(inMorning: Bool) -> [CGColor] {
+        let colours = [
             goldenHourColour.withAlphaComponent(0).cgColor,
             goldenHourColour.withAlphaComponent(0.2).cgColor,
             goldenHourColour.cgColor,
             blueHourColour.withAlphaComponent(0.2).cgColor
         ]
-        if !inMorning {
-            colours = colours.reversed()
-        }
-        
+        return inMorning ? colours : colours.reversed()
+    }
+
+    static func blueHourColours(inMorning: Bool) -> [CGColor] {
+        let colours = [
+            blueHourColour.withAlphaComponent(0.2).cgColor,
+            blueHourColour.cgColor,
+            blueHourColour.withAlphaComponent(0.1).cgColor,
+            blueHourColour.withAlphaComponent(0).cgColor
+        ]
+        return inMorning ? colours : colours.reversed()
+    }
+
+    func createGoldenHourArea(_ day: SunDay, inMorning: Bool) -> SunArea {
+        let startDegrees: Float = -6
+        let endDegrees: Float = 4
+
         let locations: [Float] = inMorning ? [
             0,
             0.4,
@@ -185,27 +195,17 @@ class Sun {
             day: day,
             inMorning: inMorning)
         
-        goldenHourArea.colours = colours
+        goldenHourArea.colours = Self.goldenHourColours(inMorning: inMorning)
+        goldenHourArea.colourBuilder = { Self.goldenHourColours(inMorning: inMorning) }
         goldenHourArea.locations = locations
         goldenHourArea.createArea(sunView)
         return goldenHourArea
     }
-    
+
     func createBlueHourArea(_ day: SunDay, inMorning: Bool) -> SunArea {
         let startDegrees: Float = 4
         let endDegrees: Float = 6
-        
-        // Carefully fuck with these numbers
-        var colours = [
-            blueHourColour.withAlphaComponent(0.2).cgColor,
-            blueHourColour.cgColor,
-            blueHourColour.withAlphaComponent(0.1).cgColor,
-            blueHourColour.withAlphaComponent(0).cgColor
-        ]
-        if !inMorning {
-           colours = colours.reversed()
-        }
-        
+
         let locations: [Float] = inMorning ? [
             0,
             0.4,
@@ -226,10 +226,22 @@ class Sun {
             day: day,
             inMorning: inMorning)
         
-        blueHourArea.colours = colours
+        blueHourArea.colours = Self.blueHourColours(inMorning: inMorning)
+        blueHourArea.colourBuilder = { Self.blueHourColours(inMorning: inMorning) }
         blueHourArea.locations = locations
         blueHourArea.createArea(sunView)
         return blueHourArea
+    }
+
+    // Recolours views that cached palette colours at creation. Gradient stops
+    // are recomputed by the caller via update().
+    func applyTheme() {
+        for stl in sunTimeLines {
+            stl.sunline.refreshColours()
+        }
+        for area in sunAreas {
+            area.refreshColours()
+        }
     }
     
     func createSunAreas() {
