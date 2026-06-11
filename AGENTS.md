@@ -46,10 +46,11 @@ For anything interactive (taps, assertions, screenshots, logs, seeding app state
   When removing build files, collect them first and remove after iterating — mutating `phase.files` while iterating corrupts the gem's referrer tracking (save fails atomically, so the project file survives).
 - The widget can't be added to the home screen headlessly; verify the `.appex` structure/entitlements instead (see skill) and ask the human for visual checks.
 - `print()` from the app does not appear in `log show`; use `simctl launch --console-pty` (backgrounded) to capture it.
+- SplashBoard caches the launch screen per bundle ID across reinstalls — after changing `UILaunchScreen`, reboot the sim to see it. To view the settled launch screen at all (the app paints over it in ~300ms), launch with `simctl launch --wait-for-debugger`, screenshot, then terminate.
 
 ## Modernization state
 
-- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons.
-- Remaining backlog: Swift 6 language mode (strict concurrency), privacy manifest before any App Store release.
+- Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons, Swift 6 language mode (default MainActor isolation on the app target; widget stays nonisolated).
+- Remaining backlog: privacy manifest before any App Store release.
 - The widget compiles `SunLogic/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
 - Old Google Places/timezonedb API keys exist in git history; they are dead/revoked — do not reuse that pattern; the app needs no API keys.

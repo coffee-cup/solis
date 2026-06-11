@@ -37,9 +37,7 @@
 		9C6BCB221D3CA6F00069BC16 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* SunViewController.swift */; };
-		9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEC1CE844400080B5B1 /* Main.storyboard */; };
 		9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEF1CE844400080B5B1 /* Assets.xcassets */; };
-		9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */; };
 		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
 		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
@@ -339,8 +337,6 @@
 				9CB37BEF1CE844400080B5B1 /* Assets.xcassets */,
 				9C3314F51CE976AF004D012E /* Extensions */,
 				9CDE815A1D03E7D50036FD34 /* Fonts */,
-				9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */,
-				9CB37BEC1CE844400080B5B1 /* Main.storyboard */,
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
@@ -542,11 +538,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C236CE61D16B0B500FB9985 /* SolisWidget.entitlements in Resources */,
-				9CB37BF31CE844400080B5B1 /* LaunchScreen.storyboard in Resources */,
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
-				9CB37BEE1CE844400080B5B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,23 +666,6 @@
 			targetProxy = 9CB37C051CE844400080B5B1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9CB37BEC1CE844400080B5B1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9CB37BF11CE844400080B5B1 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9CB37C0B1CE844400080B5B1 /* Debug */ = {
