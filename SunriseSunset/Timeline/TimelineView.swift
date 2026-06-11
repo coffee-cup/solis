@@ -31,6 +31,7 @@ struct TimelineView: UIViewControllerRepresentable {
             changeToken: location.changeToken,
             resetToken: resetToken,
             timeFormat: settings.timeFormat,
+            themeID: settings.theme,
             isMenuOut: menu.isOut)
     }
 }

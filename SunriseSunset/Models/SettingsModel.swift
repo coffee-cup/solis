@@ -5,6 +5,7 @@
 
 import Foundation
 import Observation
+import WidgetKit
 
 @MainActor
 @Observable
@@ -13,10 +14,12 @@ final class SettingsModel {
     // Raw format string ("h:mm a", "HH:mm", "delta") — the same encoding the
     // widget and seeded plists read from the TimeFormat key.
     private(set) var timeFormat: String
+    private(set) var theme: String
     private(set) var alerts: [SunAlert: Bool]
 
     init() {
         timeFormat = Defaults.defaults.string(forKey: DefaultKey.timeFormat.description) ?? TimeFormat.hour12.description
+        theme = SunTheme.current.rawValue
         var states: [SunAlert: Bool] = [:]
         for alert in SunAlert.allCases {
             states[alert] = Defaults.defaults.bool(forKey: alert.rawValue)
@@ -27,6 +30,12 @@ final class SettingsModel {
     func setTimeFormat(_ format: TimeFormat) {
         Defaults.defaults.set(format.description, forKey: DefaultKey.timeFormat.description)
         timeFormat = format.description
+    }
+
+    func setTheme(_ newTheme: SunTheme) {
+        Defaults.defaults.set(newTheme.rawValue, forKey: DefaultKey.theme.description)
+        theme = newTheme.rawValue
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func isEnabled(_ alert: SunAlert) -> Bool {

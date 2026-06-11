@@ -107,6 +107,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     private var appliedChangeToken = 0
     private var appliedResetToken = 0
     private var appliedTimeFormat: String?
+    private var appliedThemeID: String?
     
     override func loadView() {
         let root = TouchDownView()
@@ -277,7 +278,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
     }
 
     // Reacts to observable-model changes forwarded by TimelineView.
-    func apply(updateToken: Int, changeToken: Int, resetToken: Int, timeFormat: String, isMenuOut: Bool) {
+    func apply(updateToken: Int, changeToken: Int, resetToken: Int, timeFormat: String, themeID: String, isMenuOut: Bool) {
         self.isMenuOut = isMenuOut
 
         guard sun != nil else {
@@ -285,6 +286,7 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             appliedChangeToken = changeToken
             appliedResetToken = resetToken
             appliedTimeFormat = timeFormat
+            appliedThemeID = themeID
             return
         }
 
@@ -296,6 +298,10 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
             appliedTimeFormat = timeFormat
             sun.timeFormatUpdate()
         }
+        if appliedThemeID != themeID {
+            appliedThemeID = themeID
+            applyTheme()
+        }
         if appliedResetToken != resetToken {
             appliedResetToken = resetToken
             scrollReset()
@@ -303,6 +309,18 @@ class SunViewController: UIViewController, TouchDownProtocol, UIGestureRecognize
         if appliedUpdateToken != updateToken {
             appliedUpdateToken = updateToken
             update()
+        }
+    }
+
+    // Recolours everything from the current palette. Calls sun.update directly
+    // (not update()) so the gradient recomputes even while scrolled off rest.
+    private func applyTheme() {
+        view.backgroundColor = nauticalColour
+        gradientLayer.backgroundColor = nauticalColour.cgColor
+        guard sun != nil else { return }
+        sun.applyTheme()
+        if let location = SunLocation.getLocation() {
+            sun.update(offset, location: location)
         }
     }
 

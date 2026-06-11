@@ -28,6 +28,9 @@ class SunArea: UIView {
     
     var colours: [CGColor]?
     var locations: [Float]?
+
+    // Rebuilds the colour stops from the current palette after a theme change.
+    var colourBuilder: (@MainActor () -> [CGColor])?
     
     var inMorning: Bool!
     var day: SunDay!
@@ -100,6 +103,12 @@ class SunArea: UIView {
         alpha = 0
     }
     
+    func refreshColours() {
+        guard let colourBuilder else { return }
+        colours = colourBuilder()
+        gradientLayer.colors = colours
+    }
+
     func fadeOutView() {
         UIView.animate(withDuration: 0.5) {
             self.alpha = 0
