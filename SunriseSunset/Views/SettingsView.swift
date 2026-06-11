@@ -133,7 +133,7 @@ struct ThemePickerView: View {
                 HStack(spacing: 12) {
                     ThemeSwatch(palette: theme.palette)
                     Text(theme.displayName)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(Color.primary)
                     Spacer()
                     if settings.theme == theme.rawValue {
                         Image(systemName: "checkmark")
