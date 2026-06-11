@@ -30,16 +30,12 @@ class TimeFormatters {
         return timeFormatter
     }
     
-    // Create single instance of date formatter for each time zone
-    // When time zone changes, create new date formatter
-    static var formatter12hInstance = TimeFormatters.timeFormatter(TimeFormat.hour12.description, timeZone: TimeZone.ReferenceType.local)
     class func formatter12h(_ timeZone: TimeZone) -> DateFormatter {
-        return formatter12hInstance.timeZone == timeZone ? formatter12hInstance : timeFormatter(TimeFormat.hour12.description, timeZone: timeZone)
+        return timeFormatter(TimeFormat.hour12.description, timeZone: timeZone)
     }
-    
-    static var formatter24hInstance = TimeFormatters.timeFormatter(TimeFormat.hour24.description, timeZone: TimeZone.ReferenceType.local)
+
     class func formatter24h(_ timeZone: TimeZone) -> DateFormatter {
-        return formatter24hInstance.timeZone == timeZone ? formatter24hInstance : timeFormatter(TimeFormat.hour24.description, timeZone: timeZone)
+        return timeFormatter(TimeFormat.hour24.description, timeZone: timeZone)
     }
     
     static func currentFormatter(_ timeZone: TimeZone) -> DateFormatter? {

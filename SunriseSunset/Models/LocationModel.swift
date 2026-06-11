@@ -26,9 +26,7 @@ final class LocationModel {
     func start() {
         LocationProvider.shared.onLocationFix = { [weak self] coordinate in
             SunLocation.saveLocation(coordinate) {
-                Task { @MainActor [weak self] in
-                    self?.refresh()
-                }
+                self?.refresh()
             }
         }
         SunLocation.requestLocationPermission { granted in

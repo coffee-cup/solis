@@ -12,7 +12,8 @@ import Foundation
 
 class SunLocation {
 
-    static let defaults = Defaults.defaults
+    // See Defaults.defaults: UserDefaults is thread-safe, not Sendable.
+    nonisolated(unsafe) static let defaults = Defaults.defaults
 
     static let CHECK_THRESHOLD = 60 * 10; // seconds
 

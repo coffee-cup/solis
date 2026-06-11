@@ -57,49 +57,47 @@ class SunArea: UIView {
     
     func createArea(_ parentView: UIView) {
         self.parentView = parentView
-        
-        DispatchQueue.main.async {
-            self.translatesAutoresizingMaskIntoConstraints = false
-            
-            parentView.addSubview(self)
-            
-            // Area View
-            
-            let viewHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
-            self.topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
-            self.heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
-            
-            NSLayoutConstraint.activate(viewHorizontalConstraints + [self.topConstraint, self.heightConstraint])
-            
-            self.gradientLayer = CAGradientLayer()
-            self.layer.addSublayer(self.gradientLayer)
-            self.gradientLayer.frame = self.frame
-            
-            if let locations = self.locations {
-                self.gradientLayer.locations = locations as [NSNumber]?
-            } else {
-                self.gradientLayer.locations = [
-                    0,
-                    0.2,
-                    0.8,
-                    1
-                ]
-            }
-            
-            if let colours = self.colours {
-                self.gradientLayer.colors = colours
-            } else {
-                self.gradientLayer.colors = [
-                    self.colour.withAlphaComponent(0.1).cgColor,
-                    self.colour.cgColor,
-                    self.colour.cgColor,
-                    self.colour.withAlphaComponent(0.1).cgColor
-                ]
-            }
-            
-            // Hide view initially
-            self.alpha = 0
+
+        translatesAutoresizingMaskIntoConstraints = false
+
+        parentView.addSubview(self)
+
+        // Area View
+
+        let viewHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
+        topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
+        heightConstraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
+
+        NSLayoutConstraint.activate(viewHorizontalConstraints + [topConstraint, heightConstraint])
+
+        gradientLayer = CAGradientLayer()
+        layer.addSublayer(gradientLayer)
+        gradientLayer.frame = frame
+
+        if let locations = locations {
+            gradientLayer.locations = locations as [NSNumber]?
+        } else {
+            gradientLayer.locations = [
+                0,
+                0.2,
+                0.8,
+                1
+            ]
         }
+
+        if let colours = colours {
+            gradientLayer.colors = colours
+        } else {
+            gradientLayer.colors = [
+                colour.withAlphaComponent(0.1).cgColor,
+                colour.cgColor,
+                colour.cgColor,
+                colour.withAlphaComponent(0.1).cgColor
+            ]
+        }
+
+        // Hide view initially
+        alpha = 0
     }
     
     func fadeOutView() {
@@ -157,50 +155,47 @@ class SunArea: UIView {
     }
     
     func updateArea(_ sunTimeMarkers: [SunTimeMarker]) {
-        DispatchQueue.main.async {
-            
-            // Only use relevant markers
-            let filteredMarkers = sunTimeMarkers.filter { marker in
-                return marker.sunTimeLine.suntime.day == self.day &&
-                    marker.sunTimeLine.suntime.type.morning == self.inMorning
+        // Only use relevant markers
+        let filteredMarkers = sunTimeMarkers.filter { marker in
+            return marker.sunTimeLine.suntime.day == self.day &&
+                marker.sunTimeLine.suntime.type.morning == self.inMorning
+        }
+
+        // Sort markers by degrees
+        let sortedMarkers = filteredMarkers.sorted { lhs, rhs in
+            return lhs.sunTimeLine.suntime.type.degrees < rhs.sunTimeLine.suntime.type.degrees
+        }
+
+        var lowestMarker: SunTimeMarker?
+        var highestMarker: SunTimeMarker?
+        for marker in sortedMarkers {
+            let sunDegree = marker.sunTimeLine.suntime.type.degrees
+            if sunDegree <= startDegrees || (startDegrees < 0 && (lowestMarker == nil || sunDegree < (lowestMarker?.sunTimeLine.suntime.type.degrees)!)) {
+                lowestMarker = marker
             }
-            
-            // Sort markers by degrees
-            let sortedMarkers = filteredMarkers.sorted { lhs, rhs in
-                return lhs.sunTimeLine.suntime.type.degrees < rhs.sunTimeLine.suntime.type.degrees
+            if highestMarker == nil && sunDegree >= endDegrees {
+                highestMarker = marker
             }
-            
-            var lowestMarker: SunTimeMarker?
-            var highestMarker: SunTimeMarker?
-            for marker in sortedMarkers {
-                let sunDegree = marker.sunTimeLine.suntime.type.degrees
-                if sunDegree <= self.startDegrees || (self.startDegrees < 0 && (lowestMarker == nil || sunDegree < (lowestMarker?.sunTimeLine.suntime.type.degrees)!)) {
-                    lowestMarker = marker
+        }
+
+        if let lowestMarker = lowestMarker {
+            if let highestMarker = highestMarker {
+                var minMarker = lowestMarker
+                var maxMarker = highestMarker
+
+                if minMarker.percent > maxMarker.percent {
+                    swap(&minMarker, &maxMarker)
                 }
-                if highestMarker == nil && sunDegree >= self.endDegrees {
-                    highestMarker = marker
-                }
+
+                let startPercent = degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: startDegrees)
+                let endPercent = degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: endDegrees)
+
+                updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
             }
-            
-            if let lowestMarker = lowestMarker {
-                if let highestMarker = highestMarker {
-                    var minMarker = lowestMarker
-                    var maxMarker = highestMarker
-                    
-                    if minMarker.percent > maxMarker.percent {
-                        swap(&minMarker, &maxMarker)
-                    }
-                    
-                    let startPercent = self.degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: self.startDegrees)
-                    let endPercent = self.degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: self.endDegrees)
-                    
-                    self.updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
-                }
-            }
-         
-            if lowestMarker == nil || highestMarker == nil {
-                self.fadeOutView()
-            }
+        }
+
+        if lowestMarker == nil || highestMarker == nil {
+            fadeOutView()
         }
     }
 }

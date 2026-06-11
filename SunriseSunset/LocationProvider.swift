@@ -10,8 +10,10 @@ import CoreLocation
 import Foundation
 
 // CLLocationManager wrapper providing permission requests, significant-change
-// watching, and one-shot location fixes.
-class LocationProvider: NSObject, CLLocationManagerDelegate {
+// watching, and one-shot location fixes. The manager is created on the main
+// thread, so delegate callbacks arrive there too.
+@MainActor
+class LocationProvider: NSObject, @preconcurrency CLLocationManagerDelegate {
 
     static let shared = LocationProvider()
 
@@ -84,6 +86,7 @@ class LocationProvider: NSObject, CLLocationManagerDelegate {
 
 // Location mutation and lookup. Reads stay in SunLocation.swift so the widget
 // can share them.
+@MainActor
 extension SunLocation {
 
     class func startLocationWatching() {
@@ -102,16 +105,17 @@ extension SunLocation {
         LocationProvider.shared.requestPermission(completion)
     }
 
-    class func lookupLocation(_ coordinate: CLLocationCoordinate2D, completion: @escaping (_ placemark: CLPlacemark?) -> ()) {
+    class func lookupLocation(_ coordinate: CLLocationCoordinate2D, completion: @escaping @MainActor @Sendable (_ placemark: CLPlacemark?) -> ()) {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
             if let err = error {
                 print("Error Reverse Geocoding Location: \(err.localizedDescription)")
-                completion(nil)
-                return
             }
-            completion(placemarks![0])
+            let placemark = error == nil ? placemarks?.first : nil
+            Task { @MainActor in
+                completion(placemark)
+            }
         })
     }
 
@@ -164,7 +168,7 @@ extension SunLocation {
 
     // Reverse-geocodes the fix to a city name, persists it as the current
     // location, and calls completion after the save lands (or fails).
-    class func saveLocation(_ location: CLLocationCoordinate2D, completion: (() -> Void)? = nil) {
+    class func saveLocation(_ location: CLLocationCoordinate2D, completion: (@MainActor @Sendable () -> Void)? = nil) {
         let now = Date()
 
         lookupLocation(location) { placemark in

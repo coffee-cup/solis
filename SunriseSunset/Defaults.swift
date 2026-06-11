@@ -55,7 +55,8 @@ enum DefaultKey {
 }
 
 class Defaults {
-    static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
+    // UserDefaults is documented thread-safe; it just isn't marked Sendable.
+    nonisolated(unsafe) static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
     
     static var delta: Bool {
         let timeformat = defaults.string(forKey: DefaultKey.timeFormat.description)
