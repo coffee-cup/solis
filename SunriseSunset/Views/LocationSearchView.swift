@@ -14,31 +14,31 @@ struct LocationSearchView: View {
     @State private var history: [SunPlace] = SunLocation.getLocationHistory() ?? []
     @State private var notificationPlaceID: String? = LocationSearchView.storedNotificationPlaceID()
     @State private var notificationPlaceDirty = false
-    @FocusState private var searchFocused: Bool
 
     private var isSearching: Bool { !model.query.isEmpty }
 
     var body: some View {
-        VStack(spacing: 0) {
-            searchBar
+        List {
+            currentLocationRow
 
-            List {
-                currentLocationRow
-
-                if isSearching {
-                    ForEach(Array(model.completions.enumerated()), id: \.offset) { _, completion in
-                        completionRow(completion)
-                    }
-                } else {
-                    ForEach(Array(history.enumerated()), id: \.offset) { _, place in
-                        historyRow(place)
-                    }
+            if isSearching {
+                ForEach(Array(model.completions.enumerated()), id: \.offset) { _, completion in
+                    completionRow(completion)
+                }
+            } else {
+                ForEach(Array(history.enumerated()), id: \.offset) { _, place in
+                    historyRow(place)
                 }
             }
-            .listStyle(.plain)
         }
-        .background(Color.white)
-        .onAppear { searchFocused = true }
+        .listStyle(.plain)
+        .searchable(
+            text: $model.query,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Search City")
+        .autocorrectionDisabled()
+        .navigationTitle("Location")
+        .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
             if notificationPlaceDirty {
                 Task {
@@ -48,54 +48,25 @@ struct LocationSearchView: View {
         }
     }
 
-    private var searchBar: some View {
-        HStack(spacing: 8) {
-            HStack(spacing: 6) {
-                Image(systemName: "magnifyingglass")
-                    .foregroundStyle(.secondary)
-                TextField("Search City", text: $model.query)
-                    .focused($searchFocused)
-                    .autocorrectionDisabled()
-                    .accessibilityIdentifier("citySearchField")
-            }
-            .padding(8)
-            .background(Color(.systemGray6), in: RoundedRectangle(cornerRadius: 10))
-
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundStyle(.primary)
-                    .padding(8)
-            }
-            .accessibilityLabel("Close")
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-    }
-
     private var currentLocationRow: some View {
         HStack(spacing: 12) {
             bellButton(placeID: nil)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("Current Location")
-                    .font(.custom(fontRegular, size: 16))
                 if let name = SunLocation.getCurrentLocationName() {
                     Text(name)
-                        .font(.custom(fontLight, size: 12))
+                        .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
             }
 
             Spacer()
 
-            Image("location")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 24, height: 24)
+            Image(systemName: "location.fill")
+                .foregroundStyle(.tint)
         }
-        .frame(height: 48)
+        .frame(minHeight: 44)
         .contentShape(Rectangle())
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Current Location")
@@ -107,7 +78,7 @@ struct LocationSearchView: View {
 
     private func completionRow(_ completion: MKLocalSearchCompletion) -> some View {
         placeLabels(primary: completion.title, secondary: completion.subtitle)
-            .frame(height: 48)
+            .frame(minHeight: 44)
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
             .accessibilityElement(children: .ignore)
@@ -134,7 +105,7 @@ struct LocationSearchView: View {
                 .accessibilityLabel("\(place.primary), \(place.secondary)")
             Spacer()
         }
-        .frame(height: 48)
+        .frame(minHeight: 44)
         .contentShape(Rectangle())
         .onTapGesture {
             dismiss()
@@ -147,9 +118,8 @@ struct LocationSearchView: View {
     private func placeLabels(primary: String, secondary: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(primary)
-                .font(.custom(fontRegular, size: 16))
             Text(secondary)
-                .font(.custom(fontLight, size: 12))
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
     }
@@ -163,7 +133,8 @@ struct LocationSearchView: View {
             notificationPlaceID = placeID
             notificationPlaceDirty = true
         } label: {
-            Image(selected ? "bell_red" : "bell_grey")
+            Image(systemName: selected ? "bell.fill" : "bell")
+                .foregroundStyle(selected ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
         }
         .buttonStyle(.plain)
         .accessibilityLabel(selected ? "notifications on" : "notifications off")
