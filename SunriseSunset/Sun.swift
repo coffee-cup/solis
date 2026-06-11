@@ -46,11 +46,13 @@ func == (lhs: SunTimeMarker, rhs: SunTimeMarker) -> Bool {
     return lhs.sunTimeLine.suntime == rhs.sunTimeLine.suntime
 }
 
-protocol SunProtocol {
+@MainActor
+protocol SunProtocol: AnyObject {
     func collisionIsHappening()
     func collisionNotHappening()
 }
 
+@MainActor
 class Sun {
     
     // Number of minutes a full screen height is
@@ -84,13 +86,12 @@ class Sun {
     
     // Whether or not the sun areas or visible
     var sunAreasVisible = true
-    
-    let defaults = UserDefaults.standard
+
     var now: Date = Date()
     var location: CLLocationCoordinate2D!
     var calendar = Calendar(identifier: Calendar.Identifier.gregorian)
     
-    var delegate: SunProtocol?
+    weak var delegate: SunProtocol?
     
     var sunTimeLines: [SunTimeLine] = []
     var sunAreas: [SunArea] = []
@@ -130,8 +131,6 @@ class Sun {
         }
         createSuntime(.middleNight, view: sunView, dayNumber: 2)
         createSuntime(.middleNight, view: sunView, dayNumber: 3)
-        
-        Bus.subscribeEvent(.timeFormat, observer: self, selector: #selector(timeFormatUpdate))
     }
     
     func createSuntime(_ type: SunType, view: UIView, dayNumber: Int) {
@@ -279,12 +278,12 @@ class Sun {
     }
     
     func setNowTimeText() {
-        if let formatter = TimeFormatters.currentFormatter(TimeZones.currentTimeZone) {
+        if let formatter = TimeFormatters.currentFormatter(SunLocation.currentTimeZone) {
             nowTimeLabel.text = formatter.string(from: now)
                 .replacingOccurrences(of: "AM", with: "am")
                 .replacingOccurrences(of: "PM", with: "pm")
         } else {
-            nowTimeLabel.text = TimeFormatters.formatter12h(TimeZones.currentTimeZone).string(from: now)
+            nowTimeLabel.text = TimeFormatters.formatter12h(SunLocation.currentTimeZone).string(from: now)
                 .replacingOccurrences(of: "AM", with: "am")
                 .replacingOccurrences(of: "PM", with: "pm")
         }
@@ -435,42 +434,40 @@ class Sun {
     }
     
     func animateGradient(_ gradientLayer: CAGradientLayer, toColours: [CGColor], toLocations: [Float]) {
-        DispatchQueue.main.async {
-            // Do not animate the first gradient
-            guard let _ = gradientLayer.colors else {
-                gradientLayer.colors = toColours
-                gradientLayer.locations = toLocations as [NSNumber]?
-                return
-            }
-            
-            let duration: CFTimeInterval = 0.2
-            
-            let fromColours = gradientLayer.colors!
-            let fromLocations = gradientLayer.locations!
-            
+        // Do not animate the first gradient
+        guard let _ = gradientLayer.colors else {
             gradientLayer.colors = toColours
             gradientLayer.locations = toLocations as [NSNumber]?
-            
-            let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
-            let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
-            
-            colourAnimation.fromValue = fromColours
-            colourAnimation.toValue = toColours
-            colourAnimation.duration = duration
-            colourAnimation.isRemovedOnCompletion = true
-            colourAnimation.fillMode = CAMediaTimingFillMode.forwards
-            colourAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-            
-            locationAnimation.fromValue = fromLocations
-            locationAnimation.toValue = toLocations
-            locationAnimation.duration = duration
-            locationAnimation.isRemovedOnCompletion = true
-            locationAnimation.fillMode = CAMediaTimingFillMode.forwards
-            locationAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-            
-            gradientLayer.add(colourAnimation, forKey: "animateGradientColour")
-            gradientLayer.add(locationAnimation, forKey: "animateGradientLocation")
+            return
         }
+
+        let duration: CFTimeInterval = 0.2
+
+        let fromColours = gradientLayer.colors!
+        let fromLocations = gradientLayer.locations!
+
+        gradientLayer.colors = toColours
+        gradientLayer.locations = toLocations as [NSNumber]?
+
+        let colourAnimation: CABasicAnimation = CABasicAnimation(keyPath: "colors")
+        let locationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "locations")
+
+        colourAnimation.fromValue = fromColours
+        colourAnimation.toValue = toColours
+        colourAnimation.duration = duration
+        colourAnimation.isRemovedOnCompletion = true
+        colourAnimation.fillMode = CAMediaTimingFillMode.forwards
+        colourAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+
+        locationAnimation.fromValue = fromLocations
+        locationAnimation.toValue = toLocations
+        locationAnimation.duration = duration
+        locationAnimation.isRemovedOnCompletion = true
+        locationAnimation.fillMode = CAMediaTimingFillMode.forwards
+        locationAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+
+        gradientLayer.add(colourAnimation, forKey: "animateGradientColour")
+        gradientLayer.add(locationAnimation, forKey: "animateGradientLocation")
     }
     
 }

@@ -26,8 +26,6 @@ enum DefaultKey {
     case locationPlaceID
     case locationTimeZoneOffset
     case locationHistoryPlaces
-    case showWalkthrough
-    case showTutorial
     case showSunAreas
     case notificationPlace
     
@@ -50,8 +48,6 @@ enum DefaultKey {
         case .locationPlaceID: return "LocationPlaceID"
         case .locationTimeZoneOffset: return "LocationTimeZoneOffset"
         case .locationHistoryPlaces: return "LocationHistoryPlaces"
-        case .showWalkthrough: return "ShowWalkthrough"
-        case .showTutorial: return "ShowTutorial"
         case .showSunAreas: return "ShowSunAreas"
         case .notificationPlace: return "NotificationPlace"
         }
@@ -59,24 +55,16 @@ enum DefaultKey {
 }
 
 class Defaults {
-    static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
+    // UserDefaults is documented thread-safe; it just isn't marked Sendable.
+    nonisolated(unsafe) static let defaults = UserDefaults.init(suiteName: "group.SunriseSunset")!
     
     static var delta: Bool {
-        let timeformat = defaults.string(forKey: MessageType.timeFormat.description)
+        let timeformat = defaults.string(forKey: DefaultKey.timeFormat.description)
         return timeformat == "delta"
     }
     
     static var timeFormat: String {
         return defaults.string(forKey: DefaultKey.timeFormat.description)!
-    }
-    
-    static var showWalkthrough: Bool {
-        get {
-            return defaults.bool(forKey: DefaultKey.showWalkthrough.description)
-        }
-        set {
-            defaults.set(newValue, forKey: DefaultKey.showWalkthrough.description)
-        }
     }
     
     static var showSunAreas: Bool {

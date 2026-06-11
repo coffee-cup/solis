@@ -45,66 +45,63 @@ class Sunline: UIView {
     
     func createLine(_ parentView: UIView, type: SunType) {
         self.parentView = parentView
-        
-        DispatchQueue.main.async {
-        
-            self.line = UIView()
-            self.timeLabel = UILabel()
-            self.nameLabel = UILabel()
-            
-            self.translatesAutoresizingMaskIntoConstraints = false
-            self.line.translatesAutoresizingMaskIntoConstraints = false
-            self.timeLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            parentView.addSubview(self)
-            self.addSubview(self.line)
-            self.addSubview(self.timeLabel)
-            self.addSubview(self.nameLabel)
-            
-            // View Contraints
-            self.topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
-            let edgeConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
-            NSLayoutConstraint.activate(edgeConstraints + [self.topConstraint])
-            
-            // Line Constraints
-            self.lineLeftConstraint = NSLayoutConstraint(item: self.line!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-            self.lineRightConstraint = NSLayoutConstraint(item: self.line!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -self.LineHorizontalPadding)
-            let lineVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|", options: [], metrics: nil, views: ["view": self.line!])
-            let lineHeightContraint = NSLayoutConstraint(item: self.line!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 1)
-            NSLayoutConstraint.activate([self.lineLeftConstraint, self.lineRightConstraint, lineHeightContraint] + lineVerticalConstraints)
-            
-            // Name Constraints
-            self.nameLeftConstraint = NSLayoutConstraint(item: self.nameLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: self.NameHorizontalPadding)
-            let nameVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-2-|", options: [], metrics: nil, views: ["view": self.nameLabel!])
-            NSLayoutConstraint.activate(nameVerticalConstraints + [self.nameLeftConstraint])
-            
-            // Time Contstraints
-            let timeCenterConstraint = NSLayoutConstraint(item: self.timeLabel!, attribute: .centerY, relatedBy: .equal, toItem: self.line, attribute: .centerY, multiplier: 1, constant: 0)
-            let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": self.timeLabel!])
-            NSLayoutConstraint.activate(timeHorizontalConstraints + [timeCenterConstraint])
-            
-            self.backgroundColor = UIColor.red
-            self.line.backgroundColor = type.lineColour
-            
-            self.nameLabel.text = type.description.lowercased()
-            self.nameLabel.textColor = nameTextColour
-            self.nameLabel.font = fontTwilight
-            
-            self.timeLabel.textColor = timeTextColour
-            self.timeLabel.text = "12:12"
-            self.timeLabel.font = fontDetail
-            
-            self.nameLabel.addSimpleShadow()
-            self.timeLabel.addSimpleShadow()
-            
-            self.isHidden = true
-            self.alpha = 0
-        }
+
+        line = UIView()
+        timeLabel = UILabel()
+        nameLabel = UILabel()
+
+        translatesAutoresizingMaskIntoConstraints = false
+        line.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        parentView.addSubview(self)
+        addSubview(line)
+        addSubview(timeLabel)
+        addSubview(nameLabel)
+
+        // View Contraints
+        topConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: parentView, attribute: .top, multiplier: 1, constant: 0)
+        let edgeConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: ["view": self])
+        NSLayoutConstraint.activate(edgeConstraints + [topConstraint])
+
+        // Line Constraints
+        lineLeftConstraint = NSLayoutConstraint(item: line!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        lineRightConstraint = NSLayoutConstraint(item: line!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -LineHorizontalPadding)
+        let lineVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|", options: [], metrics: nil, views: ["view": line!])
+        let lineHeightContraint = NSLayoutConstraint(item: line!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: 1)
+        NSLayoutConstraint.activate([lineLeftConstraint, lineRightConstraint, lineHeightContraint] + lineVerticalConstraints)
+
+        // Name Constraints
+        nameLeftConstraint = NSLayoutConstraint(item: nameLabel!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: NameHorizontalPadding)
+        let nameVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-2-|", options: [], metrics: nil, views: ["view": nameLabel!])
+        NSLayoutConstraint.activate(nameVerticalConstraints + [nameLeftConstraint])
+
+        // Time Contstraints
+        let timeCenterConstraint = NSLayoutConstraint(item: timeLabel!, attribute: .centerY, relatedBy: .equal, toItem: line, attribute: .centerY, multiplier: 1, constant: 0)
+        let timeHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-10-|", options: [], metrics: nil, views: ["view": timeLabel!])
+        NSLayoutConstraint.activate(timeHorizontalConstraints + [timeCenterConstraint])
+
+        backgroundColor = UIColor.red
+        line.backgroundColor = type.lineColour
+
+        nameLabel.text = type.description.lowercased()
+        nameLabel.textColor = nameTextColour
+        nameLabel.font = fontTwilight
+
+        timeLabel.textColor = timeTextColour
+        timeLabel.text = "12:12"
+        timeLabel.font = fontDetail
+
+        nameLabel.addSimpleShadow()
+        timeLabel.addSimpleShadow()
+
+        isHidden = true
+        alpha = 0
     }
     
     func getTimeText(_ offset: TimeInterval) -> String {
-        let text = TimeFormatters.currentFormattedString(time, timeZone: TimeZones.currentTimeZone)
+        let text = TimeFormatters.currentFormattedString(time, timeZone: SunLocation.currentTimeZone)
         return text
     }
     
@@ -157,34 +154,30 @@ class Sunline: UIView {
         
         let timeText = getTimeText(offset)
         let isCollision = animateAvoidCollision(offset)
-        DispatchQueue.main.async {
-            if self.time != nil {
-                self.timeLabel.text = timeText
-            }
+        if time != nil {
+            timeLabel.text = timeText
         }
         return isCollision
     }
 
     func updateLine(_ time: Date, percent: Float, happens: Bool) {
-        DispatchQueue.main.async {
-            self.time = time
-            let _ = self.updateTime()
-            
-            self.topConstraint.constant = self.parentView.frame.height * CGFloat(percent)
-            UIView.animate(withDuration: 0.5) {
-                self.parentView.layoutIfNeeded()
-            }
-            
-            if happens {
-                self.isHidden = false
-                UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
-                    self.alpha = 1
-                    }, completion: nil)
-            } else {
-                UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
-                    self.alpha = 0
-                    }, completion: nil)
-            }
+        self.time = time
+        let _ = updateTime()
+
+        topConstraint.constant = parentView.frame.height * CGFloat(percent)
+        UIView.animate(withDuration: 0.5) {
+            self.parentView.layoutIfNeeded()
+        }
+
+        if happens {
+            isHidden = false
+            UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
+                self.alpha = 1
+                }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.5, delay: 1, options: UIView.AnimationOptions(), animations: {
+                self.alpha = 0
+                }, completion: nil)
         }
     }
 }

@@ -36,10 +36,10 @@ import UIKit
 //#define CreateCAMediaTimingFunction(c1,c2,c3,c4) [CAMediaTimingFunction functionWithControlPoints:c1 :c2 :c3 :c4]
 
 class Easing {
-    
-    static let easeInQuad = CAMediaTimingFunction(controlPoints: 0.55, 0.085, 0.68, 0.53)
-    static let easeOutQuad = CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94)
-    static let easeInOutBack = CAMediaTimingFunction(controlPoints: 0.68, -0.55, 0.265, 1.55)
+
+    @MainActor static let easeInQuad = CAMediaTimingFunction(controlPoints: 0.55, 0.085, 0.68, 0.53)
+    @MainActor static let easeOutQuad = CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94)
+    @MainActor static let easeInOutBack = CAMediaTimingFunction(controlPoints: 0.68, -0.55, 0.265, 1.55)
     
     // t: current time, b: beginning value, c: change in value, d: duration
     class func easeOutQuadFunc(_ currentTime: Double, startValue: Double, changeInValue: Double, duration: Double) -> Double {
