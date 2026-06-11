@@ -24,7 +24,7 @@ struct LearnView: View {
                 .ignoresSafeArea()
 
             // Links stay inside the safe area so the first label clears the
-            // floating nav title.
+            // floating back button.
             VStack(spacing: 0) {
                 ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
                     sectionLink(section)

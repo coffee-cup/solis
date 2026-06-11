@@ -58,8 +58,6 @@ struct SunPalette: Sendable {
     let darkLine: UIColor
     let goldenHour: UIColor
     let blueHour: UIColor
-    let accentEnabled: UIColor
-    let accentDisabled: UIColor
 
     static let classic = SunPalette(
         riseset: UIColor(hex: 0x46EAE7),
@@ -69,9 +67,7 @@ struct SunPalette: Sendable {
         lightLine: UIColor(hex: 0x00D3D0),
         darkLine: UIColor(hex: 0x6A00CD),
         goldenHour: UIColor(hex: 0xFFEC00).withAlphaComponent(0.2),
-        blueHour: UIColor(hex: 0x03FFFB).withAlphaComponent(0.2),
-        accentEnabled: UIColor(hex: 0x00D3D0),
-        accentDisabled: UIColor(hex: 0x290050))
+        blueHour: UIColor(hex: 0x03FFFB).withAlphaComponent(0.2))
 
     static let ember = SunPalette(
         riseset: UIColor(hex: 0xFFC069),
@@ -81,9 +77,7 @@ struct SunPalette: Sendable {
         lightLine: UIColor(hex: 0xFFD98C),
         darkLine: UIColor(hex: 0xC24B7E),
         goldenHour: UIColor(hex: 0xFFC400).withAlphaComponent(0.2),
-        blueHour: UIColor(hex: 0x9FB6FF).withAlphaComponent(0.2),
-        accentEnabled: UIColor(hex: 0xFFC069),
-        accentDisabled: UIColor(hex: 0x3A0E33))
+        blueHour: UIColor(hex: 0x9FB6FF).withAlphaComponent(0.2))
 
     static let midnight = SunPalette(
         riseset: UIColor(hex: 0x8FD8FF),
@@ -93,9 +87,7 @@ struct SunPalette: Sendable {
         lightLine: UIColor(hex: 0x66E0FF),
         darkLine: UIColor(hex: 0x6E7BFF),
         goldenHour: UIColor(hex: 0xFFE9A3).withAlphaComponent(0.2),
-        blueHour: UIColor(hex: 0x7FD0FF).withAlphaComponent(0.2),
-        accentEnabled: UIColor(hex: 0x8FD8FF),
-        accentDisabled: UIColor(hex: 0x0E1638))
+        blueHour: UIColor(hex: 0x7FD0FF).withAlphaComponent(0.2))
 
     static let aurora = SunPalette(
         riseset: UIColor(hex: 0x8CF5CD),
@@ -105,9 +97,7 @@ struct SunPalette: Sendable {
         lightLine: UIColor(hex: 0x7CFFD4),
         darkLine: UIColor(hex: 0x2EC4B6),
         goldenHour: UIColor(hex: 0xE8FF9C).withAlphaComponent(0.2),
-        blueHour: UIColor(hex: 0x66FFE8).withAlphaComponent(0.2),
-        accentEnabled: UIColor(hex: 0x8CF5CD),
-        accentDisabled: UIColor(hex: 0x0B2034))
+        blueHour: UIColor(hex: 0x66FFE8).withAlphaComponent(0.2))
 
     static let infrared = SunPalette(
         riseset: UIColor(hex: 0xFF7459),
@@ -117,9 +107,7 @@ struct SunPalette: Sendable {
         lightLine: UIColor(hex: 0xFFB3A0),
         darkLine: UIColor(hex: 0xCC4A3E),
         goldenHour: UIColor(hex: 0xFFAA33).withAlphaComponent(0.2),
-        blueHour: UIColor(hex: 0xFF7B9E).withAlphaComponent(0.2),
-        accentEnabled: UIColor(hex: 0xFF7459),
-        accentDisabled: UIColor(hex: 0x1F0508))
+        blueHour: UIColor(hex: 0xFF7B9E).withAlphaComponent(0.2))
 }
 
 // MARK: - Theme-aware colours
@@ -137,9 +125,6 @@ var darkLineColour: UIColor { SunTheme.current.palette.darkLine }
 var goldenHourColour: UIColor { SunTheme.current.palette.goldenHour }
 var blueHourColour: UIColor { SunTheme.current.palette.blueHour }
 
-var buttonDisabled: UIColor { SunTheme.current.palette.accentDisabled }
-var buttonEnabled: UIColor { SunTheme.current.palette.accentEnabled }
-
 // MARK: - Theme-invariant styles
 
 let nowLineColour = UIColor(hex: 0xF44336)
@@ -153,4 +138,3 @@ let fontRegular = "Muli"
 
 let fontTwilight = UIFont(name: fontRegular, size: 12)
 let fontDetail = UIFont(name: fontRegular, size: 16)
-let fontTitle = UIFont(name: fontLight, size: 20)

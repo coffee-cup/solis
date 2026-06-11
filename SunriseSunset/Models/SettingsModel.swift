@@ -32,9 +32,9 @@ final class SettingsModel {
         timeFormat = format.description
     }
 
-    func setTheme(_ newTheme: SunTheme) {
-        Defaults.defaults.set(newTheme.rawValue, forKey: DefaultKey.theme.description)
-        theme = newTheme.rawValue
+    func setTheme(_ theme: SunTheme) {
+        Defaults.defaults.set(theme.rawValue, forKey: DefaultKey.theme.description)
+        self.theme = theme.rawValue
         WidgetCenter.shared.reloadAllTimelines()
     }
 

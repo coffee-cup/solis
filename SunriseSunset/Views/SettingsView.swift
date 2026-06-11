@@ -5,6 +5,9 @@
 
 import SwiftUI
 
+// Translucent row fill that lets the sheet's glass background read through.
+private let glassRowFill = Color.primary.opacity(0.06)
+
 // Pushed pages inside the settings stack. All navigation is value-based; the
 // destinations are registered once on the stack root (mixing view-destination
 // links with value pushes double-pushes on iOS 26).
@@ -39,7 +42,7 @@ struct SettingsView: View {
                     }
                     .accessibilityIdentifier("locationRow")
                 }
-                .listRowBackground(glassRowBackground)
+                .listRowBackground(glassRowFill)
 
                 Section("Appearance") {
                     NavigationLink(value: SettingsRoute.themes) {
@@ -60,7 +63,7 @@ struct SettingsView: View {
                         Label("Time Format", systemImage: "clock.fill")
                     }
                 }
-                .listRowBackground(glassRowBackground)
+                .listRowBackground(glassRowFill)
 
                 Section {
                     alertToggle(.sunrise, title: "Sunrise", icon: "sunrise.fill")
@@ -72,14 +75,14 @@ struct SettingsView: View {
                 } footer: {
                     Text("Notifications fire for the place marked with the bell in location search.")
                 }
-                .listRowBackground(glassRowBackground)
+                .listRowBackground(glassRowFill)
 
                 Section {
                     NavigationLink(value: SettingsRoute.learn) {
                         Label("Learn", systemImage: "book.fill")
                     }
                 }
-                .listRowBackground(glassRowBackground)
+                .listRowBackground(glassRowFill)
             }
             .scrollContentBackground(.hidden)
             .toolbarBackground(.hidden, for: .navigationBar)
@@ -107,10 +110,6 @@ struct SettingsView: View {
 
     private var currentTheme: SunTheme {
         SunTheme(rawValue: settings.theme) ?? .classic
-    }
-
-    private var glassRowBackground: some View {
-        Color.primary.opacity(0.06)
     }
 
     private var timeFormatBinding: Binding<TimeFormat> {
@@ -166,7 +165,7 @@ struct ThemePickerView: View {
                 }
             }
             .accessibilityLabel(theme.displayName)
-            .listRowBackground(Color.primary.opacity(0.06))
+            .listRowBackground(glassRowFill)
         }
         .scrollContentBackground(.hidden)
         .containerBackground(.clear, for: .navigation)
