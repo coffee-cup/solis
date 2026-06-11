@@ -35,7 +35,11 @@ scripts/ios-loop-screenshot.sh --name check
 
 Raw build: `xcodebuild -project SunriseSunset.xcodeproj -scheme SunriseSunset -destination "platform=iOS Simulator,id=<UDID>" build`
 
-For anything interactive (taps, assertions, screenshots, logs, seeding app state, verifying UI changes), use the **ios-simulator-loop skill** (`.claude/skills/ios-simulator-loop/SKILL.md`). It documents the app's screens, accessibility quirks, defaults keys, and known simulator failure modes. There is no unit-test suite worth running yet (`SunriseSunsetTests` is an empty template).
+Unit tests (Swift Testing, app-hosted in `SunriseSunsetTests`; covers SunLogic/Date extensions/SunPlace):
+`xcodebuild test -project SunriseSunset.xcodeproj -scheme SunriseSunset -destination "platform=iOS Simulator,id=<UDID>"`
+The `SunriseSunset` scheme is shared (`xcshareddata/xcschemes`) so CI can run it — keep it committed. CI (`.github/workflows/ci.yml`) runs the same command on every push/PR. `SunriseSunsetUITests` is still an empty template and not in the scheme.
+
+For anything interactive (taps, assertions, screenshots, logs, seeding app state, verifying UI changes), use the **ios-simulator-loop skill** (`.claude/skills/ios-simulator-loop/SKILL.md`). It documents the app's screens, accessibility quirks, defaults keys, and known simulator failure modes.
 
 ## Hard-won gotchas
 

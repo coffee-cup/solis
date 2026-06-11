@@ -13,6 +13,7 @@
 		21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
 		230AF26175B6E6B26362968D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		25996D1618113BDB229E641B /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ABC75F23CDF0550304EF92 /* TimelineView.swift */; };
+		2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */; };
 		3B56FADAB3F72D3216B7F562 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC69F3849FE0476619A6030 /* LocationSearchView.swift */; };
 		439D8C02013EC9EF7E205329 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2205266CEA5B6627F0C1FF /* LocationModel.swift */; };
 		48D2BEE4C590A877365129A5 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
@@ -37,7 +38,6 @@
 		9C97400A1CFC10F9000A5AFD /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9740091CFC10F9000A5AFD /* Easing.swift */; };
 		9CB37BEB1CE844400080B5B1 /* SunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BEA1CE844400080B5B1 /* SunViewController.swift */; };
 		9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB37BEF1CE844400080B5B1 /* Assets.xcassets */; };
-		9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */; };
 		9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */; };
 		9CBAFF5F1D5198790009444E /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAFF5E1D5198790009444E /* TouchThroughView.swift */; };
 		9CBB09AE1CED6D1000F344C4 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBB09AD1CED6D1000F344C4 /* Sun.swift */; };
@@ -59,8 +59,10 @@
 		DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765696F90C41EDE4C0AD8C7 /* SettingsModel.swift */; };
 		DA9E27A743466059639DD154 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		DF75EEAD813A951B758723F8 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
+		E206695808FAF1017849DFAA /* SunPlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE575763F936969B069E965 /* SunPlaceTests.swift */; };
 		EAB24A15FED9F76A9E01C843 /* SolisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242A66A4072558D25ABC9DE /* SolisWidget.swift */; };
 		F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
+		F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */; };
 		F7ADFA7018FBB691E72B6390 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242E879322DD2753D25E8EFB /* RootView.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,12 +108,14 @@
 		04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoMenuView.swift; sourceTree = "<group>"; };
 		0AC69F3849FE0476619A6030 /* LocationSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		160A73A9443501621C6585F0 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		242E879322DD2753D25E8EFB /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2B2205266CEA5B6627F0C1FF /* LocationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
 		3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
+		3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunLogicTests.swift; sourceTree = "<group>"; };
 		3E259C8E739316658A5C3327 /* InfoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE7CBA9AB862BFA860F55BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -141,7 +145,6 @@
 		9CB37BEF1CE844400080B5B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB37BF41CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CB37BF91CE844400080B5B1 /* SunriseSunsetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunriseSunsetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetTests.swift; sourceTree = "<group>"; };
 		9CB37BFF1CE844400080B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CB37C041CE844400080B5B1 /* SunriseSunsetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunriseSunsetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunsetUITests.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		9CC427A41D11088100693E32 /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Light.ttf"; sourceTree = "<group>"; };
 		9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Muli-Regular.ttf"; sourceTree = "<group>"; };
+		9CE575763F936969B069E965 /* SunPlaceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunPlaceTests.swift; sourceTree = "<group>"; };
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
 		CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
@@ -351,8 +355,10 @@
 		9CB37BFC1CE844400080B5B1 /* SunriseSunsetTests */ = {
 			isa = PBXGroup;
 			children = (
-				9CB37BFD1CE844400080B5B1 /* SunriseSunsetTests.swift */,
 				9CB37BFF1CE844400080B5B1 /* Info.plist */,
+				3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */,
+				18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */,
+				9CE575763F936969B069E965 /* SunPlaceTests.swift */,
 			);
 			path = SunriseSunsetTests;
 			sourceTree = "<group>";
@@ -611,7 +617,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CB37BFE1CE844400080B5B1 /* SunriseSunsetTests.swift in Sources */,
+				2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */,
+				F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */,
+				E206695808FAF1017849DFAA /* SunPlaceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +830,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunriseSunset.app/SunriseSunset";
@@ -837,6 +846,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.puddllee.SunriseSunsetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 6.0;
