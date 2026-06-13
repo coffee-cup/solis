@@ -57,3 +57,9 @@ struct RootView: View {
         .padding(.bottom, 23)
     }
 }
+
+#Preview {
+    RootView()
+        .environment(LocationModel())
+        .environment(SettingsModel())
+}

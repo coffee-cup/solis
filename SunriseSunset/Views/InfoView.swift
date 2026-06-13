@@ -72,3 +72,9 @@ struct InfoView: View {
         return attributed
     }
 }
+
+#Preview {
+    NavigationStack {
+        InfoView(info: .civilTwilight)
+    }
+}

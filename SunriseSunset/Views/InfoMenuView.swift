@@ -70,3 +70,9 @@ struct LearnView: View {
         .buttonStyle(.plain)
     }
 }
+
+#Preview {
+    NavigationStack {
+        LearnView()
+    }
+}

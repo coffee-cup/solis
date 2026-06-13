@@ -202,3 +202,22 @@ struct SolisWidget: Widget {
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryRectangular])
     }
 }
+
+#Preview("Small", as: .systemSmall) {
+    SolisWidget()
+} timeline: {
+    SunEntry.placeholder
+    SunEntry.unknown
+}
+
+#Preview("Medium", as: .systemMedium) {
+    SolisWidget()
+} timeline: {
+    SunEntry.placeholder
+}
+
+#Preview("Rectangular", as: .accessoryRectangular) {
+    SolisWidget()
+} timeline: {
+    SunEntry.placeholder
+}

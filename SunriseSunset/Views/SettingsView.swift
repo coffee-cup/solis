@@ -196,3 +196,28 @@ struct ThemeSwatch: View {
                     .strokeBorder(.quaternary, lineWidth: 1))
     }
 }
+
+#Preview("Settings") {
+    SettingsView()
+        .environment(LocationModel())
+        .environment(SettingsModel())
+}
+
+#Preview("Theme Picker") {
+    NavigationStack {
+        ThemePickerView()
+            .environment(SettingsModel())
+    }
+}
+
+#Preview("Swatches") {
+    VStack(spacing: 12) {
+        ForEach(SunTheme.allCases, id: \.self) { theme in
+            HStack {
+                ThemeSwatch(palette: theme.palette)
+                Text(theme.displayName)
+            }
+        }
+    }
+    .padding()
+}

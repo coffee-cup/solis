@@ -160,3 +160,10 @@ struct LocationSearchView: View {
         return place.placeID
     }
 }
+
+#Preview {
+    NavigationStack {
+        LocationSearchView(onSelect: {})
+            .environment(LocationModel())
+    }
+}
