@@ -1,0 +1,21 @@
+{
+  "width": 1024,
+  "height": 1024,
+  "comparison": "Direct, unaligned 8-bit sRGB comparison at native resolution; no resizing or smoothing.",
+  "pixel_tolerance": "A pixel passes only when every RGB channel is within the threshold.",
+  "reference_sha256": "c7b5ab94c79f3b84600ba085eeaad5d4c43c30cc57b623b6b00cd086ef3c51ab",
+  "svg_sha256": "86600c9d33f17ee6165892ea82b3a09d2114976654f944c6a6fb1a9c834b5869",
+  "renderer": {
+    "sharp": "0.35.4",
+    "librsvg": "2.62.91"
+  },
+  "mean_absolute_channel_error": 0.24437967936197916,
+  "root_mean_square_channel_error": 0.5232850417353542,
+  "max_channel_error": 19,
+  "exact_pixel_percent": 48.760414123535156,
+  "pixels_within_1_percent": 99.2828369140625,
+  "pixels_within_2_percent": 99.87411499023438,
+  "pixels_within_5_percent": 99.95555877685547,
+  "p95_max_channel_error": 1,
+  "p99_max_channel_error": 1
+}
