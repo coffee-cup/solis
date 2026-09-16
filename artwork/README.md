@@ -1,14 +1,8 @@
 # Solis icon reconstruction
 
-`solis-icon.svg` recreates the published icon with two linear gradients, a path
-containing 18 cubic Bézier segments, and a Gaussian shadow. It contains no embedded
-bitmap or external resources. It is a reconstruction, not the lost Sketch source.
+`solis-icon.svg` recreates the published icon with two linear gradients, a path containing 18 cubic Bézier segments, and a Gaussian shadow. It contains no embedded bitmap or external resources.
 
-The reference is `reference.png`,
-recovered from Apple's image server for
-[Solis, app ID 1129119591](https://apps.apple.com/us/app/solis/id1129119591).
-The original sky gradient colors also appear in the
-[Solis website's background SVG](https://github.com/coffee-cup/solis-website/blob/321c7c9d51840f39af551cb590f375c4c08258f8/public/background.svg).
+`reference.png` contains the published artwork from Apple's image server for [Solis, app ID 1129119591](https://apps.apple.com/us/app/solis/id1129119591). The original sky gradient colors also appear in the [Solis website's background SVG](https://github.com/coffee-cup/solis-website/blob/321c7c9d51840f39af551cb590f375c4c08258f8/public/background.svg).
 
 ## Files
 
@@ -20,15 +14,11 @@ The original sky gradient colors also appear in the
 - `comparison.json`: exact metrics, source hashes, and renderer versions.
 - `render-icon.cjs`: regenerates the app icon, comparisons, and metrics.
 
-The app's 1024 × 1024 App Store icon uses the SVG render. Regenerating the artwork
-also updates `Icon-1024.png` in the app's asset catalog.
+The app's 1024 × 1024 App Store icon uses the SVG render. Regenerating the artwork also updates `Icon-1024.png` in the app's asset catalog.
 
 ## Pixel comparison
 
-The comparison uses all 1,048,576 pixels at matching coordinates in 8-bit sRGB.
-Neither image is resized, aligned, or smoothed before measuring. A pixel is within
-a threshold only when all three RGB channels satisfy it. The overview alone is
-scaled down for viewing.
+The comparison uses all 1,048,576 pixels at matching coordinates in 8-bit sRGB. It measures the full-resolution images without resizing, alignment, or smoothing. A pixel is within a threshold only when all three RGB channels satisfy it. The overview scales the images down for viewing.
 
 With sharp 0.35.4 and librsvg 2.62.91:
 
@@ -39,9 +29,7 @@ With sharp 0.35.4 and librsvg 2.62.91:
 - Within 2 levels on every channel: 99.87% of pixels.
 - Largest single-channel difference: 19, at the curve boundary.
 
-The reconstruction is not pixel-identical. The amplified difference exposes
-small gradient, shadow, and antialiasing differences. Other SVG renderers may
-produce slightly different pixels.
+The reconstruction is not pixel-identical. The amplified difference exposes small gradient, shadow, and antialiasing differences. Other SVG renderers may produce slightly different pixels.
 
 ## Regenerate
 

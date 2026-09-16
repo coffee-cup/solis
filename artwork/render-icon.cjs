@@ -1,4 +1,3 @@
-// Requires Node.js and sharp. This tool adds no dependencies to the iOS app.
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -14,7 +13,10 @@ async function main() {
     sharp(svg).toColourspace('srgb').removeAlpha().raw().toBuffer({ resolveWithObject: true }),
   ]);
   const { width, height, channels } = reference.info;
-  if (width !== rendered.info.width || height !== rendered.info.height || channels !== 3 || rendered.info.channels !== 3) {
+  if (
+    width !== rendered.info.width || height !== rendered.info.height ||
+    channels !== 3 || rendered.info.channels !== 3
+  ) {
     throw new Error('Both images must have identical dimensions and three RGB channels.');
   }
 
@@ -85,4 +87,7 @@ async function main() {
   console.log(JSON.stringify(metrics, null, 2));
 }
 
-main().catch(error => { console.error(error); process.exitCode = 1; });
+main().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});
