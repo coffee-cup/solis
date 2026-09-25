@@ -30,6 +30,7 @@ final class SettingsModel {
     func setTimeFormat(_ format: TimeFormat) {
         Defaults.defaults.set(format.description, forKey: DefaultKey.timeFormat.description)
         timeFormat = format.description
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func setTheme(_ theme: SunTheme) {
