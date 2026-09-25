@@ -89,6 +89,14 @@ struct SunWidgetDay {
         }
     }
 
+    var daylightInterval: DateInterval? {
+        switch daylight {
+        case .allDay: interval
+        case .allNight: nil
+        case .normal: DateInterval(start: sunrise!, end: sunset!)
+        }
+    }
+
     init(date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
@@ -121,7 +129,8 @@ struct SunWidgetDay {
         }
         sunrise = SunLogic.getSunType(times, type: .sunrise)?.date
         sunset = SunLogic.getSunType(times, type: .sunset)?.date
-        skyEvents = [WidgetSkyEvent(date: interval.start, type: overnightType)]
+        // A solar day can cross local midnight without changing the current phase.
+        skyEvents = (daylight == .normal ? [] : [WidgetSkyEvent(date: interval.start, type: overnightType)])
             + times.filter { !$0.neverHappens }.map { WidgetSkyEvent(date: $0.date, type: $0.type) }
 
         let firstLight = SunLogic.getFirstSunType(
@@ -137,7 +146,6 @@ struct SunWidgetDay {
     }
 }
 
-/// A date-driven snapshot shared by the widget provider and its tests.
 struct SunWidgetData {
     let date: Date
     let locationName: String?
@@ -150,6 +158,7 @@ struct SunWidgetData {
     let daylight: WidgetDaylight?
     let daylightDuration: TimeInterval?
     let daylightChange: TimeInterval?
+    let daylightIntervals: [DateInterval]
     let skyEvents: [WidgetSkyEvent]
 
     // Match the app's six-hour viewport: future above, past below, now at 0.5.
@@ -177,9 +186,7 @@ struct SunWidgetData {
     }
 
     var isDaylight: Bool {
-        if daylight == .allDay { return true }
-        guard let sunrise, let sunset else { return false }
-        return date >= sunrise && date < sunset
+        daylightIntervals.contains { date >= $0.start && date < $0.end }
     }
 
     var dayProgress: Double {
@@ -192,16 +199,16 @@ struct SunWidgetData {
     func sunlineHeight(at fraction: Double) -> Double {
         if daylight == .allDay { return 0.65 - 0.25 * cos(fraction * 2 * .pi) }
         if daylight == .allNight { return -0.65 - 0.25 * cos(fraction * 2 * .pi) }
-        guard let dayInterval, let sunrise, let sunset else { return -1 }
-        let rise = sunrise.timeIntervalSince(dayInterval.start) / dayInterval.duration
-        let set = sunset.timeIntervalSince(dayInterval.start) / dayInterval.duration
-        if fraction < rise {
-            return -cos(fraction / max(rise, 0.001) * .pi / 2)
+        guard let dayInterval else { return -1 }
+        let sample = dayInterval.start.addingTimeInterval(fraction * dayInterval.duration)
+        if let daylight = daylightIntervals.first(where: { sample >= $0.start && sample <= $0.end }) {
+            return sin(sample.timeIntervalSince(daylight.start) / daylight.duration * .pi)
         }
-        if fraction > set {
-            return -sin((fraction - set) / max(1 - set, 0.001) * .pi / 2)
-        }
-        return sin((fraction - rise) / max(set - rise, 0.001) * .pi)
+        let previousSet = daylightIntervals.map(\.end).filter { $0 < sample }.max()
+            ?? dayInterval.start.addingTimeInterval(-dayInterval.duration)
+        let nextRise = daylightIntervals.map(\.start).filter { $0 > sample }.min()
+            ?? dayInterval.end.addingTimeInterval(dayInterval.duration)
+        return -sin(sample.timeIntervalSince(previousSet) / nextRise.timeIntervalSince(previousSet) * .pi)
     }
 
     static func snapshot(at date: Date, locationName: String, timeZone: TimeZone, days: [SunWidgetDay]) -> Self {
@@ -214,13 +221,14 @@ struct SunWidgetData {
                     dayInterval: today?.interval, daylight: today?.daylight,
                     daylightDuration: today?.daylightDuration,
                     daylightChange: today.flatMap { day in yesterday.map { day.daylightDuration - $0.daylightDuration } },
+                    daylightIntervals: days.compactMap(\.daylightInterval),
                     skyEvents: days.flatMap(\.skyEvents).sorted { $0.date < $1.date })
     }
 
     static func unknown(at date: Date) -> Self {
         Self(date: date, locationName: nil, timeZone: .current,
              nextEvent: nil, nextRiseOrSet: nil, sunrise: nil, sunset: nil, dayInterval: nil, daylight: nil,
-             daylightDuration: nil, daylightChange: nil, skyEvents: [])
+             daylightDuration: nil, daylightChange: nil, daylightIntervals: [], skyEvents: [])
     }
 
     static func days(from date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) -> [SunWidgetDay] {

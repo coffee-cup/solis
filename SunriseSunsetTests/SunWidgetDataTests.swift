@@ -104,6 +104,20 @@ struct SunWidgetDataTests {
         #expect(north > equator)
     }
 
+    @Test func daylightCanContinueAcrossLocalMidnight() {
+        let reykjavik = TimeZone(identifier: "Atlantic/Reykjavik")!
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = reykjavik
+        let now = calendar.date(from: DateComponents(year: 2026, month: 6, day: 21, hour: 0))!
+        let days = SunWidgetData.days(from: now, location: CLLocationCoordinate2D(latitude: 64.1466, longitude: -21.9426), timeZone: reykjavik)
+        #expect(days[0].sunset! > now)
+        #expect(days[1].daylight == .normal)
+        let entry = SunWidgetData.snapshot(at: now, locationName: "Reykjavík", timeZone: reykjavik, days: days)
+        #expect(entry.isDaylight)
+        #expect(entry.sunlineHeight(at: 0) > 0)
+        #expect(entry.skyPhase == "Daylight")
+    }
+
     @Test func daylightSavingUsesCalendarDays() {
         let newYork = TimeZone(identifier: "America/New_York")!
         let days = SunWidgetData.days(from: date(11, 1),
