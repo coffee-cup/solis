@@ -25,6 +25,9 @@ final class LocationModel {
     private(set) var changeToken = 0
 
     func start() {
+        SunLocation.migrateStorage()
+        upgradeSelectedTimeZone()
+        upgradeNotificationTimeZone()
         LocationProvider.shared.onLocationFix = { [weak self] coordinate in
             SunLocation.saveLocation(coordinate) {
                 self?.refresh()
@@ -43,18 +46,16 @@ final class LocationModel {
         isCurrentLocation = SunLocation.isCurrentLocation()
         updateToken += 1
         WidgetCenter.shared.reloadAllTimelines()
+        Task { await NotificationScheduler.reschedule() }
     }
 
     func selectCurrentLocation() {
-        SunLocation.requestLocationPermission { [weak self] granted in
-            guard granted else { return }
-            SunLocation.startLocationWatching()
-            Task { @MainActor [weak self] in
-                guard let self else { return }
-                self.changeToken += 1
-                SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
-                self.refresh()
-            }
+        changeToken += 1
+        // A saved GPS fix stays usable even after permission has been revoked.
+        SunLocation.selectLocation(true, location: nil, name: nil, sunplace: nil)
+        refresh()
+        SunLocation.requestLocationPermission { granted in
+            if granted { SunLocation.startLocationWatching() }
         }
     }
 
@@ -62,28 +63,71 @@ final class LocationModel {
         changeToken += 1
         SunLocation.selectLocation(false, location: coordinate, name: place.primary, sunplace: place)
         refresh()
+        upgradeSelectedTimeZone()
+    }
+
+    func becameActive() {
+        refresh()
+        upgradeSelectedTimeZone()
+        upgradeNotificationTimeZone()
+    }
+
+    private var resolvingNotificationZone = false
+
+    private func upgradeNotificationTimeZone() {
+        guard !resolvingNotificationZone, let original = SunLocation.notificationPlace, original.needsTimeZone else { return }
+        resolvingNotificationZone = true
         Task {
-            await fetchTimeZone(for: coordinate)
+            defer { resolvingNotificationZone = false }
+            let location = CLLocation(latitude: original.latitude, longitude: original.longitude)
+            guard let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location),
+                  let zone = placemarks.first?.timeZone, SunLocation.notificationPlace == original else { return }
+            var enriched = original
+            enriched.timeZoneIdentifier = zone.identifier
+            enriched.fallbackOffset = zone.secondsFromGMT()
+            Defaults.defaults.set(enriched.encoded, forKey: "NotificationPlace")
+            if let history = SunLocation.getLocationHistory() {
+                for place in history where place.placeID == original.id &&
+                    place.location?.latitude == original.latitude && place.location?.longitude == original.longitude {
+                    place.timeZoneIdentifier = zone.identifier
+                    place.timeZoneOffset = enriched.fallbackOffset
+                }
+                SunLocation.saveLocationHistory(history)
+            }
+            refresh()
         }
     }
 
-    // Replaces the fetchTimeZone/gotTimeZone bus round-trip: resolve the
-    // selected place's timezone, persist the offset, and refresh.
-    private func fetchTimeZone(for coordinate: CLLocationCoordinate2D) async {
-        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        guard let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location),
-              let timeZone = placemarks.first?.timeZone else {
-            print("Reverse geocode returned no time zone")
-            return
+    private func upgradeSelectedTimeZone() {
+        guard !SunLocation.isCurrentLocation(),
+              let selected = StoredPlace.saved(in: Defaults.defaults, current: false), selected.needsTimeZone else { return }
+        let token = changeToken
+        Task {
+            let location = CLLocation(latitude: selected.latitude, longitude: selected.longitude)
+            guard let placemarks = try? await CLGeocoder().reverseGeocodeLocation(location),
+                  let zone = placemarks.first?.timeZone,
+                  changeToken == token, !SunLocation.isCurrentLocation(),
+                  StoredPlace.saved(in: Defaults.defaults, current: false) == selected else { return }
+            var updated = selected
+            updated.timeZoneIdentifier = zone.identifier
+            updated.fallbackOffset = zone.secondsFromGMT()
+            Defaults.defaults.set(updated.encoded, forKey: "SelectedPlaceV1")
+            Defaults.defaults.set(updated.fallbackOffset, forKey: "LocationTimeZoneOffset")
+            if let history = SunLocation.getLocationHistory() {
+                for place in history where place.placeID == updated.id {
+                    place.timeZoneIdentifier = zone.identifier
+                    place.timeZoneOffset = updated.fallbackOffset
+                }
+                SunLocation.saveLocationHistory(history)
+            }
+            if let notification = SunLocation.notificationPlace, notification.id == selected.id,
+               notification.latitude == selected.latitude, notification.longitude == selected.longitude {
+                var enriched = notification
+                enriched.timeZoneIdentifier = zone.identifier
+                enriched.fallbackOffset = updated.fallbackOffset
+                Defaults.defaults.set(enriched.encoded, forKey: "NotificationPlace")
+            }
+            refresh()
         }
-
-        let gmtOffset = timeZone.secondsFromGMT(for: Date())
-        Defaults.defaults.set(gmtOffset, forKey: DefaultKey.locationTimeZoneOffset.description)
-
-        if !SunLocation.isCurrentLocation(), let placeID = SunLocation.getPlaceID() {
-            SunLocation.updateLocationHistoryWithTimeZone(coordinate, placeID: placeID, timeZoneOffset: gmtOffset)
-        }
-
-        refresh()
     }
 }

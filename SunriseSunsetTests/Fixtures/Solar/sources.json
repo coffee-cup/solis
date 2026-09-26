@@ -1,0 +1,528 @@
+{
+  "retrieved": "2026-09-26",
+  "timeToleranceSeconds": 60,
+  "sources": [
+    {
+      "file": "raw/Vancouver-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=49.2827&lon=-123.1207&tz=0&tz_sign=1&label=Vancouver",
+      "sha256": "f1eeb6d949c485708e94c788f6b1ce0ed1f97eb8f0d052aaeee7555caeee1f00"
+    },
+    {
+      "file": "raw/Vancouver-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=49.2827&lon=-123.1207&tz=0&tz_sign=1&label=Vancouver",
+      "sha256": "cfb786391ec73369376d6b44feb6d7ec385b359239067a8a83e610920ebdb1a2"
+    },
+    {
+      "file": "raw/Vancouver-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=49.2827&lon=-123.1207&tz=0&tz_sign=1&label=Vancouver",
+      "sha256": "ae5e156cf2513b5496bdfd352d994e5a2eb9104588c8d0fd489ab6537235699e"
+    },
+    {
+      "file": "raw/Vancouver-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=49.2827&lon=-123.1207&tz=0&tz_sign=1&label=Vancouver",
+      "sha256": "ae7e03b5eb69a42f3585447fbbc65c871a1ade06c5e7cf1def8aae9d7436fdcb"
+    },
+    {
+      "file": "raw/Toronto-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=43.6532&lon=-79.3832&tz=0&tz_sign=1&label=Toronto",
+      "sha256": "36e91557821665897f8524d561740086ca977bd563b9330ba7cfc231c9b43adb"
+    },
+    {
+      "file": "raw/Toronto-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=43.6532&lon=-79.3832&tz=0&tz_sign=1&label=Toronto",
+      "sha256": "96128ed3bfd6ec0e79ad9d935c6204c7a48fd8832c35c6e0ffcd2ed621f65774"
+    },
+    {
+      "file": "raw/Toronto-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=43.6532&lon=-79.3832&tz=0&tz_sign=1&label=Toronto",
+      "sha256": "ba8c266d3cd7c24158803ae2de329f45156b0398be2a3270fae81928840823c6"
+    },
+    {
+      "file": "raw/Toronto-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=43.6532&lon=-79.3832&tz=0&tz_sign=1&label=Toronto",
+      "sha256": "0b4e937b11b7f1b4210411d514b77b88ddd1abb5231544b02eaeb8357e953c7c"
+    },
+    {
+      "file": "raw/New_York-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=40.7128&lon=-74.006&tz=0&tz_sign=1&label=New_York",
+      "sha256": "8def876e395165025900996548e3d6beb73cb2fc83c27d4e7d5297957ff87a2f"
+    },
+    {
+      "file": "raw/New_York-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=40.7128&lon=-74.006&tz=0&tz_sign=1&label=New_York",
+      "sha256": "b8218047ab8c040caa6e5d81e8461bd981ba0bfea49b883b1cffa0181cbb3427"
+    },
+    {
+      "file": "raw/New_York-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=40.7128&lon=-74.006&tz=0&tz_sign=1&label=New_York",
+      "sha256": "58047fc66784e52cd6a2f531979d340532759d46ae1e6862e828e6835debd43a"
+    },
+    {
+      "file": "raw/New_York-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=40.7128&lon=-74.006&tz=0&tz_sign=1&label=New_York",
+      "sha256": "0904393edfb0012ecbc731fe0a311271d543902010f596cc8c7fcd804d2473d3"
+    },
+    {
+      "file": "raw/London-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=51.5074&lon=-0.1278&tz=0&tz_sign=1&label=London",
+      "sha256": "15d83e56b2d785331237cfefe94a0d5b6e889d27f451eda2d48157c8cbb1d424"
+    },
+    {
+      "file": "raw/London-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=51.5074&lon=-0.1278&tz=0&tz_sign=1&label=London",
+      "sha256": "26c15fed9dec4bca1c18ae9e2a9ab5ee5c628c65ec264b1188a0fb2729a736f7"
+    },
+    {
+      "file": "raw/London-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=51.5074&lon=-0.1278&tz=0&tz_sign=1&label=London",
+      "sha256": "a02e496c192127bf2328786f2aa4e2ade82d9a236a607d55b1ac9ae53dff2da1"
+    },
+    {
+      "file": "raw/London-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=51.5074&lon=-0.1278&tz=0&tz_sign=1&label=London",
+      "sha256": "db80d433fe259fd0ada45174ded6c9f5799732aef074027915a42b46deffa92a"
+    },
+    {
+      "file": "raw/Quito-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-0.1807&lon=-78.4678&tz=0&tz_sign=1&label=Quito",
+      "sha256": "359e9c65102f76721eb38b8c179902d233aefe25c18306f785ef218a7d6efb0f"
+    },
+    {
+      "file": "raw/Quito-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-0.1807&lon=-78.4678&tz=0&tz_sign=1&label=Quito",
+      "sha256": "e9b79f8a611e8d0107a13819a8326a04526ebbba38148fd984bc38b09e6ab18c"
+    },
+    {
+      "file": "raw/Quito-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-0.1807&lon=-78.4678&tz=0&tz_sign=1&label=Quito",
+      "sha256": "2a41a0c6a9cc41d8c2af2b7b913c5f66f803b44b7b14e80e067ced7874dd1d52"
+    },
+    {
+      "file": "raw/Quito-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-0.1807&lon=-78.4678&tz=0&tz_sign=1&label=Quito",
+      "sha256": "8f26fa22592fda7af7585ae274bffcbe7eeb936c97bc8fa38024870d76eacf55"
+    },
+    {
+      "file": "raw/Equator-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=0&lon=0&tz=0&tz_sign=1&label=Equator",
+      "sha256": "b192dd09bedb0118a3798dc04788a1c7634b6c20803867a7502adf2e35995a4f"
+    },
+    {
+      "file": "raw/Equator-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=0&lon=0&tz=0&tz_sign=1&label=Equator",
+      "sha256": "270bb71d4afed5a8046402da529fb2d7695ed4e3f5d59a754d11bcb0e46fe292"
+    },
+    {
+      "file": "raw/Equator-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=0&lon=0&tz=0&tz_sign=1&label=Equator",
+      "sha256": "1e00dce827c92f2ebe5272ff0448421252c03c43932ba7e63ecfc6c0e94c1bad"
+    },
+    {
+      "file": "raw/Equator-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=0&lon=0&tz=0&tz_sign=1&label=Equator",
+      "sha256": "8fedfaf800cc488a84976e05b38d127783d2492a6962099d1f22453ec726a4e5"
+    },
+    {
+      "file": "raw/Sydney-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-33.8688&lon=151.2093&tz=0&tz_sign=1&label=Sydney",
+      "sha256": "26825a9c34eaba35aaf3fdcfb90f0c0a9c420950c39cbc159632e9eeb318ffb7"
+    },
+    {
+      "file": "raw/Sydney-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-33.8688&lon=151.2093&tz=0&tz_sign=1&label=Sydney",
+      "sha256": "fe054a42f4e4258b85aa2324f0a9801270e4ed26c3728ba73dde31c0341dcaa3"
+    },
+    {
+      "file": "raw/Sydney-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-33.8688&lon=151.2093&tz=0&tz_sign=1&label=Sydney",
+      "sha256": "1f8d4b46ebb28231e7bd890fa240f93727eb8b2f132f805a9c0b91acb8f7fed4"
+    },
+    {
+      "file": "raw/Sydney-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-33.8688&lon=151.2093&tz=0&tz_sign=1&label=Sydney",
+      "sha256": "f8f078522f999243db3f8c6af469e7dfd8db849f461e0669181220b897c3d703"
+    },
+    {
+      "file": "raw/Cape_Town-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-33.9249&lon=18.4241&tz=0&tz_sign=1&label=Cape_Town",
+      "sha256": "ffe0d2cd3e9666adb59ec1034c747d2e4f5863c669526fabcbaf645ffd557869"
+    },
+    {
+      "file": "raw/Cape_Town-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-33.9249&lon=18.4241&tz=0&tz_sign=1&label=Cape_Town",
+      "sha256": "1744c46254d5c2e250f9eafa9acc822cc19f7cf9d019529b4a0984de77a21233"
+    },
+    {
+      "file": "raw/Cape_Town-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-33.9249&lon=18.4241&tz=0&tz_sign=1&label=Cape_Town",
+      "sha256": "1d90c155a7aa6cf27c300565a0161b3c1b531b47e3a01aed50c3b1a7e26a5483"
+    },
+    {
+      "file": "raw/Cape_Town-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-33.9249&lon=18.4241&tz=0&tz_sign=1&label=Cape_Town",
+      "sha256": "939d0cb9e60cda7aa337ccc9bc389d5ced8c0ecb3682d6bb2f724a3d677a8ccb"
+    },
+    {
+      "file": "raw/Tokyo-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=35.6762&lon=139.6503&tz=0&tz_sign=1&label=Tokyo",
+      "sha256": "920f972564d95ff12ac429b148ff1fec535517357018289ce42a38acc9e80f4a"
+    },
+    {
+      "file": "raw/Tokyo-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=35.6762&lon=139.6503&tz=0&tz_sign=1&label=Tokyo",
+      "sha256": "89b2322f68464a03399f240f763cbe1f62453fc03383975982c19806f5a1cab8"
+    },
+    {
+      "file": "raw/Tokyo-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=35.6762&lon=139.6503&tz=0&tz_sign=1&label=Tokyo",
+      "sha256": "7c83e72a5c7f43095118548b7d6807d63df665ce9164582e21d797761d08a5e1"
+    },
+    {
+      "file": "raw/Tokyo-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=35.6762&lon=139.6503&tz=0&tz_sign=1&label=Tokyo",
+      "sha256": "6d17868df1c2fb3afa35549547b6acfb1a2aae9f3871c9278f5031bd492da291"
+    },
+    {
+      "file": "raw/Kathmandu-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=27.7172&lon=85.324&tz=0&tz_sign=1&label=Kathmandu",
+      "sha256": "df857e656aefb3c56fcd6eb6ca47471ed4e9408a43cf6d8d12a1e5ed63b5ea55"
+    },
+    {
+      "file": "raw/Kathmandu-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=27.7172&lon=85.324&tz=0&tz_sign=1&label=Kathmandu",
+      "sha256": "1677d970677c3aadc2dc73622633bd525b5b97a0bb1ed4a7f0995c5a5fe91949"
+    },
+    {
+      "file": "raw/Kathmandu-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=27.7172&lon=85.324&tz=0&tz_sign=1&label=Kathmandu",
+      "sha256": "cf6c472885aee5599584b0f4ab4047d008aa25315daf1950dec25162f38b8978"
+    },
+    {
+      "file": "raw/Kathmandu-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=27.7172&lon=85.324&tz=0&tz_sign=1&label=Kathmandu",
+      "sha256": "bcfb15d61312e70ecc610c1e6d833fecad2ac0b091ff7bfd468c77a582fa8b12"
+    },
+    {
+      "file": "raw/Reykjavik-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=64.1466&lon=-21.9426&tz=0&tz_sign=1&label=Reykjavik",
+      "sha256": "5dfaea9a886cfadf18dc2754de3f4e583da22f52c8ec47042cc7d2edb8ede03c"
+    },
+    {
+      "file": "raw/Reykjavik-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=64.1466&lon=-21.9426&tz=0&tz_sign=1&label=Reykjavik",
+      "sha256": "8fde0d7d39a5e0ba10ed41d83061a2814d7bfceb19e04f9106e41d247faaca1f"
+    },
+    {
+      "file": "raw/Reykjavik-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=64.1466&lon=-21.9426&tz=0&tz_sign=1&label=Reykjavik",
+      "sha256": "b31412db645b18cb3df162e21bfbde1debe07e8e537a4323363e2d814668b68c"
+    },
+    {
+      "file": "raw/Reykjavik-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=64.1466&lon=-21.9426&tz=0&tz_sign=1&label=Reykjavik",
+      "sha256": "56041989def66f9f45e060ca86fd50e766db8c038c83992d4f750d0ada2919b3"
+    },
+    {
+      "file": "raw/Tromso-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=69.6492&lon=18.9553&tz=0&tz_sign=1&label=Tromso",
+      "sha256": "9629a121dcb548b76ef65db6b392003607d81b5e702adf6ff6754605c40fb623"
+    },
+    {
+      "file": "raw/Tromso-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=69.6492&lon=18.9553&tz=0&tz_sign=1&label=Tromso",
+      "sha256": "53470f57456364e0926db2649eb66629bb154f4aece00c598bff729d33e5963f"
+    },
+    {
+      "file": "raw/Tromso-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=69.6492&lon=18.9553&tz=0&tz_sign=1&label=Tromso",
+      "sha256": "9450ffc640bf043dc41fb1485e4df77774127f15e1fbe3a74272125b95af9b52"
+    },
+    {
+      "file": "raw/Tromso-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=69.6492&lon=18.9553&tz=0&tz_sign=1&label=Tromso",
+      "sha256": "56ad6a3ea133764da85771b2066b248a7fa798ef0e48f3c2b5f6c462977d58b2"
+    },
+    {
+      "file": "raw/Longyearbyen-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=78.2232&lon=15.6267&tz=0&tz_sign=1&label=Longyearbyen",
+      "sha256": "811d52a35aeacb5dbe997cc20ebb4426771b0a5d42d39b99207348ccb281d249"
+    },
+    {
+      "file": "raw/Longyearbyen-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=78.2232&lon=15.6267&tz=0&tz_sign=1&label=Longyearbyen",
+      "sha256": "fffe494317698a356f18d73ec88a5b11780d57606170636a9acc1e291b75e881"
+    },
+    {
+      "file": "raw/Longyearbyen-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=78.2232&lon=15.6267&tz=0&tz_sign=1&label=Longyearbyen",
+      "sha256": "67231153cbe83581e22b36178f75f111d43a0379d374af534f703bbce4663b6b"
+    },
+    {
+      "file": "raw/Longyearbyen-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=78.2232&lon=15.6267&tz=0&tz_sign=1&label=Longyearbyen",
+      "sha256": "bb89120a3722b29c3a81109394ba1e541372eb3843826ecdfae9410994a77774"
+    },
+    {
+      "file": "raw/Utqiagvik-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=71.2906&lon=-156.7886&tz=0&tz_sign=1&label=Utqiagvik",
+      "sha256": "45851a06c6e58bb0543062e5ebf616138b73fc9d06cdb277cf2e1f8d23be9442"
+    },
+    {
+      "file": "raw/Utqiagvik-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=71.2906&lon=-156.7886&tz=0&tz_sign=1&label=Utqiagvik",
+      "sha256": "e97232f601a18fa06e8e3c33f6e1de0104e81970972ae09ef785ca4bb0311230"
+    },
+    {
+      "file": "raw/Utqiagvik-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=71.2906&lon=-156.7886&tz=0&tz_sign=1&label=Utqiagvik",
+      "sha256": "f9352460cf30d4db7e86f95f5c1f43bb426da9c5587fad939a09f87ae448a285"
+    },
+    {
+      "file": "raw/Utqiagvik-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=71.2906&lon=-156.7886&tz=0&tz_sign=1&label=Utqiagvik",
+      "sha256": "ec14f417680393c7ae60225f8c2d5282dcbd0db98072510fae3c3d19c9772bdd"
+    },
+    {
+      "file": "raw/McMurdo-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-77.8419&lon=166.6863&tz=0&tz_sign=1&label=McMurdo",
+      "sha256": "e20ac8aa4a97c72cfe66587543d122e5c3c2e6ffb808bea0daf964b44c0e57bc"
+    },
+    {
+      "file": "raw/McMurdo-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-77.8419&lon=166.6863&tz=0&tz_sign=1&label=McMurdo",
+      "sha256": "9782ca7c7ee1f4fcd3cf1e66a4ea877944949b9c663b2cecbe962ae7a129d466"
+    },
+    {
+      "file": "raw/McMurdo-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-77.8419&lon=166.6863&tz=0&tz_sign=1&label=McMurdo",
+      "sha256": "ee430366fe8d4e7833dc8cc23de62175c51811af9361b3d78ade6aec34e09b0a"
+    },
+    {
+      "file": "raw/McMurdo-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-77.8419&lon=166.6863&tz=0&tz_sign=1&label=McMurdo",
+      "sha256": "9292d136a8cb7d180c167ab4691e4352950c703d922a970d1f4aa8a110cf8ab1"
+    },
+    {
+      "file": "raw/Kiritimati-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=1.8721&lon=-157.4278&tz=0&tz_sign=1&label=Kiritimati",
+      "sha256": "47d18d6b84f296d6a9884a64379647fedf1855b66c6d57798d854a9cfd0bf6df"
+    },
+    {
+      "file": "raw/Kiritimati-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=1.8721&lon=-157.4278&tz=0&tz_sign=1&label=Kiritimati",
+      "sha256": "0606a1606ac7292042f0a381c44fe07917d3a63762d69f926e1d0de6670a891f"
+    },
+    {
+      "file": "raw/Kiritimati-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=1.8721&lon=-157.4278&tz=0&tz_sign=1&label=Kiritimati",
+      "sha256": "6c779393eea730735f8d252df7792b0ab35ca6445e94f164f803d5026354f694"
+    },
+    {
+      "file": "raw/Kiritimati-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=1.8721&lon=-157.4278&tz=0&tz_sign=1&label=Kiritimati",
+      "sha256": "2e3739646b6adf1c1424df67a643259a19bbc521111c8348d7923051fbb9fb74"
+    },
+    {
+      "file": "raw/Apia-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-13.8333&lon=-171.75&tz=0&tz_sign=1&label=Apia",
+      "sha256": "2d513512fdcfbfcf5c83d26dcf02d301954320a30b09ae814eddac1aea68c5a8"
+    },
+    {
+      "file": "raw/Apia-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-13.8333&lon=-171.75&tz=0&tz_sign=1&label=Apia",
+      "sha256": "16141cf01f1e64b3a4efd6653a10f06a74e7490e33a147aea4aaa6bbb3d95156"
+    },
+    {
+      "file": "raw/Apia-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-13.8333&lon=-171.75&tz=0&tz_sign=1&label=Apia",
+      "sha256": "634bc1578cd56164414ad19f9d8b12726041c117e47ea5e9b11f741ae3c88a1d"
+    },
+    {
+      "file": "raw/Apia-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-13.8333&lon=-171.75&tz=0&tz_sign=1&label=Apia",
+      "sha256": "2d860bb6a23bad1fc3baa5748a6b7733b5ae7b784132a066bda355fde7b0d2bf"
+    },
+    {
+      "file": "raw/Chatham-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-43.95&lon=-176.55&tz=0&tz_sign=1&label=Chatham",
+      "sha256": "8783d692fc8968c162e384a1b341683cf0287a706cc7ef1401ed53d025f39bc1"
+    },
+    {
+      "file": "raw/Chatham-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-43.95&lon=-176.55&tz=0&tz_sign=1&label=Chatham",
+      "sha256": "0f6d8a41bb00af07960c2b65e4565b3ba28138866de76efc021b89d50109325b"
+    },
+    {
+      "file": "raw/Chatham-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-43.95&lon=-176.55&tz=0&tz_sign=1&label=Chatham",
+      "sha256": "9c68cca0841cde1cbdf48c6ac89653a36778adb8448d1758d1f1c10649cdcf2d"
+    },
+    {
+      "file": "raw/Chatham-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-43.95&lon=-176.55&tz=0&tz_sign=1&label=Chatham",
+      "sha256": "0a181198c54b7c9e91d739729f2903fc90d5af6bf9722e51bf4396cd437ecf57"
+    },
+    {
+      "file": "raw/North_Pole-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=90&lon=0&tz=0&tz_sign=1&label=North_Pole",
+      "sha256": "e7637e4ed1feb32748541c80d0a1ab1ac01be4e0f129af4d9fb9481210255b2c"
+    },
+    {
+      "file": "raw/North_Pole-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=90&lon=0&tz=0&tz_sign=1&label=North_Pole",
+      "sha256": "e3ce5ac6886270338d8e63ab372121bf7ebe337798f3972880d5671a2ab0d139"
+    },
+    {
+      "file": "raw/North_Pole-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=90&lon=0&tz=0&tz_sign=1&label=North_Pole",
+      "sha256": "883584aeac89413261bc3d420155f12ab8cccf7e9424e2fc170510b1399aaf91"
+    },
+    {
+      "file": "raw/North_Pole-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=90&lon=0&tz=0&tz_sign=1&label=North_Pole",
+      "sha256": "5104740863acc73d9aa0abd1b70275a637da5316676a28f5d11c559233396352"
+    },
+    {
+      "file": "raw/South_Pole-2026-0.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=0&lat=-90&lon=0&tz=0&tz_sign=1&label=South_Pole",
+      "sha256": "ad5d5f1e39cb6f3acc81ab7bda3db607afd686debf16a08694469ac27a71371c"
+    },
+    {
+      "file": "raw/South_Pole-2026-2.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=2&lat=-90&lon=0&tz=0&tz_sign=1&label=South_Pole",
+      "sha256": "5cbe560b56be0f42f9a7ca0e25c0ec1bca3bcb04b7d0a942eadef7ad52a73d9a"
+    },
+    {
+      "file": "raw/South_Pole-2026-3.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=3&lat=-90&lon=0&tz=0&tz_sign=1&label=South_Pole",
+      "sha256": "02bce85a790b2c77a5663ce5bb21ac55f9ea604a6298113aeefd01d52c2e992f"
+    },
+    {
+      "file": "raw/South_Pole-2026-4.html",
+      "url": "https://aa.usno.navy.mil/calculated/rstt/year?year=2026&task=4&lat=-90&lon=0&tz=0&tz_sign=1&label=South_Pole",
+      "sha256": "793e0e175f4af4c1eea38a1b88785ad2eb1b579a85a8ad6636f901cd738d4fbf"
+    }
+  ],
+  "places": [
+    [
+      "Vancouver",
+      49.2827,
+      -123.1207,
+      "America/Vancouver"
+    ],
+    [
+      "Toronto",
+      43.6532,
+      -79.3832,
+      "America/Toronto"
+    ],
+    [
+      "New_York",
+      40.7128,
+      -74.006,
+      "America/New_York"
+    ],
+    [
+      "London",
+      51.5074,
+      -0.1278,
+      "Europe/London"
+    ],
+    [
+      "Quito",
+      -0.1807,
+      -78.4678,
+      "America/Guayaquil"
+    ],
+    [
+      "Equator",
+      0,
+      0,
+      "UTC"
+    ],
+    [
+      "Sydney",
+      -33.8688,
+      151.2093,
+      "Australia/Sydney"
+    ],
+    [
+      "Cape_Town",
+      -33.9249,
+      18.4241,
+      "Africa/Johannesburg"
+    ],
+    [
+      "Tokyo",
+      35.6762,
+      139.6503,
+      "Asia/Tokyo"
+    ],
+    [
+      "Kathmandu",
+      27.7172,
+      85.324,
+      "Asia/Kathmandu"
+    ],
+    [
+      "Reykjavik",
+      64.1466,
+      -21.9426,
+      "Atlantic/Reykjavik"
+    ],
+    [
+      "Tromso",
+      69.6492,
+      18.9553,
+      "Europe/Oslo"
+    ],
+    [
+      "Longyearbyen",
+      78.2232,
+      15.6267,
+      "Europe/Oslo"
+    ],
+    [
+      "Utqiagvik",
+      71.2906,
+      -156.7886,
+      "America/Anchorage"
+    ],
+    [
+      "McMurdo",
+      -77.8419,
+      166.6863,
+      "Antarctica/McMurdo"
+    ],
+    [
+      "Kiritimati",
+      1.8721,
+      -157.4278,
+      "Pacific/Kiritimati"
+    ],
+    [
+      "Apia",
+      -13.8333,
+      -171.75,
+      "Pacific/Apia"
+    ],
+    [
+      "Chatham",
+      -43.95,
+      -176.55,
+      "Pacific/Chatham"
+    ],
+    [
+      "North_Pole",
+      90,
+      0,
+      "UTC"
+    ],
+    [
+      "South_Pole",
+      -90,
+      0,
+      "UTC"
+    ]
+  ]
+}

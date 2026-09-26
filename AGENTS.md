@@ -12,14 +12,15 @@ SunriseSunset/                 app target source
   Models/                      @Observable models: LocationModel, SettingsModel, LocationSearchModel
   Timeline/TimelineView.swift  UIViewControllerRepresentable hosting SunViewController; token-diffed updates
   SunViewController.swift      UIKit timeline (programmatic layout; gesture scroll/momentum, gradient, sun lines)
-  SunLogic.swift, Sun.swift    sun-time calculations (wraps EDSunriseSet)
-  EDSunriseSet/                vendored ObjC sunrise/sunset lib (via bridging header)
+  Solar*.swift                pure Swift solar position, crossings, daily states and bounded cache
+  SunLogic.swift, Sun.swift    shared event adapter and timeline rendering
+  StoredPlace.swift           versioned offline location and named time-zone storage
   SunLocation.swift            shared app-group location storage (also compiled into the widget)
   LocationProvider.swift       app-only CLLocationManager wrapper + SunLocation mutation/geocoding extension
   Services/                    NotificationScheduler (UNUserNotificationCenter), BackgroundRefresh (BGAppRefreshTask)
   Defaults.swift               UserDefaults(suiteName: "group.SunriseSunset") + DefaultKey enum
   Styles.swift                 SunTheme/SunPalette (selectable timeline palettes) + theme-aware colour globals + fonts
-SolisWidget/                   WidgetKit extension (SwiftUI), shares SunLogic/SunLocation/Defaults/EDSunriseSet
+SolisWidget/                   WidgetKit extension (SwiftUI), shares the Swift solar core and location storage
 scripts/ios-loop-*.sh          simulator loop helpers (see below)
 ```
 
@@ -35,8 +36,10 @@ scripts/ios-loop-screenshot.sh --name check
 
 Raw build: `xcodebuild -project SunriseSunset.xcodeproj -scheme SunriseSunset -destination "platform=iOS Simulator,id=<UDID>" build`
 
-Unit tests (Swift Testing, app-hosted in `SunriseSunsetTests`; covers SunLogic/Date extensions/SunPlace):
+Unit tests (Swift Testing, app-hosted in `SunriseSunsetTests`; covers reference regressions, solar invariants, storage, notifications and widget data):
 `xcodebuild test -project SunriseSunset.xcodeproj -scheme SunriseSunset -destination "platform=iOS Simulator,id=<UDID>"`
+For solar calculations, run `scripts/verify-solar.sh` for the complete offline reference matrix and read `docs/solar-reference.md` before changing conventions or regenerating fixtures. CI runs this before simulator tests.
+
 The `SunriseSunset` scheme is shared (`xcshareddata/xcschemes`) so CI can run it — keep it committed. CI (`.github/workflows/ci.yml`) runs the same command on every push/PR. `SunriseSunsetUITests` is still an empty template and not in the scheme.
 
 For anything interactive (taps, assertions, screenshots, logs, seeding app state, verifying UI changes), use the **ios-simulator-loop skill** (`.claude/skills/ios-simulator-loop/SKILL.md`). It documents the app's screens, accessibility quirks, defaults keys, and known simulator failure modes.
@@ -60,5 +63,5 @@ For anything interactive (taps, assertions, screenshots, logs, seeding app state
 
 - Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons, Swift 6 language mode (default MainActor isolation on the app target; widget stays nonisolated), settings sheet replacing the slide-out menu (SF Symbols, system font, NavigationStack pushes; medium/large detents on a faded `.ultraThinMaterial` glass background, pushed lists use `containerBackground(.clear, for: .navigation)` to keep it), selectable timeline palettes (`SunTheme`: classic/ember/midnight/aurora/infrared, persisted in `Theme` group-defaults key; widget follows), light+dark mode (forced-light `UIUserInterfaceStyle`/`preferredColorScheme` removed). Timeline + widget keep the Muli brand font; all chrome uses the system font.
 - Remaining backlog: privacy manifest before any App Store release.
-- The widget compiles `SunLogic/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
+- The widget compiles `Solar*/StoredPlace/SunLogic/SunWidgetData/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
 - Old Google Places/timezonedb API keys exist in git history; they are dead/revoked — do not reuse that pattern; the app needs no API keys.

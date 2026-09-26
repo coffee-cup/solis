@@ -75,7 +75,7 @@ class LocationProvider: NSObject, @preconcurrency CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
+        guard let location = locations.last, location.horizontalAccuracy >= 0 else { return }
         onLocationFix?(location.coordinate)
     }
 
@@ -119,68 +119,29 @@ extension SunLocation {
         })
     }
 
-    class func setLocation(_ current: Bool, location: CLLocationCoordinate2D, name: String, sunplace: SunPlace? = nil) {
-        defaults.set(name, forKey: DefaultKey.locationName.description)
-        defaults.set(location.latitude, forKey: DefaultKey.locationLatitude.description)
-        defaults.set(location.longitude, forKey: DefaultKey.locationLongitude.description)
-        defaults.set(current, forKey: DefaultKey.currentLocation.description)
-
-        if !current {
-            defaults.set(sunplace?.placeID, forKey: DefaultKey.locationPlaceID.description)
-        }
-    }
-
     class func selectLocation(_ current: Bool, location: CLLocationCoordinate2D?, name: String?, sunplace: SunPlace?) {
-        if current {
-            if let currentLocation = getCurrentLocation() {
-                if let locationName = getCurrentLocationName() {
-                    setLocation(true, location: currentLocation, name: locationName)
-                }
-            }
-            checkLocation()
-        } else {
-            if let sunplace = sunplace {
-                setLocation(false, location: location!, name: name!, sunplace: sunplace)
-                addLocationToHistory(sunplace)
-                if let timeZoneOffset = sunplace.timeZoneOffset {
-                    print("setting timezone offset from saved \(timeZoneOffset)")
-                    Defaults.defaults.set(timeZoneOffset, forKey: DefaultKey.locationTimeZoneOffset.description)
-                }
-            }
-        }
+        defaults.set(current, forKey: "CurrentLocation")
+        if current { checkLocation(); return }
+        guard let place = sunplace, let location else { return }
+        place.location = location
+        guard let stored = place.stored else { return }
+        defaults.set(stored.encoded, forKey: "SelectedPlaceV1")
+        defaults.set(stored.latitude, forKey: "LocationLatitude")
+        defaults.set(stored.longitude, forKey: "LocationLongitude")
+        defaults.set(stored.name, forKey: "LocationName")
+        defaults.set(stored.id, forKey: "LocationPlaceID")
+        defaults.set(stored.fallbackOffset ?? stored.timeZone.secondsFromGMT(), forKey: "LocationTimeZoneOffset")
+        addLocationToHistory(place)
     }
 
-    class func updateLocationHistoryWithTimeZone(_ location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int) {
-        if let locationHistory = getLocationHistory() {
-            let index = locationHistory.firstIndex { place in
-                return place.placeID == placeID
-            }
-            if let index = index {
-                if index >= 0 && index < locationHistory.count {
-                    let sunplace = locationHistory[index]
-                    sunplace.timeZoneOffset = timeZoneOffset
-                    print("saving timezoneoffset to history \(timeZoneOffset)")
-                    addLocationToHistory(sunplace)
-                }
-            }
-        }
-    }
-
-    // Reverse-geocodes the fix to a city name, persists it as the current
-    // location, and calls completion after the save lands (or fails).
+    /// Save before attempting optional online enrichment. The callback fires for
+    /// the immediate fix and again if a current geocode adds a useful name.
     class func saveLocation(_ location: CLLocationCoordinate2D, completion: (@MainActor @Sendable () -> Void)? = nil) {
-        let now = Date()
-
+        guard let revision = StoredPlace.saveFix(latitude: location.latitude, longitude: location.longitude, at: Date(), in: defaults) else { return }
+        completion?()
         lookupLocation(location) { placemark in
-            if let placemark = placemark, let city = placemark.locality {
-                defaults.set(location.latitude, forKey: DefaultKey.currentLocationLatitude.description)
-                defaults.set(location.longitude, forKey: DefaultKey.currentLocationLongitude.description)
-                defaults.set(city, forKey: DefaultKey.currentLocationName.description)
-                if isCurrentLocation() {
-                    setLocation(true, location: location, name: city)
-                    defaults.set(now, forKey: DefaultKey.locationDateSet.description)
-                }
-            }
+            guard let name = placemark?.locality ?? placemark?.administrativeArea ?? placemark?.name,
+                  StoredPlace.enrichFix(name: name, revision: revision, in: defaults) else { return }
             completion?()
         }
     }

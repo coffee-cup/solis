@@ -1,183 +1,94 @@
-//
-//  SunLogic.swift
-//  SunriseSunset
-//
-//  Created by Jake Runzer on 2016-06-13.
-//  Copyright © 2016 Puddllee. All rights reserved.
-//
-
 import Foundation
 import CoreLocation
 
+/// Presentation adapter. Only real crossings become Suntime values.
 class SunLogic {
-    
-    static let suntypes: [SunType] = [.astronomicalDusk, .nauticalDusk, .civilDusk, .sunrise, .sunset, .civilDawn, .nauticalDawn, .astronomicalDawn]
-    
-    // If there is no physical astronomical/nautical/civil twilight start or end (sun is never 18/16/12 degress below horizon)
-    // Then the difference between start and end is a full 24 hours (86400 seconds)
-    class func neverHappens(_ date1: Date, date2: Date) -> Bool {
-        return abs(date1.timeIntervalSince(date2)) == 86400
+    static func solarDay(_ date: Date, location: CLLocationCoordinate2D, timezone: TimeZone) -> SolarDay? {
+        SolarDayCache.shared.day(containing: date, latitude: location.latitude, longitude: location.longitude, timeZone: timezone)
     }
-    
-    class func calculateTimesForDate(_ date: Date, location: CLLocationCoordinate2D, timezone: TimeZone = TimeZone.ReferenceType.local, day: SunDay) -> [Suntime] {
-        let ss: EDSunriseSet = EDSunriseSet(date: date, timezone: timezone, latitude: location.latitude, longitude: location.longitude)
 
-        let suntimes: [Suntime] = suntypes.map { type in
-            return Suntime(type: type, day: day)
+    static func type(for event: SolarEvent) -> SunType? {
+        switch (event.threshold, event.direction) {
+        case (.astronomical, .rising): .astronomicalDawn
+        case (.nautical, .rising): .nauticalDawn
+        case (.civil, .rising): .civilDawn
+        case (.horizon, .rising): .sunrise
+        case (.horizon, .setting): .sunset
+        case (.civil, .setting): .civilDusk
+        case (.nautical, .setting): .nauticalDusk
+        case (.astronomical, .setting): .astronomicalDusk
+        default: nil
         }
+    }
 
-        // Astronomical
-        let astronomicalNever = neverHappens(ss.astronomicalTwilightEnd, date2: ss.astronomicalTwilightStart)
-        suntimes[0].date = ss.astronomicalTwilightEnd
-        suntimes[0].neverHappens = astronomicalNever
-        suntimes[7].date = ss.astronomicalTwilightStart
-        suntimes[7].neverHappens = astronomicalNever
+    static func skyType(altitude: Double) -> SunType {
+        if altitude >= SolarThreshold.horizon.rawValue { return .sunrise }
+        if altitude >= -6 { return .civilDawn }
+        if altitude >= -12 { return .nauticalDawn }
+        if altitude >= -18 { return .astronomicalDawn }
+        return .middleNight
+    }
 
-        // Nautical
-        let nauticalNever = neverHappens(ss.nauticalTwilightStart, date2: ss.nauticalTwilightEnd)
-        suntimes[1].date = ss.nauticalTwilightEnd
-        suntimes[1].neverHappens = nauticalNever
-        suntimes[6].date = ss.nauticalTwilightStart
-        suntimes[6].neverHappens = nauticalNever
+    static func times(for result: SolarDay, day: SunDay) -> [Suntime] {
+        result.events.compactMap { event in
+            guard let type = type(for: event) else { return nil }
+            return Suntime(type: type, day: day, date: event.date)
+        }
+    }
 
-        // Civil
-        let civilNever = neverHappens(ss.civilTwilightStart, date2: ss.civilTwilightEnd)
-        suntimes[2].date = ss.civilTwilightEnd
-        suntimes[2].neverHappens = civilNever
-        suntimes[5].date = ss.civilTwilightStart
-        suntimes[5].neverHappens = civilNever
+    static func calculateTimesForDate(_ date: Date, location: CLLocationCoordinate2D, timezone: TimeZone = .current, day: SunDay) -> [Suntime] {
+        guard let result = solarDay(date, location: location, timezone: timezone) else { return [] }
+        return times(for: result, day: day)
+    }
 
-        // Rise/Set
-        let riseSetNever = neverHappens(ss.sunrise, date2: ss.sunset)
-        suntimes[3].date = ss.sunrise
-        suntimes[3].neverHappens = riseSetNever
-        suntimes[4].date = ss.sunset
-        suntimes[4].neverHappens = riseSetNever
+    static func window(from now: Date, location: CLLocationCoordinate2D, timezone: TimeZone) -> [(SunDay, SolarDay)] {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timezone
+        let start = calendar.startOfDay(for: now)
+        return zip(-1...2, SunDay.allCases).compactMap { offset, day in
+            guard let date = calendar.date(byAdding: .day, value: offset, to: start),
+                  let solar = solarDay(date, location: location, timezone: timezone) else { return nil }
+            return (day, solar)
+        }
+    }
 
-        return suntimes
+    static func todayTomorrow(_ location: CLLocationCoordinate2D, now: Date = Date(), timezone: TimeZone = .current) -> [Suntime] {
+        window(from: now, location: location, timezone: timezone).flatMap { times(for: $0.1, day: $0.0) }
     }
-    
-    class func createSuntimeInMiddle(startTime: Suntime, endTime: Suntime) -> Suntime {
-        let middleTimeDate = Date.init(timeIntervalSince1970: (endTime.date.timeIntervalSince1970 + startTime.date.timeIntervalSince1970) / 2)
-        print("middle time: \(middleTimeDate)")
-        
-        let middleTime = Suntime(type: .middleNight, day: .today)
-        middleTime.date = middleTimeDate
-        return middleTime
+
+    static func futureTimes(_ times: [Suntime], now: Date = Date()) -> [Suntime] {
+        times.filter { $0.date > now }.sorted()
     }
-    
-    class func createMiddleLines(_ suntimes: [Suntime]) -> [Suntime] {
-        print("\n===== Checking")
-        
-        
-        let nightTypes: [SunType] = [.astronomicalDusk, .nauticalDusk, .civilDusk, .sunset]
-        let dayTypes: [SunType] = [.astronomicalDawn, .nauticalDawn, .civilDawn, .sunrise]
-        
-        guard let nightStartTime1 = SunLogic.getFirstSunType(suntimes, sunTypes: nightTypes, day: .yesterday) else {
-            return []
-        }
-        
-        guard let nightEndTime1 = SunLogic.getFirstSunType(suntimes, sunTypes: dayTypes, day: .today) else {
-            return []
-        }
-        
-        guard let nightStartTime2 = SunLogic.getFirstSunType(suntimes, sunTypes: nightTypes, day: .today) else {
-            return []
-        }
-        guard let nightEndTime2 = SunLogic.getFirstSunType(suntimes, sunTypes: dayTypes, day: .tomorrow) else {
-            return []
-        }
-        
-        return [createSuntimeInMiddle(startTime: nightStartTime1, endTime: nightEndTime1), createSuntimeInMiddle(startTime: nightStartTime2, endTime: nightEndTime2)]
+
+    static func getSunType(_ times: [Suntime], type: SunType, day: SunDay? = nil) -> Suntime? {
+        times.filter { $0.type == type && (day == nil || $0.day == day) }.min()
     }
-    
-    class func todayTomorrow(_ location: CLLocationCoordinate2D) -> [Suntime] {
-        let today = Date()
-        let tomorrow = today.addDays(1)
-        return SunLogic.calculateTimesForDate(today, location: location, day: .today)
-            + SunLogic.calculateTimesForDate(tomorrow, location: location, day: .tomorrow)
+
+    static func getFirstSunType(_ times: [Suntime], sunTypes: [SunType], day: SunDay? = nil) -> Suntime? {
+        sunTypes.lazy.compactMap { getSunType(times, type: $0, day: day) }.first
     }
-    
-    class func futureTimes(_ suntimes: [Suntime]) -> [Suntime] {
-        return suntimes.filter { time in
-            return time.date.timeIntervalSinceNow > 0
-        }
+
+    static func getNextSunType(_ times: [Suntime], type: SunType, now: Date = Date()) -> Suntime? {
+        getSunType(futureTimes(times, now: now), type: type)
     }
-    
-    class func getSunType(_ suntimes: [Suntime], type: SunType, day: SunDay? = nil) -> Suntime? {
-        let matches = suntimes.filter { time in
-            let m = time.type == type && !time.neverHappens
-            if let day = day {
-                return m && (time.day == day)
-            }
-            return m
-        }
-        let sorted = matches.sorted()
-        return sorted.count > 0 ? sorted[0] : nil
+
+    static func sunrise(_ times: [Suntime], now: Date = Date()) -> Suntime? { getNextSunType(times, type: .sunrise, now: now) }
+    static func sunset(_ times: [Suntime], now: Date = Date()) -> Suntime? { getNextSunType(times, type: .sunset, now: now) }
+
+    // Choose the deepest available threshold within each civil day BEFORE
+    // filtering future events. A past dawn cannot turn today's civil dawn into first light.
+    static func lightEvents(_ times: [Suntime], morning: Bool) -> [Suntime] {
+        let types: [SunType] = morning ? [.astronomicalDawn, .nauticalDawn, .civilDawn] : [.astronomicalDusk, .nauticalDusk, .civilDusk]
+        return SunDay.allCases.flatMap { day -> [Suntime] in
+            let daily = times.filter { $0.day == day }
+            guard let type = types.first(where: { type in daily.contains { $0.type == type } }) else { return [] }
+            return daily.filter { $0.type == type }
+        }.sorted()
     }
-    
-    class func getFirstSunType(_ suntimes: [Suntime], sunTypes: [SunType], day: SunDay? = nil) -> Suntime? {
-        for type in sunTypes {
-            if let suntime = getSunType(suntimes, type: type, day: day) {
-                return suntime
-            }
-        }
-        return nil
-    }
-    
-    class func getNextSunType(_ suntimes: [Suntime], type: SunType) -> Suntime? {
-        let times = futureTimes(suntimes)
-        return getSunType(times, type: type)
-    }
-    
-    class func sunrise(_ suntimes: [Suntime]) -> Suntime? {
-        return getNextSunType(suntimes, type: .sunrise)
-    }
-    
-    class func sunset(_ suntimes: [Suntime]) -> Suntime? {
-        return getNextSunType(suntimes, type: .sunset)
-    }
-    
-    class func firstLight(_ suntimes: [Suntime]) -> Suntime? {
-        let types: [SunType] = [.astronomicalDawn, .nauticalDawn, .civilDawn]
-        for type in types {
-            if let time = getNextSunType(suntimes, type: type) {
-                return time
-            }
-        }
-        return nil
-    }
-    
-    class func lastLight(_ suntimes: [Suntime]) -> Suntime? {
-        let types: [SunType] = [.astronomicalDusk, .nauticalDusk, .civilDusk]
-        for type in types {
-            if let time = getNextSunType(suntimes, type: type) {
-                return time
-            }
-        }
-        return nil
-    }
-    
-    class func nextEvent(_ suntimes: [Suntime]) -> Suntime? {
-        var possibleEvents: [Suntime] = []
-        
-        if let firstLight = firstLight(suntimes) {
-            possibleEvents.append(firstLight)
-        }
-        if let sunset = sunset(suntimes) {
-            possibleEvents.append(sunset)
-        }
-        if let sunrise = sunrise(suntimes) {
-            possibleEvents.append(sunrise)
-        }
-        if let lastLight = lastLight(suntimes) {
-            possibleEvents.append(lastLight)
-        }
-        
-        let sortedEvents = possibleEvents.sorted()
-        if sortedEvents.count > 0 {
-            return sortedEvents[0]
-        }
-        return nil
+
+    static func firstLight(_ times: [Suntime], now: Date = Date()) -> Suntime? { futureTimes(lightEvents(times, morning: true), now: now).first }
+    static func lastLight(_ times: [Suntime], now: Date = Date()) -> Suntime? { futureTimes(lightEvents(times, morning: false), now: now).first }
+    static func nextEvent(_ times: [Suntime], now: Date = Date()) -> Suntime? {
+        [firstLight(times, now: now), sunrise(times, now: now), sunset(times, now: now), lastLight(times, now: now)].compactMap { $0 }.min()
     }
 }

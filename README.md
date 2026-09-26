@@ -29,3 +29,14 @@ A simple iOS app to show you when the sun sets, rises, and in between.
 2. Open `SunriseSunset.xcodeproj`
 
 No external dependencies. Requires Xcode 26+, targets iOS 18+.
+
+## Solar calculations
+
+Sunrise, sunset, twilight, and photographic bands are calculated locally in Swift.
+GPS coordinates are saved before optional geocoding; saved places retain named
+time zones for offline DST handling. Current GPS locations use the phone's time zone.
+Legacy places keep their stored offset until an online lookup resolves a named zone.
+
+Run `scripts/verify-solar.sh` for the independent reference matrix, then the shared
+Xcode scheme's tests for app, widget, storage, and notification behaviour. See
+[the calculation contract and reference provenance](docs/solar-reference.md).

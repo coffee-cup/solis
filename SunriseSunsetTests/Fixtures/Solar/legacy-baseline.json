@@ -1,0 +1,9 @@
+{
+  "sourceRevision": "317a623ffe95a648d2f45779039537857eb76f24",
+  "sourceSHA256": "aef7a61f744b6861f4e215556591e412dc22675be3daaf15d22022a38f205902",
+  "cases": 14760,
+  "false_polar_night_pairs": 3140,
+  "missing_or_extra_crossing_fields": 6462,
+  "paired_times_over_60_seconds": 30585,
+  "events_outside_requested_day": 22385
+}

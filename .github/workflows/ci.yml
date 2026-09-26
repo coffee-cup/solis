@@ -24,6 +24,9 @@ jobs:
           xcodebuild -version
           xcrun simctl list devices available
 
+      - name: Verify offline solar reference matrix
+        run: scripts/verify-solar.sh
+
       - name: Run unit tests
         run: |
           xcodebuild test \

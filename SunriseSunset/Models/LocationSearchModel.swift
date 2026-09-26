@@ -42,9 +42,15 @@ final class LocationSearchModel: NSObject, @preconcurrency MKLocalSearchComplete
         print("Autocomplete error \(error)")
     }
 
-    func resolve(_ completion: MKLocalSearchCompletion) async -> CLLocationCoordinate2D? {
+    func resolve(_ completion: MKLocalSearchCompletion) async -> SunPlace? {
         let search = MKLocalSearch(request: MKLocalSearch.Request(completion: completion))
         guard let response = try? await search.start() else { return nil }
-        return response.mapItems.first?.placemark.coordinate
+        guard let item = response.mapItems.first else { return nil }
+        let coordinate = item.placemark.coordinate
+        let place = SunPlace(primary: completion.title, secondary: completion.subtitle,
+                             location: coordinate, placeID: "\(coordinate.latitude),\(coordinate.longitude)",
+                             timeZoneOffset: item.timeZone?.secondsFromGMT(), isNotification: false)
+        place.timeZoneIdentifier = item.timeZone?.identifier
+        return place
     }
 }

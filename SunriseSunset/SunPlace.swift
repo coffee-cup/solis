@@ -1,75 +1,41 @@
-//
-//  SunPlace.swift
-//  SunriseSunset
-//
-//  Created by Jake Runzer on 2016-07-25.
-//  Copyright © 2016 Puddllee. All rights reserved.
-//
-
 import Foundation
-import UIKit
 import CoreLocation
 
 class SunPlace: Equatable {
-    
     var location: CLLocationCoordinate2D?
     var placeID: String
     var timeZoneOffset: Int?
-    
+    var timeZoneIdentifier: String?
     var primary: String
     var secondary: String
-    
-    var isNotification: Bool = false
-    
-    class func sunPlaceFromString(_ string: String) -> SunPlace? {
-        let split = string.split{$0 == "|"}.map(String.init)
-        
-        if split.count < 5 {
-            return nil
-        }
-        
-        let primary = split[0]
-        let secondary = split[1]
-        
-        let latitude = Double(split[2])!
-        let longitude = Double(split[3])!
-        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        let placeID = split[4]
-        
-        let timeZoneOffset = split.count >= 6 ? Int(split[5]) : nil
-        
-        let isNotification = split.count >= 7 ? split[6] == "true" : false
-        
-        return SunPlace(primary: primary, secondary: secondary, location: location, placeID: placeID, timeZoneOffset: timeZoneOffset, isNotification: isNotification)
-    }
-    
-    init(primary: String, secondary: String, placeID: String) {
-        self.primary = primary
-        self.secondary = secondary
-        self.placeID = placeID
-    }
-    
-    init(primary: String, secondary: String, location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int?, isNotification: Bool) {
-        self.primary = primary
-        self.secondary = secondary
-        self.location = location
-        self.placeID = placeID
-        self.timeZoneOffset = timeZoneOffset
-        self.isNotification = isNotification
-    }
-    
-    var toString: String? {
-        guard let location = location else {
-            return nil
-        }
-        
-        let tzOffset = timeZoneOffset == nil ? "" : "\(timeZoneOffset!)"
-        
-        return "\(primary)|\(secondary)|\(location.latitude)|\(location.longitude)|\(placeID)|\(tzOffset)|\(isNotification)"
-    }
-}
+    var isNotification = false
 
-func ==(lhs: SunPlace, rhs: SunPlace) -> Bool {
-    return lhs.placeID == rhs.placeID
+    var stored: StoredPlace? {
+        guard let location else { return nil }
+        let value = StoredPlace(name: primary, detail: secondary, latitude: location.latitude, longitude: location.longitude,
+                                id: placeID, timeZoneIdentifier: timeZoneIdentifier, fallbackOffset: timeZoneOffset, isNotification: isNotification)
+        return value.isValid ? value : nil
+    }
+    var needsTimeZone: Bool { timeZoneIdentifier == nil }
+    var toString: String? { stored?.encoded }
+
+    static func sunPlaceFromString(_ string: String) -> SunPlace? {
+        guard let value = StoredPlace.decode(string) else { return nil }
+        let place = SunPlace(primary: value.name, secondary: value.detail,
+                             location: CLLocationCoordinate2D(latitude: value.latitude, longitude: value.longitude),
+                             placeID: value.id, timeZoneOffset: value.fallbackOffset, isNotification: value.isNotification)
+        place.timeZoneIdentifier = value.timeZoneIdentifier
+        return place
+    }
+
+    init(primary: String, secondary: String, placeID: String) {
+        self.primary = primary; self.secondary = secondary; self.placeID = placeID
+    }
+
+    init(primary: String, secondary: String, location: CLLocationCoordinate2D, placeID: String, timeZoneOffset: Int?, isNotification: Bool) {
+        self.primary = primary; self.secondary = secondary; self.location = location
+        self.placeID = placeID; self.timeZoneOffset = timeZoneOffset; self.isNotification = isNotification
+    }
+
+    static func == (lhs: SunPlace, rhs: SunPlace) -> Bool { lhs.placeID == rhs.placeID }
 }

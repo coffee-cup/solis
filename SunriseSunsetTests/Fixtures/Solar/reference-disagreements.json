@@ -1,0 +1,503 @@
+[
+  {
+    "id": "USNO/Toronto/2026-02-22",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1771804778.4942627
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-02-23",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1771804800.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Toronto/2026-03-21",
+    "altitude": -6,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1774137591.091919
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-03-22",
+    "altitude": -6,
+    "direction": -1,
+    "usno": [
+      1774137600.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Toronto/2026-04-14",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1776211193.9666748
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-04-15",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1776211200.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Toronto/2026-08-28",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1787875260.0
+    ],
+    "astronomy": [
+      1787875289.9871826,
+      1787961587.2650146
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-08-29",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1787961600.0,
+      1788047880.0
+    ],
+    "astronomy": [
+      1788047883.883667
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-10-21",
+    "altitude": -18,
+    "direction": -1,
+    "usno": [
+      1792540860.0
+    ],
+    "astronomy": [
+      1792540887.991333,
+      1792627198.6358643
+    ]
+  },
+  {
+    "id": "USNO/Toronto/2026-10-22",
+    "altitude": -18,
+    "direction": -1,
+    "usno": [
+      1792627200.0,
+      1792713540.0
+    ],
+    "astronomy": [
+      1792713510.7269287
+    ]
+  },
+  {
+    "id": "USNO/New_York/2026-02-12",
+    "altitude": -18,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1770940770.1263428
+    ]
+  },
+  {
+    "id": "USNO/New_York/2026-02-13",
+    "altitude": -18,
+    "direction": -1,
+    "usno": [
+      1770940800.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/New_York/2026-03-13",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1773446382.7423096
+    ]
+  },
+  {
+    "id": "USNO/New_York/2026-03-14",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1773446400.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Quito/2026-09-07",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1788739200.0
+    ],
+    "astronomy": [
+      1788739214.8590088,
+      1788825592.666626
+    ]
+  },
+  {
+    "id": "USNO/Quito/2026-09-08",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1788825600.0
+    ],
+    "astronomy": [
+      1788911970.437622
+    ]
+  },
+  {
+    "id": "USNO/Quito/2026-09-09",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1788912000.0,
+      1788998340.0
+    ],
+    "astronomy": [
+      1788998348.171997
+    ]
+  },
+  {
+    "id": "USNO/Quito/2026-12-11",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [],
+    "astronomy": [
+      1797033592.6849365
+    ]
+  },
+  {
+    "id": "USNO/Quito/2026-12-12",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1797033600.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Kathmandu/2026-03-19",
+    "altitude": -6,
+    "direction": 1,
+    "usno": [
+      1773878460.0
+    ],
+    "astronomy": [
+      1773878450.7110596,
+      1773964783.1085205
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-03-20",
+    "altitude": -6,
+    "direction": 1,
+    "usno": [
+      1773964800.0,
+      1774051140.0
+    ],
+    "astronomy": [
+      1774051115.3045654
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-04-09",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1775692860.0
+    ],
+    "astronomy": [
+      1775692845.03479,
+      1775779180.74646
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-04-10",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1775779200.0,
+      1775865540.0
+    ],
+    "astronomy": [
+      1775865516.897583
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-09-05",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [],
+    "astronomy": [
+      1788652783.3831787
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-09-06",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1788652800.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Kathmandu/2026-10-22",
+    "altitude": -6,
+    "direction": 1,
+    "usno": [],
+    "astronomy": [
+      1792713580.41687
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-10-23",
+    "altitude": -6,
+    "direction": 1,
+    "usno": [
+      1792713600.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Kathmandu/2026-12-03",
+    "altitude": -12,
+    "direction": 1,
+    "usno": [],
+    "astronomy": [
+      1796342383.9508057
+    ]
+  },
+  {
+    "id": "USNO/Kathmandu/2026-12-04",
+    "altitude": -12,
+    "direction": 1,
+    "usno": [
+      1796342400.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Tromso/2026-05-17",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1779058380.0
+    ],
+    "astronomy": [
+      1779058319.6502686
+    ]
+  },
+  {
+    "id": "USNO/Tromso/2026-07-25",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1785018960.0
+    ],
+    "astronomy": [
+      1785019037.6495361
+    ]
+  },
+  {
+    "id": "USNO/Longyearbyen/2026-09-07",
+    "altitude": -6,
+    "direction": 1,
+    "usno": [
+      1788822060.0
+    ],
+    "astronomy": [
+      1788822212.8509521
+    ]
+  },
+  {
+    "id": "USNO/Longyearbyen/2026-09-07",
+    "altitude": -6,
+    "direction": -1,
+    "usno": [
+      1788821520.0
+    ],
+    "astronomy": [
+      1788821367.1966553
+    ]
+  },
+  {
+    "id": "USNO/Longyearbyen/2026-09-24",
+    "altitude": -12,
+    "direction": 1,
+    "usno": [],
+    "astronomy": [
+      1790294390.4510498
+    ]
+  },
+  {
+    "id": "USNO/Longyearbyen/2026-09-25",
+    "altitude": -12,
+    "direction": 1,
+    "usno": [
+      1790294400.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Longyearbyen/2026-11-12",
+    "altitude": -6,
+    "direction": -1,
+    "usno": [
+      1794480900.0
+    ],
+    "astronomy": [
+      1794480966.934204
+    ]
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-01-22",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1769120520.0
+    ],
+    "astronomy": [
+      1769120589.743042
+    ]
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-01-22",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1769122620.0
+    ],
+    "astronomy": [
+      1769122526.687622
+    ]
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-03-22",
+    "altitude": -18,
+    "direction": 1,
+    "usno": [
+      1774175760.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-03-22",
+    "altitude": -18,
+    "direction": -1,
+    "usno": [
+      1774175460.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-08-02",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1785664740.0
+    ],
+    "astronomy": [
+      1785664809.3475342
+    ]
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-09-05",
+    "altitude": -12,
+    "direction": 1,
+    "usno": [
+      1788604140.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-09-05",
+    "altitude": -12,
+    "direction": -1,
+    "usno": [
+      1788603840.0
+    ],
+    "astronomy": []
+  },
+  {
+    "id": "USNO/Utqiagvik/2026-11-18",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1795038000.0
+    ],
+    "astronomy": [
+      1795038063.8397217
+    ]
+  },
+  {
+    "id": "USNO/North_Pole/2026-03-18",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1773836160.0
+    ],
+    "astronomy": [
+      1773836420.0042725
+    ]
+  },
+  {
+    "id": "USNO/North_Pole/2026-09-25",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1790306160.0
+    ],
+    "astronomy": [
+      1790306402.7008057
+    ]
+  },
+  {
+    "id": "USNO/North_Pole/2026-10-08",
+    "altitude": -6,
+    "direction": -1,
+    "usno": [
+      1791461040.0
+    ],
+    "astronomy": [
+      1791461102.444458
+    ]
+  },
+  {
+    "id": "USNO/South_Pole/2026-03-22",
+    "altitude": -0.8333333333333334,
+    "direction": -1,
+    "usno": [
+      1774199820.0
+    ],
+    "astronomy": [
+      1774199644.9676514
+    ]
+  },
+  {
+    "id": "USNO/South_Pole/2026-09-20",
+    "altitude": -0.8333333333333334,
+    "direction": 1,
+    "usno": [
+      1789937520.0
+    ],
+    "astronomy": [
+      1789937301.2054443
+    ]
+  }
+]

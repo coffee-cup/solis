@@ -232,15 +232,23 @@ struct SunlineContent: View {
                 .font(.system(size: 8, weight: .medium).monospacedDigit())
                 .opacity(0.65).accessibilityHidden(true)
                 .padding(.bottom, 5)
-                if let sunrise = data.sunrise, let sunset = data.sunset {
+                if data.sunrise != nil || data.sunset != nil {
                     HStack(alignment: .top) {
-                        endpoint("Sunrise", date: sunrise, alignment: .leading)
+                        if let sunrise = data.sunrise {
+                            endpoint("Sunrise", date: sunrise, alignment: .leading)
+                        } else {
+                            Text("No sunrise today").font(.system(size: 11))
+                        }
                         Spacer(minLength: 4)
                         if family == .systemMedium {
                             daylightSummary
                             Spacer(minLength: 4)
                         }
-                        endpoint("Sunset", date: sunset, alignment: .trailing)
+                        if let sunset = data.sunset {
+                            endpoint("Sunset", date: sunset, alignment: .trailing)
+                        } else {
+                            Text("No sunset today").font(.system(size: 11))
+                        }
                     }
                     if family == .systemSmall {
                         Text("\(daylightTotal) daylight")
@@ -316,7 +324,7 @@ struct NowContent: View {
                         Text("in \(Text(event.date, style: .relative))")
                             .font(muli(15)).lineLimit(1).minimumScaleFactor(0.7)
                     } else {
-                        Text(data.daylight == .allDay ? "24h of daylight" : "No daylight today")
+                        Text(data.daylight == .allDay ? "Daylight all day" : data.daylight == .allNight ? "No daylight today" : "No upcoming event")
                             .font(.system(size: 12))
                     }
                 }
@@ -373,10 +381,8 @@ struct EventContent: View {
                             SunlineGraphic(data: data)
                                 .frame(height: 50)
                         }
-                        if let sunrise = data.sunrise, let sunset = data.sunset {
-                            summaryRow("sunrise", date: sunrise)
-                            summaryRow("sunset", date: sunset)
-                        }
+                        if let sunrise = data.sunrise { summaryRow("sunrise", date: sunrise) }
+                        if let sunset = data.sunset { summaryRow("sunset", date: sunset) }
                     }
                     .frame(width: 100)
                     .accessibilityElement(children: .combine)
