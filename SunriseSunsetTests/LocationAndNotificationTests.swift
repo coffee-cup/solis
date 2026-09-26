@@ -104,8 +104,8 @@ struct LocationAndNotificationTests {
         let polar = SunLogic.todayTomorrow(CLLocationCoordinate2D(latitude:90,longitude:0),now:now,timezone:.gmt)
         #expect(SunAlert.sunrise.nextTime(in:polar,now:now) == nil)
     }
-    @Test func structuredPlaceIsAtomicAndDoesNotRequireLegacyKeys() throws {
-        try withDefaults { defaults in
+    @Test func structuredPlaceIsAtomicAndDoesNotRequireLegacyKeys() {
+        withDefaults { defaults in
             let place = StoredPlace(name: "Saved offline", latitude: 0, longitude: 0, id: "saved", timeZoneIdentifier: "GMT")
             defaults.set(place.encoded, forKey: "SelectedPlaceV1")
             #expect(StoredPlace.saved(in: defaults, current: false) == place)
