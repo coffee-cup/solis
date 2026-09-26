@@ -76,17 +76,17 @@ struct MovingWidgetSky: View {
     let theme: SunTheme
 
     var body: some View {
+        // Use the same background colours as WidgetSky, stretched around the centre line.
         LinearGradient(stops: data.skyStops.map {
             Gradient.Stop(color: colour(for: $0.type), location: $0.position)
-        }, startPoint: .top, endPoint: .bottom)
-        .overlay(.black.opacity(0.25))
+        }, startPoint: UnitPoint(x: 0.5, y: -1), endPoint: UnitPoint(x: 0.5, y: 2))
+        .overlay(.black.opacity(0.24))
     }
 
     private func colour(for type: SunType) -> Color {
         let palette = theme.palette
         switch type {
-        case .sunrise, .sunset: return Color(palette.riseset)
-        case .civilDawn, .civilDusk: return Color(palette.civil)
+        case .sunrise, .sunset, .civilDawn, .civilDusk: return Color(palette.civil)
         case .nauticalDawn, .nauticalDusk: return Color(palette.nautical)
         case .astronomicalDawn, .astronomicalDusk, .middleNight: return Color(palette.astronomical)
         }
@@ -159,6 +159,12 @@ struct SunlineGraphic: View {
         renderingMode == .fullColor ? Color(theme.palette.riseset) : .white
     }
 
+    private var markerColour: Color {
+        guard renderingMode == .fullColor, theme == .classic,
+              data.isDaylight, data.isGoldenHour else { return accent }
+        return Color(theme.palette.goldenHour.withAlphaComponent(1))
+    }
+
     var body: some View {
         GeometryReader { geometry in
             let rect = CGRect(x: 7, y: 8, width: max(0, geometry.size.width - 14),
@@ -175,16 +181,16 @@ struct SunlineGraphic: View {
                 .stroke(accent, style: StrokeStyle(lineWidth: 2, lineCap: .round))
                 .frame(width: rect.width, height: rect.height).position(x: rect.midX, y: rect.midY)
                 .widgetAccentable()
-            Circle().fill(accent.opacity(0.16)).frame(width: 22, height: 22).position(point)
+            Circle().fill(markerColour.opacity(0.16)).frame(width: 22, height: 22).position(point)
             if data.isDaylight {
-                Circle().fill(accent).frame(width: 8, height: 8).position(point).widgetAccentable()
+                Circle().fill(markerColour).frame(width: 8, height: 8).position(point).widgetAccentable()
             } else {
                 Image(systemName: "moon.fill").font(.system(size: 10))
                     .foregroundStyle(accent).position(point).widgetAccentable()
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(data.isDaylight ? "Sun above the horizon" : "Sun below the horizon")
+        .accessibilityLabel(data.isDaylight ? (data.isGoldenHour ? "Sun above the horizon, golden hour" : "Sun above the horizon") : "Sun below the horizon")
         .accessibilityValue("\(widgetTime(data.date, zone: data.timeZone)) local time")
     }
 }
@@ -311,13 +317,21 @@ enum SunWidgetStyle { case clock, countdown, sunline, now }
 
 struct NowContent: View {
     let data: SunWidgetData
+    @Environment(\.widgetRenderingMode) private var renderingMode
+    @Environment(\.solisWidgetTheme) private var theme
+
+    private var markerColour: Color {
+        renderingMode == .fullColor && theme == .classic && data.isGoldenHour
+            ? Color(theme.palette.goldenHour.withAlphaComponent(1)) : .white
+    }
 
     var body: some View {
         if let location = data.locationName {
             ZStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 5) {
                     WidgetLocationLabel(name: location)
-                    Text(data.skyPhase).font(muli(24)).lineLimit(1).minimumScaleFactor(0.8)
+                        .padding(.bottom, 7)
+                    Text(data.lightPhase).font(muli(24)).lineLimit(1).minimumScaleFactor(0.7)
                     Spacer(minLength: 28)
                     if let event = data.nextEvent {
                         Text(event.name).font(.system(size: 12, weight: .medium))
@@ -329,11 +343,11 @@ struct NowContent: View {
                     }
                 }
                 HStack(spacing: 8) {
-                    Text("now").font(.system(size: 11, weight: .semibold))
                     Rectangle().fill(.white.opacity(0.65)).frame(height: 1)
-                    Circle().frame(width: 5, height: 5)
+                    Circle().fill(markerColour).frame(width: 5, height: 5)
                 }
                 .widgetAccentable()
+                .accessibilityHidden(true)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
