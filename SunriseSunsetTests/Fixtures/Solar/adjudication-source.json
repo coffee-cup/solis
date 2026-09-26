@@ -1,0 +1,9 @@
+{
+  "source": "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de440s.bsp",
+  "sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+  "skyfield": "1.54",
+  "scipy": "1.17.1",
+  "caseCount": 425,
+  "selection": "USNO disagreement, crossing within 60 seconds of civil midnight, or crossing at either pole; includes adjacent days",
+  "convention": "Apparent topocentric solar centre, sea level, no atmospheric refraction, UT1 approximated by input UTC, built-in Skyfield delta-T"
+}

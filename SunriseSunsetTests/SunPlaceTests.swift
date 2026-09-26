@@ -44,9 +44,7 @@ struct SunPlaceTests {
         #expect(SunPlace.sunPlaceFromString("") == nil)
     }
 
-    @Test func nilTimeZoneOffsetRoundTripIsLossy() {
-        // A nil tzOffset serializes to an empty field that split(separator:) drops,
-        // shifting isNotification into the tzOffset slot. Pins current behaviour.
+    @Test func nilTimeZoneOffsetRoundTripPreservesNotification() {
         let place = SunPlace(
             primary: "Vancouver",
             secondary: "BC",
@@ -59,7 +57,7 @@ struct SunPlaceTests {
         let parsed = SunPlace.sunPlaceFromString(place.toString!)
 
         #expect(parsed?.timeZoneOffset == nil)
-        #expect(parsed?.isNotification == false)
+        #expect(parsed?.isNotification == true)
     }
 
     @Test func equalityComparesPlaceIDOnly() {

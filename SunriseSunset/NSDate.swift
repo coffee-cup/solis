@@ -48,14 +48,12 @@ extension Date {
         return isEqualTo
     }
     
-    func addDays(_ daysToAdd: Int) -> Date {
-        let secondsInDays: TimeInterval = Double(daysToAdd) * 60 * 60 * 24
-        let dateWithDaysAdded: Date = self.addingTimeInterval(secondsInDays)
-        
-        //Return Result
-        return dateWithDaysAdded
+    func addDays(_ daysToAdd: Int, timeZone: TimeZone = .current) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = timeZone
+        return calendar.date(byAdding: .day, value: daysToAdd, to: self)!
     }
-    
+
     func addHours(_ hoursToAdd: Int) -> Date {
         let secondsInHours: TimeInterval = Double(hoursToAdd) * 60 * 60
         let dateWithHoursAdded: Date = self.addingTimeInterval(secondsInHours)

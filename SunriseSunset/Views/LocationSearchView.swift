@@ -90,13 +90,10 @@ struct LocationSearchView: View {
             .accessibilityLabel("\(completion.title), \(completion.subtitle)")
             .onTapGesture {
                 onSelect()
+                let token = locationModel.changeToken
                 Task {
-                    guard let coordinate = await model.resolve(completion) else { return }
-                    let place = SunPlace(primary: completion.title, secondary: completion.subtitle, placeID: "")
-                    place.location = coordinate
-                    // Stable identity for history/notification matching now that
-                    // there are no Google place IDs.
-                    place.placeID = "\(coordinate.latitude),\(coordinate.longitude)"
+                    guard let place = await model.resolve(completion), let coordinate = place.location,
+                          locationModel.changeToken == token else { return }
                     locationModel.select(place, coordinate: coordinate)
                 }
             }
@@ -105,7 +102,7 @@ struct LocationSearchView: View {
     private func historyRow(_ place: SunPlace) -> some View {
         HStack(spacing: 12) {
             bellButton(placeID: place.placeID, place: place)
-            placeLabels(primary: place.primary, secondary: place.secondary)
+            placeLabels(primary: place.primary, secondary: place.needsTimeZone ? place.secondary + " · Time zone needs an online update" : place.secondary)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel("\(place.primary), \(place.secondary)")
             Spacer()

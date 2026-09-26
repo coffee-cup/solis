@@ -18,11 +18,8 @@ private func date(_ year: Int, _ month: Int, _ day: Int, _ hour: Int = 12, _ min
     return calendar.date(from: DateComponents(year: year, month: month, day: day, hour: hour, minute: minute))!
 }
 
-private func suntime(_ type: SunType, day: SunDay = .today, date: Date, neverHappens: Bool = false) -> Suntime {
-    let time = Suntime(type: type, day: day)
-    time.date = date
-    time.neverHappens = neverHappens
-    return time
+private func suntime(_ type: SunType, day: SunDay = .today, date: Date) -> Suntime {
+    Suntime(type: type, day: day, date: date)
 }
 
 struct SunLogicTests {
@@ -32,7 +29,6 @@ struct SunLogicTests {
         let times = SunLogic.calculateTimesForDate(noon, location: vancouver, timezone: vancouverTZ, day: .today)
 
         #expect(times.count == 8)
-        #expect(times.allSatisfy { !$0.neverHappens })
 
         // Reference: NOAA solar calculator for 2026-01-15 (PST)
         let expectedSunrise = date(2026, 1, 15, 8, 1, timeZone: vancouverTZ)
@@ -59,8 +55,8 @@ struct SunLogicTests {
         let noon = date(2026, 6, 15, timeZone: osloTZ)
         let times = SunLogic.calculateTimesForDate(noon, location: longyearbyen, timezone: osloTZ, day: .today)
 
-        #expect(times.first { $0.type == .sunrise }!.neverHappens)
-        #expect(times.first { $0.type == .sunset }!.neverHappens)
+        #expect(times.first { $0.type == .sunrise } == nil)
+        #expect(times.first { $0.type == .sunset } == nil)
     }
 
     @Test func highLatitudeSummerSkipsAstronomicalTwilight() {
@@ -68,18 +64,24 @@ struct SunLogicTests {
         let noon = date(2026, 6, 21, timeZone: vancouverTZ)
         let times = SunLogic.calculateTimesForDate(noon, location: vancouver, timezone: vancouverTZ, day: .today)
 
-        #expect(times.first { $0.type == .astronomicalDawn }!.neverHappens)
-        #expect(times.first { $0.type == .astronomicalDusk }!.neverHappens)
-        #expect(!times.first { $0.type == .sunrise }!.neverHappens)
-        #expect(!times.first { $0.type == .sunset }!.neverHappens)
+        #expect(times.first { $0.type == .astronomicalDawn } == nil)
+        #expect(times.first { $0.type == .astronomicalDusk } == nil)
+        #expect(times.first { $0.type == .sunrise } != nil)
+        #expect(times.first { $0.type == .sunset } != nil)
     }
 
-    @Test func neverHappensRequiresExact24HourSpan() {
-        let start = Date(timeIntervalSince1970: 1_000_000)
-        #expect(SunLogic.neverHappens(start, date2: start.addDays(1)))
-        #expect(SunLogic.neverHappens(start.addDays(1), date2: start))
-        #expect(!SunLogic.neverHappens(start, date2: start.addingTimeInterval(86399)))
-        #expect(!SunLogic.neverHappens(start, date2: start.addingTimeInterval(86401)))
+    @Test func polarNightDoesNotInventNoonEvents() {
+        let times = SunLogic.calculateTimesForDate(date(2026,12,15,timeZone:.gmt),
+                        location:CLLocationCoordinate2D(latitude:78.2232,longitude:15.6267),timezone:.gmt,day:.today)
+        #expect(times.allSatisfy { $0.type != .sunrise && $0.type != .sunset })
+    }
+
+    @Test func firstLightIsChosenPerDayBeforeFutureFiltering() {
+        let now = Date(timeIntervalSince1970:10000)
+        let pastDawn = suntime(.astronomicalDawn, date:now.addingTimeInterval(-100))
+        let civilDawn = suntime(.civilDawn,date:now.addingTimeInterval(100))
+        let tomorrow = suntime(.nauticalDawn,day:.tomorrow,date:now.addingTimeInterval(86400))
+        #expect(SunLogic.firstLight([pastDawn,civilDawn,tomorrow],now:now) === tomorrow)
     }
 
     @Test func getSunTypeReturnsEarliestMatch() {
@@ -90,13 +92,11 @@ struct SunLogicTests {
         #expect(SunLogic.getSunType([late, other, early], type: .sunrise) === early)
     }
 
-    @Test func getSunTypeFiltersNeverHappensAndDay() {
-        let never = suntime(.sunrise, date: Date(timeIntervalSince1970: 1000), neverHappens: true)
+    @Test func getSunTypeFiltersDayAndHandlesAbsentEvents() {
         let tomorrow = suntime(.sunrise, day: .tomorrow, date: Date(timeIntervalSince1970: 2000))
-
-        #expect(SunLogic.getSunType([never], type: .sunrise) == nil)
-        #expect(SunLogic.getSunType([never, tomorrow], type: .sunrise, day: .today) == nil)
-        #expect(SunLogic.getSunType([never, tomorrow], type: .sunrise, day: .tomorrow) === tomorrow)
+        #expect(SunLogic.getSunType([], type: .sunrise) == nil)
+        #expect(SunLogic.getSunType([tomorrow], type: .sunrise, day: .today) == nil)
+        #expect(SunLogic.getSunType([tomorrow], type: .sunrise, day: .tomorrow) === tomorrow)
     }
 
     @Test func getFirstSunTypeRespectsTypePriorityOverDate() {

@@ -38,6 +38,7 @@ struct RootView: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 resetToken += 1
+                location.becameActive()
             }
         }
     }

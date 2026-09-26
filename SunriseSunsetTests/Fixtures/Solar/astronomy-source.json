@@ -1,0 +1,7 @@
+{
+  "source": "https://github.com/cosinekitty/astronomy",
+  "sha256": "ef52423af0e61e555e1f5321a0576ffabf55ea5080daf84940d9d1f60394d779",
+  "convention": "Topocentric apparent solar centre at sea level, fixed geometric thresholds, no refraction correction",
+  "timeToleranceSeconds": 60,
+  "caseCount": 14760
+}
