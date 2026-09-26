@@ -76,17 +76,17 @@ struct MovingWidgetSky: View {
     let theme: SunTheme
 
     var body: some View {
+        // Use the same background colours as WidgetSky, stretched around the centre line.
         LinearGradient(stops: data.skyStops.map {
             Gradient.Stop(color: colour(for: $0.type), location: $0.position)
-        }, startPoint: .top, endPoint: .bottom)
-        .overlay(.black.opacity(0.25))
+        }, startPoint: UnitPoint(x: 0.5, y: -1), endPoint: UnitPoint(x: 0.5, y: 2))
+        .overlay(.black.opacity(0.24))
     }
 
     private func colour(for type: SunType) -> Color {
         let palette = theme.palette
         switch type {
-        case .sunrise, .sunset: return Color(palette.riseset)
-        case .civilDawn, .civilDusk: return Color(palette.civil)
+        case .sunrise, .sunset, .civilDawn, .civilDusk: return Color(palette.civil)
         case .nauticalDawn, .nauticalDusk: return Color(palette.nautical)
         case .astronomicalDawn, .astronomicalDusk, .middleNight: return Color(palette.astronomical)
         }
@@ -329,11 +329,11 @@ struct NowContent: View {
                     }
                 }
                 HStack(spacing: 8) {
-                    Text("now").font(.system(size: 11, weight: .semibold))
                     Rectangle().fill(.white.opacity(0.65)).frame(height: 1)
                     Circle().frame(width: 5, height: 5)
                 }
                 .widgetAccentable()
+                .accessibilityHidden(true)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
