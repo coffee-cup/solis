@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0766453BE08DF11A201E19B7 /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
+		102A5D7BA5F42D2DD28BBB60 /* Solis.icon in Resources */ = {isa = PBXBuildFile; fileRef = 11F2B36772731754B793206D /* Solis.icon */; };
 		1366C148184BDFB624578598 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
+		15FE42E282BE74B4046BBB23 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718AFD7813443E825E816E4 /* SunWidgetData.swift */; };
 		1D08C72F7F3FDEEF62617817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE7CBA9AB862BFA860F55BA /* Foundation.framework */; };
 		21112CEC9025F28135534F7B /* EDSunriseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */; };
 		230AF26175B6E6B26362968D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
 		25996D1618113BDB229E641B /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ABC75F23CDF0550304EF92 /* TimelineView.swift */; };
 		2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */; };
+		349952C81BDDDA44D8AA0EF3 /* SunWidgetDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */; };
+		34AE8702925593421C23ADAD /* WidgetLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A200E9683543E544CAF6E8F /* WidgetLocation.swift */; };
 		3B56FADAB3F72D3216B7F562 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC69F3849FE0476619A6030 /* LocationSearchView.swift */; };
 		439D8C02013EC9EF7E205329 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2205266CEA5B6627F0C1FF /* LocationModel.swift */; };
 		48D2BEE4C590A877365129A5 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
@@ -64,6 +68,7 @@
 		F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */; };
 		F7ADFA7018FBB691E72B6390 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242E879322DD2753D25E8EFB /* RootView.swift */; };
+		FF141CB0A35B7A2D0CD49200 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718AFD7813443E825E816E4 /* SunWidgetData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,12 +112,15 @@
 /* Begin PBXFileReference section */
 		04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoMenuView.swift; sourceTree = "<group>"; };
 		0AC69F3849FE0476619A6030 /* LocationSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
+		11F2B36772731754B793206D /* Solis.icon */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.iconcomposer.icon; name = Solis.icon; path = artwork/Solis.icon; sourceTree = "<group>"; };
 		160A73A9443501621C6585F0 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		242E879322DD2753D25E8EFB /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2A200E9683543E544CAF6E8F /* WidgetLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetLocation.swift; sourceTree = "<group>"; };
 		2B2205266CEA5B6627F0C1FF /* LocationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetDataTests.swift; sourceTree = "<group>"; };
 		3A0AAE4A6F08C0DDC6F474AC /* EDSunriseSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EDSunriseSet.m; sourceTree = "<group>"; };
 		3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunLogicTests.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
 		CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
 		E6912BE2275D31864D92802B /* EDSunriseSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = EDSunriseSet.h; sourceTree = "<group>"; };
+		E718AFD7813443E825E816E4 /* SunWidgetData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetData.swift; sourceTree = "<group>"; };
 		F0327EB706154F718A15E9BB /* SolisApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -295,6 +304,7 @@
 				9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */,
 				9C8DFA5E1D1673DF00353D8C /* Info.plist */,
 				2242A66A4072558D25ABC9DE /* SolisWidget.swift */,
+				2A200E9683543E544CAF6E8F /* WidgetLocation.swift */,
 			);
 			path = SolisWidget;
 			sourceTree = "<group>";
@@ -308,6 +318,7 @@
 				9C8DFA581D1673DF00353D8C /* SolisWidget */,
 				9CB37BE61CE844400080B5B1 /* Products */,
 				69BBFC24078540B1D3E7C31D /* Frameworks */,
+				11F2B36772731754B793206D /* Solis.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -348,6 +359,7 @@
 				83D2B115228232B0807BEA8C /* Timeline */,
 				F0327EB706154F718A15E9BB /* SolisApp.swift */,
 				3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */,
+				E718AFD7813443E825E816E4 /* SunWidgetData.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -359,6 +371,7 @@
 				3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */,
 				18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */,
 				9CE575763F936969B069E965 /* SunPlaceTests.swift */,
+				2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */,
 			);
 			path = SunriseSunsetTests;
 			sourceTree = "<group>";
@@ -544,6 +557,7 @@
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
+				102A5D7BA5F42D2DD28BBB60 /* Solis.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +624,7 @@
 				DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */,
 				25996D1618113BDB229E641B /* TimelineView.swift in Sources */,
 				A97C0A6AA25E5A4D93F1A978 /* SettingsView.swift in Sources */,
+				15FE42E282BE74B4046BBB23 /* SunWidgetData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +635,7 @@
 				2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */,
 				F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */,
 				E206695808FAF1017849DFAA /* SunPlaceTests.swift in Sources */,
+				349952C81BDDDA44D8AA0EF3 /* SunWidgetDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +663,8 @@
 				DA9E27A743466059639DD154 /* SunType.swift in Sources */,
 				4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */,
 				4F979626AF749AB7EDF9BC1C /* EDSunriseSet.m in Sources */,
+				FF141CB0A35B7A2D0CD49200 /* SunWidgetData.swift in Sources */,
+				34AE8702925593421C23ADAD /* WidgetLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,7 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Solis;
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -803,7 +821,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Solis;
 				CODE_SIGN_ENTITLEMENTS = SunriseSunset/SunriseSunset.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4TPDCY22V9;

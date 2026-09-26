@@ -6,6 +6,7 @@
 import CoreLocation
 import Foundation
 import Observation
+import WidgetKit
 
 // Single app-side owner of location state. Persistence stays in the shared
 // SunLocation accessors (the widget reads the same app-group keys); this model
@@ -41,6 +42,7 @@ final class LocationModel {
         locationName = SunLocation.getLocationName()
         isCurrentLocation = SunLocation.isCurrentLocation()
         updateToken += 1
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     func selectCurrentLocation() {
