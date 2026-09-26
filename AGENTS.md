@@ -12,8 +12,8 @@ SunriseSunset/                 app target source
   Models/                      @Observable models: LocationModel, SettingsModel, LocationSearchModel
   Timeline/TimelineView.swift  UIViewControllerRepresentable hosting SunViewController; token-diffed updates
   SunViewController.swift      UIKit timeline (programmatic layout; gesture scroll/momentum, gradient, sun lines)
-  Solar*.swift                pure Swift solar position, crossings, daily states and bounded cache
-  SunLogic.swift, Sun.swift    shared event adapter and timeline rendering
+  Solar/                      shared solar position, crossings, daily states, cache, event adapter and types
+  Sun.swift                   timeline rendering
   StoredPlace.swift           versioned offline location and named time-zone storage
   SunLocation.swift            shared app-group location storage (also compiled into the widget)
   LocationProvider.swift       app-only CLLocationManager wrapper + SunLocation mutation/geocoding extension
@@ -63,5 +63,5 @@ For anything interactive (taps, assertions, screenshots, logs, seeding app state
 
 - Done: CocoaPods fully removed (dead SDKs replaced with system APIs), WidgetKit widget, iOS 18 floor, SwiftUI app lifecycle (storyboards/walkthrough/Spring deleted), `UNUserNotificationCenter` + `BGAppRefreshTask`, Bus replaced by `@Observable` models, accessibility labels on main-screen buttons, Swift 6 language mode (default MainActor isolation on the app target; widget stays nonisolated), settings sheet replacing the slide-out menu (SF Symbols, system font, NavigationStack pushes; medium/large detents on a faded `.ultraThinMaterial` glass background, pushed lists use `containerBackground(.clear, for: .navigation)` to keep it), selectable timeline palettes (`SunTheme`: classic/ember/midnight/aurora/infrared, persisted in `Theme` group-defaults key; widget follows), light+dark mode (forced-light `UIUserInterfaceStyle`/`preferredColorScheme` removed). Timeline + widget keep the Muli brand font; all chrome uses the system font.
 - Remaining backlog: privacy manifest before any App Store release.
-- The widget compiles `Solar*/StoredPlace/SunLogic/SunWidgetData/SunLocation/Defaults/TimeFormatters/SunPlace/SunType/Suntime/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
+- The widget compiles `Solar/*.swift` and `StoredPlace/SunWidgetData/SunLocation/Defaults/TimeFormatters/SunPlace/NSDate/Styles/UIColor` directly — never add app-only files (Views/Models/Services/LocationProvider) to the widget target, and keep `SunLocation.swift` free of UIKit/CLLocationManager references.
 - Old Google Places/timezonedb API keys exist in git history; they are dead/revoked — do not reuse that pattern; the app needs no API keys.
