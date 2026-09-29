@@ -46,6 +46,32 @@ struct SunWidgetDataTests {
         }
     }
 
+    @Test func lightPhaseUsesLocalTimeAndRefreshesAtNoon() {
+        let now = date(hour: 10)
+        let days = SunWidgetData.days(from: now, location: coordinate, timeZone: zone)
+        let noon = days[1].localNoon
+        func phase(_ date: Date) -> String {
+            SunWidgetData.snapshot(at: date, locationName: "Vancouver", timeZone: zone, days: days).lightPhase
+        }
+        #expect(phase(noon.addingTimeInterval(-1)) == "Morning")
+        #expect(phase(noon) == "Afternoon")
+        #expect(SunWidgetData.timelineDates(from: now, days: days).contains(noon))
+        #expect(phase(date(hour: 23)) == "Night")
+        let evening = days[1].goldenHourIntervals.last!
+        #expect(phase(evening.start) == "Golden hour")
+        #expect(phase(evening.end) == "Twilight")
+    }
+
+    @Test func polarLightPhasePrioritisesGoldenHour() {
+        let pole = CLLocationCoordinate2D(latitude: 90, longitude: 0)
+        for (month, day, expected) in [(3, 25, "Golden hour"), (6, 15, "Midnight sun"), (12, 15, "Polar night")] {
+            let now = date(month, day)
+            let days = SunWidgetData.days(from: now, location: pole, timeZone: .gmt)
+            let entry = SunWidgetData.snapshot(at: now, locationName: "North Pole", timeZone: .gmt, days: days)
+            #expect(entry.lightPhase == expected)
+        }
+    }
+
     @Test func eventBoundaryAdvancesAtSunset() {
         let now = date()
         let days = SunWidgetData.days(from: now, location: coordinate, timeZone: zone)

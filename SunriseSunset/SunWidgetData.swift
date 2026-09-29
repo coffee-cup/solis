@@ -76,14 +76,18 @@ struct SunWidgetDay {
 
     let daylightIntervals: [DateInterval]
     let goldenHourIntervals: [DateInterval]
+    let localNoon: Date
 
     var daylightDuration: TimeInterval { daylightIntervals.reduce(0) { $0 + $1.duration } }
 
     init?(date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
-        guard date.timeIntervalSince1970.isFinite, let dayInterval = calendar.dateInterval(of: .day, for: date) else { return nil }
+        guard date.timeIntervalSince1970.isFinite,
+              let dayInterval = calendar.dateInterval(of: .day, for: date),
+              let noon = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: date) else { return nil }
         interval = dayInterval
+        localNoon = noon
         guard let solar = SunLogic.solarDay(date, location: location, timezone: timeZone) else { return nil }
         daylightIntervals = solar.intervals(above: .horizon)
         goldenHourIntervals = solar.intervals(between: .blue, and: .golden)
@@ -121,9 +125,9 @@ struct SunWidgetData {
     let daylight: WidgetDaylight?
     let daylightDuration: TimeInterval?
     let daylightChange: TimeInterval?
-    let isGoldenHour: Bool
     let daylightIntervals: [DateInterval]
     let skyEvents: [WidgetSkyEvent]
+    let isGoldenHour: Bool
 
     // Match the app's six-hour viewport: future above, past below, now at 0.5.
     func skyPosition(for eventDate: Date) -> Double {
@@ -147,6 +151,18 @@ struct SunWidgetData {
         case .astronomicalDusk, .middleNight, .none: "Night"
         default: "Twilight"
         }
+    }
+
+    var lightPhase: String {
+        if isGoldenHour { return "Golden hour" }
+        if daylight == .allDay { return "Midnight sun" }
+        if daylight == .allNight { return "Polar night" }
+        if isDaylight {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = timeZone
+            return calendar.component(.hour, from: date) < 12 ? "Morning" : "Afternoon"
+        }
+        return skyPhase
     }
 
     var isDaylight: Bool {
@@ -186,9 +202,9 @@ struct SunWidgetData {
                     dayInterval: today?.interval, daylight: today?.daylight,
                     daylightDuration: today?.daylightDuration,
                     daylightChange: today.flatMap { day in yesterday.map { day.daylightDuration - $0.daylightDuration } },
-                    isGoldenHour: today?.goldenHourIntervals.contains { date >= $0.start && date < $0.end } ?? false,
                     daylightIntervals: mergedIntervals(days.flatMap(\.daylightIntervals)),
-                    skyEvents: days.flatMap(\.skyEvents).sorted { $0.date < $1.date })
+                    skyEvents: days.flatMap(\.skyEvents).sorted { $0.date < $1.date },
+                    isGoldenHour: today?.goldenHourIntervals.contains { date >= $0.start && date < $0.end } ?? false)
     }
 
     static func mergedIntervals(_ intervals: [DateInterval]) -> [DateInterval] {
@@ -204,7 +220,7 @@ struct SunWidgetData {
     static func unknown(at date: Date) -> Self {
         Self(date: date, locationName: nil, timeZone: .current,
              nextEvent: nil, nextRiseOrSet: nil, sunrise: nil, sunset: nil, dayInterval: nil, daylight: nil,
-             daylightDuration: nil, daylightChange: nil, isGoldenHour: false, daylightIntervals: [], skyEvents: [])
+             daylightDuration: nil, daylightChange: nil, daylightIntervals: [], skyEvents: [], isGoldenHour: false)
     }
 
     static func days(from date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) -> [SunWidgetDay] {
@@ -224,9 +240,11 @@ struct SunWidgetData {
         var dates = stride(from: 0.0, through: 24 * 60 * 60, by: 15 * 60).map {
             now.addingTimeInterval($0)
         }
-        // Include golden-hour boundaries so the marker changes with the light.
-        dates += days.flatMap { [$0.interval.start] + $0.events.map(\.date)
-            + $0.goldenHourIntervals.flatMap { [$0.start, $0.end] } }
+        // Phase boundaries prevent stale labels and markers between regular updates.
+        dates += days.flatMap { day in
+            [day.interval.start, day.localNoon] + day.events.map(\.date)
+                + day.goldenHourIntervals.flatMap { [$0.start, $0.end] }
+        }
             .filter { $0 > now && $0 <= end }
         return Array(Set(dates)).sorted()
     }

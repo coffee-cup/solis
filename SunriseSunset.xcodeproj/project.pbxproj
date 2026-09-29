@@ -7,31 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0677149493BD4FF09FAF9A5D /* solar-coefficients-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D51DEC15631149E51674530C /* solar-coefficients-license.txt */; };
-		075B67F9B00D6EB5AE5D09B3 /* SolarPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11978BE1B5865101CF3746E /* SolarPosition.swift */; };
-		0765281BC4E87821CD4CDB1A /* SunTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFCF71ADB833C6F2070F5A7 /* SunTimelineTests.swift */; };
+		02B2EF99235BDB4665125F4A /* SolarCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13D208F09BEB12F09D75BF /* SolarCoefficients.swift */; };
 		0766453BE08DF11A201E19B7 /* SunPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C36570D1D471688001019BB /* SunPlace.swift */; };
-		12311C5F51F41F04A50CBDBE /* StoredPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A78F7E4672748AF6C3101 /* StoredPlace.swift */; };
+		0E9ECFCDD006A1DC059B525F /* solar-coefficients-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 70E79B607668ABB947EC18E7 /* solar-coefficients-license.txt */; };
+		102A5D7BA5F42D2DD28BBB60 /* Solis.icon in Resources */ = {isa = PBXBuildFile; fileRef = 11F2B36772731754B793206D /* Solis.icon */; };
 		1366C148184BDFB624578598 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F61CE976BE004D012E /* NSDate.swift */; };
+		15FE42E282BE74B4046BBB23 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718AFD7813443E825E816E4 /* SunWidgetData.swift */; };
 		1D08C72F7F3FDEEF62617817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE7CBA9AB862BFA860F55BA /* Foundation.framework */; };
+		20E2F9409EAC12CBCD99245E /* solar-coefficients-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 70E79B607668ABB947EC18E7 /* solar-coefficients-license.txt */; };
 		230AF26175B6E6B26362968D /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F31CE9712F004D012E /* Styles.swift */; };
-		23860957E032D72EB0B6AF56 /* SolarCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D7DB6A2914956580492A7E /* SolarCoefficients.swift */; };
-		240CECA68E3D0C3594D36E96 /* SolarCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC6F59F86D9457F741E90D /* SolarCalculator.swift */; };
 		25996D1618113BDB229E641B /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ABC75F23CDF0550304EF92 /* TimelineView.swift */; };
+		277C2CB72AE5525917813EBA /* SolarPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEB2D9709490399A2545EE /* SolarPosition.swift */; };
 		2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */; };
-		2F41E6FD0F1386924A12C2F3 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4853CF5B5467ABB389A3B6 /* SunWidgetData.swift */; };
+		349952C81BDDDA44D8AA0EF3 /* SunWidgetDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */; };
+		34AE8702925593421C23ADAD /* WidgetLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A200E9683543E544CAF6E8F /* WidgetLocation.swift */; };
+		3A2F4A85B4B78D64D1E36C68 /* SolarDayCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA5C0048798A6C9F1A04151 /* SolarDayCache.swift */; };
 		3B56FADAB3F72D3216B7F562 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC69F3849FE0476619A6030 /* LocationSearchView.swift */; };
+		3D80A0E732959CB9B09C9142 /* SolarCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE798E9F65C35F57EF93C7 /* SolarCalculator.swift */; };
 		439D8C02013EC9EF7E205329 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2205266CEA5B6627F0C1FF /* LocationModel.swift */; };
 		48D2BEE4C590A877365129A5 /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F11CE95783004D012E /* Suntime.swift */; };
 		4DD0CFDBA78A3D6910ADE8F7 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
-		562803562B3E23DA0297E337 /* solar-coefficients-license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D51DEC15631149E51674530C /* solar-coefficients-license.txt */; };
-		5D06F42F2BDAA522DDE1B543 /* StoredPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70A78F7E4672748AF6C3101 /* StoredPlace.swift */; };
-		68C7284F9261AAEBB4E3BA11 /* Solar in Resources */ = {isa = PBXBuildFile; fileRef = 38A88555FDE1FC70DF85E013 /* Solar */; };
-		79CDAF43A7FD78AA9687C21E /* LocationAndNotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A7A1A6A47C28E7B1C7A158 /* LocationAndNotificationTests.swift */; };
-		7AF53094A3680A8844484207 /* WidgetLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C4C8CC349873486AD6C654 /* WidgetLocation.swift */; };
+		543D9D314441872FE5260E61 /* SolarDayCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA5C0048798A6C9F1A04151 /* SolarDayCache.swift */; };
+		5F64E962F85B2AFD91C84E7A /* SunTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2A4C35131ED7EFBE54D78 /* SunTimelineTests.swift */; };
+		6ED80B7BFC00B77809CF7E6D /* ScreenshotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29E5F5DB053C6B62DA0ED7 /* ScreenshotFixture.swift */; };
+		7EC4FC6062E248B09087487C /* AppStoreScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD194B7BDC7286D0A7897418 /* AppStoreScreenshotTests.swift */; };
 		875D0F018EA86DD31B0B14F0 /* BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */; };
-		8AAC2F75295E83CEACBC23B9 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4853CF5B5467ABB389A3B6 /* SunWidgetData.swift */; };
+		8F3F94AC77403171F4230D38 /* LocationAndNotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35EA8275CF725738A6833C6 /* LocationAndNotificationTests.swift */; };
 		903779BFB71DE7562D6290A7 /* SolisWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C20A3F91D0FD5D40079F3A5 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		9C236CD81D16798300FB9985 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CD71D16798300FB9985 /* Defaults.swift */; };
@@ -59,32 +61,30 @@
 		9CE885961CEFEC260045BEFB /* SunLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE885951CEFEC260045BEFB /* SunLocation.swift */; };
 		A97C0A6AA25E5A4D93F1A978 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160A73A9443501621C6585F0 /* SettingsView.swift */; };
 		AAC4FAF18944557101AE3D05 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */; };
-		B8C38D34F44319FB5AA019E2 /* Solis.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4452B89828757E2A040246BA /* Solis.icon */; };
+		B3FBDF63054143595C7DAB17 /* StoredPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9115E2745840620C69 /* StoredPlace.swift */; };
+		B6FC6271409EEBCACB5E80CF /* SolarCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A040AEBD6A99F8E617864547 /* SolarCalculatorTests.swift */; };
+		BA48E5F7696A4283633EF8EF /* SolarCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13D208F09BEB12F09D75BF /* SolarCoefficients.swift */; };
 		BAC45D09B58BAA2C2586239F /* InfoMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */; };
 		BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815B1D03E8710036FD34 /* Muli-Light.ttf */; };
-		BE8A442C5E94038F8132EA6F /* SolarCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CD0D32AC4550AE5ED54463 /* SolarCalculatorTests.swift */; };
-		C2F81EFA2B0A73DE66376C33 /* AppStoreScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2C0B41C49AAA1852EAF42 /* AppStoreScreenshotTests.swift */; };
-		C541543E494D9BB126D1822A /* SolarDayCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E9B839FAF87F192DF6455 /* SolarDayCache.swift */; };
 		CAA38F0DCE4688D69D467481 /* SolisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0327EB706154F718A15E9BB /* SolisApp.swift */; };
 		CBBBE86F5B09D4DE5807DA08 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E259C8E739316658A5C3327 /* InfoView.swift */; };
 		D0317C49815C7271385C3E4E /* LocationSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CA23C9A6F57123E7D25BE0 /* LocationSearchModel.swift */; };
 		D076170565B3BC91A7AE6855 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3314F81CE9A723004D012E /* UIColor.swift */; };
 		D109968AF314144FC794F973 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */; };
-		D33145B91FB793ED1EBBD6B5 /* SolarCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC6F59F86D9457F741E90D /* SolarCalculator.swift */; };
-		D655016678F6F5EF2EC392DD /* SunWidgetDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F0E5383903523782B6EA /* SunWidgetDataTests.swift */; };
 		D9A845FED744919AEBB915F5 /* Muli-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CDE815C1D03E8710036FD34 /* Muli-Regular.ttf */; };
 		DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7765696F90C41EDE4C0AD8C7 /* SettingsModel.swift */; };
 		DA9E27A743466059639DD154 /* SunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BCB211D3CA6F00069BC16 /* SunType.swift */; };
 		DF75EEAD813A951B758723F8 /* SunLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */; };
 		E206695808FAF1017849DFAA /* SunPlaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE575763F936969B069E965 /* SunPlaceTests.swift */; };
+		E2F98E8C54370BE026D8A685 /* StoredPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9115E2745840620C69 /* StoredPlace.swift */; };
+		E9B32F5CB87042F30944C60E /* SolarCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE798E9F65C35F57EF93C7 /* SolarCalculator.swift */; };
 		EAB24A15FED9F76A9E01C843 /* SolisWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242A66A4072558D25ABC9DE /* SolisWidget.swift */; };
-		EBEB3B3E099AE009A23EBCA7 /* SolarCoefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D7DB6A2914956580492A7E /* SolarCoefficients.swift */; };
 		F0EA23BB4999D15E5D3A3CD9 /* TimeFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C236CDE1D169C6900FB9985 /* TimeFormatters.swift */; };
 		F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */; };
+		F6FD019B1A55D9B9587AC4F5 /* SolarPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEB2D9709490399A2545EE /* SolarPosition.swift */; };
 		F7ADFA7018FBB691E72B6390 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242E879322DD2753D25E8EFB /* RootView.swift */; };
-		F92E1467ADAD43F7851DD951 /* SolarPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11978BE1B5865101CF3746E /* SolarPosition.swift */; };
-		F988ED9D58EB4F9D678E08A3 /* ScreenshotFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235F2DA69D0D1D36ABC9C90 /* ScreenshotFixture.swift */; };
-		FEF61E3F5F9FA8EAADCA2F91 /* SolarDayCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E9B839FAF87F192DF6455 /* SolarDayCache.swift */; };
+		FF141CB0A35B7A2D0CD49200 /* SunWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718AFD7813443E825E816E4 /* SunWidgetData.swift */; };
+		FFEA212DD55A7874972963FA /* Solar in Resources */ = {isa = PBXBuildFile; fileRef = A07DDF8A9F4E733028064B99 /* Solar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,26 +126,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00A7A1A6A47C28E7B1C7A158 /* LocationAndNotificationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationAndNotificationTests.swift; sourceTree = "<group>"; };
 		04059EC3ED7F364A9EEABFAC /* InfoMenuView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoMenuView.swift; sourceTree = "<group>"; };
-		06D7DB6A2914956580492A7E /* SolarCoefficients.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCoefficients.swift; sourceTree = "<group>"; };
 		0AC69F3849FE0476619A6030 /* LocationSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
+		11F2B36772731754B793206D /* Solis.icon */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.iconcomposer.icon; name = Solis.icon; path = artwork/Solis.icon; sourceTree = "<group>"; };
 		160A73A9443501621C6585F0 /* SettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		1AE6027251CB52A1450C74C9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
 		2242A66A4072558D25ABC9DE /* SolisWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisWidget.swift; sourceTree = "<group>"; };
 		242E879322DD2753D25E8EFB /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2A200E9683543E544CAF6E8F /* WidgetLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetLocation.swift; sourceTree = "<group>"; };
 		2B2205266CEA5B6627F0C1FF /* LocationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
-		38A88555FDE1FC70DF85E013 /* Solar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Solar; path = Fixtures/Solar; sourceTree = "<group>"; };
+		2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetDataTests.swift; sourceTree = "<group>"; };
 		3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunLogicTests.swift; sourceTree = "<group>"; };
 		3E259C8E739316658A5C3327 /* InfoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		3F3E6B9115E2745840620C69 /* StoredPlace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StoredPlace.swift; sourceTree = "<group>"; };
 		3F6C1433D94FFEE08BCA501A /* SolisWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SolisWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		4452B89828757E2A040246BA /* Solis.icon */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.iconcomposer.icon; name = Solis.icon; path = artwork/Solis.icon; sourceTree = "<group>"; };
 		4AE7CBA9AB862BFA860F55BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		520E9B839FAF87F192DF6455 /* SolarDayCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarDayCache.swift; sourceTree = "<group>"; };
+		4DFEB2D9709490399A2545EE /* SolarPosition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarPosition.swift; sourceTree = "<group>"; };
 		60CA23C9A6F57123E7D25BE0 /* LocationSearchModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationSearchModel.swift; sourceTree = "<group>"; };
+		70E79B607668ABB947EC18E7 /* solar-coefficients-license.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = "solar-coefficients-license.txt"; sourceTree = "<group>"; };
 		7765696F90C41EDE4C0AD8C7 /* SettingsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		7B29E5F5DB053C6B62DA0ED7 /* ScreenshotFixture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotFixture.swift; sourceTree = "<group>"; };
 		97ABC75F23CDF0550304EF92 /* TimelineView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLogic.swift; sourceTree = "<group>"; };
 		9C236CD71D16798300FB9985 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -182,19 +184,17 @@
 		9CE575763F936969B069E965 /* SunPlaceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunPlaceTests.swift; sourceTree = "<group>"; };
 		9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunArea.swift; sourceTree = "<group>"; };
 		9CE885951CEFEC260045BEFB /* SunLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunLocation.swift; sourceTree = "<group>"; };
-		B9C4C8CC349873486AD6C654 /* WidgetLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WidgetLocation.swift; sourceTree = "<group>"; };
-		C235F2DA69D0D1D36ABC9C90 /* ScreenshotFixture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotFixture.swift; sourceTree = "<group>"; };
-		C70A78F7E4672748AF6C3101 /* StoredPlace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StoredPlace.swift; sourceTree = "<group>"; };
-		C774F0E5383903523782B6EA /* SunWidgetDataTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetDataTests.swift; sourceTree = "<group>"; };
-		CAFCF71ADB833C6F2070F5A7 /* SunTimelineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunTimelineTests.swift; sourceTree = "<group>"; };
+		A040AEBD6A99F8E617864547 /* SolarCalculatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCalculatorTests.swift; sourceTree = "<group>"; };
+		A07DDF8A9F4E733028064B99 /* Solar */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Solar; path = Fixtures/Solar; sourceTree = "<group>"; };
+		B35EA8275CF725738A6833C6 /* LocationAndNotificationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationAndNotificationTests.swift; sourceTree = "<group>"; };
+		B8E2A4C35131ED7EFBE54D78 /* SunTimelineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunTimelineTests.swift; sourceTree = "<group>"; };
+		BDA5C0048798A6C9F1A04151 /* SolarDayCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarDayCache.swift; sourceTree = "<group>"; };
 		CD058FA461B9EFA02E78BDBA /* BackgroundRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackgroundRefresh.swift; sourceTree = "<group>"; };
-		D11978BE1B5865101CF3746E /* SolarPosition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarPosition.swift; sourceTree = "<group>"; };
-		D2CC6F59F86D9457F741E90D /* SolarCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCalculator.swift; sourceTree = "<group>"; };
-		D51DEC15631149E51674530C /* solar-coefficients-license.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = "solar-coefficients-license.txt"; sourceTree = "<group>"; };
-		D8C2C0B41C49AAA1852EAF42 /* AppStoreScreenshotTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppStoreScreenshotTests.swift; sourceTree = "<group>"; };
-		EF4853CF5B5467ABB389A3B6 /* SunWidgetData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetData.swift; sourceTree = "<group>"; };
+		DD194B7BDC7286D0A7897418 /* AppStoreScreenshotTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppStoreScreenshotTests.swift; sourceTree = "<group>"; };
+		E718AFD7813443E825E816E4 /* SunWidgetData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SunWidgetData.swift; sourceTree = "<group>"; };
+		EB13D208F09BEB12F09D75BF /* SolarCoefficients.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCoefficients.swift; sourceTree = "<group>"; };
+		EEEE798E9F65C35F57EF93C7 /* SolarCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCalculator.swift; sourceTree = "<group>"; };
 		F0327EB706154F718A15E9BB /* SolisApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolisApp.swift; sourceTree = "<group>"; };
-		F9CD0D32AC4550AE5ED54463 /* SolarCalculatorTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SolarCalculatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +230,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17C82090F7E249E38EE7F34F /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+				EEEE798E9F65C35F57EF93C7 /* SolarCalculator.swift */,
+				EB13D208F09BEB12F09D75BF /* SolarCoefficients.swift */,
+				BDA5C0048798A6C9F1A04151 /* SolarDayCache.swift */,
+				4DFEB2D9709490399A2545EE /* SolarPosition.swift */,
+				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
+				9C3314F11CE95783004D012E /* Suntime.swift */,
+				9C6BCB211D3CA6F00069BC16 /* SunType.swift */,
+			);
+			name = Solar;
+			path = Solar;
+			sourceTree = "<group>";
+		};
 		549F7C8318401BF038959E6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,15 +266,6 @@
 				94A04458970CE1F63678EFB6 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6CE84E11F04E0F5A7DF8A17D /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				D51DEC15631149E51674530C /* solar-coefficients-license.txt */,
-			);
-			name = Documentation;
-			path = docs;
 			sourceTree = "<group>";
 		};
 		75F0793B1B4C32E16BD23D3A /* Models */ = {
@@ -319,11 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				9CE885951CEFEC260045BEFB /* SunLocation.swift */,
-				9C3314F11CE95783004D012E /* Suntime.swift */,
 				9CBB09AD1CED6D1000F344C4 /* Sun.swift */,
 				9C485AB01CED7E130086B22E /* Sunline.swift */,
-				9C20A3F81D0FD5D40079F3A5 /* SunLogic.swift */,
-				9C6BCB211D3CA6F00069BC16 /* SunType.swift */,
 				9C36570D1D471688001019BB /* SunPlace.swift */,
 				9CE6F8DD1D56E2F300CD5680 /* SunArea.swift */,
 			);
@@ -336,7 +339,7 @@
 				9CB5F24E1D167857005F4E10 /* SolisWidget.entitlements */,
 				9C8DFA5E1D1673DF00353D8C /* Info.plist */,
 				2242A66A4072558D25ABC9DE /* SolisWidget.swift */,
-				B9C4C8CC349873486AD6C654 /* WidgetLocation.swift */,
+				2A200E9683543E544CAF6E8F /* WidgetLocation.swift */,
 			);
 			path = SolisWidget;
 			sourceTree = "<group>";
@@ -350,8 +353,8 @@
 				9C8DFA581D1673DF00353D8C /* SolisWidget */,
 				9CB37BE61CE844400080B5B1 /* Products */,
 				69BBFC24078540B1D3E7C31D /* Frameworks */,
-				4452B89828757E2A040246BA /* Solis.icon */,
-				6CE84E11F04E0F5A7DF8A17D /* Documentation */,
+				11F2B36772731754B793206D /* Solis.icon */,
+				F5CDA1BFDB3F844B250790AB /* Documentation */,
 			);
 			sourceTree = "<group>";
 		};
@@ -384,20 +387,16 @@
 				9C20A3F61D0FD3AE0079F3A5 /* Playground */,
 				9C485AB21CED807A0086B22E /* SunStuff */,
 				9C13350D1D1529A1004B3F1B /* ViewControllers */,
-				CA9CEEEFB9E17F518EAF1CFA /* EDSunriseSet */,
 				D72A469B93F0784C99D7C91D /* Services */,
 				549F7C8318401BF038959E6A /* Views */,
 				75F0793B1B4C32E16BD23D3A /* Models */,
 				83D2B115228232B0807BEA8C /* Timeline */,
 				F0327EB706154F718A15E9BB /* SolisApp.swift */,
 				3CD5CC78BCDA3AB2EC6BB260 /* LocationProvider.swift */,
-				C235F2DA69D0D1D36ABC9C90 /* ScreenshotFixture.swift */,
-				EF4853CF5B5467ABB389A3B6 /* SunWidgetData.swift */,
-				06D7DB6A2914956580492A7E /* SolarCoefficients.swift */,
-				D11978BE1B5865101CF3746E /* SolarPosition.swift */,
-				D2CC6F59F86D9457F741E90D /* SolarCalculator.swift */,
-				520E9B839FAF87F192DF6455 /* SolarDayCache.swift */,
-				C70A78F7E4672748AF6C3101 /* StoredPlace.swift */,
+				E718AFD7813443E825E816E4 /* SunWidgetData.swift */,
+				3F3E6B9115E2745840620C69 /* StoredPlace.swift */,
+				17C82090F7E249E38EE7F34F /* Solar */,
+				7B29E5F5DB053C6B62DA0ED7 /* ScreenshotFixture.swift */,
 			);
 			path = SunriseSunset;
 			sourceTree = "<group>";
@@ -409,11 +408,11 @@
 				3E1FC550F22BF6F9896C0808 /* SunLogicTests.swift */,
 				18A1F502CB945B2DCE88EC0C /* DateExtensionsTests.swift */,
 				9CE575763F936969B069E965 /* SunPlaceTests.swift */,
-				C774F0E5383903523782B6EA /* SunWidgetDataTests.swift */,
-				F9CD0D32AC4550AE5ED54463 /* SolarCalculatorTests.swift */,
-				38A88555FDE1FC70DF85E013 /* Solar */,
-				00A7A1A6A47C28E7B1C7A158 /* LocationAndNotificationTests.swift */,
-				CAFCF71ADB833C6F2070F5A7 /* SunTimelineTests.swift */,
+				2C76DDA09A699FC42DBA9B69 /* SunWidgetDataTests.swift */,
+				A040AEBD6A99F8E617864547 /* SolarCalculatorTests.swift */,
+				B35EA8275CF725738A6833C6 /* LocationAndNotificationTests.swift */,
+				A07DDF8A9F4E733028064B99 /* Solar */,
+				B8E2A4C35131ED7EFBE54D78 /* SunTimelineTests.swift */,
 			);
 			path = SunriseSunsetTests;
 			sourceTree = "<group>";
@@ -423,7 +422,7 @@
 			children = (
 				9CB37C081CE844400080B5B1 /* SunriseSunsetUITests.swift */,
 				9CB37C0A1CE844400080B5B1 /* Info.plist */,
-				D8C2C0B41C49AAA1852EAF42 /* AppStoreScreenshotTests.swift */,
+				DD194B7BDC7286D0A7897418 /* AppStoreScreenshotTests.swift */,
 			);
 			path = SunriseSunsetUITests;
 			sourceTree = "<group>";
@@ -437,13 +436,6 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		CA9CEEEFB9E17F518EAF1CFA /* EDSunriseSet */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EDSunriseSet;
-			sourceTree = "<group>";
-		};
 		D72A469B93F0784C99D7C91D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +444,15 @@
 			);
 			name = Services;
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F5CDA1BFDB3F844B250790AB /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				70E79B607668ABB947EC18E7 /* solar-coefficients-license.txt */,
+			);
+			name = Documentation;
+			path = docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -598,8 +599,8 @@
 				9CB37BF01CE844400080B5B1 /* Assets.xcassets in Resources */,
 				9CDE815D1D03E8710036FD34 /* Muli-Light.ttf in Resources */,
 				9CDE815E1D03E8710036FD34 /* Muli-Regular.ttf in Resources */,
-				B8C38D34F44319FB5AA019E2 /* Solis.icon in Resources */,
-				562803562B3E23DA0297E337 /* solar-coefficients-license.txt in Resources */,
+				102A5D7BA5F42D2DD28BBB60 /* Solis.icon in Resources */,
+				20E2F9409EAC12CBCD99245E /* solar-coefficients-license.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,7 +608,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68C7284F9261AAEBB4E3BA11 /* Solar in Resources */,
+				FFEA212DD55A7874972963FA /* Solar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +625,7 @@
 			files = (
 				BB8B8A3C984306B35BD1F6E7 /* Muli-Light.ttf in Resources */,
 				D9A845FED744919AEBB915F5 /* Muli-Regular.ttf in Resources */,
-				0677149493BD4FF09FAF9A5D /* solar-coefficients-license.txt in Resources */,
+				0E9ECFCDD006A1DC059B525F /* solar-coefficients-license.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,13 +668,13 @@
 				DA34A5D460BC99BFB3350109 /* SettingsModel.swift in Sources */,
 				25996D1618113BDB229E641B /* TimelineView.swift in Sources */,
 				A97C0A6AA25E5A4D93F1A978 /* SettingsView.swift in Sources */,
-				F988ED9D58EB4F9D678E08A3 /* ScreenshotFixture.swift in Sources */,
-				8AAC2F75295E83CEACBC23B9 /* SunWidgetData.swift in Sources */,
-				EBEB3B3E099AE009A23EBCA7 /* SolarCoefficients.swift in Sources */,
-				F92E1467ADAD43F7851DD951 /* SolarPosition.swift in Sources */,
-				D33145B91FB793ED1EBBD6B5 /* SolarCalculator.swift in Sources */,
-				FEF61E3F5F9FA8EAADCA2F91 /* SolarDayCache.swift in Sources */,
-				12311C5F51F41F04A50CBDBE /* StoredPlace.swift in Sources */,
+				15FE42E282BE74B4046BBB23 /* SunWidgetData.swift in Sources */,
+				BA48E5F7696A4283633EF8EF /* SolarCoefficients.swift in Sources */,
+				277C2CB72AE5525917813EBA /* SolarPosition.swift in Sources */,
+				3D80A0E732959CB9B09C9142 /* SolarCalculator.swift in Sources */,
+				543D9D314441872FE5260E61 /* SolarDayCache.swift in Sources */,
+				E2F98E8C54370BE026D8A685 /* StoredPlace.swift in Sources */,
+				6ED80B7BFC00B77809CF7E6D /* ScreenshotFixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,10 +685,10 @@
 				2CED5A7A017C8560F1FC5820 /* SunLogicTests.swift in Sources */,
 				F389B4709AFBAA446D5EB9F9 /* DateExtensionsTests.swift in Sources */,
 				E206695808FAF1017849DFAA /* SunPlaceTests.swift in Sources */,
-				D655016678F6F5EF2EC392DD /* SunWidgetDataTests.swift in Sources */,
-				BE8A442C5E94038F8132EA6F /* SolarCalculatorTests.swift in Sources */,
-				79CDAF43A7FD78AA9687C21E /* LocationAndNotificationTests.swift in Sources */,
-				0765281BC4E87821CD4CDB1A /* SunTimelineTests.swift in Sources */,
+				349952C81BDDDA44D8AA0EF3 /* SunWidgetDataTests.swift in Sources */,
+				B6FC6271409EEBCACB5E80CF /* SolarCalculatorTests.swift in Sources */,
+				8F3F94AC77403171F4230D38 /* LocationAndNotificationTests.swift in Sources */,
+				5F64E962F85B2AFD91C84E7A /* SunTimelineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +697,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CB37C091CE844400080B5B1 /* SunriseSunsetUITests.swift in Sources */,
-				C2F81EFA2B0A73DE66376C33 /* AppStoreScreenshotTests.swift in Sources */,
+				7EC4FC6062E248B09087487C /* AppStoreScreenshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,13 +716,13 @@
 				0766453BE08DF11A201E19B7 /* SunPlace.swift in Sources */,
 				DA9E27A743466059639DD154 /* SunType.swift in Sources */,
 				4A870F317F5B472ACD5FDABB /* Suntime.swift in Sources */,
-				2F41E6FD0F1386924A12C2F3 /* SunWidgetData.swift in Sources */,
-				7AF53094A3680A8844484207 /* WidgetLocation.swift in Sources */,
-				23860957E032D72EB0B6AF56 /* SolarCoefficients.swift in Sources */,
-				075B67F9B00D6EB5AE5D09B3 /* SolarPosition.swift in Sources */,
-				240CECA68E3D0C3594D36E96 /* SolarCalculator.swift in Sources */,
-				C541543E494D9BB126D1822A /* SolarDayCache.swift in Sources */,
-				5D06F42F2BDAA522DDE1B543 /* StoredPlace.swift in Sources */,
+				FF141CB0A35B7A2D0CD49200 /* SunWidgetData.swift in Sources */,
+				34AE8702925593421C23ADAD /* WidgetLocation.swift in Sources */,
+				02B2EF99235BDB4665125F4A /* SolarCoefficients.swift in Sources */,
+				F6FD019B1A55D9B9587AC4F5 /* SolarPosition.swift in Sources */,
+				E9B32F5CB87042F30944C60E /* SolarCalculator.swift in Sources */,
+				3A2F4A85B4B78D64D1E36C68 /* SolarDayCache.swift in Sources */,
+				B3FBDF63054143595C7DAB17 /* StoredPlace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -317,13 +317,21 @@ enum SunWidgetStyle { case clock, countdown, sunline, now }
 
 struct NowContent: View {
     let data: SunWidgetData
+    @Environment(\.widgetRenderingMode) private var renderingMode
+    @Environment(\.solisWidgetTheme) private var theme
+
+    private var markerColour: Color {
+        renderingMode == .fullColor && theme == .classic && data.isGoldenHour
+            ? Color(theme.palette.goldenHour.withAlphaComponent(1)) : .white
+    }
 
     var body: some View {
         if let location = data.locationName {
             ZStack(alignment: .leading) {
                 VStack(alignment: .leading, spacing: 5) {
                     WidgetLocationLabel(name: location)
-                    Text(data.skyPhase).font(muli(24)).lineLimit(1).minimumScaleFactor(0.8)
+                        .padding(.bottom, 7)
+                    Text(data.lightPhase).font(muli(24)).lineLimit(1).minimumScaleFactor(0.7)
                     Spacer(minLength: 28)
                     if let event = data.nextEvent {
                         Text(event.name).font(.system(size: 12, weight: .medium))
@@ -336,7 +344,7 @@ struct NowContent: View {
                 }
                 HStack(spacing: 8) {
                     Rectangle().fill(.white.opacity(0.65)).frame(height: 1)
-                    Circle().frame(width: 5, height: 5)
+                    Circle().fill(markerColour).frame(width: 5, height: 5)
                 }
                 .widgetAccentable()
                 .accessibilityHidden(true)
