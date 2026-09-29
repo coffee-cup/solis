@@ -10,7 +10,7 @@ struct SolisApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var location = LocationModel()
-    @State private var settings = SettingsModel()
+    @State private var settings: SettingsModel
 
     init() {
         Defaults.defaults.register(defaults: [
@@ -26,9 +26,12 @@ struct SolisApp: App {
             DefaultKey.theme.description: SunTheme.classic.rawValue,
         ])
 
+        ScreenshotFixture.prepare()
+        _settings = State(initialValue: SettingsModel())
         BackgroundRefresh.register()
 
         Task {
+            guard !ScreenshotFixture.isEnabled else { return }
             await NotificationScheduler.reschedule()
         }
     }
@@ -40,7 +43,7 @@ struct SolisApp: App {
                 .environment(settings)
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .background {
+            if phase == .background && !ScreenshotFixture.isEnabled {
                 BackgroundRefresh.schedule()
             }
         }

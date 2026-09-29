@@ -14,6 +14,38 @@ struct SunWidgetDataTests {
         return calendar.date(from: DateComponents(year: 2026, month: month, day: day, hour: hour))!
     }
 
+    @Test func goldenHourMarkerUsesSolarIntervalsAndUpdatesAtBoundaries() throws {
+        let now = date(hour: 0)
+        let days = SunWidgetData.days(from: now, location: coordinate, timeZone: zone)
+        let today = try #require(days.first { $0.interval.start == now })
+        #expect(today.goldenHourIntervals.count == 2)
+        let updates = SunWidgetData.timelineDates(from: now, days: days)
+        for interval in today.goldenHourIntervals {
+            func snapshot(_ date: Date) -> SunWidgetData {
+                SunWidgetData.snapshot(at: date, locationName: "Vancouver", timeZone: zone, days: days)
+            }
+            #expect(!snapshot(interval.start.addingTimeInterval(-1)).isGoldenHour)
+            #expect(snapshot(interval.start).isGoldenHour)
+            #expect(snapshot(interval.end.addingTimeInterval(-1)).isGoldenHour)
+            #expect(!snapshot(interval.end).isGoldenHour)
+            #expect(updates.contains(interval.start))
+            #expect(updates.contains(interval.end))
+        }
+        #expect(!SunWidgetData.unknown(at: now).isGoldenHour)
+    }
+
+    @Test func polarGoldenHourDoesNotRequireSunriseOrSunset() throws {
+        let pole = CLLocationCoordinate2D(latitude: 90, longitude: 0)
+        for (month, day, expected) in [(3, 25, true), (6, 15, false), (12, 15, false)] {
+            let now = date(month, day)
+            let days = SunWidgetData.days(from: now, location: pole, timeZone: .gmt)
+            let entry = SunWidgetData.snapshot(at: now, locationName: "North Pole", timeZone: .gmt, days: days)
+            #expect(entry.isGoldenHour == expected)
+            #expect(entry.sunrise == nil)
+            #expect(entry.sunset == nil)
+        }
+    }
+
     @Test func eventBoundaryAdvancesAtSunset() {
         let now = date()
         let days = SunWidgetData.days(from: now, location: coordinate, timeZone: zone)
@@ -94,7 +126,7 @@ struct SunWidgetDataTests {
     @Test func daylightWidthVariesByLatitude() {
         let now = date(6, 15)
         func daylightFraction(_ coordinate: CLLocationCoordinate2D) -> Double {
-            let day = SunWidgetDay(date: now, location: coordinate, timeZone: .gmt)
+            let day = SunWidgetDay(date: now, location: coordinate, timeZone: .gmt)!
             return day.sunset!.timeIntervalSince(day.sunrise!) / day.interval.duration
         }
         let equator = daylightFraction(CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -110,7 +142,8 @@ struct SunWidgetDataTests {
         calendar.timeZone = reykjavik
         let now = calendar.date(from: DateComponents(year: 2026, month: 6, day: 21, hour: 0))!
         let days = SunWidgetData.days(from: now, location: CLLocationCoordinate2D(latitude: 64.1466, longitude: -21.9426), timeZone: reykjavik)
-        #expect(days[0].sunset! > now)
+        #expect(days[0].sunset! < now)
+        #expect(days[1].sunset! > now)
         #expect(days[1].daylight == .normal)
         let entry = SunWidgetData.snapshot(at: now, locationName: "Reykjavík", timeZone: reykjavik, days: days)
         #expect(entry.isDaylight)
@@ -203,4 +236,16 @@ struct SunWidgetDataTests {
         #expect(SunWidgetPlace.saved(in: defaults)?.latitude == 0)
         #expect(SunWidgetPlace.saved(in: defaults, currentLocation: true)?.name == "Vancouver")
     }
+    @Test func aSingleSunriseDoesNotBecomePolarNight() throws {
+        let start = Date(timeIntervalSince1970: 1_781_481_600)
+        let day = try #require(SunWidgetDay(date: start,
+            location: CLLocationCoordinate2D(latitude: 64.1466, longitude: -21.9426),
+            timeZone: TimeZone(identifier: "Atlantic/Reykjavik")!))
+        #expect(day.sunrise != nil && day.sunset == nil)
+        #expect(day.daylight == .normal)
+        #expect(day.daylightDuration > 20*3600 && day.daylightDuration < day.interval.duration)
+        #expect(day.daylightIntervals.last?.end == day.interval.end)
+        #expect(day.events.filter { $0.isRiseOrSet }.count == 1)
+    }
+
 }

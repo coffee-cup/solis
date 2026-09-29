@@ -159,6 +159,12 @@ struct SunlineGraphic: View {
         renderingMode == .fullColor ? Color(theme.palette.riseset) : .white
     }
 
+    private var markerColour: Color {
+        guard renderingMode == .fullColor, theme == .classic,
+              data.isDaylight, data.isGoldenHour else { return accent }
+        return Color(theme.palette.goldenHour.withAlphaComponent(1))
+    }
+
     var body: some View {
         GeometryReader { geometry in
             let rect = CGRect(x: 7, y: 8, width: max(0, geometry.size.width - 14),
@@ -175,16 +181,16 @@ struct SunlineGraphic: View {
                 .stroke(accent, style: StrokeStyle(lineWidth: 2, lineCap: .round))
                 .frame(width: rect.width, height: rect.height).position(x: rect.midX, y: rect.midY)
                 .widgetAccentable()
-            Circle().fill(accent.opacity(0.16)).frame(width: 22, height: 22).position(point)
+            Circle().fill(markerColour.opacity(0.16)).frame(width: 22, height: 22).position(point)
             if data.isDaylight {
-                Circle().fill(accent).frame(width: 8, height: 8).position(point).widgetAccentable()
+                Circle().fill(markerColour).frame(width: 8, height: 8).position(point).widgetAccentable()
             } else {
                 Image(systemName: "moon.fill").font(.system(size: 10))
                     .foregroundStyle(accent).position(point).widgetAccentable()
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(data.isDaylight ? "Sun above the horizon" : "Sun below the horizon")
+        .accessibilityLabel(data.isDaylight ? (data.isGoldenHour ? "Sun above the horizon, golden hour" : "Sun above the horizon") : "Sun below the horizon")
         .accessibilityValue("\(widgetTime(data.date, zone: data.timeZone)) local time")
     }
 }
@@ -232,15 +238,23 @@ struct SunlineContent: View {
                 .font(.system(size: 8, weight: .medium).monospacedDigit())
                 .opacity(0.65).accessibilityHidden(true)
                 .padding(.bottom, 5)
-                if let sunrise = data.sunrise, let sunset = data.sunset {
+                if data.sunrise != nil || data.sunset != nil {
                     HStack(alignment: .top) {
-                        endpoint("Sunrise", date: sunrise, alignment: .leading)
+                        if let sunrise = data.sunrise {
+                            endpoint("Sunrise", date: sunrise, alignment: .leading)
+                        } else {
+                            Text("No sunrise today").font(.system(size: 11))
+                        }
                         Spacer(minLength: 4)
                         if family == .systemMedium {
                             daylightSummary
                             Spacer(minLength: 4)
                         }
-                        endpoint("Sunset", date: sunset, alignment: .trailing)
+                        if let sunset = data.sunset {
+                            endpoint("Sunset", date: sunset, alignment: .trailing)
+                        } else {
+                            Text("No sunset today").font(.system(size: 11))
+                        }
                     }
                     if family == .systemSmall {
                         Text("\(daylightTotal) daylight")
@@ -316,7 +330,7 @@ struct NowContent: View {
                         Text("in \(Text(event.date, style: .relative))")
                             .font(muli(15)).lineLimit(1).minimumScaleFactor(0.7)
                     } else {
-                        Text(data.daylight == .allDay ? "24h of daylight" : "No daylight today")
+                        Text(data.daylight == .allDay ? "Daylight all day" : data.daylight == .allNight ? "No daylight today" : "No upcoming event")
                             .font(.system(size: 12))
                     }
                 }
@@ -373,10 +387,8 @@ struct EventContent: View {
                             SunlineGraphic(data: data)
                                 .frame(height: 50)
                         }
-                        if let sunrise = data.sunrise, let sunset = data.sunset {
-                            summaryRow("sunrise", date: sunrise)
-                            summaryRow("sunset", date: sunset)
-                        }
+                        if let sunrise = data.sunrise { summaryRow("sunrise", date: sunrise) }
+                        if let sunset = data.sunset { summaryRow("sunset", date: sunset) }
                     }
                     .frame(width: 100)
                     .accessibilityElement(children: .combine)

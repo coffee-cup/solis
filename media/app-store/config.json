@@ -1,0 +1,48 @@
+{
+  "locale": "en-CA",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-5",
+  "devices": [
+    {
+      "id": "iphone-6.9",
+      "name": "iPhone 6.9-inch",
+      "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max",
+      "width": 1320,
+      "height": 2868,
+      "frame": "iphone"
+    }
+  ],
+  "screens": [
+    {
+      "id": "01-timeline",
+      "headline": "Sunrise, sunset\nand twilight",
+      "gradient": [
+        "24224F",
+        "514BA5"
+      ]
+    },
+    {
+      "id": "02-themes",
+      "headline": "Colour\nthemes",
+      "gradient": [
+        "3B234A",
+        "985B72"
+      ]
+    },
+    {
+      "id": "03-locations",
+      "headline": "Save favourite\nlocations",
+      "gradient": [
+        "17394B",
+        "347F88"
+      ]
+    },
+    {
+      "id": "04-alerts",
+      "headline": "Sunrise and\nsunset alerts",
+      "gradient": [
+        "322547",
+        "805B81"
+      ]
+    }
+  ]
+}

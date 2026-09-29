@@ -115,7 +115,7 @@ class Sunline: UIView {
     // Animates the items in the sunline to avoid collision with now line
     // Returns whether there will be a collision with now line
     func animateAvoidCollision(_ offset: TimeInterval) -> Bool {
-        let offsetTime = Date().addingTimeInterval(offset)
+        let offsetTime = ScreenshotFixture.now.addingTimeInterval(offset)
         let difference = abs(offsetTime.getDifferenceInMinutes(time))
         
         if difference < CollidingMinutesThreshhold {

@@ -39,16 +39,9 @@ struct SunWidgetPlace: Codable, Hashable, Sendable {
 
     static func saved(in defaults: UserDefaults, currentLocation: Bool? = nil) -> Self? {
         let current = currentLocation ?? (defaults.object(forKey: "CurrentLocation") as? Bool ?? true)
-        let prefix = current ? "CurrentLocation" : "Location"
-        guard let latitude = defaults.object(forKey: prefix + "Latitude") as? Double,
-              let longitude = defaults.object(forKey: prefix + "Longitude") as? Double,
-              CLLocationCoordinate2DIsValid(CLLocationCoordinate2D(latitude: latitude, longitude: longitude)) else {
-            return nil
-        }
-        let zone = current ? TimeZone.current :
-            (TimeZone(secondsFromGMT: defaults.integer(forKey: "LocationTimeZoneOffset")) ?? .current)
-        return Self(name: defaults.string(forKey: prefix + "Name") ?? "Selected location",
-                    detail: "", latitude: latitude, longitude: longitude, timeZoneIdentifier: zone.identifier)
+        guard let place = StoredPlace.saved(in: defaults, current: current) else { return nil }
+        let zone = current ? TimeZone.current : place.timeZone
+        return Self(name: place.name, detail: place.detail, latitude: place.latitude, longitude: place.longitude, timeZoneIdentifier: zone.identifier)
     }
 }
 
@@ -81,69 +74,39 @@ struct SunWidgetDay {
     let daylight: WidgetDaylight
     let skyEvents: [WidgetSkyEvent]
 
-    var daylightDuration: TimeInterval {
-        switch daylight {
-        case .allDay: 24 * 60 * 60
-        case .allNight: 0
-        case .normal: sunset!.timeIntervalSince(sunrise!)
-        }
-    }
+    let daylightIntervals: [DateInterval]
+    let goldenHourIntervals: [DateInterval]
 
-    var daylightInterval: DateInterval? {
-        switch daylight {
-        case .allDay: interval
-        case .allNight: nil
-        case .normal: DateInterval(start: sunrise!, end: sunset!)
-        }
-    }
+    var daylightDuration: TimeInterval { daylightIntervals.reduce(0) { $0 + $1.duration } }
 
-    init(date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) {
+    init?(date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
-        interval = calendar.dateInterval(of: .day, for: date)!
-        let times = SunLogic.calculateTimesForDate(
-            date, location: location, timezone: timeZone, day: .today)
-        let rise = times.first { $0.type == .sunrise }!.date!
-        let set = times.first { $0.type == .sunset }!.date!
-        let duration = set.timeIntervalSince(rise)
-        daylight = duration >= 86_399 ? .allDay : (duration <= 1 ? .allNight : .normal)
-        let overnightType: SunType = daylight == .allDay ? .sunrise :
-            [(SunType.civilDawn, SunType.civilDusk), (.nauticalDawn, .nauticalDusk),
-             (.astronomicalDawn, .astronomicalDusk)].first { start, end in
-                let first = times.first { $0.type == start }!.date!
-                let last = times.first { $0.type == end }!.date!
-                return last.timeIntervalSince(first) >= 86_399
-            }?.0 ?? .middleNight
-        // The library uses a zero-length pair for continuous night and a
-        // 24-hour pair for continuous day. Neither is an actual event.
-        for (start, end) in [(SunType.sunrise, SunType.sunset), (.civilDawn, .civilDusk),
-                             (.nauticalDawn, .nauticalDusk), (.astronomicalDawn, .astronomicalDusk)] {
-            if let first = times.first(where: { $0.type == start }),
-               let last = times.first(where: { $0.type == end }) {
-                let span = abs(last.date.timeIntervalSince(first.date))
-                if span <= 1 || span >= 86_399 {
-                    first.neverHappens = true
-                    last.neverHappens = true
-                }
-            }
+        guard date.timeIntervalSince1970.isFinite, let dayInterval = calendar.dateInterval(of: .day, for: date) else { return nil }
+        interval = dayInterval
+        guard let solar = SunLogic.solarDay(date, location: location, timezone: timeZone) else { return nil }
+        daylightIntervals = solar.intervals(above: .horizon)
+        goldenHourIntervals = solar.intervals(between: .blue, and: .golden)
+        switch solar.state(at: .horizon) {
+        case .above: daylight = .allDay
+        case .below: daylight = .allNight
+        case .crossing: daylight = .normal
         }
+        let times = SunLogic.times(for: solar, day: .today)
         sunrise = SunLogic.getSunType(times, type: .sunrise)?.date
         sunset = SunLogic.getSunType(times, type: .sunset)?.date
-        // A solar day can cross local midnight without changing the current phase.
-        skyEvents = (daylight == .normal ? [] : [WidgetSkyEvent(date: interval.start, type: overnightType)])
-            + times.filter { !$0.neverHappens }.map { WidgetSkyEvent(date: $0.date, type: $0.type) }
-
-        let firstLight = SunLogic.getFirstSunType(
-            times, sunTypes: [.astronomicalDawn, .nauticalDawn, .civilDawn])
-        let lastLight = SunLogic.getFirstSunType(
-            times, sunTypes: [.astronomicalDusk, .nauticalDusk, .civilDusk])
-        events = [
-            firstLight.map { WidgetSunEvent(name: "First light", date: $0.date, symbol: "sun.horizon", isRiseOrSet: false) },
-            sunrise.map { WidgetSunEvent(name: "Sunrise", date: $0, symbol: "sunrise", isRiseOrSet: true) },
-            sunset.map { WidgetSunEvent(name: "Sunset", date: $0, symbol: "sunset", isRiseOrSet: true) },
-            lastLight.map { WidgetSunEvent(name: "Last light", date: $0.date, symbol: "moon.stars", isRiseOrSet: false) }
-        ].compactMap { $0 }.sorted { $0.date < $1.date }
+        skyEvents = [WidgetSkyEvent(date: interval.start, type: SunLogic.skyType(altitude: solar.initialAltitude))]
+            + times.map { WidgetSkyEvent(date: $0.date, type: $0.type) }
+            + [WidgetSkyEvent(date: interval.end, type: SunLogic.skyType(altitude: SolarPosition.altitude(at: interval.end, latitude: location.latitude, longitude: location.longitude)))]
+        let selected = SunLogic.lightEvents(times, morning: true) + SunLogic.lightEvents(times, morning: false)
+            + times.filter { $0.type == .sunrise || $0.type == .sunset }
+        events = selected.map { time in
+            WidgetSunEvent(name: time.type == .sunrise ? "Sunrise" : time.type == .sunset ? "Sunset" : time.type.morning ? "First light" : "Last light",
+                           date: time.date, symbol: time.type == .sunrise ? "sunrise" : time.type == .sunset ? "sunset" : time.type.morning ? "sun.horizon" : "moon.stars",
+                           isRiseOrSet: time.type == .sunrise || time.type == .sunset)
+        }.sorted { $0.date < $1.date }
     }
+
 }
 
 struct SunWidgetData {
@@ -158,6 +121,7 @@ struct SunWidgetData {
     let daylight: WidgetDaylight?
     let daylightDuration: TimeInterval?
     let daylightChange: TimeInterval?
+    let isGoldenHour: Bool
     let daylightIntervals: [DateInterval]
     let skyEvents: [WidgetSkyEvent]
 
@@ -212,6 +176,7 @@ struct SunWidgetData {
     }
 
     static func snapshot(at date: Date, locationName: String, timeZone: TimeZone, days: [SunWidgetDay]) -> Self {
+        guard !days.isEmpty else { return .unknown(at: date) }
         let today = days.first { date >= $0.interval.start && date < $0.interval.end }
         let yesterday = days.first { $0.interval.end == today?.interval.start }
         let future = days.flatMap(\.events).filter { $0.date > date }.sorted { $0.date < $1.date }
@@ -221,25 +186,36 @@ struct SunWidgetData {
                     dayInterval: today?.interval, daylight: today?.daylight,
                     daylightDuration: today?.daylightDuration,
                     daylightChange: today.flatMap { day in yesterday.map { day.daylightDuration - $0.daylightDuration } },
-                    daylightIntervals: days.compactMap(\.daylightInterval),
+                    isGoldenHour: today?.goldenHourIntervals.contains { date >= $0.start && date < $0.end } ?? false,
+                    daylightIntervals: mergedIntervals(days.flatMap(\.daylightIntervals)),
                     skyEvents: days.flatMap(\.skyEvents).sorted { $0.date < $1.date })
+    }
+
+    static func mergedIntervals(_ intervals: [DateInterval]) -> [DateInterval] {
+        var result: [DateInterval] = []
+        for interval in intervals.sorted(by: { $0.start < $1.start }) {
+            if let previous = result.last, previous.end >= interval.start {
+                result[result.count-1] = DateInterval(start: previous.start, end: max(previous.end, interval.end))
+            } else { result.append(interval) }
+        }
+        return result
     }
 
     static func unknown(at date: Date) -> Self {
         Self(date: date, locationName: nil, timeZone: .current,
              nextEvent: nil, nextRiseOrSet: nil, sunrise: nil, sunset: nil, dayInterval: nil, daylight: nil,
-             daylightDuration: nil, daylightChange: nil, daylightIntervals: [], skyEvents: [])
+             daylightDuration: nil, daylightChange: nil, isGoldenHour: false, daylightIntervals: [], skyEvents: [])
     }
 
     static func days(from date: Date, location: CLLocationCoordinate2D, timeZone: TimeZone) -> [SunWidgetDay] {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone
+        guard date.timeIntervalSince1970.isFinite else { return [] }
         let start = calendar.startOfDay(for: date)
         // Adjacent days supply gradient stops and keep a next event in the final entry.
         return (-1..<3).compactMap { offset in
-            calendar.date(byAdding: .day, value: offset, to: start).map {
-                SunWidgetDay(date: $0, location: location, timeZone: timeZone)
-            }
+            guard let date = calendar.date(byAdding: .day, value: offset, to: start) else { return nil }
+            return SunWidgetDay(date: date, location: location, timeZone: timeZone)
         }
     }
 
@@ -248,8 +224,9 @@ struct SunWidgetData {
         var dates = stride(from: 0.0, through: 24 * 60 * 60, by: 15 * 60).map {
             now.addingTimeInterval($0)
         }
-        // Exact event and local-midnight entries prevent stale labels between arc updates.
-        dates += days.flatMap { [$0.interval.start] + $0.events.map(\.date) }
+        // Include golden-hour boundaries so the marker changes with the light.
+        dates += days.flatMap { [$0.interval.start] + $0.events.map(\.date)
+            + $0.goldenHourIntervals.flatMap { [$0.start, $0.end] } }
             .filter { $0 > now && $0 <= end }
         return Array(Set(dates)).sorted()
     }

@@ -1,0 +1,24 @@
+{
+  "locale": "en-CA",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-5",
+  "devices": [
+    {
+      "id": "iphone-6.9",
+      "name": "iPhone 6.9-inch",
+      "deviceType": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max",
+      "width": 1320,
+      "height": 2868,
+      "frame": "iphone"
+    }
+  ],
+  "screens": [
+    {
+      "id": "05-widgets",
+      "headline": "Home Screen\nwidgets",
+      "gradient": [
+        "24224F",
+        "514BA5"
+      ]
+    }
+  ]
+}

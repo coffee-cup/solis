@@ -21,9 +21,6 @@ class SunArea: UIView {
     
     var gradientLayer: CAGradientLayer!
     
-    var startDegrees: Float!
-    var endDegrees: Float!
-    var name: String!
     var colour: UIColor!
     
     var colours: [CGColor]?
@@ -32,8 +29,6 @@ class SunArea: UIView {
     // Rebuilds the colour stops from the current palette after a theme change.
     var colourBuilder: (@MainActor () -> [CGColor])?
     
-    var inMorning: Bool!
-    var day: SunDay!
     
     var firstLoad = true
     
@@ -43,17 +38,11 @@ class SunArea: UIView {
         super.init(frame : frame)
     }
     
-    convenience init (startDegrees: Float, endDegrees: Float, name: String, colour: UIColor, day: SunDay, inMorning: Bool) {
-        self.init(frame:CGRect.zero)
-        
-        self.startDegrees = startDegrees
-        self.endDegrees = endDegrees
-        self.name = name
+    convenience init(colour: UIColor) {
+        self.init(frame: .zero)
         self.colour = colour
-        self.day = day
-        self.inMorning = inMorning
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         fatalError("This class does not support NSCoding")
     }
@@ -124,24 +113,12 @@ class SunArea: UIView {
         }
     }
     
-    func degreesToPercent(_ minMarker: SunTimeMarker, maxMarker: SunTimeMarker, findDegree: Float) -> Float {
-        let minDegree = minMarker.sunTimeLine.suntime.type.degrees
-        let maxDegree = maxMarker.sunTimeLine.suntime.type.degrees
-        
-        let minPercent = minMarker.percent
-        let maxPercent = maxMarker.percent
-        
-        let degreeScale: Float = (maxDegree - minDegree) / (findDegree - minDegree)
-        let scaledPercent: Float = ((maxPercent - minPercent) / degreeScale) + minPercent
-        return scaledPercent
-    }
-    
     func updateAreaWithPercents(_ minPercent: Float, maxPercent: Float) {
-        if "\(minPercent)" == "nan" || "\(maxPercent)" == "nan" {
+        if !minPercent.isFinite || !maxPercent.isFinite {
             return
         }
         
-        if minPercent < 0 || minPercent > 100 || maxPercent < 0 || maxPercent > 100 {
+        if minPercent < 0 || minPercent > 1 || maxPercent < minPercent || maxPercent > 1 {
             return
         }
         
@@ -163,48 +140,4 @@ class SunArea: UIView {
         })
     }
     
-    func updateArea(_ sunTimeMarkers: [SunTimeMarker]) {
-        // Only use relevant markers
-        let filteredMarkers = sunTimeMarkers.filter { marker in
-            return marker.sunTimeLine.suntime.day == self.day &&
-                marker.sunTimeLine.suntime.type.morning == self.inMorning
-        }
-
-        // Sort markers by degrees
-        let sortedMarkers = filteredMarkers.sorted { lhs, rhs in
-            return lhs.sunTimeLine.suntime.type.degrees < rhs.sunTimeLine.suntime.type.degrees
-        }
-
-        var lowestMarker: SunTimeMarker?
-        var highestMarker: SunTimeMarker?
-        for marker in sortedMarkers {
-            let sunDegree = marker.sunTimeLine.suntime.type.degrees
-            if sunDegree <= startDegrees || (startDegrees < 0 && (lowestMarker == nil || sunDegree < (lowestMarker?.sunTimeLine.suntime.type.degrees)!)) {
-                lowestMarker = marker
-            }
-            if highestMarker == nil && sunDegree >= endDegrees {
-                highestMarker = marker
-            }
-        }
-
-        if let lowestMarker = lowestMarker {
-            if let highestMarker = highestMarker {
-                var minMarker = lowestMarker
-                var maxMarker = highestMarker
-
-                if minMarker.percent > maxMarker.percent {
-                    swap(&minMarker, &maxMarker)
-                }
-
-                let startPercent = degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: startDegrees)
-                let endPercent = degreesToPercent(minMarker, maxMarker: maxMarker, findDegree: endDegrees)
-
-                updateAreaWithPercents(min(startPercent, endPercent), maxPercent: max(startPercent, endPercent))
-            }
-        }
-
-        if lowestMarker == nil || highestMarker == nil {
-            fadeOutView()
-        }
-    }
 }

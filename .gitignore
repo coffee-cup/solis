@@ -85,3 +85,6 @@ Pods/
 # iOS simulator loop artifacts
 .ios-loop/
 .iosef/
+
+# Development reference tooling
+__pycache__/

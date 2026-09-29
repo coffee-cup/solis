@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Table of Sunrise/Sunset, Moonrise/Moonset, or Twilight Times for an Entire Year</title>
+
+
+    <link rel="stylesheet" href="/uswds/css/uswds.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/aa.css">
+    <link rel="stylesheet" href="/css/pretty_out.css">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+
+<body>
+    
+
+<a class="usa-skipnav" href="#main-content">Skip to main content</a>
+
+
+<div class="site-banner usa-banner">
+    <div class="usa-accordion">
+        <header class="usa-banner__header">
+            <div class="usa-banner__inner">
+                <div class="grid-col-auto">
+                    <img class="usa-banner__header-flag" src="/uswds/img/us_flag_small.png" alt="U.S. flag">
+                </div>
+                <div class="grid-col-fill tablet:grid-col-auto">
+                    <p class="usa-banner__header-text">An official website of the United States government</p>
+                    <p class="usa-banner__header-action" aria-hidden="true">Here’s how you know</p>
+                </div>
+                <button class="usa-accordion__button usa-banner__button" aria-expanded="false" aria-controls="gov-banner">
+            <span class="usa-banner__button-text">Here’s how you know</span>
+            </button>
+            </div>
+        </header>
+        <div class="usa-banner__content usa-accordion__content" id="gov-banner">
+            <div class="grid-row grid-gap-lg">
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img" src="/uswds/img/icon-dot-gov.svg" alt="Dot gov">
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>The .gov means it’s official.</strong>
+                            <br> Federal government websites often end in .gov or .mil. Before sharing sensitive information, make sure you’re on a federal government site.
+                        </p>
+                    </div>
+                </div>
+                <div class="usa-banner__guidance tablet:grid-col-6">
+                    <img class="usa-banner__icon usa-media-block__img" src="/uswds/img/icon-https.svg" alt="Https">
+                    <div class="usa-media-block__body">
+                        <p>
+                            <strong>The site is secure.</strong>
+                            <br> The <strong>https://</strong> ensures that you are connecting to the official website and that any information you provide is encrypted and transmitted securely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="usa-overlay"></div>
+<header class="usa-header site-header site-header-dark" role="banner">
+    <div class="usa-navbar site-header-navbar">
+        <div class="usa-logo site-logo" id="logo">
+            <em class="usa-logo__text">
+                <a class="margin-right-05" href="/" title="Home" aria-label="USNO Astronomical Applications Home">
+                <span aria-hidden="true" class="site-title-short">AA Dept</span>
+                <span class="site-title">Astronomical Applications Department</span>
+                </a>
+            </em>
+        </div>
+        <div class="urania-logo-container">
+            <a href="https://www.cnmoc.usff.navy.mil/usno/">
+                <img class="urania-logo" src="/graphics/urania_logo_circle.png" alt="Urania Logo">
+            </a>
+        </div>
+        <button class="usa-menu-btn">Menu</button>
+    </div>
+
+</header>
+<nav class="site-nav-secondary sticky">
+    <ul>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/index"><span>Main</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/data/index"><span>Data Services</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/faq/index"><span>Information Center</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/publications/index"><span>Publications</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/software/index"><span>Software</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/about/index"><span>About Us</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/sitemap/"><span>Site Map</span></a>
+        </li>
+        
+    </ul>
+</nav>
+    
+
+<nav role="navigation" aria-label="Mobile Navigation" class="usa-nav site-nav sidenav-mobile">
+    <div class="usa-nav__inner"><button class="usa-nav__close"><img src="/uswds/img/close.svg" role="img" alt="close"></button>
+    <ul class="usa-nav__primary">
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/index"><span>Main</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/data/index"><span>Data Services</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/faq/index"><span>Information Center</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/publications/index"><span>Publications</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/software/index"><span>Software</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/about/index"><span>About Us</span></a>
+        </li>
+        
+        <li class="usa-nav__primary-item " >
+        <a class="" href="/sitemap/"><span>Site Map</span></a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+<main class="usa-layout-docs usa-section" id="main-content">
+    <div class="grid-container">
+        <div class="grid-row grid-gap">
+            <div class="usa-layout-docs__main desktop:grid-col-12 usa-prose">
+                
+
+    <h1>Table of Sunrise/Sunset, Moonrise/Moonset, or Twilight Times for an Entire Year</h1>
+    <div>
+
+<pre style="text-align: left; margin-left: auto; margin-right: auto;">
+             o  ,    o  ,                                       TORONTO                                Astronomical Applications Dept.
+Location: W079 23, N43 39                           Astronomical Twilight for 2026                     U. S. Naval Observatory        
+                                                                                                       Washington, DC  20392-5420     
+                                                            Universal Time                                                            
+                                                                                                                                      
+                                                                                                                                      
+       Jan.       Feb.       Mar.       Apr.       May        June       July       Aug.       Sept.      Oct.       Nov.       Dec.  
+Day Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End  Begin End
+     h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m
+01  1107 2335  1056 0006  1019 0040  0920 0122  0817 0212  0724 0307  0719 0324  0807 0242  0859 0137  0940 0036  1016 2345  1049 2324
+02  1108 2336  1055 0007  1017 0042  0918 0124  0815 0214  0722 0308  0720 0323  0808 0240  0900 0135  0941 0034  1017 2344  1050 2324
+03  1108 2337  1054 0008  1015 0043  0916 0125  0813 0215  0721 0310  0721 0323  0810 0238  0902 0133  0942 0032  1019 2343  1051 2324
+04  1108 2338  1053 0010  1014 0044  0914 0127  0811 0217  0720 0311  0722 0322  0812 0236  0903 0131  0943 0030  1020 2342  1051 2324
+05  1108 2338  1052 0011  1012 0045  0912 0128  0809 0219  0719 0312  0723 0321  0814 0234  0905 0128  0944 0028  1021 2341  1052 2324
+06  1108 2339  1051 0012  1010 0047  0910 0130  0807 0221  0718 0314  0724 0320  0816 0232  0906 0126  0946 0026  1022 2340  1053 2324
+07  1108 2340  1049 0013  1008 0048  0907 0131  0805 0223  0718 0315  0726 0319  0817 0230  0908 0124  0947 0025  1023 2339  1054 2324
+08  1108 2341  1048 0014  1007 0049  0905 0133  0803 0225  0717 0316  0727 0318  0819 0228  0909 0122  0948 0023  1024 2338  1055 2324
+09  1108 2342  1047 0016  1005 0051  0903 0135  0801 0227  0716 0317  0728 0317  0821 0226  0911 0120  0949 0021  1025 2337  1056 2324
+10  1107 2343  1046 0017  1003 0052  0901 0136  0759 0228  0715 0318  0730 0316  0823 0224  0912 0118  0951 0019  1027 2336  1056 2324
+11  1107 2344  1045 0018  1001 0053  0859 0138  0757 0230  0715 0319  0731 0315  0824 0222  0913 0116  0952 0018  1028 2335  1057 2324
+12  1107 2345  1044 0019  0959 0055  0857 0139  0755 0232  0714 0320  0733 0314  0826 0220  0915 0114  0953 0016  1029 2334  1058 2324
+13  1107 2346  1042 0020  0958 0056  0855 0141  0753 0234  0714 0321  0734 0313  0828 0217  0916 0112  0954 0014  1030 2333  1059 2325
+14  1107 2347  1041 0022  0956 0057  0853 0143  0751 0236  0714 0322  0736 0311  0830 0215  0917 0109  0955 0012  1031 2332  1059 2325
+15  1106 2348  1040 0023  0954 0058  0851 0144  0750 0238  0713 0323  0737 0310  0831 0213  0919 0107  0956 0011  1032 2332  1100 2325
+16  1106 2349  1038 0024  0952 0100  0848 0146  0748 0240  0713 0323  0739 0309  0833 0211  0920 0105  0958 0009  1033 2331  1101 2326
+17  1105 2350  1037 0025  0950 0101  0846 0147  0746 0241  0713 0324  0740 0307  0835 0209  0922 0103  0959 0008  1034 2330  1101 2326
+18  1105 2351  1036 0027  0948 0103  0844 0149  0744 0243  0713 0324  0742 0306  0836 0207  0923 0101  1000 0006  1035 2330  1102 2326
+19  1105 2352  1034 0028  0946 0104  0842 0151  0743 0245  0713 0325  0744 0304  0838 0205  0924 0059  1001 0004  1036 2329  1103 2327
+20  1104 2353  1033 0029  0944 0105  0840 0153  0741 0247  0713 0325  0745 0303  0840 0203  0926 0057  1002 0003  1038 2328  1103 2327
+21  1104 2355  1031 0030  0942 0107  0838 0154  0739 0249  0713 0325  0747 0301  0841 0201  0927 0055  1003 0001  1039 2328  1104 2328
+22  1103 2356  1030 0032  0940 0108  0836 0156  0738 0250  0713 0326  0749 0300  0843 0158  0928 0053  1005 0000  1040 2327  1104 2328
+22                                                                                                          2359                      
+23  1102 2357  1028 0033  0938 0109  0834 0158  0736 0252  0714 0326  0751 0258  0845 0156  0929 0051  1006 2357  1041 2327  1105 2329
+24  1102 2358  1027 0034  0936 0111  0831 0159  0734 0254  0714 0326  0752 0256  0846 0154  0931 0049  1007 2356  1042 2326  1105 2329
+25  1101 2359  1025 0035  0934 0112  0829 0201  0733 0256  0715 0326  0754 0254  0848 0152  0932 0047  1008 2354  1043 2326  1105 2330
+26  1100       1024 0037  0932 0114  0827 0203  0731 0257  0715 0326  0756 0253  0850 0150  0933 0045  1009 2353  1044 2326  1106 2331
+27  1100 0000  1022 0038  0930 0115  0825 0205  0730 0259  0716 0325  0758 0251  0851 0148  0935 0043  1010 2352  1045 2325  1106 2331
+28  1059 0001  1020 0039  0928 0116  0823 0206  0729 0301  0717 0325  0759 0249  0853 0146  0936 0041  1012 2350  1046 2325  1106 2332
+29  1058 0003             0926 0118  0821 0208  0727 0302  0717 0325  0801 0247  0854 0143  0937 0039  1013 2349  1047 2325  1107 2333
+30  1057 0004             0924 0119  0819 0210  0726 0304  0718 0324  0803 0245  0856 0141  0938 0037  1014 2348  1048 2324  1107 2333
+31  1056 0005             0922 0121             0725 0305             0805 0244  0857 0139             1015 2346             1107 2334
+
+Add one hour for daylight time, if and when in use.
+</pre>
+
+
+</div>
+
+            </div>
+        </div> 
+    </div>
+
+     
+
+<footer class="usa-footer usa-footer--slim">
+    <div class="usa-footer">
+      <div class="usa-footer grid-row">
+        <div class="mobile-lg:grid-col-12 bg-gold padding-y-1 line-height-sans-3 font-lang-4">
+          <nav class="usa-footer__nav" aria-label="Footer navigation">
+            <ul class="grid-row grid-gap">
+              <li class="mobile-lg:grid-col-6 desktop:grid-col-3 usa-footer">
+                <p class="usa-footer">This is an official 
+
+<a href='https://www.navy.mil' target="_blank" rel="noreferrer">U.S. Navy</a>
+
+ Web site</p>
+              </li>
+              <li class="mobile-lg:grid-col-6 desktop:grid-col-7 usa-footer">
+                <p class="usa-footer">
+                  Hyperlinks do not constitute endorsement by the U.S. Navy of non-U.S.Government sites or the information, products, or services contained therein.
+                </p>
+              </li>
+              <li class="mobile-lg:grid-col-6 desktop:grid-col-2 usa-footer">
+                <p><a class="usa-footer" href="/about/PrivacyNotice">Privacy and Security Notice</a></p>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer> 
+
+    
+</main>
+
+
+
+<script src="/js/aa.js"></script>
+<script src="/uswds/js/uswds.min.js"></script>
+</body>
+
+</html>

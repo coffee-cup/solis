@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-09-27T05:45:10.303449+00:00",
+  "source": "Real WidgetKit Home Screen capture from iPhone 18 Pro simulator, light appearance",
+  "rawSize": [
+    1206,
+    2622
+  ],
+  "outputSize": [
+    1320,
+    2868
+  ],
+  "format": "8-bit opaque RGB PNG",
+  "headline": "Home Screen\nwidgets.",
+  "template": "Existing scripts/render-app-store.swift layout; portrait input size check adapted for the source simulator",
+  "locations": [
+    "Chicago",
+    "Vancouver",
+    "Toronto"
+  ],
+  "order": [
+    "Sunline",
+    "Next Sun Event",
+    "Now and Sun Countdown"
+  ],
+  "output": "media/app-store/upload/en-CA/iphone-6.9/05-widgets-home-screen.png"
+}
