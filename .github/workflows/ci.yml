@@ -11,17 +11,18 @@ concurrency:
 
 jobs:
   test:
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
 
-      - name: Select Xcode 26
-        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+      - name: Select Xcode 27.0 (Swift 6.4)
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app/Contents/Developer
 
       - name: Show environment
         run: |
           xcodebuild -version
+          xcrun swift --version
           xcrun simctl list devices available
 
       - name: Verify offline solar reference matrix
@@ -29,10 +30,11 @@ jobs:
 
       - name: Run unit tests
         run: |
+          simulator_id="$(scripts/ios-loop-sim.sh --shutdown-older --print-udid)"
           xcodebuild test \
             -project SunriseSunset.xcodeproj \
             -scheme SunriseSunset \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+            -destination "platform=iOS Simulator,id=$simulator_id" \
             -resultBundlePath TestResults.xcresult
 
       - name: Upload result bundle

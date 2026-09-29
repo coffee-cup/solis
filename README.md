@@ -28,7 +28,9 @@ A simple iOS app to show you when the sun sets, rises, and in between.
 1. Clone repo
 2. Open `SunriseSunset.xcodeproj`
 
-No external dependencies. Requires Xcode 26+, targets iOS 18+.
+No external dependencies. Build with Xcode 27.0 and its bundled Swift 6.4 compiler.
+The app targets iOS 18+ and uses Swift 6 language mode (`SWIFT_VERSION = 6.0`).
+The compiler version comes from Xcode; the language mode stays at 6.0.
 
 ## App Store screenshots
 

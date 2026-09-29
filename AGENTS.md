@@ -1,6 +1,6 @@
 # Solis — Agent Guide
 
-iOS app showing sunrise/sunset/twilight times on a scrollable day timeline. SwiftUI app lifecycle with one wrapped UIKit view controller for the timeline, zero external dependencies, iOS 18+, built with Xcode 26.
+iOS app showing sunrise/sunset/twilight times on a scrollable day timeline. SwiftUI app lifecycle with one wrapped UIKit view controller for the timeline, zero external dependencies, iOS 18+, built with Xcode 27.0 and Swift 6.4. Keep `SWIFT_VERSION = 6.0` for Swift 6 language mode; Xcode supplies the compiler version.
 
 ## Layout
 
